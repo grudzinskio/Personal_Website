@@ -142,8 +142,28 @@
   text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
 }
 
+@utility text-gradient {
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary-foreground)));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradient-move 3s linear infinite;
+}
+
+@keyframes gradient-move {
+  0% { background-position: 0%;}
+  100% { background-position: 100%;}
+}
+
 @utility card-hover {
   @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
+  /* Add tilt and glow */
+  will-change: transform, box-shadow;
+  transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s;
+}
+.card-hover:hover {
+  transform: scale(1.03) rotateZ(-2deg);
+  box-shadow: 0 0 24px 0 hsl(var(--primary) / 0.25);
 }
 
 @utility gradient-border {
@@ -166,6 +186,23 @@
 @utility meteor {
   @apply absolute bg-linear-to-r from-white to-transparent rounded-full;
   box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+}
+
+@utility animated-gradient-footer {
+  background: linear-gradient(
+    90deg,
+    hsl(250 65% 35%),           /* Darker primary */
+    hsl(222 47% 8%),            /* Dark card */
+    hsl(213 31% 91% / 0.2)      /* Faint foreground accent */
+  );
+  background-size: 200% 200%;
+  animation: gradient-footer-move 6s ease-in-out infinite;
+}
+
+@keyframes gradient-footer-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 #root {
