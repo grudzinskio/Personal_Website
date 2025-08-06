@@ -5,7 +5,7 @@ const projects = [
         id: 1,
         title: "Hackathon Winner! CPA Agentic Research System",
         description: "LLM-powered assistant for tax return analysis and optimization. Built with Python, LangChain, and PydanticAI.",
-        image: "/projects/cpa-agentic.png", // Replace with your image
+        image: "/projects/CPAproject.jpg", // Replace with your image
         tags: ["Python", "LangChain", "LLM", "PydanticAI"],
         demoURL: "#", // Add your demo link
         githubUrl: "https://github.com/grudzinskio/CPA-AI_Agentic-Deep-Research", // Add your GitHub link
@@ -14,28 +14,37 @@ const projects = [
         id: 2,
         title: "Diabetes Prediction (Random Forest)",
         description: "ML pipeline for diabetes prediction using statistical tests and Random Forest.",
-        image: "/projects/diabetes-prediction.png", // Replace with your image
+        image: "/projects/DiabetesProject.png", // Replace with your image
         tags: ["Python", "Scikit-learn", "ML", "Data Analysis"],
         demoURL: "#",
-        githubUrl: "#",
+        githubUrl: "https://github.com/grudzinskio/DiabetesPrediction",
     },
     {
         id: 3,
         title: "Custom Wordle Game",
         description: "Java-based Wordle game with admin tools, SQL database, and modular testing for QA.",
-        image: "/projects/wordle-game.png", // Replace with your image
+        image: "/projects/WordleProject.png", // Replace with your image
         tags: ["Java", "SQL", "Game Dev"],
         demoURL: "#",
-        githubUrl: "#",
+        githubUrl: "https://github.com/grudzinskio/WordleGame",
     },
     {
         id: 4,
         title: "Automated XML Schema Documentation",
         description: "CI/CD pipeline using Python and ML to automate XSD documentation and analysis.",
-        image: "/projects/xml-docs.png", // Replace with your image
+        image: "/projects/ActionsProject.png", // Replace with your image
         tags: ["Python", "CI/CD", "ML", "GitHub Actions"],
         demoURL: "#",
         githubUrl: "#",
+    },
+    {
+        id: 5,
+        title: "This Website!",
+        description: "Website built using modern web devoplment tools!.",
+        image: "/projects/PersonalWebsite.png", // Replace with your image
+        tags: ["Frontend", "TailwindCSS", "React", ],
+        demoURL: "#",
+        githubUrl: "https://github.com/grudzinskio/Personal_Website",
     },
 
 ];
