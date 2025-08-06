@@ -3,10 +3,10 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 const projects = [
     {
         id: 1,
-        title: "Hackathon Winner! CPA Agentic Research System",
+        title: "Hackathon Winner! AI CPA Agentic Research System",
         description: "LLM-powered assistant for tax return analysis and optimization. Built with Python, LangChain, and PydanticAI.",
         image: "/projects/CPAproject.jpg", // Replace with your image
-        tags: ["Python", "LangChain", "LLM", "PydanticAI"],
+        tags: ["Python", "LangChain", "LLM", "PydanticAI", "Agentic"],
         demoURL: "#", // Add your demo link
         githubUrl: "https://github.com/grudzinskio/CPA-AI_Agentic-Deep-Research", // Add your GitHub link
     },
@@ -24,27 +24,36 @@ const projects = [
         title: "Custom Wordle Game",
         description: "Java-based Wordle game with admin tools, SQL database, and modular testing for QA.",
         image: "/projects/WordleProject.png", // Replace with your image
-        tags: ["Java", "SQL", "Game Dev"],
+        tags: ["Java", "SQL", "Game Dev", "SCRUM", "Testing"],
         demoURL: "#",
         githubUrl: "https://github.com/grudzinskio/WordleGame",
     },
     {
         id: 4,
         title: "Automated XML Schema Documentation",
-        description: "CI/CD pipeline using Python and ML to automate XSD documentation and analysis.",
+        description: "RAG CI/CD pipeline using Python and ML to automate XSD documentation and analysis.",
         image: "/projects/ActionsProject.png", // Replace with your image
-        tags: ["Python", "CI/CD", "ML", "GitHub Actions"],
+        tags: ["Python", "CI/CD", "ML", "GitHub Actions", "RAG"],
         demoURL: "#",
         githubUrl: "#",
     },
     {
         id: 5,
         title: "This Website!",
-        description: "Website built using modern web devoplment tools!.",
+        description: "Website built using modern web development tools! Feel free to see how I made it.",
         image: "/projects/PersonalWebsite.png", // Replace with your image
-        tags: ["Frontend", "TailwindCSS", "React", ],
+        tags: ["Frontend", "TailwindCSS", "React", "JavaScript" ],
         demoURL: "#",
         githubUrl: "https://github.com/grudzinskio/Personal_Website",
+    },
+    {
+        id: 6,
+        title: "Campaign Poster Management",
+        description: "Full-stack application for managing campaign posters with user authentication and image upload.",
+        image: "/projects/PosterManagement.png", // Replace with your image
+        tags: ["MariaDB", "SQL", "Javascript", "API", "React", "Node.js"],
+        demoURL: "#",
+        githubUrl: "https://github.com/grudzinskio/poster_management",
     },
 
 ];
@@ -78,20 +87,24 @@ export const ProjectsSection = () => {
                                 <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
                                 <div className="flex justify-between items-center">
                                     <div className="flex space-x-3">
-                                        <a
-                                            href={project.demoURL}
-                                            target="_blank"
-                                            className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                                        >
-                                            <ExternalLink size={20} />
-                                        </a>
-                                        <a
-                                            href={project.githubUrl}
-                                            target="_blank"
-                                            className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                                        >
-                                            <Github size={20} />
-                                        </a>
+                                        {project.demoURL !== "#" && (
+                                            <a
+                                                href={project.demoURL}
+                                                target="_blank"
+                                                className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                                            >
+                                                <ExternalLink size={20} />
+                                            </a>
+                                        )}
+                                        {project.githubUrl !== "#" && (
+                                            <a
+                                                href={project.githubUrl}
+                                                target="_blank"
+                                                className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                                            >
+                                                <Github size={20} />
+                                            </a>
+                                        )}
                                     </div>
                                 </div>
                             </div>
