@@ -20,7 +20,7 @@ export const HeroSection = () => {
                         </span>
                     </h1>
                     <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-                        I’m a MSOE junior with internship experience, skilled in building full stack web applications and have extensive experience working with AI 
+                        I’m a junior at MSOE with internship experience, skilled in building full stack web applications and have extensive experience working with AI 
                     </p>
 
                     <div className="opacity-0 animate-fade-in-delay-4">
