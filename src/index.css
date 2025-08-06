@@ -188,6 +188,23 @@
   box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
 }
 
+@utility animated-gradient-footer {
+  background: linear-gradient(
+    90deg,
+    hsl(250 65% 35%),           /* Darker primary */
+    hsl(222 47% 8%),            /* Dark card */
+    hsl(213 31% 91% / 0.2)      /* Faint foreground accent */
+  );
+  background-size: 200% 200%;
+  animation: gradient-footer-move 6s ease-in-out infinite;
+}
+
+@keyframes gradient-footer-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 #root {
   max-width: 100%;
   margin: 0 auto;
