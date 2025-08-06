@@ -21,15 +21,15 @@ const skills = [
     { name: "Redux", category: "web" },
 
     // AI/ML
-    { name: "Scikit-learn", category: "ai" },
-    { name: "Pandas", category: "ai" },
-    { name: "NumPy", category: "ai" },
-    { name: "TensorFlow", category: "ai" },
-    { name: "LangChain", category: "ai" },
-    { name: "LangGraph", category: "ai" },
-    { name: "LLMs", category: "ai" },
-    { name: "Generative AI", category: "ai" },
-    { name: "RAG", category: "ai" },
+    { name: "Scikit-learn", category: "AI" },
+    { name: "Pandas", category: "AI" },
+    { name: "NumPy", category: "AI" },
+    { name: "TensorFlow", category: "AI" },
+    { name: "LangChain", category: "AI" },
+    { name: "LangGraph", category: "AI" },
+    { name: "LLMs", category: "AI" },
+    { name: "Generative AI", category: "AI" },
+    { name: "RAG", category: "AI" },
 
     // Databases & Tools
     { name: "Git", category: "tools" },
@@ -47,7 +47,7 @@ const categories = [
     "all",
     "languages",
     "web",
-    "ai",
+    "AI",
     "tools",
     "methodologies"
 ];
@@ -73,13 +73,13 @@ export const SkillsSection = () => {
                             key={key}
                             onClick={() => setActiveCategory(category)}
                             className={cn(
-                                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
+                                "px-5 py-2 rounded-full transition-colors duration-300",
                                 activeCategory === category 
                                     ? "bg-primary text-primary-foreground" 
                                     : "bg-secondary/70 text-foreground hover:bg-secondary"
                             )}
                         >
-                            {category}
+                            {category === "AI" ? "AI" : category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()}
                         </button>
                     ))}
                 </div>
