@@ -57,9 +57,9 @@ export const AboutSection = () => {
                                 <User className="h-6 w-6 text-primary" />
                             </div>
                             <div className="text-left">
-                                <h4 className="font-semibold text-lg"> UI/UX</h4>
+                                <h4 className="font-semibold text-lg"> AI & Machine Learning</h4>
                                 <p className="text-muted-foreground">
-                                    Designing intutive user interfaces and seamless user exp.
+                                    Building intelligent systems and practical AI solutions for real-world problems.
                                 </p>
                             </div>
                         </div>
@@ -72,7 +72,7 @@ export const AboutSection = () => {
                             <div className="text-left">
                                     <h4 className="font-semibold text-lg"> Project Management</h4>
                                     <p className="text-muted-foreground">
-                                        How I deal with project etc..
+                                        Experienced in Agile and Scrum, I help teams deliver reliable software through clear communication and organized workflows.
                                     </p>
                                 </div>
                         </div>
