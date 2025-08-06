@@ -142,8 +142,28 @@
   text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
 }
 
+@utility text-gradient {
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary-foreground)));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradient-move 3s linear infinite;
+}
+
+@keyframes gradient-move {
+  0% { background-position: 0%;}
+  100% { background-position: 100%;}
+}
+
 @utility card-hover {
   @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
+  /* Add tilt and glow */
+  will-change: transform, box-shadow;
+  transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s;
+}
+.card-hover:hover {
+  transform: scale(1.03) rotateZ(-2deg);
+  box-shadow: 0 0 24px 0 hsl(var(--primary) / 0.25);
 }
 
 @utility gradient-border {

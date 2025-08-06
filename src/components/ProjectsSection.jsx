@@ -1,4 +1,5 @@
 import { ArrowRight, ExternalLink, Github, Award } from "lucide-react";
+import { useState } from "react";
 
 const projects = [
     {
@@ -60,10 +61,12 @@ const projects = [
 ];
 
 export const ProjectsSection = () => {
+    const [modalProject, setModalProject] = useState(null);
+
     return (
         <section id="projects" className="py-24 px-4 relative">
             <div className="container mx-auto max-w-6xl">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-gradient">
                     Featured<span className="text-primary"> Projects</span>
                 </h2>
 
@@ -73,7 +76,12 @@ export const ProjectsSection = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projects.map((project, key) => (
-                        <div key={key} className={`group bg-card rounded-xl overflow-hidden shadow-lg card-hover relative ${project.featured ? 'ring-2 ring-primary/30' : ''}`}>
+                        <div
+                            key={key}
+                            className={`group bg-card rounded-xl overflow-hidden shadow-lg card-hover relative ${project.featured ? 'ring-2 ring-primary/30' : ''}`}
+                            onClick={() => setModalProject(project)}
+                            style={{ cursor: "pointer" }}
+                        >
                             {project.status && (
                                 <div className="absolute top-3 left-3 z-10 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
                                     <Award size={12} />
@@ -149,6 +157,30 @@ export const ProjectsSection = () => {
                     </a>
                 </div>
             </div>
+            {/* Modal */}
+            {modalProject && (
+                <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center" onClick={() => setModalProject(null)}>
+                    <div className="bg-card rounded-xl p-8 max-w-lg w-full relative" onClick={e => e.stopPropagation()}>
+                        <button className="absolute top-4 right-4 text-primary" onClick={() => setModalProject(null)}>✕</button>
+                        <img src={modalProject.image} alt={modalProject.title} className="w-full h-48 object-cover rounded mb-4" />
+                        <h3 className="text-2xl font-bold mb-2">{modalProject.title}</h3>
+                        <p className="text-muted-foreground mb-4">{modalProject.description}</p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                            {modalProject.tags.map((tag, idx) => (
+                                <span key={idx} className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20">{tag}</span>
+                            ))}
+                        </div>
+                        <div className="flex gap-4">
+                            {modalProject.demoURL !== "#" && (
+                                <a href={modalProject.demoURL} target="_blank" rel="noopener noreferrer" className="cosmic-button">Demo</a>
+                            )}
+                            {modalProject.githubUrl !== "#" && (
+                                <a href={modalProject.githubUrl} target="_blank" rel="noopener noreferrer" className="cosmic-button">Code</a>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 }
