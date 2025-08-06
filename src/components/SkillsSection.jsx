@@ -1,18 +1,29 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+
 const skills = [
+    // Frontend
+    { name: "HTML/CSS", category: "frontend" },
+    { name: "JavaScript", category: "frontend" },
+    { name: "React", category: "frontend" },
+    { name: "Tailwind CSS", category: "frontend" },
+    { name: "Responsive Design", category: "frontend" },
 
-    //frontend 
-    { name: "HTML/CSS", level: 95, category: "frontend" },
+    // Backend
+    { name: "Node.js", category: "backend" },
+    { name: "Express.js", category: "backend" },
+    { name: "MongoDB", category: "backend" },
+    { name: "PostgreSQL", category: "backend" },
+    { name: "REST APIs", category: "backend" },
 
-    //backend
+    // Tools & Technologies
+    { name: "Git/GitHub", category: "tools" },
+    { name: "VS Code", category: "tools" },
+    { name: "IntelliJ IDEA", category: "tools" },
+    { name: "Vite", category: "tools" },
+    { name: "npm/yarn", category: "tools" },
+];
 
-    { name: "Node.js", level: 95, category: "backend" },
-    //tools
-    { name: "Git/Github", level: 95, category: "tools" },
-    { name: "intelj", level: 95, category: "tools" },
-    { name: "vscode", level: 95, category: "tools" },
-]
 const categories = ["all", "frontend", "backend", "tools"];
 
 export const SkillsSection = () => {
@@ -25,42 +36,39 @@ export const SkillsSection = () => {
         <section
             id="skills"
             className="py-24 px-4 relative bg-secondary/30">
-
-            <div className="container mx-auto max-w-5xl ">
+            <div className="container mx-auto max-w-5xl">
                 <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-                    My <span className="text-primary"> Skills</span>
+                    My <span className="text-primary">Skills</span>
                 </h2>
+                
                 <div className="flex flex-wrap justify-center gap-4 mb-12">
                     {categories.map((category, key) => (
                         <button
                             key={key}
                             onClick={() => setActiveCategory(category)}
-                            className={cn("px-5 py-2 rounded-full transition-colors duration-300 capitalize",
-                                activeCategory === category ? "bg-primary text-primary-foreground" : "bg-secondary/70 text-foreground hover:bg-secondary"
+                            className={cn(
+                                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
+                                activeCategory === category 
+                                    ? "bg-primary text-primary-foreground" 
+                                    : "bg-secondary/70 text-foreground hover:bg-secondary"
                             )}
                         >
                             {category}
-                        </button>))}
+                        </button>
+                    ))}
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     {filteredSkills.map((skill, key) => (
-                        <div key={key} className="bg-card p-6 rounded-lg shadow-xs card-hover">
-                            <div className="text-left mb-4">
-                                <h3 className="font-semibold text-lg"> {skill.name}</h3>
-                            </div>
-                            <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                                <div className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out"
-                                    style={{ width: skill.level + "%" }}
-                                />
-                            </div>
-                            <div className="text-right mt-1">
-                                <span className="text-sm text-muted-foreground">{skill.level}%</span>
-                            </div>
+                        <div 
+                            key={key} 
+                            className="bg-card p-4 rounded-lg shadow-sm card-hover text-center border border-primary/20 hover:border-primary/40 hover:shadow-md transition-all duration-300"
+                        >
+                            <h3 className="font-medium text-sm md:text-base">{skill.name}</h3>
                         </div>
                     ))}
                 </div>
             </div>
         </section>
     );
-}
+};
