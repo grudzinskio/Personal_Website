@@ -1,4 +1,4 @@
-import { Briefcase, Code, User, Brain } from "lucide-react"
+import { Briefcase, Code, User, Brain, Server } from "lucide-react"
 import teschLogo from "../assets/TESCHGlobal_logo.png"
 import msoeLogo from "../assets/MSOE_logo.png"
 
@@ -122,12 +122,12 @@ export const AboutSection = () => {
                     <div className="gradient-border p-6 card-hover">
                         <div className="flex items-start gap-4">
                             <div className="p-3 rounded-full bg-primary/10">
-                                <Brain className="h-6 w-6 text-primary" />
+                                <Server className="h-6 w-6 text-primary" />
                             </div>
                             <div className="text-left">
-                                <h4 className="font-semibold text-lg"> AI Development</h4>
+                                <h4 className="font-semibold text-lg"> Backend Development</h4>
                                 <p className="text-muted-foreground">
-                                    Developing custom AI models and integrating intelligent automation into applications.
+                                    Building scalable server-side applications, APIs, and database architectures for robust system performance.
                                 </p>
                             </div>
                         </div>
