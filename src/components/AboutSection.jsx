@@ -10,19 +10,24 @@ export const AboutSection = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6">
-                    <h3 className="text-2xl font-semibold">Passionate web dev and tech etc </h3>
+                    <h3 className="text-2xl font-semibold">Oliver Grudzinski</h3>
                     <p className="text-muted-foreground">
-                        how much exp, i have
+                        I’m a junior studying Computer Science at MSOE, passionate about building intelligent systems and modern web applications. My experience spans AI/ML, data analysis, and full-stack development, with a focus on creating practical solutions that make a difference.
                     </p>
-
                     <p className="text-muted-foreground">
-                        what i specialize in
+                        I enjoy collaborating in agile teams, exploring new technologies, and contributing to student organizations like the MSOE AI Club and Society of Software Engineers. Outside of tech, I’m an Eagle Scout who values dedication and lifelong learning.
                     </p>
+                    <div className="space-y-2 mt-6">
+                        <div>
+                            <span className="font-semibold">B.S. Computer Science</span> | Milwaukee School of Engineering |  Expected May 2027
+                        </div>
+                        <div>
+                            <span className="font-semibold">H.S. Diploma</span> | Cedarburg High School 
+                        </div>
+                    </div>
                     <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
                         <a href="#contact" className="cosmic-button">
-                            {" "}
                             Get In Touch
-
                         </a>
                         <a href="" className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300">
                             Download Resume

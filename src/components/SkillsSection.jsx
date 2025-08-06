@@ -2,29 +2,55 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 const skills = [
-    // Frontend
-    { name: "HTML/CSS", category: "frontend" },
-    { name: "JavaScript", category: "frontend" },
-    { name: "React", category: "frontend" },
-    { name: "Tailwind CSS", category: "frontend" },
-    { name: "Responsive Design", category: "frontend" },
+    // Programming Languages
+    { name: "Python", category: "languages" },
+    { name: "Java", category: "languages" },
+    { name: "C++", category: "languages" },
+    { name: "TypeScript", category: "languages" },
+    { name: "JavaScript", category: "languages" },
+    { name: "SQL", category: "languages" },
 
-    // Backend
-    { name: "Node.js", category: "backend" },
-    { name: "Express.js", category: "backend" },
-    { name: "MongoDB", category: "backend" },
-    { name: "PostgreSQL", category: "backend" },
-    { name: "REST APIs", category: "backend" },
+    // Web Development
+    { name: "React", category: "web" },
+    { name: "Node.js", category: "web" },
+    { name: "HTML", category: "web" },
+    { name: "CSS", category: "web" },
+    { name: "JavaFX", category: "web" },
+    { name: "Vite", category: "web" },
+    { name: "TailwindCSS", category: "web" },
+    { name: "Redux", category: "web" },
 
-    // Tools & Technologies
-    { name: "Git/GitHub", category: "tools" },
-    { name: "VS Code", category: "tools" },
-    { name: "IntelliJ IDEA", category: "tools" },
-    { name: "Vite", category: "tools" },
-    { name: "npm/yarn", category: "tools" },
+    // AI/ML
+    { name: "Scikit-learn", category: "ai" },
+    { name: "Pandas", category: "ai" },
+    { name: "NumPy", category: "ai" },
+    { name: "TensorFlow", category: "ai" },
+    { name: "LangChain", category: "ai" },
+    { name: "LangGraph", category: "ai" },
+    { name: "LLMs", category: "ai" },
+    { name: "Generative AI", category: "ai" },
+    { name: "RAG", category: "ai" },
+
+    // Databases & Tools
+    { name: "Git", category: "tools" },
+    { name: "GitHub", category: "tools" },
+    { name: "GitHub Actions (CI/CD)", category: "tools" },
+    { name: "MongoDB", category: "tools" },
+    { name: "Jupyter Notebooks", category: "tools" },
+
+    // Methodologies
+    { name: "Agile (Scrum)", category: "methodologies" },
+    { name: "Waterfall", category: "methodologies" },
 ];
 
-const categories = ["all", "frontend", "backend", "tools"];
+const categories = [
+    "all",
+    "languages",
+    "web",
+    "ai",
+    "tools",
+    "methodologies"
+];
 
 export const SkillsSection = () => {
     const [activeCategory, setActiveCategory] = useState("all");
@@ -62,7 +88,7 @@ export const SkillsSection = () => {
                     {filteredSkills.map((skill, key) => (
                         <div 
                             key={key} 
-                            className="bg-card p-4 rounded-lg shadow-sm card-hover text-center border border-primary/20 hover:border-primary/40 hover:shadow-md transition-all duration-300"
+                            className="bg-card p-4 rounded-lg shadow-sm card-hover text-center border border-primary/20 hover:border-primary/60 hover:bg-primary/5 transition-all duration-300"
                         >
                             <h3 className="font-medium text-sm md:text-base">{skill.name}</h3>
                         </div>

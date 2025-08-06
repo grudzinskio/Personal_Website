@@ -3,32 +3,42 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 const projects = [
     {
         id: 1,
-        title: "Project One",
-        description: "First project description.",
-        image: "/projects/project1.png",
-        tags: ["React", "Tailwind CSS", "JavaScript"],
-        demoURL: "#",
-        githubUrl: "#",
+        title: "Hackathon Winner! CPA Agentic Research System",
+        description: "LLM-powered assistant for tax return analysis and optimization. Built with Python, LangChain, and PydanticAI.",
+        image: "/projects/cpa-agentic.png", // Replace with your image
+        tags: ["Python", "LangChain", "LLM", "PydanticAI"],
+        demoURL: "#", // Add your demo link
+        githubUrl: "https://github.com/grudzinskio/CPA-AI_Agentic-Deep-Research", // Add your GitHub link
     },
     {
         id: 2,
-        title: "Project Two",
-        description: "Second project description.",
-        image: "/projects/project1.png",
-        tags: ["React", "Tailwind CSS", "JavaScript"],
+        title: "Diabetes Prediction (Random Forest)",
+        description: "ML pipeline for diabetes prediction using statistical tests and Random Forest.",
+        image: "/projects/diabetes-prediction.png", // Replace with your image
+        tags: ["Python", "Scikit-learn", "ML", "Data Analysis"],
         demoURL: "#",
         githubUrl: "#",
     },
     {
         id: 3,
-        title: "Project Three",
-        description: "Third project description.",
-        image: "/projects/project1.png",
-        tags: ["React", "Tailwind CSS", "JavaScript"],
+        title: "Custom Wordle Game",
+        description: "Java-based Wordle game with admin tools, SQL database, and modular testing for QA.",
+        image: "/projects/wordle-game.png", // Replace with your image
+        tags: ["Java", "SQL", "Game Dev"],
         demoURL: "#",
         githubUrl: "#",
     },
-]
+    {
+        id: 4,
+        title: "Automated XML Schema Documentation",
+        description: "CI/CD pipeline using Python and ML to automate XSD documentation and analysis.",
+        image: "/projects/xml-docs.png", // Replace with your image
+        tags: ["Python", "CI/CD", "ML", "GitHub Actions"],
+        demoURL: "#",
+        githubUrl: "#",
+    },
+
+];
 
 export const ProjectsSection = () => {
     return (

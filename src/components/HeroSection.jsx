@@ -1,4 +1,3 @@
-
 import { ArrowDown } from "lucide-react";
 
 export const HeroSection = () => {
@@ -21,8 +20,7 @@ export const HeroSection = () => {
                         </span>
                     </h1>
                     <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-                        I am a full stack developer with a passion for creating
-                        beautiful and functional web applications. I specialize in AI, etc.
+                        I’m a junior with internship experience, skilled in building full stack web applications and have experience working with AI and machine
                     </p>
 
                     <div className="opacity-0 animate-fade-in-delay-4">
