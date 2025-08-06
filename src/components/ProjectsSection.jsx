@@ -7,7 +7,7 @@ const projects = [
         description: "LLM-powered assistant for tax return analysis and optimization. Built with Python, LangChain, and PydanticAI.",
         image: "/projects/CPAproject.jpg",
         tags: ["Python", "LangChain", "LLM", "PydanticAI", "Agentic"],
-        demoURL: "#",
+        demoURL: "https://drive.google.com/file/d/1lfyOCU-jMAndwzvOGJP_BmlPMejIH8OS/view?usp=sharing",
         githubUrl: "https://github.com/grudzinskio/CPA-AI_Agentic-Deep-Research",
         status: "Hackathon Winner! 🏆",
         featured: true
