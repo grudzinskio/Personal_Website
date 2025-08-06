@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { X, Menu} from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
+
 const navItems = [
     { name: "Home", href: "#hero" },
     { name: "About", href: "#about" },
@@ -8,9 +10,11 @@ const navItems = [
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
 ]
+
 export const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 10);
@@ -18,22 +22,23 @@ export const Navbar = () => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+    
     return (
         <nav className={cn(
             "fixed w-full z-40 transition-all duration-300",
             isScrolled ? "py-3 bg-card/90 backdrop-blur-md shadow-lg border-b border-border/50" : "py-5 bg-card/60 backdrop-blur-sm"
         )}
         >
-            <div className='container flex items-center justify-between'>
-                <a className="text-xl font-bold text-primary flex items-center">
+            <div className='w-full relative flex items-center px-4'>
+                <a className="text-xl font-bold text-primary flex items-center ml-20">
                     <span className="relative z-10">
                         {" "}
                         <span className="text-glow text-foreground"> Oliver's </span> Portfolio
                     </span>
                 </a>
 
-                {/* desktop nav */}
-                <div className="hidden md:flex space-x-8">
+                {/* desktop nav - moved closer to the sun */}
+                <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform translate-x-20">
                     {navItems.map((item, key) => (
                         <a
                             key={key}
@@ -45,16 +50,24 @@ export const Navbar = () => {
                     ))}
                 </div>
 
-                {/* mobile nav */}
-                <button
-                    onClick={() => setIsMenuOpen((prev) => !prev)}
-                    className="md:hidden p-2 text-foreground z-50"
-                    aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                >
-                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+                {/* desktop theme toggle - all the way to the right corner */}
+                <div className="hidden md:block absolute right-4">
+                    <ThemeToggle />
+                </div>
 
+                {/* mobile nav button and theme toggle */}
+                <div className="md:hidden flex items-center space-x-4">
+                    <ThemeToggle />
+                    <button
+                        onClick={() => setIsMenuOpen((prev) => !prev)}
+                        className="p-2 text-foreground z-50"
+                        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                    >
+                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                </div>
 
+                {/* mobile menu overlay */}
                 <div
                     className={cn(
                         "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
@@ -74,8 +87,6 @@ export const Navbar = () => {
                         ))}
                     </div>
                 </div>
-
-
             </div>
         </nav>
     );
