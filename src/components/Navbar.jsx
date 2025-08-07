@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { X, Menu} from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
@@ -14,6 +14,55 @@ const navItems = [
 export const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [activeItem, setActiveItem] = useState("Home");
+    const [hoveredItem, setHoveredItem] = useState(null);
+    const [isAutoScrolling, setIsAutoScrolling] = useState(false);
+    const autoScrollTimeoutRef = useRef(null);
+
+    const bubbleRef = useRef(null);
+    const navGroupRef = useRef(null);
+    const linkRefs = useRef({});
+
+    const targetItem = hoveredItem || activeItem;
+
+    // Position moving bubble
+    useEffect(() => {
+        const moveBubble = () => {
+            if (!navGroupRef.current || !bubbleRef.current) return;
+            const link = linkRefs.current[targetItem];
+            if (!link) return;
+            const groupRect = navGroupRef.current.getBoundingClientRect();
+            const rect = link.getBoundingClientRect();
+            const top = rect.top - groupRect.top;
+            const left = rect.left - groupRect.left;
+            bubbleRef.current.style.opacity = '1';
+            bubbleRef.current.style.transform = `translate(${left}px, ${top}px)`;
+            bubbleRef.current.style.width = `${rect.width}px`;
+            bubbleRef.current.style.height = `${rect.height}px`;
+        };
+        const id = requestAnimationFrame(moveBubble);
+        return () => cancelAnimationFrame(id);
+    }, [targetItem, activeItem]);
+
+    // Reposition on resize
+    useEffect(() => {
+        const handle = () => {
+            if (!bubbleRef.current) return;
+            bubbleRef.current.style.opacity = '0';
+            requestAnimationFrame(() => {
+                const link = linkRefs.current[targetItem];
+                if (!link || !navGroupRef.current || !bubbleRef.current) return;
+                const groupRect = navGroupRef.current.getBoundingClientRect();
+                const rect = link.getBoundingClientRect();
+                bubbleRef.current.style.opacity = '1';
+                bubbleRef.current.style.transform = `translate(${rect.left - groupRect.left}px, ${rect.top - groupRect.top}px)`;
+                bubbleRef.current.style.width = `${rect.width}px`;
+                bubbleRef.current.style.height = `${rect.height}px`;
+            });
+        };
+        window.addEventListener('resize', handle);
+        return () => window.removeEventListener('resize', handle);
+    }, [targetItem]);
     
     useEffect(() => {
         const handleScroll = () => {
@@ -22,6 +71,35 @@ export const Navbar = () => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    // Scrollspy: update active nav item based on section in viewport
+    useEffect(() => {
+        const sectionMap = navItems.map(it => ({ name: it.name, id: it.href.replace('#','') }));
+        const getActiveFromScroll = () => {
+            if (hoveredItem || isAutoScrolling) return; // don't override during hover or programmatic scroll
+            const scrollY = window.scrollY;
+            const offset = 140; // adjust sensitivity (smaller -> earlier switch)
+            let current = sectionMap[0].name;
+            for (const { name, id } of sectionMap) {
+                const el = document.getElementById(id);
+                if (!el) continue;
+                const top = el.offsetTop;
+                if (scrollY + offset >= top) {
+                    current = name;
+                } else {
+                    break;
+                }
+            }
+            if (current !== activeItem) setActiveItem(current);
+        };
+        window.addEventListener('scroll', getActiveFromScroll, { passive: true });
+        window.addEventListener('resize', getActiveFromScroll);
+        getActiveFromScroll();
+        return () => {
+            window.removeEventListener('scroll', getActiveFromScroll);
+            window.removeEventListener('resize', getActiveFromScroll);
+        };
+    }, [hoveredItem, isAutoScrolling, activeItem]);
     
     return (
         <nav className={cn(
@@ -38,12 +116,43 @@ export const Navbar = () => {
                 </a>
 
                 {/* desktop nav - moved closer to the sun */}
-                <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform translate-x-20">
-                    {navItems.map((item, key) => (
+                <div
+                    ref={navGroupRef}
+                    onMouseLeave={() => setHoveredItem(null)}
+                    className="hidden md:flex items-center space-x-8 absolute left-1/2 translate-x-20"
+                    role="menubar"
+                    aria-label="Main navigation"
+                >
+                    {/* Moving highlight bubble */}
+                    <span
+                        ref={bubbleRef}
+                        aria-hidden="true"
+                        className="absolute top-0 left-0 z-0 rounded-full bg-primary/25 backdrop-blur-[2px] shadow-[0_0_0_1px_hsl(var(--primary)/0.35)] transition-all duration-300 ease-out pointer-events-none"
+                        style={{ opacity: 0, transform: 'translate(0,0)', width: 0, height: 0 }}
+                    />
+                    {navItems.map((item) => (
                         <a
-                            key={key}
+                            key={item.name}
+                            ref={(el) => { if (el) linkRefs.current[item.name] = el; }}
                             href={item.href}
-                            className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                            role="menuitem"
+                            onClick={() => {
+                                setActiveItem(item.name);
+                                setIsAutoScrolling(true);
+                                if (autoScrollTimeoutRef.current) clearTimeout(autoScrollTimeoutRef.current);
+                                // Rough duration of CSS smooth scroll; adjust as needed
+                                autoScrollTimeoutRef.current = setTimeout(() => {
+                                    setIsAutoScrolling(false);
+                                }, 700);
+                            }}
+                            onMouseEnter={() => setHoveredItem(item.name)}
+                            // Intentionally do not reset on leave to keep last hovered bubble until new target
+                            onFocus={() => setHoveredItem(item.name)}
+                            onBlur={() => setHoveredItem(null)}
+                            className={cn(
+                                "relative z-10 px-2 py-1 rounded-md font-medium transition-colors duration-300",
+                                item.name === activeItem ? "text-primary" : "text-foreground/80 hover:text-primary"
+                            )}
                         >
                             {item.name}
                         </a>
