@@ -84,6 +84,8 @@
     --primary-foreground: 110 40% 98%;
 
     --border: 214 32% 91%;
+    --muted: 214 32% 91%;
+    --muted-foreground: 222 11% 40%;
   }
 
   .dark {
@@ -96,10 +98,17 @@
     --primary-foreground: 213 31% 91%;
 
     --border: 217 33% 20%;
+    --muted: 217 33% 20%;
+    --muted-foreground: 213 15% 75%;
   }
 
-  * padding {
-    @apply border-border;
+  /* Global element resets & quality-of-life */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  *::selection {
+    background: hsl(var(--primary) / 0.35);
+    color: hsl(var(--primary-foreground));
   }
   
   html {
@@ -109,6 +118,9 @@
   body {
     @apply bg-background text-foreground transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt", 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    background-image: radial-gradient(circle at 50% 20%, hsl(var(--primary)/0.08), transparent 60%);
   }
 }
 
@@ -167,16 +179,20 @@
 }
 
 @utility gradient-border {
-  @apply relative rounded-md;
-  background: linear-gradient(to right, hsl(var(--card)));
-  background-clip: padding-box;
-  border:1px solid transparent;
+  @apply relative rounded-md border border-transparent; /* fallback */
+  background:
+    linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
+    linear-gradient(110deg, hsl(var(--primary)/0.5), hsl(var(--primary)/0.15), hsl(var(--primary)/0.5)) border-box;
 }
 
 @utility cosmic-button {
-  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium transition-shadow
+  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium
     transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
     hover:scale-105 active:scale-95;
+}
+
+@utility focus-ring {
+  @apply outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
 }
 
 @utility star {
@@ -210,4 +226,13 @@
   margin: 0 auto;
   padding: 0;
   text-align: center;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  [class*="animate-"] {
+    animation: none !important;
+    transition: none !important;
+  }
+  .meteor, .star { display: none; }
 }

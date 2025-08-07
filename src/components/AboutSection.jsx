@@ -1,8 +1,10 @@
-import { Briefcase, Code, User, Brain, Server } from "lucide-react"
+import { Briefcase, Code, User, Brain, Server, Mail, Download } from "lucide-react"
 import teschLogo from "../assets/TESCHGlobal_logo.png"
 import msoeLogo from "../assets/MSOE_logo.png"
 
 export const AboutSection = () => {
+    // Place your actual PDF in the /public folder named exactly like below (or change the name here)
+    const resumeFile = `${import.meta.env.BASE_URL}Oliver_Grudzinski_Resume.pdf`;
     return <section id="about" className="py-24 px-4 relative">
         {" "}
         <div className="container mx-auto max-w-5xl">
@@ -38,7 +40,7 @@ export const AboutSection = () => {
                     </p>
                     
                     <p className="text-muted-foreground text-lg leading-relaxed">
-                        As an Eagle Scout, I bring discipline and leadership to every project, focusing on clear communication and building technology that makes a meaningful impact.
+                        As an Eagle Scout, I bring discipline and leadership to every project.
                     </p>
                     
                     <div className="space-y-3 mt-8 p-4 bg-muted/30 rounded-lg border border-muted">
@@ -70,11 +72,27 @@ export const AboutSection = () => {
                     </div>
                     
                     <div className="flex flex-col sm:flex-row gap-4 pt-6 justify-center">
-                        <a href="#contact" className="cosmic-button">
-                            Get In Touch
+                        {/* Get In Touch Button */}
+                        <a
+                            href="#contact"
+                            aria-label="Jump to contact section"
+                            className="cosmic-button relative overflow-hidden group flex items-center gap-2"
+                        >
+                            <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-radial-[ellipse_at_center] from-primary/25 via-primary/10 to-transparent" />
+                            <Mail className="h-5 w-5 relative z-10" aria-hidden="true" />
+                            <span className="relative z-10">Get In Touch</span>
                         </a>
-                        <a href="" className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300">
-                            Download Resume
+
+                        {/* Download Resume Button */}
+                        <a
+                            href={resumeFile}
+                            download
+                            aria-label="Download my resume as PDF"
+                            className="relative overflow-hidden group px-6 py-2 rounded-full border border-primary/50 text-primary font-medium transition-all duration-300 focus-ring hover:text-primary-foreground hover:bg-primary hover:shadow-[0_0_14px_hsl(var(--primary)/0.55)] flex items-center gap-2"
+                        >
+                            <span className="absolute inset-0 before:content-[''] before:absolute before:inset-0 before:bg-linear-to-r before:from-transparent before:via-primary/30 before:to-transparent before:translate-x-[-120%] group-hover:before:translate-x-[120%] before:transition before:duration-700 before:rounded-full" />
+                            <Download className="h-5 w-5 relative z-10" aria-hidden="true" />
+                            <span className="relative z-10">Download Resume</span>
                         </a>
                     </div>
                 </div>
