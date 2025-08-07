@@ -34,9 +34,11 @@ const skills = [
     // Databases & Tools
     { name: "Git", category: "tools" },
     { name: "GitHub", category: "tools" },
-    { name: "GitHub Actions (CI/CD)", category: "tools" },
+    { name: "GitHub Actions", category: "tools" },
     { name: "MongoDB", category: "tools" },
     { name: "Jupyter Notebooks", category: "tools" },
+    { name: "ORM's (Sequelize) ", category: "tools" },
+    { name: "Drizzle ", category: "tools" },
 
     // Methodologies
     { name: "Agile (Scrum)", category: "methodologies" },
@@ -67,21 +69,45 @@ export const SkillsSection = () => {
                     My <span className="text-primary">Skills</span>
                 </h2>
                 
-                <div className="flex flex-wrap justify-center gap-4 mb-12">
-                    {categories.map((category, key) => (
-                        <button
-                            key={key}
-                            onClick={() => setActiveCategory(category)}
-                            className={cn(
-                                "px-5 py-2 rounded-full transition-colors duration-300",
-                                activeCategory === category 
-                                    ? "bg-primary text-primary-foreground" 
-                                    : "bg-secondary/70 text-foreground hover:bg-secondary"
-                            )}
+                <div className="mb-12">
+                    <div
+                        className="flex flex-col items-center gap-4 md:flex-row md:justify-center md:items-center flex-wrap"
+                        role="group"
+                        aria-labelledby="skills-filter-heading"
+                        aria-describedby="skills-filter-instructions"
+                    >
+                        <h3 id="skills-filter-heading" className="sr-only">Filter skills by category</h3>
+                        <p
+                            id="skills-filter-instructions"
+                            className="text-xs md:text-sm text-foreground/60 md:mr-2 md:self-center order-first"
                         >
-                            {category === "AI" ? "AI" : category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()}
-                        </button>
-                    ))}
+                            Click to filter:
+                        </p>
+                        {categories.map((category, key) => (
+                            <button
+                                key={key}
+                                type="button"
+                                onClick={() => setActiveCategory(category)}
+                                aria-pressed={activeCategory === category}
+                                className={cn(
+                                    // Base pill styles
+                                    "relative px-5 py-2 rounded-full font-medium transition-all duration-300 cursor-pointer focus-ring select-none group overflow-hidden",
+                                    // Interactive hover bubble via ::before
+                                    "before:content-[''] before:absolute before:inset-0 before:rounded-full before:scale-0 before:opacity-0 before:bg-primary/20 before:blur-sm before:transition before:duration-300 hover:before:scale-105 hover:before:opacity-100",
+                                    // Active category styling
+                                    activeCategory === category
+                                        ? "bg-primary text-primary-foreground shadow-md ring-2 ring-primary/60 before:!bg-primary/30"
+                                        : "bg-secondary/70 text-foreground hover:bg-secondary hover:shadow-sm",
+                                    // Slight scale on hover (not for active to reduce motion stacking)
+                                    activeCategory !== category && "hover:scale-[1.04] active:scale-[0.97]"
+                                )}
+                            >
+                                <span className="relative z-10">
+                                    {category === "AI" ? "AI" : category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
