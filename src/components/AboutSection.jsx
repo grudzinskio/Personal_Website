@@ -3,6 +3,8 @@ import teschLogo from "../assets/TESCHGlobal_logo.png"
 import msoeLogo from "../assets/MSOE_logo.png"
 
 export const AboutSection = () => {
+    // Place your actual PDF in the /public folder named exactly like below (or change the name here)
+    const resumeFile = `${import.meta.env.BASE_URL}Oliver_Grudzinski_Resume.pdf`;
     return <section id="about" className="py-24 px-4 relative">
         {" "}
         <div className="container mx-auto max-w-5xl">
@@ -38,7 +40,7 @@ export const AboutSection = () => {
                     </p>
                     
                     <p className="text-muted-foreground text-lg leading-relaxed">
-                        As an Eagle Scout, I bring discipline and leadership to every project, focusing on clear communication and building technology that makes a meaningful impact.
+                        As an Eagle Scout, I bring discipline and leadership to every project.
                     </p>
                     
                     <div className="space-y-3 mt-8 p-4 bg-muted/30 rounded-lg border border-muted">
@@ -73,7 +75,12 @@ export const AboutSection = () => {
                         <a href="#contact" className="cosmic-button">
                             Get In Touch
                         </a>
-                        <a href="" className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300">
+                        <a
+                            href={resumeFile}
+                            download
+                            className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 focus-ring"
+                            aria-label="Download my resume as PDF"
+                        >
                             Download Resume
                         </a>
                     </div>
