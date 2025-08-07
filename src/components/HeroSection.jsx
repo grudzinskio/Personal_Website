@@ -89,7 +89,7 @@ export const HeroSection = () => {
                 <a
                     href="#projects"
                     aria-label="Go to Projects section"
-                    className="group flex flex-col items-center"
+                    className="group flex flex-col items-center focus-ring"
                 >
                     <div className="w-10 h-10 rounded-full border border-primary/40 bg-background/70 backdrop-blur-md flex items-center justify-center shadow-sm hover:shadow-md transition-all hover:bg-primary/10">
                         <LayoutGrid className="w-5 h-5 text-primary transition-transform group-hover:scale-110" />
@@ -101,7 +101,7 @@ export const HeroSection = () => {
                 <a
                     href="#about"
                     aria-label="Scroll to About section"
-                    className="group flex flex-col items-center"
+                    className="group flex flex-col items-center focus-ring"
                 >
                     <div className="w-10 h-10 rounded-full border border-primary/40 bg-background/70 backdrop-blur-md flex items-center justify-center shadow-sm hover:shadow-md transition-all hover:bg-primary/10">
                         <ArrowDown className="w-5 h-5 text-primary animate-bounce" />
