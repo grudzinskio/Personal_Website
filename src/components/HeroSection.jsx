@@ -12,7 +12,8 @@ export const HeroSection = () => {
             <div className="container max-w-5xl mx-auto text-center z-10">
                 {/* Bubble image cluster */}
                 <div className="relative mb-1 md:mb-2 opacity-0 animate-fade-in-delay-1">
-                    <div className="relative w-[300px] h-[300px] mx-auto">
+                    {/* Shifted further left */}
+                    <div className="relative w-[300px] h-[300px] mx-auto -translate-x-10 md:-translate-x-14">
                         {/* Bubble 1 - Portrait */}
                         <div
                             className="group absolute top-1/2 left-1/2 -translate-x-[60%] -translate-y-[55%] w-36 h-36 rounded-full overflow-hidden shadow-lg border border-primary/40 backdrop-blur-sm"
