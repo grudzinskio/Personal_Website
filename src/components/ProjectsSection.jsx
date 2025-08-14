@@ -58,6 +58,15 @@ const projects = [
         demoURL: "#",
         githubUrl: "https://github.com/grudzinskio/poster_management",
     },
+    {
+        id: 6,
+        title: "Campaign Poster Management",
+        description: "Full-stack application for managing campaign posters with user authentication and image upload.",
+        image: "/projects/PosterManagement.png",
+        tags: ["MariaDB", "SQL", "Javascript", "API", "React", "Node.js"],
+        demoURL: "#",
+        githubUrl: "https://github.com/grudzinskio/poster_management",
+    },
 ];
 
 export const ProjectsSection = () => {
