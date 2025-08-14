@@ -7,21 +7,35 @@ import { ProjectsSection } from "../components/ProjectsSection";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
 
+// Import your new component
+import { AnimatedSection } from "../components/AnimatedSection";
+
 export const Home = () => {
-    return <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-        {/* Background effects */}
-        <StarBackground />
-        {/* Navbar */}
-        <Navbar />
-        {/* Main contents */}
-        <main>
-            <HeroSection />
-            <AboutSection />
-            <SkillsSection />
-            <ProjectsSection />
-            <ContactSection />
-        </main>
-        {/* Footer */}
-        <Footer />
-    </div>;
-}
+    return (
+        <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+            <StarBackground />
+            <Navbar />
+            <main>
+                <HeroSection />
+
+                {/* Set the direction for each section */}
+                <AnimatedSection direction="left">
+                    <AboutSection />
+                </AnimatedSection>
+
+                <AnimatedSection direction="right">
+                    <SkillsSection />
+                </AnimatedSection>
+                
+                <AnimatedSection direction="left">
+                    <ProjectsSection />
+                </AnimatedSection>
+
+                <AnimatedSection direction="right">
+                    <ContactSection />
+                </AnimatedSection>
+            </main>
+            <Footer />
+        </div>
+    );
+};
