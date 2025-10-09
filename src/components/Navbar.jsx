@@ -111,7 +111,7 @@ export const Navbar = () => {
             )}
             >
                 <div className='w-full relative flex items-center px-4'>
-                    <a className="text-xl font-bold text-primary flex items-center ml-20">
+                    <a className="text-xl font-bold text-primary flex items-center ml-4 md:ml-20">
                         <span className="relative z-10">
                             {" "}
                             <span className="text-glow text-foreground"> Oliver's </span> Portfolio

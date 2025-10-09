@@ -1,7 +1,6 @@
 // src/components/Footer.tsx
 
 import { ArrowUp } from "lucide-react";
-// The FooterParticles import is now gone
 
 export const Footer = () => {
     return (
@@ -23,7 +22,6 @@ export const Footer = () => {
                 </svg>
             </div>
             
-            {/* The FooterParticles component is now gone */}
             
             <p className="text-sm text-muted-foreground z-20">
                 &copy; {new Date().getFullYear()} All rights reserved.

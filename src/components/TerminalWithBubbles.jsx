@@ -81,10 +81,10 @@ export const TerminalWithPortrait = () => {
             </div>
 
             {/* Portrait and Text Layout */}
-            <div className="flex items-center justify-center gap-4 md:gap-6 lg:gap-8">
+            <div className="flex items-center justify-center gap-3 sm:gap-5 md:gap-7 lg:gap-9">
                 {/* Portrait bubble on the left */}
                 <div
-                    className="group w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden shadow-lg border border-primary/40 backdrop-blur-sm flex-shrink-0"
+                    className="group w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden shadow-lg border border-primary/40 backdrop-blur-sm flex-shrink-0"
                     style={{ animation: 'float 7s ease-in-out infinite', animationDelay: '0.2s' }}
                 >
                     <img
@@ -96,14 +96,14 @@ export const TerminalWithPortrait = () => {
                     <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 via-transparent to-primary/10 mix-blend-overlay" />
                 </div>
 
-                {/* Text content - single line */}
+                {/* Text content */}
                 <div className="text-left min-w-0 flex-1">
-                    <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight whitespace-nowrap">
+                    <h1 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight">
                         <span className="opacity-0 animate-fade-in">Hello, I'm </span>
                         <span className="text-primary opacity-0 animate-fade-in-delay-1">
                             Oliver
                         </span>
-                        <span className="text-gradient ml-2 opacity-0 animate-fade-in-delay-2">
+                        <span className="text-gradient ml-1 opacity-0 animate-fade-in-delay-2">
                             Grudzinski
                         </span>
                     </h1>

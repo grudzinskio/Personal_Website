@@ -3,7 +3,6 @@ import teschLogo from "../assets/TESCHGlobal_logo.png"
 import msoeLogo from "../assets/MSOE_logo.png"
 
 export const AboutSection = () => {
-    // Place your actual PDF in the /public folder named exactly like below (or change the name here)
     const resumeFile = `${import.meta.env.BASE_URL}Oliver_Grudzinski_Resume.pdf`;
     return <section id="about" className="py-24 px-4 relative">
         {" "}
