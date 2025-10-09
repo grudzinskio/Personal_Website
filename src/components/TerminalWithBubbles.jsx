@@ -48,10 +48,8 @@ export const TerminalWithPortrait = () => {
 
     return (
         <div className="flex flex-col items-center space-y-8">
-            {/* Terminal above */}
             <div className="w-full max-w-md mx-auto">
                 <div className="bg-gray-900/30 backdrop-blur-md rounded-lg border border-gray-700/40 shadow-xl overflow-hidden">
-                    {/* Terminal header */}
                     <div className="bg-gray-800/50 px-3 py-1.5 flex items-center gap-2 border-b border-gray-700/40">
                         <div className="flex gap-1.5">
                             <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
@@ -61,16 +59,13 @@ export const TerminalWithPortrait = () => {
                         <div className="text-gray-300/70 text-xs ml-2">oliver@portfolio</div>
                     </div>
                     
-                    {/* Terminal content */}
                     <div className="p-3 font-mono text-xs leading-relaxed">
-                        {/* Current typing line */}
                         <div className="text-green-400/90 mb-1">
                             <span className="text-gray-300/70">$ </span>
                             {currentText}
                             <span className="animate-pulse ml-0.5 bg-green-400/80 w-1.5 h-3 inline-block"></span>
                         </div>
                         
-                        {/* Current output */}
                         {showOutput && (
                             <div className="text-gray-300/70 text-xs animate-fade-in">
                                 {commands[currentCommandIndex].output.split('\n')[0]}
@@ -80,9 +75,7 @@ export const TerminalWithPortrait = () => {
                 </div>
             </div>
 
-            {/* Portrait and Text Layout */}
             <div className="flex items-center justify-center gap-3 sm:gap-5 md:gap-7 lg:gap-9">
-                {/* Portrait bubble on the left */}
                 <div
                     className="group w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden shadow-lg border border-primary/40 backdrop-blur-sm flex-shrink-0"
                     style={{ animation: 'float 7s ease-in-out infinite', animationDelay: '0.2s' }}
@@ -96,15 +89,14 @@ export const TerminalWithPortrait = () => {
                     <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 via-transparent to-primary/10 mix-blend-overlay" />
                 </div>
 
-                {/* Text content */}
                 <div className="text-left min-w-0 flex-1">
-                    <h1 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight">
-                        <span className="opacity-0 animate-fade-in">Hello, I'm </span>
-                        <span className="text-primary opacity-0 animate-fade-in-delay-1">
+                    <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight">
+                        <span className="opacity-0 animate-fade-in">Hello, I'm&nbsp; </span>
+                        <span className="text-primary opacity-0 animate-fade-in-delay-1 font-bold">
                             Oliver
                         </span>
-                        <span className="text-gradient ml-1 opacity-0 animate-fade-in-delay-2">
-                            Grudzinski
+                        <span className="text-gradient opacity-0 animate-fade-in-delay-2 font-bold">
+                            &nbsp;Grudzinski
                         </span>
                     </h1>
                 </div>

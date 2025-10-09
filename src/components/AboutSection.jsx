@@ -71,7 +71,6 @@ export const AboutSection = () => {
                     </div>
                     
                     <div className="flex flex-col sm:flex-row gap-4 pt-6 justify-center">
-                        {/* Get In Touch Button */}
                         <a
                             href="#contact"
                             aria-label="Jump to contact section"
@@ -82,7 +81,6 @@ export const AboutSection = () => {
                             <span className="relative z-10">Get In Touch</span>
                         </a>
 
-                        {/* Download Resume Button */}
                         <a
                             href={resumeFile}
                             download

@@ -9,11 +9,8 @@ import { Footer } from "../components/Footer";
 
 export const Home = () => {
     return <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-        {/* Background effects */}
         <StarBackground />
-        {/* Navbar */}
         <Navbar />
-        {/* Main contents */}
         <main>
             <HeroSection />
             <AboutSection />
@@ -21,7 +18,6 @@ export const Home = () => {
             <ProjectsSection />
             <ContactSection />
         </main>
-        {/* Footer */}
         <Footer />
     </div>;
 }

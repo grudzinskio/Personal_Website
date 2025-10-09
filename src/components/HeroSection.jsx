@@ -8,7 +8,6 @@ export const HeroSection = () => {
             className="relative min-h-screen flex flex-col items-center justify-center px-4"
         >
             <div className="container max-w-5xl mx-auto text-center z-10">
-                {/* Terminal with floating bubbles */}
                 <div className="opacity-0 animate-fade-in-delay-1">
                     <TerminalWithPortrait />
                 </div>
@@ -21,9 +20,7 @@ export const HeroSection = () => {
                     </p>
                 </div>
             </div>
-            {/* Bottom center actions */}
             <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 flex items-end gap-9 animate-fade-in-delay-4">
-                {/* Projects icon bubble */}
                 <a
                     href="#projects"
                     aria-label="Go to Projects section"
@@ -35,7 +32,6 @@ export const HeroSection = () => {
                     <span className="mt-2 text-[10px] uppercase tracking-wide text-muted-foreground group-hover:text-primary font-medium">Projects</span>
                 </a>
 
-                {/* Scroll / About bouncing arrow */}
                 <a
                     href="#about"
                     aria-label="Scroll to About section"

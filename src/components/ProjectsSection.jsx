@@ -157,7 +157,6 @@ export const ProjectsSection = () => {
                     </a>
                 </div>
             </div>
-            {/* Modal */}
             {modalProject && (
                 <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center" onClick={() => setModalProject(null)}>
                     <div className="bg-card rounded-xl p-8 max-w-lg w-full relative" onClick={e => e.stopPropagation()}>
