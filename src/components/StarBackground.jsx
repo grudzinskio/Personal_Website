@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-
-
+import msoeSunset from "../assets/MSOE_Sunset.jpg";
 
 export const StarBackground = () => {
     const [stars, setStars] = useState([]);
@@ -54,6 +53,16 @@ export const StarBackground = () => {
     };
     return (
         <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+            {/* Sunset background - only visible in hero section */}
+            <div 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+                style={{
+                    backgroundImage: `url(${msoeSunset})`,
+                    backgroundBlendMode: 'overlay',
+                    mask: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0) 100%)'
+                }}
+            />
+
             {stars.map((star) => (
                 <div
                     key={star.id}
