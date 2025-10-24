@@ -9,6 +9,7 @@ const skills = [
     { name: "TypeScript", category: "languages" },
     { name: "JavaScript", category: "languages" },
     { name: "SQL", category: "languages" },
+    { name: "Golang", category: "languages" },
 
     // Web Development
     { name: "React", category: "web" },
@@ -19,6 +20,7 @@ const skills = [
     { name: "Vite", category: "web" },
     { name: "TailwindCSS", category: "web" },
     { name: "Redux", category: "web" },
+    { name: "AWS", category: "web" },
 
     // AI/ML
     { name: "Scikit-learn", category: "AI" },
@@ -35,10 +37,14 @@ const skills = [
     { name: "Git", category: "tools" },
     { name: "GitHub", category: "tools" },
     { name: "GitHub Actions", category: "tools" },
+    { name: "CI/CD", category: "tools" },
     { name: "MongoDB", category: "tools" },
+    { name: "Snowflake", category: "tools" },
+    { name: "Docker", category: "tools" },
     { name: "Jupyter Notebooks", category: "tools" },
-    { name: "ORM's (Sequelize) ", category: "tools" },
-    { name: "Drizzle ", category: "tools" },
+    { name: "VSCode", category: "tools" },
+    { name: "Sequelize", category: "tools" },
+    { name: "Drizzle", category: "tools" },
 
     // Methodologies
     { name: "Agile (Scrum)", category: "methodologies" },
