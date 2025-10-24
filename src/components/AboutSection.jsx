@@ -1,6 +1,14 @@
-import { Briefcase, Code, User, Brain, Server, Mail, Download } from "lucide-react"
+import { Briefcase, Code, User, Server, Mail, Download } from "lucide-react"
 import teschLogo from "../assets/TESCHGlobal_logo.png"
 import msoeLogo from "../assets/MSOE_logo.png"
+import aboutData from "../data/about.json"
+
+const iconMap = {
+    Code,
+    User,
+    Briefcase,
+    Server
+}
 
 export const AboutSection = () => {
     const resumeFile = `${import.meta.env.BASE_URL}Oliver_Grudzinski_Resume.pdf`;
@@ -13,7 +21,7 @@ export const AboutSection = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6">
                     <div className="flex items-center gap-4 mb-6">
-                        <h3 className="text-2xl font-semibold">Oliver Grudzinski</h3>
+                        <h3 className="text-2xl font-semibold">{aboutData.personal.name}</h3>
                         <div className="flex items-center justify-center px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
                             <img 
                                 src={teschLogo} 
@@ -30,22 +38,24 @@ export const AboutSection = () => {
                         </div>
                     </div>
                     
-                    <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-                        I'm a Computer Science junior at MSOE and Full Stack Development Intern at <strong className="text-foreground">TESCH Global</strong>. I specialize in AI/ML systems, modern web applications, and data-driven solutions.
-                    </p>
-                    
-                    <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-                        My expertise spans full-stack development, machine learning, and agile project management. As an active member of the MSOE AI Club and Society of Software Engineers, I'm always exploring cutting-edge technologies.
-                    </p>
-                    
-                    <p className="text-muted-foreground text-lg leading-relaxed">
-                        As an Eagle Scout, I bring discipline and leadership to every project.
-                    </p>
+                    {aboutData.personal.description.map((paragraph, index) => (
+                        <p key={index} className="text-muted-foreground text-lg leading-relaxed mb-4">
+                            {index === 0 ? (
+                                <>
+                                    {paragraph.split('TESCH Global')[0]}
+                                    <strong className="text-foreground">TESCH Global</strong>
+                                    {paragraph.split('TESCH Global')[1]}
+                                </>
+                            ) : (
+                                paragraph
+                            )}
+                        </p>
+                    ))}
                     
                     <div className="space-y-3 mt-8 p-4 bg-muted/30 rounded-lg border border-muted">
                         <div className="flex items-center justify-between">
-                            <span className="font-semibold text-foreground">B.S. Computer Science</span>
-                            <span className="text-sm text-muted-foreground">Expected May 2027</span>
+                            <span className="font-semibold text-foreground">{aboutData.education.degree}</span>
+                            <span className="text-sm text-muted-foreground">{aboutData.education.expectedGraduation}</span>
                         </div>
                         <div className="text-muted-foreground text-sm flex items-center gap-2">
                             <img 
@@ -53,12 +63,12 @@ export const AboutSection = () => {
                                 alt="MSOE" 
                                 className="h-10 w-10 object-contain"
                             />
-                            Milwaukee School of Engineering
+                            {aboutData.education.school}
                         </div>
                         <hr className="border-muted" />
                         <div className="flex items-center justify-between">
-                            <span className="font-semibold text-foreground">Full Stack Software Development Intern</span>
-                            <span className="text-sm text-muted-foreground">Current</span>
+                            <span className="font-semibold text-foreground">{aboutData.currentRole.title}</span>
+                            <span className="text-sm text-muted-foreground">{aboutData.currentRole.status}</span>
                         </div>
                         <div className="text-muted-foreground text-sm flex items-center gap-2">
                             <img 
@@ -66,7 +76,7 @@ export const AboutSection = () => {
                                 alt="TESCH Global" 
                                 className="h-10 w-10 object-contain"
                             />
-                            TESCH Global
+                            {aboutData.currentRole.company}
                         </div>
                     </div>
                     
@@ -95,58 +105,24 @@ export const AboutSection = () => {
                 </div>
 
                 <div className="grid grid-cols-1 gap-6">
-                    <div className="gradient-border p-6 card-hover">
-                        <div className="flex items-start gap-4">
-                            <div className="p-3 rounded-full bg-primary/10">
-                                <Code className="h-6 w-6 text-primary" />
+                    {aboutData.expertise.map((item, index) => {
+                        const IconComponent = iconMap[item.icon];
+                        return (
+                            <div key={index} className="gradient-border p-6 card-hover">
+                                <div className="flex items-start gap-4">
+                                    <div className="p-3 rounded-full bg-primary/10">
+                                        <IconComponent className="h-6 w-6 text-primary" />
+                                    </div>
+                                    <div className="text-left">
+                                        <h4 className="font-semibold text-lg">{item.title}</h4>
+                                        <p className="text-muted-foreground">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="text-left">
-                                <h4 className="font-semibold text-lg"> Web Development</h4>
-                                <p className="text-muted-foreground">
-                                    Creating responsive websites and applications using modern frameworks.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="gradient-border p-6 card-hover">
-                        <div className="flex items-start gap-4">
-                            <div className="p-3 rounded-full bg-primary/10">
-                                <User className="h-6 w-6 text-primary" />
-                            </div>
-                            <div className="text-left">
-                                <h4 className="font-semibold text-lg"> AI & Machine Learning</h4>
-                                <p className="text-muted-foreground">
-                                    Building intelligent systems and practical AI solutions for real-world problems.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="gradient-border p-6 card-hover">
-                        <div className="flex items-start gap-4">
-                            <div className="p-3 rounded-full bg-primary/10">
-                                <Briefcase className="h-6 w-6 text-primary" />
-                            </div>
-                            <div className="text-left">
-                                <h4 className="font-semibold text-lg"> Project Management</h4>
-                                <p className="text-muted-foreground">
-                                    Experienced in Agile and Scrum, I help teams deliver reliable software through clear communication and organized workflows.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="gradient-border p-6 card-hover">
-                        <div className="flex items-start gap-4">
-                            <div className="p-3 rounded-full bg-primary/10">
-                                <Server className="h-6 w-6 text-primary" />
-                            </div>
-                            <div className="text-left">
-                                <h4 className="font-semibold text-lg"> Backend Development</h4>
-                                <p className="text-muted-foreground">
-                                    Building scalable server-side applications, APIs, and database architectures for robust system performance.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>

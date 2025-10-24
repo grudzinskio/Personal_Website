@@ -1,64 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import skillsData from "../data/skills.json";
 
-const skills = [
-    // Programming Languages
-    { name: "Python", category: "languages" },
-    { name: "Java", category: "languages" },
-    { name: "C++", category: "languages" },
-    { name: "TypeScript", category: "languages" },
-    { name: "JavaScript", category: "languages" },
-    { name: "SQL", category: "languages" },
-    { name: "Golang", category: "languages" },
-
-    // Web Development
-    { name: "React", category: "web" },
-    { name: "Node.js", category: "web" },
-    { name: "HTML", category: "web" },
-    { name: "CSS", category: "web" },
-    { name: "JavaFX", category: "web" },
-    { name: "Vite", category: "web" },
-    { name: "TailwindCSS", category: "web" },
-    { name: "Redux", category: "web" },
-    { name: "AWS", category: "web" },
-
-    // AI/ML
-    { name: "Scikit-learn", category: "AI" },
-    { name: "Pandas", category: "AI" },
-    { name: "NumPy", category: "AI" },
-    { name: "TensorFlow", category: "AI" },
-    { name: "LangChain", category: "AI" },
-    { name: "LangGraph", category: "AI" },
-    { name: "LLMs", category: "AI" },
-    { name: "Generative AI", category: "AI" },
-    { name: "RAG", category: "AI" },
-
-    // Databases & Tools
-    { name: "Git", category: "tools" },
-    { name: "GitHub", category: "tools" },
-    { name: "GitHub Actions", category: "tools" },
-    { name: "CI/CD", category: "tools" },
-    { name: "MongoDB", category: "tools" },
-    { name: "Snowflake", category: "tools" },
-    { name: "Docker", category: "tools" },
-    { name: "Jupyter Notebooks", category: "tools" },
-    { name: "VSCode", category: "tools" },
-    { name: "Sequelize", category: "tools" },
-    { name: "Drizzle", category: "tools" },
-
-    // Methodologies
-    { name: "Agile (Scrum)", category: "methodologies" },
-    { name: "Waterfall", category: "methodologies" },
-];
-
-const categories = [
-    "all",
-    "languages",
-    "web",
-    "AI",
-    "tools",
-    "methodologies"
-];
+const { skills, categories } = skillsData;
 
 export const SkillsSection = () => {
     const [activeCategory, setActiveCategory] = useState("all");

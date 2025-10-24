@@ -1,0 +1,43 @@
+{
+  "personal": {
+    "name": "Oliver Grudzinski",
+    "title": "Computer Science Student & Full Stack Developer",
+    "description": [
+      "I'm a Computer Science junior at MSOE and Full Stack Development Intern at TESCH Global. I specialize in AI/ML systems, modern web applications, and data-driven solutions.",
+      "My expertise spans full-stack development, machine learning, and agile project management. As an active member of the MSOE AI Club and Society of Software Engineers, I'm always exploring cutting-edge technologies.",
+      "As an Eagle Scout, I bring discipline and leadership to every project."
+    ]
+  },
+  "education": {
+    "degree": "B.S. Computer Science",
+    "school": "Milwaukee School of Engineering",
+    "expectedGraduation": "Expected May 2027"
+  },
+  "currentRole": {
+    "title": "Full Stack Software Development Intern",
+    "company": "TESCH Global",
+    "status": "Current"
+  },
+  "expertise": [
+    {
+      "title": "Web Development",
+      "description": "Creating responsive websites and applications using modern frameworks.",
+      "icon": "Code"
+    },
+    {
+      "title": "AI & Machine Learning",
+      "description": "Building intelligent systems and practical AI solutions for real-world problems.",
+      "icon": "User"
+    },
+    {
+      "title": "Project Management",
+      "description": "Experienced in Agile and Scrum, I help teams deliver reliable software through clear communication and organized workflows.",
+      "icon": "Briefcase"
+    },
+    {
+      "title": "Backend Development",
+      "description": "Building scalable server-side applications, APIs, and database architectures for robust system performance.",
+      "icon": "Server"
+    }
+  ]
+}

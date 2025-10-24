@@ -1,0 +1,95 @@
+{
+    "projects": [
+        {
+            "id": 1,
+            "title": "AI CPA Agentic Research System",
+            "description": "LLM-powered assistant for tax return analysis and optimization. Built with Python, LangChain, and PydanticAI.",
+            "image": "/projects/CPAproject.jpg",
+            "tags": [
+                "Python",
+                "LangChain",
+                "LLM",
+                "PydanticAI",
+                "Agentic"
+            ],
+            "demoURL": "https://drive.google.com/file/d/1lfyOCU-jMAndwzvOGJP_BmlPMejIH8OS/view?usp=sharing",
+            "githubUrl": "https://github.com/grudzinskio/CPA-AI_Agentic-Deep-Research",
+            "status": "Hackathon Winner! 🏆",
+            "featured": true
+        },
+        {
+            "id": 2,
+            "title": "Diabetes Prediction (Random Forest)",
+            "description": "ML pipeline for diabetes prediction using statistical tests and Random Forest with comprehensive data preprocessing.",
+            "image": "/projects/DiabetesProject.png",
+            "tags": [
+                "Python",
+                "Scikit-learn",
+                "ML",
+                "Data Analysis"
+            ],
+            "demoURL": "#",
+            "githubUrl": "https://github.com/grudzinskio/DiabetesPrediction"
+        },
+        {
+            "id": 3,
+            "title": "Custom Wordle Game",
+            "description": "Java-based Wordle game with admin tools, SQL database, and modular testing for QA.",
+            "image": "/projects/WordleProject.png",
+            "tags": [
+                "Java",
+                "SQL",
+                "Game Dev",
+                "SCRUM",
+                "Testing"
+            ],
+            "demoURL": "#",
+            "githubUrl": "https://github.com/grudzinskio/WordleGame"
+        },
+        {
+            "id": 4,
+            "title": "Automated XML Schema Documentation",
+            "description": "RAG CI/CD pipeline using Python and ML to automate XSD documentation and analysis.",
+            "image": "/projects/ActionsProject.png",
+            "tags": [
+                "Python",
+                "CI/CD",
+                "ML",
+                "GitHub Actions",
+                "RAG"
+            ],
+            "demoURL": "#",
+            "githubUrl": "#"
+        },
+        {
+            "id": 5,
+            "title": "This Website!",
+            "description": "Website built using modern web development tools! Feel free to see how I made it.",
+            "image": "/projects/PersonalWebsite.png",
+            "tags": [
+                "Frontend",
+                "TailwindCSS",
+                "React",
+                "JavaScript"
+            ],
+            "demoURL": "#",
+            "githubUrl": "https://github.com/grudzinskio/Personal_Website"
+        },
+        {
+            "id": 6,
+            "title": "Campaign Poster Management",
+            "description": "Full-stack application for managing campaign posters with user authentication and image upload.",
+            "image": "/projects/PosterManagement.png",
+            "tags": [
+                "MariaDB",
+                "SQL",
+                "Javascript",
+                "API",
+                "React",
+                "Node.js"
+            ],
+            "demoURL": "#",
+            "githubUrl": "https://github.com/grudzinskio/poster_management"
+        }
+    ]
+}
