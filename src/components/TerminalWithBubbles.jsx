@@ -90,13 +90,13 @@ export const TerminalWithPortrait = () => {
                 </div>
 
                 <div className="text-left min-w-0 flex-1">
-                    <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight">
-                        <span className="opacity-0 animate-fade-in">Hello, I'm&nbsp; </span>
+                    <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight whitespace-nowrap">
+                        <span className="opacity-0 animate-fade-in">Hello, I'm </span>
                         <span className="text-primary opacity-0 animate-fade-in-delay-1 font-bold">
                             Oliver
                         </span>
                         <span className="text-gradient opacity-0 animate-fade-in-delay-2 font-bold">
-                            &nbsp;Grudzinski
+                            {" "}Grudzinski
                         </span>
                     </h1>
                 </div>
