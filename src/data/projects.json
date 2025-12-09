@@ -18,6 +18,67 @@
             "featured": true
         },
         {
+            "id": 7,
+            "title": "Equipment Energy Optimizer (MARL)",
+            "description": "Multi-Agent Reinforcement Learning system using Proximal Policy Optimization to optimize manufacturing equipment scheduling. Treats machines as independent agents that autonomously prioritize high-solar and off-peak windows, achieving a projected 25% reduction in energy costs while maintaining >99% job completion rate.",
+            "image": "/projects/MARLProject.png",
+            "tags": [
+                "Python",
+                "Reinforcement Learning",
+                "MARL",
+                "PPO",
+                "Databricks",
+                "AI",
+                "Machine Learning"
+            ],
+            "demoURL": "#",
+            "githubUrl": "#",
+            "status": "2nd Place - Innovation Lab Hackathon 🥈",
+            "featured": true
+        },
+        {
+            "id": 8,
+            "title": "Autonomous Visual QA Assistant",
+            "description": "Computer vision pipeline automating quality control using YOLOv8 for detection, MobileNetv2 (CNN) for classification, and a Multimodal LLM for defect analysis. Achieved 99.97% detection accuracy and projected 38% reduction in monthly quality costs (over $96k annually). Automates 'Rework' vs. 'Discard' decisions in seconds.",
+            "image": "/projects/QAProject.jpg",
+            "tags": [
+                "Python",
+                "Computer Vision",
+                "YOLOv8",
+                "MobileNetv2",
+                "Multimodal LLM",
+                "Databricks",
+                "AI",
+                "Deep Learning"
+            ],
+            "demoURL": "#",
+            "githubUrl": "#",
+            "status": "2nd Place - Innovation Lab Hackathon 🥈",
+            "featured": true
+        },
+        {
+            "id": 9,
+            "title": "Photosynthesizers - Milwaukee Domes",
+            "description": "Interactive mobile-first web application for the Milwaukee Domes conservatory enabling plant discovery through AI-powered image recognition. Features BioCLIP for plant classification, GPT-4 for health assessment, multi-language support (English, Spanish, Chinese), and crowd-sourced plant health monitoring. Built with React, TypeScript, FastAPI, and Supabase.",
+            "image": "/projects/PhotoSynProject.png",
+            "tags": [
+                "React",
+                "TypeScript",
+                "FastAPI",
+                "Python",
+                "BioCLIP",
+                "GPT-4",
+                "Supabase",
+                "Computer Vision",
+                "AI",
+                "Full-Stack"
+            ],
+            "demoURL": "#",
+            "githubUrl": "#",
+            "status": "HacksGiving 2025",
+            "featured": true
+        },
+        {
             "id": 2,
             "title": "Diabetes Prediction (Random Forest)",
             "description": "ML pipeline for diabetes prediction using statistical tests and Random Forest with comprehensive data preprocessing.",
