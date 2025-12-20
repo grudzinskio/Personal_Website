@@ -75,7 +75,12 @@ export const ScrollAnimatedName = () => {
                 word={line} 
                 colorClass={lineIndex === 0 ? 'text-primary' : 'text-gradient'}
               />
-              {lineIndex < nameLines.length - 1 && <div className="w-2 md:w-4" />}
+              {lineIndex < nameLines.length - 1 && (
+                <>
+                  <div className="w-2 md:w-4" />
+                  <div className="basis-full md:basis-auto h-0" />
+                </>
+              )}
             </React.Fragment>
           ))}
         </div>

@@ -11,7 +11,7 @@ export function LetterDisplay({ word, colorClass = '' }) {
     : 'text-6xl md:text-8xl lg:text-9xl';
     
   return (
-    <>
+    <div className="whitespace-nowrap">
       {word.split('').map((char, i) => (
         <div
           key={i}
@@ -31,6 +31,6 @@ export function LetterDisplay({ word, colorClass = '' }) {
           {char}
         </div>
       ))}
-    </>
+    </div>
   );
 }
