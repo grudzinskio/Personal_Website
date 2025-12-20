@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { createScrollTextReveal, createStaggerFadeIn } from '../animations/textAnimations';
-import { createCardStaggerReveal } from '../animations/scrollAnimations';
+import { createCardStaggerReveal, createScrollVelocityZone } from '../animations/scrollAnimations';
+import { getLenis } from '../animations/smoothScroll';
 import aboutData from '../data/about.json';
 
 export const AboutMeSection = () => {
+  const sectionRef = useRef(null);
   const contentRef = useRef(null);
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -11,6 +13,20 @@ export const AboutMeSection = () => {
 
   useEffect(() => {
     const animations = [];
+
+    // Apply magnetic scroll effect - pulls scroll as you approach About Me section
+    if (sectionRef.current) {
+      const magneticEffect = createScrollVelocityZone(
+        sectionRef.current, 
+        getLenis,
+        {
+          slowdownFactor: 0.35,  // Slows scroll to 35% speed when near center
+          zoneSize: 0.3,         // 30% zone for stronger pull effect
+          markers: false
+        }
+      );
+      if (magneticEffect) animations.push(magneticEffect);
+    }
 
     // Apply smooth scroll-triggered text reveal to title
     if (titleRef.current) {
@@ -72,7 +88,7 @@ export const AboutMeSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[50vh] w-full overflow-hidden flex items-center justify-center py-12">
+    <section ref={sectionRef} className="relative min-h-[50vh] w-full overflow-hidden flex items-center justify-center py-12">
       {/* Animated Gradient Background */}
       <div 
         className="absolute inset-0 gradient-bg"

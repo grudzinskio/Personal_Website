@@ -387,6 +387,124 @@ export const createOpacityFade = (element, options = {}) => {
 };
 
 /**
+ * Creates a magnetic scroll effect that "pulls" the scroll towards a section
+ * @param {HTMLElement|string} element - Element to apply magnetic effect to
+ * @param {Object} options - Magnetic scroll options
+ * @returns {ScrollTrigger} - ScrollTrigger instance
+ */
+export const createMagneticScroll = (element, options = {}) => {
+  const el = typeof element === 'string' ? document.querySelector(element) : element;
+  
+  if (!el) {
+    console.warn('Element not found for magnetic scroll');
+    return null;
+  }
+
+  const {
+    strength = 0.3,        // Magnetic strength (0-1)
+    snapDuration = 0.8,    // Duration of snap animation
+    snapEase = 'power2.inOut',
+    threshold = 0.3,       // How close to trigger the snap (0-1)
+    markers = false
+  } = options;
+
+  let isSnapping = false;
+
+  const trigger = ScrollTrigger.create({
+    trigger: el,
+    start: 'top bottom',
+    end: 'bottom top',
+    markers: markers,
+    onUpdate: (self) => {
+      // Only apply magnetic effect when scrolling through the middle area
+      const progress = self.progress;
+      
+      // Magnetic zone is around the middle (0.3 to 0.7)
+      if (progress > threshold && progress < (1 - threshold) && !isSnapping) {
+        // Calculate distance from center
+        const distanceFromCenter = Math.abs(0.5 - progress);
+        
+        // If we're close enough to center, apply gentle pull
+        if (distanceFromCenter < 0.2) {
+          isSnapping = true;
+          
+          // Smooth snap to center of the section
+          gsap.to(window, {
+            scrollTo: {
+              y: el,
+              offsetY: window.innerHeight / 2 - el.offsetHeight / 2
+            },
+            duration: snapDuration,
+            ease: snapEase,
+            onComplete: () => {
+              isSnapping = false;
+            }
+          });
+        }
+      }
+    }
+  });
+
+  return trigger;
+};
+
+/**
+ * Creates a velocity-based magnetic scroll effect (more subtle)
+ * Slows down scroll velocity when near the target section
+ * @param {HTMLElement|string} element - Element to apply effect to
+ * @param {Function} lenisInstance - Lenis instance getter function
+ * @param {Object} options - Effect options
+ * @returns {ScrollTrigger} - ScrollTrigger instance
+ */
+export const createScrollVelocityZone = (element, lenisInstance, options = {}) => {
+  const el = typeof element === 'string' ? document.querySelector(element) : element;
+  
+  if (!el) {
+    console.warn('Element not found for velocity zone');
+    return null;
+  }
+
+  const {
+    slowdownFactor = 0.5,  // How much to slow down (0-1, lower = slower)
+    zoneSize = 0.3,        // Size of the slow zone (0-1)
+    markers = false
+  } = options;
+
+  const trigger = ScrollTrigger.create({
+    trigger: el,
+    start: 'top bottom',
+    end: 'bottom top',
+    markers: markers,
+    onUpdate: (self) => {
+      const lenis = lenisInstance();
+      if (!lenis) return;
+
+      const progress = self.progress;
+      
+      // Create a slow zone in the middle of the section
+      const distanceFromCenter = Math.abs(0.5 - progress);
+      
+      if (distanceFromCenter < zoneSize) {
+        // Calculate slowdown based on distance from center
+        const slowdownAmount = 1 - (distanceFromCenter / zoneSize) * (1 - slowdownFactor);
+        
+        // Apply velocity modification
+        lenis.options.lerp = 0.1 * slowdownAmount;
+      } else {
+        // Reset to normal speed
+        lenis.options.lerp = 0.1;
+      }
+    },
+    onLeave: () => {
+      const lenis = lenisInstance();
+      if (lenis) lenis.options.lerp = 0.1;
+    }
+  });
+
+  return trigger;
+};
+
+/**
  * Cleans up all animations and ScrollTriggers
  */
 export const cleanupScrollAnimations = () => {

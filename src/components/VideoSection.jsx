@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { createImageParallax, createScaleOnScroll } from '../animations/scrollAnimations';
+import { createImageParallax } from '../animations/scrollAnimations';
 import { createWordReveal, createStaggerFadeIn } from '../animations/textAnimations';
 import videoSource from '../assets/AI_System_Design_Video.mp4';
 
@@ -14,11 +14,11 @@ export const VideoSection = () => {
 
     const animations = [];
 
-    // Apply smooth parallax effect to video
+    // Apply smooth parallax effect to video (reduced to prevent cutoff)
     if (videoRef.current) {
       const parallaxAnim = createImageParallax(videoRef.current, {
-        speed: 0.3,
-        scale: 1.15,
+        speed: 0.15,  // Reduced speed to prevent bottom cutoff
+        scale: 1.1,   // Reduced scale to keep video contained
         scrub: 1.5,
         start: 'top top',
         end: 'bottom top'
@@ -70,8 +70,8 @@ export const VideoSection = () => {
         }}
       />
 
-      {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full z-0">
+      {/* Video Background - adjusted to prevent cutoff */}
+      <div className="absolute inset-0 w-full h-full z-0 flex items-center justify-center">
         <video
           ref={videoRef}
           autoPlay
@@ -79,7 +79,7 @@ export const VideoSection = () => {
           loop
           playsInline
           onLoadedData={() => setIsLoaded(true)}
-          className="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-1500"
+          className="min-w-full min-h-full object-cover opacity-0 transition-opacity duration-1500"
           style={{
             transform: 'scale(1)',
             willChange: 'transform',
