@@ -29,7 +29,7 @@ export const createTextGradientReveal = (container, options = {}) => {
   const words = phrase.split(' ');
   const refs = [];
 
-  words.forEach((word, wordIndex) => {
+  words.forEach((word) => {
     const wordSpan = document.createElement('p');
     wordSpan.className = 'm-0 mr-4 inline-block whitespace-nowrap p-0 text-inherit font-inherit';
     
@@ -197,7 +197,7 @@ export const createStaggerFadeIn = (elements, options = {}) => {
   const animations = [];
 
   elementArray.forEach((element, index) => {
-    gsap.set(element, { opacity: 0, y: y });
+    gsap.set(element, { opacity: opacity, y: y });
 
     const animation = gsap.to(element, {
       opacity: 1,
@@ -258,6 +258,9 @@ export const createWordReveal = (container, options = {}) => {
     wordElements.push(span);
   });
 
+  // Set initial state BEFORE creating animation
+  gsap.set(wordElements, { opacity: opacity, y: y });
+
   // Animate words
   const animation = gsap.to(wordElements, {
     opacity: 1,
@@ -272,9 +275,6 @@ export const createWordReveal = (container, options = {}) => {
       toggleActions: 'play none none none'
     }
   });
-
-  // Set initial state
-  gsap.set(wordElements, { opacity: opacity, y: y });
 
   return {
     kill: () => {
