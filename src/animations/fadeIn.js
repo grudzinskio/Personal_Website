@@ -62,11 +62,16 @@ export const fadeInOnScroll = (elements, options = {}) => {
           
           setTimeout(() => {
             entry.target.classList.add('fade-in-visible');
+            entry.target.classList.remove('fade-in-hidden');
           }, totalDelay);
 
           if (once) {
             observer.unobserve(entry.target);
           }
+        } else if (!once) {
+          // If not 'once', reverse the animation when scrolling back up
+          entry.target.classList.remove('fade-in-visible');
+          entry.target.classList.add('fade-in-hidden');
         }
       });
     },

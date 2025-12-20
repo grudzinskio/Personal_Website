@@ -138,8 +138,8 @@
   }
   
   html {
-    @apply scroll-smooth;
-    scroll-behavior: smooth;
+    /* Remove scroll-smooth as Lenis handles this */
+    scroll-behavior: auto;
   }
 
   body {
@@ -148,6 +148,8 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     background-image: radial-gradient(circle at 50% 20%, hsl(var(--primary)/0.08), transparent 60%);
+    /* Optimize for Lenis smooth scroll */
+    overscroll-behavior: none;
   }
 }
 
@@ -249,6 +251,38 @@
   100% { background-position: 0% 50%; }
 }
 
+/* Gradient slide animation for buttons */
+@keyframes gradient-slide {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animated gradient for AboutMeSection */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@utility gradient-bg {
+  background: linear-gradient(-45deg, #050d18, #08141f, #040b12, #06101a);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Glassmorphism card effect */
+@utility glassmorphism-card {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+/* Shine animation for navigation panels */
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
 #root {
   max-width: 100%;
   margin: 0 auto;
@@ -287,22 +321,24 @@
   }
 }
 
-/* Fade-in animation classes for Intersection Observer */
+/* Fade-in animation classes for Intersection Observer and GSAP */
 .fade-in-hidden {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-in-visible {
-  opacity: 1;
+  opacity: 1 !important;
   transform: translateY(0);
 }
 
-/* Slide-in animation classes */
+/* Slide-in animation classes - optimized easing */
 .slide-in-hidden {
   opacity: 0;
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .slide-from-up {
@@ -326,16 +362,38 @@
   transform: translate(0, 0);
 }
 
-/* Scale-in animation classes */
+/* Scale-in animation classes - smoother transitions */
 .scale-in-hidden {
   opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: scale(0.95);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .scale-in-visible {
   opacity: 1;
   transform: scale(1);
+}
+
+/* Lenis-specific optimizations */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 /* Video overlay utilities */
@@ -353,7 +411,28 @@
   overflow: hidden;
 }
 
-/* Smooth page transitions */
+/* Smooth page transitions - optimized for Lenis */
 @utility page-transition {
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Performance optimizations for smooth scrolling */
+@utility will-change-scroll {
+  will-change: transform;
+}
+
+@utility gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Hide scrollbar for horizontal scroll containers */
+@utility scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }

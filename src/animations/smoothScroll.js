@@ -1,45 +1,131 @@
+import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+let lenis = null;
+
 /**
- * Initialize smooth scrolling for the entire page
- * Uses GSAP ScrollSmoother for butter-smooth scrolling experience
+ * Initialize Lenis smooth scrolling for the entire page
+ * Returns a cleanup function to destroy Lenis instance
  */
 export const initSmoothScroll = () => {
-  // Enable smooth scrolling with custom easing
-  gsap.to({}, {
-    scrollTrigger: {
-      trigger: 'body',
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: true
+  // Prevent multiple instances
+  if (lenis) {
+    lenis.destroy();
+  }
+
+  // Create new Lenis instance with optimal settings
+  lenis = new Lenis({
+    duration: 1.2,        // Scroll duration for smooth momentum
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing function
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    wheelMultiplier: 1,
+    smoothTouch: false,   // Disable on touch devices for native feel
+    touchMultiplier: 2,
+    infinite: false,
+  });
+
+  // Sync Lenis with GSAP ScrollTrigger
+  lenis.on('scroll', ScrollTrigger.update);
+
+  // Integrate Lenis with GSAP ticker for smooth animations
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+
+  // Disable lag smoothing for better sync
+  gsap.ticker.lagSmoothing(0);
+
+  // Return cleanup function
+  return () => {
+    if (lenis) {
+      gsap.ticker.remove(lenis.raf);
+      lenis.destroy();
+      lenis = null;
     }
+  };
+};
+
+/**
+ * Get the current Lenis instance
+ */
+export const getLenis = () => lenis;
+
+/**
+ * Scroll to a specific element smoothly using Lenis
+ * @param {string|HTMLElement} target - CSS selector or DOM element
+ * @param {Object} options - Scroll options
+ */
+export const scrollToElement = (target, options = {}) => {
+  if (!lenis) {
+    console.warn('Lenis not initialized. Call initSmoothScroll() first.');
+    return;
+  }
+
+  const {
+    offset = 0,
+    duration = 1.5,
+    easing = (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    immediate = false,
+  } = options;
+
+  const element = typeof target === 'string' ? document.querySelector(target) : target;
+  
+  if (!element) {
+    console.warn(`Element not found: ${target}`);
+    return;
+  }
+
+  lenis.scrollTo(element, {
+    offset,
+    duration: immediate ? 0 : duration,
+    easing,
   });
 };
 
 /**
- * Scroll to a specific section with smooth animation
- * @param {string} selector - CSS selector of the target element
- * @param {number} duration - Animation duration in seconds (default: 1.5)
- * @param {number} offset - Offset from top in pixels (default: 0)
+ * Scroll to a specific position
+ * @param {number} position - Y position to scroll to
+ * @param {Object} options - Scroll options
  */
-export const scrollToSection = (selector, duration = 1.5, offset = 0) => {
-  const target = document.querySelector(selector);
-  if (!target) {
-    console.warn(`Element with selector "${selector}" not found`);
+export const scrollToPosition = (position, options = {}) => {
+  if (!lenis) {
+    console.warn('Lenis not initialized. Call initSmoothScroll() first.');
     return;
   }
 
-  gsap.to(window, {
-    duration,
-    scrollTo: {
-      y: target,
-      offsetY: offset
-    },
-    ease: 'power3.inOut'
+  const {
+    duration = 1.5,
+    easing = (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    immediate = false,
+  } = options;
+
+  lenis.scrollTo(position, {
+    duration: immediate ? 0 : duration,
+    easing,
   });
+};
+
+/**
+ * Stop smooth scrolling
+ */
+export const stopScroll = () => {
+  if (lenis) {
+    lenis.stop();
+  }
+};
+
+/**
+ * Start smooth scrolling
+ */
+export const startScroll = () => {
+  if (lenis) {
+    lenis.start();
+  }
 };
 
 /**

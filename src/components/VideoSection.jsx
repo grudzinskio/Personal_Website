@@ -1,37 +1,62 @@
 import { useEffect, useRef, useState } from 'react';
-import { videoParallax } from '../animations/parallaxEffects';
-import { fadeInOnScroll } from '../animations/fadeIn';
+import { createImageParallax, createScaleOnScroll } from '../animations/scrollAnimations';
+import { createWordReveal, createStaggerFadeIn } from '../animations/textAnimations';
 import videoSource from '../assets/AI_System_Design_Video.mp4';
 
 export const VideoSection = () => {
   const videoRef = useRef(null);
-  const contentRef = useRef(null);
+  const headingRef = useRef(null);
+  const subtitleRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Apply parallax effect to video
-    let parallaxAnim = null;
-    let fadeObserver = null;
+    if (!isLoaded) return;
 
+    const animations = [];
+
+    // Apply smooth parallax effect to video
     if (videoRef.current) {
-      parallaxAnim = videoParallax(videoRef.current);
+      const parallaxAnim = createImageParallax(videoRef.current, {
+        speed: 0.3,
+        scale: 1.15,
+        scrub: 1.5,
+        start: 'top top',
+        end: 'bottom top'
+      });
+      if (parallaxAnim) animations.push(parallaxAnim);
     }
 
-    // Fade in content when visible
-    if (contentRef.current) {
-      fadeObserver = fadeInOnScroll([contentRef.current], {
-        threshold: 0.3,
-        delay: 200
+    // Add smooth word reveal to heading
+    if (headingRef.current) {
+      const headingAnim = createWordReveal(headingRef.current, {
+        stagger: 0.1,
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        start: 'top 70%'
       });
+      if (headingAnim) animations.push(headingAnim);
+    }
+
+    // Add stagger fade to subtitle
+    if (subtitleRef.current) {
+      const subtitleAnim = createStaggerFadeIn([subtitleRef.current], {
+        y: 20,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: 'power2.out',
+        start: 'top 75%'
+      });
+      if (subtitleAnim) animations.push(...subtitleAnim);
     }
 
     return () => {
-      if (parallaxAnim) {
-        parallaxAnim.kill();
-      }
-      if (fadeObserver) {
-        fadeObserver.disconnect();
-      }
+      animations.forEach(anim => {
+        if (anim && anim.kill) anim.kill();
+        if (anim && anim.scrollTrigger) anim.scrollTrigger.kill();
+      });
     };
   }, [isLoaded]);
 
@@ -39,9 +64,9 @@ export const VideoSection = () => {
     <section className="relative min-h-screen w-full overflow-hidden z-10">
       {/* Extended gradient fade transition from previous section */}
       <div 
-        className="absolute top-0 left-0 w-full h-64 z-30 pointer-events-none"
+        className="absolute top-0 left-0 w-full h-64 z-10 pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, hsl(var(--background)) 0%, hsl(var(--background) / 0.8) 30%, transparent 100%)'
+          background: 'linear-gradient(to bottom, hsl(var(--background)) 0%, hsl(var(--background) / 0.6) 30%, transparent 100%)'
         }}
       />
 
@@ -67,7 +92,7 @@ export const VideoSection = () => {
         
         {/* Dark Overlay for text readability */}
         <div 
-          className="absolute inset-0 bg-black/60 backdrop-blur-[1px] transition-opacity duration-1500"
+          className="absolute inset-0 bg-black/35 transition-opacity duration-1500"
           style={{
             opacity: isLoaded ? 1 : 0
           }}
@@ -77,22 +102,35 @@ export const VideoSection = () => {
 
       {/* Content Overlay */}
       <div 
-        ref={contentRef}
-        className="relative z-20 min-h-screen flex flex-col items-center justify-center px-4 text-center"
+        className="relative z-30 min-h-screen flex flex-col items-center justify-center px-4 text-center"
       >
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight">
-          Building tomorrow's infrastructure
+        <h1 
+          ref={headingRef}
+          className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight" 
+          style={{ 
+            textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 4px 8px rgba(0,0,0,0.6), 0 0 20px rgba(0,0,0,0.5)',
+          }}
+        >
+          Building tomorrow&apos;s infrastructure
         </h1>
-        <p className="text-xl md:text-2xl lg:text-3xl text-white/90 max-w-3xl leading-relaxed font-light">
+        <p 
+          ref={subtitleRef}
+          className="text-xl md:text-2xl lg:text-3xl max-w-3xl leading-relaxed font-light" 
+          style={{
+            textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 4px 8px rgba(0,0,0,0.6)',
+            color: '#FFFFFF',
+            opacity: 1,
+          }}
+        >
           AI • Machine Learning • System Architecture
         </p>
       </div>
 
-      {/* Extended gradient fade transition to footer */}
+      {/* Extended gradient fade transition to next section */}
       <div 
-        className="absolute bottom-0 left-0 w-full h-48 z-30 pointer-events-none"
+        className="absolute bottom-0 left-0 w-full h-[600px] z-20 pointer-events-none"
         style={{
-          background: 'linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background) / 0.5) 50%, transparent 100%)'
+          background: 'linear-gradient(to top, rgba(5, 13, 24, 1) 0%, rgba(5, 13, 24, 0.98) 10%, rgba(6, 14, 25, 0.95) 20%, rgba(6, 14, 25, 0.88) 32%, rgba(7, 15, 26, 0.75) 45%, rgba(7, 16, 27, 0.58) 60%, rgba(8, 16, 28, 0.35) 75%, transparent 100%)'
         }}
       />
     </section>
