@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import msoeSunset from "../assets/MSOE_Sunset.jpg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const StarBackground = () => {
     const [stars, setStars] = useState([]);
     const [meteors, setMeteors] = useState([]);
+    const backgroundRef = useRef(null);
 
     useEffect(() => {
         generateStars();
@@ -12,7 +17,29 @@ export const StarBackground = () => {
             generateStars();
         }
         window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
+        
+        // Fade out star background as user scrolls into video section
+        if (backgroundRef.current) {
+            gsap.to(backgroundRef.current, {
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: document.body,
+                    start: "50vh top",
+                    end: "100vh top",
+                    scrub: 1,
+                    invalidateOnRefresh: true
+                }
+            });
+        }
+        
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            ScrollTrigger.getAll().forEach(trigger => {
+                if (trigger.vars && trigger.vars.trigger === document.body) {
+                    trigger.kill();
+                }
+            });
+        };
     }, []);
 
     const generateStars = () => {
@@ -51,8 +78,9 @@ export const StarBackground = () => {
 
         setMeteors(newMeteors);
     };
+    
     return (
-        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div ref={backgroundRef} className="fixed inset-0 overflow-hidden pointer-events-none z-0">
             {/* Sunset background - only visible in hero section */}
             <div 
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"

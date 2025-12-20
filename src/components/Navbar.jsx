@@ -1,23 +1,28 @@
 import { useEffect, useState, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { X, Menu } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
-    { name: "Home", href: "#hero" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Skills", href: "/skills" },
+    { name: "Projects", href: "/projects" },
+    { name: "Contact", href: "/contact" },
 ]
 
 export const Navbar = () => {
+    const location = useLocation();
     const [isScrolled, setIsScrolled] = useState(false);
+    const [scrollProgress, setScrollProgress] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [activeItem, setActiveItem] = useState("Home");
     const [hoveredItem, setHoveredItem] = useState(null);
-    const [isAutoScrolling, setIsAutoScrolling] = useState(false);
-    const autoScrollTimeoutRef = useRef(null);
+    
+    const isHomePage = location.pathname === '/';
+    
+    // Get active item from current route
+    const activeItem = navItems.find(item => item.href === location.pathname)?.name || "Home";
 
     const bubbleRef = useRef(null);
     const navGroupRef = useRef(null);
@@ -67,112 +72,93 @@ export const Navbar = () => {
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 10);
+            
+            // Calculate scroll progress for fade out on home page
+            if (isHomePage) {
+                const maxScroll = window.innerHeight * 0.2; // Fade out by 20% of viewport - faster fade
+                const currentScroll = window.scrollY;
+                const progress = Math.min(currentScroll / maxScroll, 1);
+                setScrollProgress(progress);
+            }
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [isHomePage]);
 
-    // Scrollspy: update active nav item based on section in viewport
-    useEffect(() => {
-        const sectionMap = navItems.map(it => ({ name: it.name, id: it.href.replace('#','') }));
-        const getActiveFromScroll = () => {
-            if (hoveredItem || isAutoScrolling) return; // don't override during hover or programmatic scroll
-            const scrollY = window.scrollY;
-            const offset = 140; // adjust sensitivity (smaller -> earlier switch)
-            let current = sectionMap[0].name;
-            for (const { name, id } of sectionMap) {
-                const el = document.getElementById(id);
-                if (!el) continue;
-                const top = el.offsetTop;
-                if (scrollY + offset >= top) {
-                    current = name;
-                } else {
-                    break;
-                }
-            }
-            if (current !== activeItem) setActiveItem(current);
-        };
-        window.addEventListener('scroll', getActiveFromScroll, { passive: true });
-        window.addEventListener('resize', getActiveFromScroll);
-        getActiveFromScroll();
-        return () => {
-            window.removeEventListener('scroll', getActiveFromScroll);
-            window.removeEventListener('resize', getActiveFromScroll);
-        };
-    }, [hoveredItem, isAutoScrolling, activeItem]);
+    // Calculate opacity based on scroll progress (only on home page)
+    const navOpacity = isHomePage ? 1 - scrollProgress : 1;
+    const navTransform = isHomePage ? `translateY(-${scrollProgress * 10}px)` : 'translateY(0)';
     
     return (
         <>
-            <nav className={cn(
-                "fixed w-full z-40 transition-all duration-300",
-                isScrolled
-                    ? "py-3 bg-card/55 backdrop-blur-md shadow-lg border-b border-border/30"
-                    : "py-5 bg-card/30 backdrop-blur-sm border-b border-border/10"
-            )}
+            <nav 
+                className={cn(
+                    "fixed w-full z-40 transition-all duration-300",
+                    isScrolled
+                        ? "py-4 bg-card/80 backdrop-blur-lg shadow-xl border-b border-border/40"
+                        : "py-6 bg-card/40 backdrop-blur-md border-b border-border/20"
+                )}
+                style={{ 
+                    opacity: navOpacity,
+                    transform: navTransform,
+                    pointerEvents: isHomePage && scrollProgress > 0.9 ? 'none' : 'auto'
+                }}
             >
-                <div className='w-full relative flex items-center px-4'>
-                    <a className="text-xl font-bold text-primary flex items-center ml-4 md:ml-20">
-                        <span className="relative z-10">
-                            {" "}
-                            <span className="text-glow text-foreground"> Oliver's </span> Portfolio
+                <div className='w-full relative flex items-center px-4 md:px-8'>
+                    <Link to="/" className="text-xl md:text-2xl font-bold flex items-center">
+                        <span className="relative z-10 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                            Oliver's
                         </span>
-                    </a>
+                        <span className="ml-2 text-foreground/80 font-normal">Portfolio</span>
+                    </Link>
 
-                    {/* desktop nav - moved closer to the sun */}
+                    {/* desktop nav - centered */}
                     <div
                         ref={navGroupRef}
                         onMouseLeave={() => setHoveredItem(null)}
-                        className="hidden md:flex items-center space-x-8 absolute left-1/2 translate-x-20"
+                        className="hidden md:flex items-center space-x-1 absolute left-1/2 -translate-x-1/2"
                         role="menubar"
                         aria-label="Main navigation"
                     >
-                        {/* Moving highlight bubble */}
+                        {/* Moving highlight bubble with modern gradient */}
                         <span
                             ref={bubbleRef}
                             aria-hidden="true"
-                            className="absolute top-0 left-0 z-0 rounded-full bg-primary/25 backdrop-blur-[2px] shadow-[0_0_0_1px_hsl(var(--primary)/0.35)] transition-all duration-300 ease-out pointer-events-none"
+                            className="absolute top-0 left-0 z-0 rounded-full bg-gradient-to-r from-primary/30 to-primary/20 backdrop-blur-sm shadow-[0_0_15px_rgba(139,92,246,0.3)] transition-all duration-300 ease-out pointer-events-none"
                             style={{ opacity: 0, transform: 'translate(0,0)', width: 0, height: 0 }}
                         />
                         {navItems.map((item) => (
-                            <a
+                            <Link
                                 key={item.name}
                                 ref={(el) => { if (el) linkRefs.current[item.name] = el; }}
-                                href={item.href}
+                                to={item.href}
                                 role="menuitem"
-                                onClick={() => {
-                                    setActiveItem(item.name);
-                                    setIsAutoScrolling(true);
-                                    if (autoScrollTimeoutRef.current) clearTimeout(autoScrollTimeoutRef.current);
-                                    // Rough duration of CSS smooth scroll; adjust as needed
-                                    autoScrollTimeoutRef.current = setTimeout(() => {
-                                        setIsAutoScrolling(false);
-                                    }, 700);
-                                }}
                                 onMouseEnter={() => setHoveredItem(item.name)}
-                                // Intentionally do not reset on leave to keep last hovered bubble until new target
                                 onFocus={() => setHoveredItem(item.name)}
                                 onBlur={() => setHoveredItem(null)}
                                 className={cn(
-                                    "relative z-10 px-2 py-1 rounded-md font-medium transition-colors duration-300",
-                                    item.name === activeItem ? "text-primary" : "text-foreground/80 hover:text-primary"
+                                    "relative z-10 px-4 py-2 rounded-full font-medium transition-all duration-300",
+                                    item.name === activeItem 
+                                        ? "text-primary" 
+                                        : "text-foreground/70 hover:text-primary hover:scale-105"
                                 )}
                             >
                                 {item.name}
-                            </a>
+                            </Link>
                         ))}
                     </div>
 
-                    {/* desktop theme toggle - all the way to the right corner */}
-                    <div className="hidden md:block absolute right-4">
+                    {/* desktop theme toggle */}
+                    <div className="hidden md:block ml-auto">
                         <ThemeToggle />
                     </div>
 
                     {/* mobile nav button and theme toggle */}
-                    <div className="md:hidden flex items-center space-x-4">
+                    <div className="md:hidden flex items-center space-x-4 ml-auto">
                         <ThemeToggle />
                         <button
                             onClick={() => setIsMenuOpen((prev) => !prev)}
-                            className="p-2 text-foreground z-50"
+                            className="p-2 text-foreground z-50 rounded-lg hover:bg-primary/10 transition-colors"
                             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                         >
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -181,31 +167,36 @@ export const Navbar = () => {
                 </div>
             </nav>
 
-            {/* mobile menu overlay moved outside nav so it can truly center */}
+            {/* mobile menu overlay */}
             <div
                 className={cn(
-                    "fixed inset-0 bg-background/95 backdrop-blur-md z-50 flex md:hidden transition-all duration-300",
+                    "fixed inset-0 bg-background/95 backdrop-blur-lg z-50 flex md:hidden transition-all duration-300",
                     isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                 )}
             >
-                <div className="relative m-auto w-[75%] max-w-xs rounded-2xl border border-border/40 bg-card/90 p-8 shadow-xl flex flex-col items-stretch">
+                <div className="relative m-auto w-[85%] max-w-sm rounded-3xl border border-border/40 bg-gradient-to-br from-card/95 to-card/90 p-8 shadow-2xl flex flex-col items-stretch">
                     <button
                         aria-label="Close menu"
                         onClick={() => setIsMenuOpen(false)}
-                        className="absolute -top-4 -right-4 h-10 w-10 rounded-full border border-border/40 bg-card/90 flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition"
+                        className="absolute -top-4 -right-4 h-12 w-12 rounded-full border border-border/40 bg-gradient-to-br from-card to-card/80 flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-transform"
                     >
                         <X size={22} />
                     </button>
-                    <div className="flex flex-col space-y-4 text-lg">
+                    <div className="flex flex-col space-y-3 text-lg">
                         {navItems.map((item, key) => (
-                            <a
+                            <Link
                                 key={key}
-                                href={item.href}
-                                className="text-foreground/85 hover:text-primary transition-colors duration-300 px-4 py-2 rounded-md border border-border/30 bg-background/50 backdrop-blur-sm hover:bg-primary/10 text-center"
+                                to={item.href}
+                                className={cn(
+                                    "px-6 py-3 rounded-xl transition-all duration-300 text-center font-medium",
+                                    item.name === activeItem
+                                        ? "bg-gradient-to-r from-primary/30 to-primary/20 text-primary border border-primary/40 shadow-[0_0_15px_rgba(139,92,246,0.2)]"
+                                        : "text-foreground/80 hover:text-primary border border-border/30 bg-background/30 hover:bg-primary/10 hover:border-primary/30"
+                                )}
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 {item.name}
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 </div>
