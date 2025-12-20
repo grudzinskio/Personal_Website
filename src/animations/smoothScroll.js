@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 let lenis = null;
+let rafCallback = null;
 
 /**
  * Initialize Lenis smooth scrolling for the entire page
@@ -32,10 +33,13 @@ export const initSmoothScroll = () => {
   // Sync Lenis with GSAP ScrollTrigger
   lenis.on('scroll', ScrollTrigger.update);
 
-  // Integrate Lenis with GSAP ticker for smooth animations
-  gsap.ticker.add((time) => {
+  // Store the callback reference for proper cleanup
+  rafCallback = (time) => {
     lenis.raf(time * 1000);
-  });
+  };
+
+  // Integrate Lenis with GSAP ticker for smooth animations
+  gsap.ticker.add(rafCallback);
 
   // Disable lag smoothing for better sync
   gsap.ticker.lagSmoothing(0);
@@ -43,7 +47,11 @@ export const initSmoothScroll = () => {
   // Return cleanup function
   return () => {
     if (lenis) {
-      gsap.ticker.remove(lenis.raf);
+      // Remove the correct callback reference from ticker
+      if (rafCallback) {
+        gsap.ticker.remove(rafCallback);
+        rafCallback = null;
+      }
       lenis.destroy();
       lenis = null;
     }
@@ -159,7 +167,7 @@ export const addScrollReveal = (selector, options = {}) => {
 
   const elements = document.querySelectorAll(selector);
   
-  elements.forEach((element) => {
+  elements.forEach((element, index) => {
     gsap.fromTo(
       element,
       { y, opacity },
@@ -168,6 +176,7 @@ export const addScrollReveal = (selector, options = {}) => {
         opacity: 1,
         duration,
         ease,
+        delay: stagger * index,
         scrollTrigger: {
           trigger: element,
           start,
