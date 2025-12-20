@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { X, Menu } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import ogLogo from "@/assets/og_logo.png";
 
 const navItems = [
     { name: "Home", href: "/" },
@@ -95,8 +96,8 @@ export const Navbar = () => {
                 className={cn(
                     "fixed w-full z-40 transition-all duration-300",
                     isScrolled
-                        ? "py-4 bg-card/80 backdrop-blur-lg shadow-xl border-b border-border/40"
-                        : "py-6 bg-card/40 backdrop-blur-md border-b border-border/20"
+                        ? "py-2 bg-card/80 backdrop-blur-lg shadow-xl border-b border-border/40"
+                        : "py-3 bg-card/40 backdrop-blur-md border-b border-border/20"
                 )}
                 style={{ 
                     opacity: navOpacity,
@@ -105,11 +106,12 @@ export const Navbar = () => {
                 }}
             >
                 <div className='w-full relative flex items-center px-4 md:px-8'>
-                    <Link to="/" className="text-xl md:text-2xl font-bold flex items-center">
-                        <span className="relative z-10 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                            Oliver's
-                        </span>
-                        <span className="ml-2 text-foreground/80 font-normal">Portfolio</span>
+                    <Link to="/" className="flex items-center group">
+                        <img 
+                            src={ogLogo} 
+                            alt="OG Logo" 
+                            className="h-10 md:h-12 w-auto transition-transform duration-300 group-hover:scale-110"
+                        />
                     </Link>
 
                     {/* desktop nav - centered */}

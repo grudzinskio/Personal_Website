@@ -510,3 +510,4 @@ export const createScrollVelocityZone = (element, lenisInstance, options = {}) =
 export const cleanupScrollAnimations = () => {
   ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 };
+
