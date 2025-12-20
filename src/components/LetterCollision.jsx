@@ -17,18 +17,19 @@ function animateLettersOnScroll(containerRef) {
 
   letterElements.forEach((letter) => {
     // Reset to initial position first
-    gsap.set(letter, { y: 0, rotation: 0 });
+    gsap.set(letter, { y: 0, rotation: 0, opacity: 1 });
     
     gsap.to(letter, {
       y: (i, el) =>
         (1 - parseFloat(el.getAttribute('data-speed'))) *
-        ScrollTrigger.maxScroll(window),
+        ScrollTrigger.maxScroll(window) * 0.6, // More scatter distance
+      opacity: 0,
       ease: 'power2.out',
       duration: 0.8,
       scrollTrigger: {
         trigger: document.documentElement,
         start: 0,
-        end: window.innerHeight,
+        end: window.innerHeight * 0.85, // Even more gradual fade (85% of viewport)
         invalidateOnRefresh: true,
         scrub: 0.5
       },
