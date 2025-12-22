@@ -1,14 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StarBackground } from "../components/StarBackground";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { LetterCollision } from "../components/LetterCollision";
 import { VideoSection } from "../components/VideoSection";
 import { AboutMeSection } from "../components/AboutMeSection";
-import { ProjectGallery } from "../components/ProjectGallery";
+import SlidingImages from "../components/SlidingImages";
 import { initSmoothScroll } from "../animations/smoothScroll";
+import Magnetic from "../components/animations/Magnetic";
+import { ArrowDownRight } from "lucide-react";
 
 export const Home = () => {
+    const [showScrollButton, setShowScrollButton] = useState(true);
+    const scrollContainerRef = useRef(null);
+
     useEffect(() => {
         // Scroll to top on component mount
         window.scrollTo(0, 0);
@@ -16,29 +21,63 @@ export const Home = () => {
         // Initialize smooth scrolling for the page
         const cleanup = initSmoothScroll();
 
+        // Handle scroll button visibility
+        const handleScroll = () => {
+            if (window?.scrollY > 0) {
+                setShowScrollButton(false);
+            } else {
+                setShowScrollButton(true);
+            }
+        };
+
+        window?.addEventListener('scroll', handleScroll);
+
         return () => {
             if (cleanup) cleanup();
+            window?.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
+    const scrollToVideo = () => {
+        const videoSection = document.getElementById('video-section');
+        if (videoSection) {
+            videoSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
-        <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+        <div ref={scrollContainerRef} className="min-h-screen bg-background text-foreground overflow-x-hidden">
             <StarBackground />
             <Navbar />
             <main className="scroll-smooth">
-                {/* Section 1: Letter Explosion Name */}
+                {/* Section 1: Letter Collision */}
                 <section className="relative px-4">
                     <LetterCollision />
                 </section>
 
-                {/* Section 2: Video Background with Text Overlay */}
-                <VideoSection />
+                {/* Scroll indicator button */}
+                {showScrollButton && (
+                    <Magnetic>
+                        <div
+                            className="fixed bottom-4 right-8 flex cursor-pointer items-center space-x-2 text-3xl font-semibold sm:bottom-8 z-50"
+                            onClick={scrollToVideo}
+                        >
+                            <p>Scroll</p>
+                            <ArrowDownRight strokeWidth={3} className="size-6" />
+                        </div>
+                    </Magnetic>
+                )}
 
-                {/* Section 3: About Me with Gradient Background */}
+                {/* Section 2: Video Background with Text Overlay */}
+                <div id="video-section">
+                    <VideoSection />
+                </div>
+
+                {/* Section 3: About Me */}
                 <AboutMeSection />
 
-                {/* Section 4: Project Gallery with Scroll Animations */}
-                <ProjectGallery />
+                {/* Section 4: Sliding Images Gallery */}
+                <SlidingImages />
             </main>
             <Footer />
         </div>

@@ -161,3 +161,6 @@ export const AboutMeSection = () => {
   );
 };
 
+export default AboutMeSection;
+
+

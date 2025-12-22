@@ -1,31 +1,26 @@
 import React from 'react';
 
 function getRandomSpeed() {
-  // [0.8, 1.5) - lower = bigger drift
-  return 0.8 + Math.random() * 0.7;
+  const randomDecimal = Math.random();
+  return 0.8 + randomDecimal * (1.5 - 0.8);
 }
 
 export function LetterDisplay({ word, colorClass = '' }) {
-  const baseSizeClass = colorClass.includes('text-foreground') 
-    ? 'text-5xl md:text-7xl lg:text-8xl' 
-    : 'text-6xl md:text-8xl lg:text-9xl';
+  // Use smaller size if it's the dimmer text (foreground/60)
+  const sizeClass = colorClass.includes('/60') 
+    ? 'text-4xl md:text-6xl lg:text-7xl xl:text-8xl' 
+    : 'text-6xl md:text-8xl lg:text-9xl xl:text-[12rem]';
     
   return (
-    <div className="whitespace-nowrap">
+    <div className="inline-flex">
       {word.split('').map((char, i) => (
         <div
           key={i}
-          className={`letter ${baseSizeClass} font-semibold ${colorClass}`}
+          className={`letter ${sizeClass} font-semibold ${colorClass}`}
           data-speed={getRandomSpeed()}
           style={{
             display: 'inline-block',
             willChange: 'transform',
-            WebkitTransform: 'translateZ(0)', // Safari/Edge webkit prefix
-            MozTransform: 'translateZ(0)', // Firefox prefix
-            msTransform: 'translateZ(0)', // IE/Edge prefix
-            transform: 'translateZ(0)',
-            WebkitBackfaceVisibility: 'hidden',
-            backfaceVisibility: 'hidden'
           }}
         >
           {char}

@@ -43,7 +43,8 @@ export const StarBackground = () => {
     }, []);
 
     const generateStars = () => {
-        const numberOfStars = Math.floor((window.innerHeight * window.innerHeight) / 5000);
+        // Reduce number of stars for better performance
+        const numberOfStars = Math.floor((window.innerWidth * window.innerHeight) / 8000);
 
         const newStars = [];
         for (let i = 0; i < numberOfStars; i++) {
@@ -62,7 +63,8 @@ export const StarBackground = () => {
 
 
     const generateMeteors = () => {
-        const numberOfMeteors = 4;
+        // Reduce meteors for better performance
+        const numberOfMeteors = 2;
 
         const newMeteors = [];
         for (let i = 0; i < numberOfMeteors; i++) {
