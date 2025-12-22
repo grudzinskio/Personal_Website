@@ -84,7 +84,7 @@ export function LetterCollision() {
 
   return (
     <div ref={containerRef} className="ml-4 md:ml-8 scroll-smooth">
-      <div className="-mt-20 md:-mt-28 mb-24 md:mb-36 flex h-screen flex-col justify-end">
+      <div className="-mt-40 sm:-mt-24 md:-mt-28 mb-40 sm:mb-28 md:mb-36 flex h-screen flex-col justify-end">
         {/* Animated greeting text */}
         <div className="flex flex-wrap items-center p-0 leading-none mb-2">
           <div className="text-5xl md:text-7xl lg:text-8xl font-normal text-foreground/80 flex">
