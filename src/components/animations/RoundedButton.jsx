@@ -25,6 +25,16 @@ export default function RoundedButton({
         { top: '-150%', width: '125%', duration: 0.25 },
         'exit'
       );
+    
+    // Cleanup function to prevent memory leaks and stale references
+    return () => {
+      if (timeoutId.current) {
+        clearTimeout(timeoutId.current);
+      }
+      if (timeline.current) {
+        timeline.current.kill();
+      }
+    };
   }, []);
 
   const manageMouseEnter = () => {
