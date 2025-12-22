@@ -511,3 +511,4 @@ export const cleanupScrollAnimations = () => {
   ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 };
 
+

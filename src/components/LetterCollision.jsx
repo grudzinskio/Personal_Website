@@ -5,6 +5,11 @@ import { LetterDisplay } from './LetterDisplay';
 
 gsap.registerPlugin(ScrollTrigger);
 
+function getRandomSpeed() {
+  const randomDecimal = Math.random();
+  return 0.8 + randomDecimal * (1.5 - 0.8);
+}
+
 function getRandomRotation() {
   return Math.random() * 60 - 30;
 }
@@ -13,29 +18,39 @@ function animateLettersOnScroll(containerRef) {
   const lettersContainer = containerRef.current;
   const letterElements = lettersContainer?.querySelectorAll('.letter');
 
-  if (!letterElements) return;
+  if (!letterElements || letterElements.length === 0) return [];
+
+  const animations = [];
 
   letterElements.forEach((letter) => {
+    // Set random speed if not already set
+    if (!letter.getAttribute('data-speed')) {
+      letter.setAttribute('data-speed', getRandomSpeed());
+    }
+
     // Reset to initial position first
     gsap.set(letter, { y: 0, rotation: 0, opacity: 1 });
     
-    gsap.to(letter, {
+    const anim = gsap.to(letter, {
       y: (i, el) =>
         (1 - parseFloat(el.getAttribute('data-speed'))) *
-        ScrollTrigger.maxScroll(window) * 0.6, // More scatter distance
-      opacity: 0,
-      ease: 'power2.out',
-      duration: 0.8,
+        ScrollTrigger.maxScroll(window),
+      opacity: 0, // Fade out completely
+      ease: 'none',
       scrollTrigger: {
         trigger: document.documentElement,
         start: 0,
-        end: window.innerHeight * 0.85, // Even more gradual fade (85% of viewport)
+        end: window.innerHeight, // Letters disappear by end of viewport
         invalidateOnRefresh: true,
         scrub: 0.5
       },
       rotation: getRandomRotation()
     });
+    
+    animations.push(anim);
   });
+  
+  return animations;
 }
 
 export function LetterCollision() {
@@ -44,14 +59,25 @@ export function LetterCollision() {
   useEffect(() => {
     if (!containerRef.current) return;
     
+    let animations = [];
+    
     // Wait for next frame to ensure DOM is ready
     const timeoutId = setTimeout(() => {
-      animateLettersOnScroll(containerRef);
+      animations = animateLettersOnScroll(containerRef);
       ScrollTrigger.refresh();
     }, 100);
     
     return () => {
       clearTimeout(timeoutId);
+      // Clean up all animations
+      animations.forEach(anim => {
+        if (anim && anim.scrollTrigger) {
+          anim.scrollTrigger.kill();
+        }
+        if (anim && anim.kill) {
+          anim.kill();
+        }
+      });
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
@@ -64,9 +90,7 @@ export function LetterCollision() {
           <div className="text-5xl md:text-7xl lg:text-8xl font-normal text-foreground/80 flex">
             <LetterDisplay word="Hello, " colorClass="text-foreground/80" />
             <div className="w-3 md:w-5"></div>
-            <LetterDisplay word="I" colorClass="text-foreground/80" />
-            <div className="w-4 md:w-6 lg:w-8"></div>
-            <LetterDisplay word="am" colorClass="text-foreground/80" />
+            <LetterDisplay word="I'm" colorClass="text-foreground/80" />
           </div>
         </div>
         
@@ -76,6 +100,14 @@ export function LetterCollision() {
           <div className="w-4 md:w-8 lg:w-10"></div>
           <LetterDisplay word="Grudzinski" colorClass="text-gradient" />
         </div>
+      </div>
+      {/* Extra random letters below with proper spacing */}
+      <div className="flex flex-wrap mb-32">
+        <LetterDisplay word="building " colorClass="text-foreground/60" />
+        <div className="w-2 xs:w-4 sm:w-6"></div>
+        <LetterDisplay word="innovative " colorClass="text-foreground/60" />
+        <div className="w-2 xs:w-4 sm:w-6"></div>
+        <LetterDisplay word="solutions" colorClass="text-foreground/60" />
       </div>
     </div>
   );

@@ -109,6 +109,9 @@
     --primary: 250 47% 60%;
     --primary-foreground: 110 40% 98%;
 
+    --secondary: 282 100% 81%;
+    --secondary-foreground: 24 9.8% 10%;
+
     --border: 214 32% 91%;
     --muted: 214 32% 91%;
     --muted-foreground: 222 11% 40%;
@@ -122,6 +125,9 @@
 
     --primary: 250 65% 65%;
     --primary-foreground: 213 31% 91%;
+
+    --secondary: 282 100% 81%;
+    --secondary-foreground: 24 9.8% 10%;
 
     --border: 217 33% 20%;
     --muted: 217 33% 20%;
@@ -138,8 +144,9 @@
   }
   
   html {
-    /* Remove scroll-smooth as Lenis handles this */
+    /* Remove scroll-smooth as Lenis/Locomotive handles this */
     scroll-behavior: auto;
+    height: auto;
   }
 
   body {
@@ -148,7 +155,7 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     background-image: radial-gradient(circle at 50% 20%, hsl(var(--primary)/0.08), transparent 60%);
-    /* Optimize for Lenis smooth scroll */
+    /* Optimize for smooth scroll */
     overscroll-behavior: none;
   }
 }
@@ -394,6 +401,97 @@ html.lenis {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+/* Locomotive Scroll optimizations */
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.has-scroll-smooth body {
+  overflow: hidden;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-container] {
+  height: 100vh;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-section] {
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  height: 100%;
+}
+
+/* Performance optimizations for animations */
+.letter {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Optimize star rendering */
+.star {
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+/* Optimize video rendering */
+video {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Responsive container utility */
+@utility container-responsive {
+  margin-inline: auto;
+  padding-inline: 1rem;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container-responsive {
+    max-width: 640px;
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-responsive {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-responsive {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-responsive {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-responsive {
+    max-width: 1400px;
+  }
 }
 
 /* Video overlay utilities */

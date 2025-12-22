@@ -17,17 +17,18 @@ export const initSmoothScroll = () => {
     lenis.destroy();
   }
 
-  // Create new Lenis instance with optimal settings
+  // Create new Lenis instance with optimal settings for performance
   lenis = new Lenis({
-    duration: 1.2,        // Scroll duration for smooth momentum
+    duration: 1.0,        // Reduced duration for snappier feel
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing function
     orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: true,
-    wheelMultiplier: 1,
+    wheelMultiplier: 0.8, // Reduced for less CPU usage
     smoothTouch: false,   // Disable on touch devices for native feel
     touchMultiplier: 2,
     infinite: false,
+    syncTouch: false,     // Better mobile performance
   });
 
   // Sync Lenis with GSAP ScrollTrigger
