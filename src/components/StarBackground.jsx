@@ -9,18 +9,28 @@ export const StarBackground = () => {
     const [stars, setStars] = useState([]);
     const [meteors, setMeteors] = useState([]);
     const backgroundRef = useRef(null);
+    const scrollTriggerRef = useRef(null);
+    const resizeTimeoutRef = useRef(null);
 
     useEffect(() => {
         generateStars();
         generateMeteors();
+        
+        // Debounced resize handler
         const handleResize = () => {
-            generateStars();
-        }
+            if (resizeTimeoutRef.current) {
+                clearTimeout(resizeTimeoutRef.current);
+            }
+            resizeTimeoutRef.current = setTimeout(() => {
+                generateStars();
+            }, 150); // 150ms debounce
+        };
+        
         window.addEventListener("resize", handleResize);
         
         // Fade out star background as user scrolls into video section
         if (backgroundRef.current) {
-            gsap.to(backgroundRef.current, {
+            const animation = gsap.to(backgroundRef.current, {
                 opacity: 0,
                 scrollTrigger: {
                     trigger: document.body,
@@ -30,15 +40,18 @@ export const StarBackground = () => {
                     invalidateOnRefresh: true
                 }
             });
+            scrollTriggerRef.current = animation.scrollTrigger;
         }
         
         return () => {
             window.removeEventListener("resize", handleResize);
-            ScrollTrigger.getAll().forEach(trigger => {
-                if (trigger.vars && trigger.vars.trigger === document.body) {
-                    trigger.kill();
-                }
-            });
+            if (resizeTimeoutRef.current) {
+                clearTimeout(resizeTimeoutRef.current);
+            }
+            if (scrollTriggerRef.current) {
+                scrollTriggerRef.current.kill();
+                scrollTriggerRef.current = null;
+            }
         };
     }, []);
 

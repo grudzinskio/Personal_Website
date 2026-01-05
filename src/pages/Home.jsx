@@ -3,8 +3,8 @@ import { StarBackground } from "../components/StarBackground";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { LetterCollision } from "../components/LetterCollision";
-import { VideoSection } from "../components/VideoSection";
-import { AboutMeSection } from "../components/AboutMeSection";
+import { VideoScrollSection } from "../components/VideoScrollSection";
+import { HeroIntroSection } from "../components/HeroIntroSection";
 import SlidingImages from "../components/SlidingImages";
 import { initSmoothScroll } from "../animations/smoothScroll";
 import Magnetic from "../components/animations/Magnetic";
@@ -68,13 +68,13 @@ export const Home = () => {
                     </Magnetic>
                 )}
 
-                {/* Section 2: Video Background with Text Overlay */}
+                {/* Section 2: Scroll-Driven Video */}
                 <div id="video-section">
-                    <VideoSection />
+                    <VideoScrollSection />
                 </div>
 
-                {/* Section 3: About Me */}
-                <AboutMeSection />
+                {/* Section 3: Hero Intro */}
+                <HeroIntroSection />
 
                 {/* Section 4: Sliding Images Gallery */}
                 <SlidingImages />
