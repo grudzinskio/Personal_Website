@@ -124,7 +124,7 @@ export const HeroIntroSection = () => {
       const headlineElements = headlineRef.current.querySelectorAll('h1, h2');
       if (headlineElements.length > 0) {
         const headlineAnim = createScrollTextReveal(Array.from(headlineElements), {
-          startTrigger: 'top 80%',
+          startTrigger: 'top 90%',
           endTrigger: 'bottom+=80vh bottom',
           initialX: -200,
           initialOpacity: 0,
@@ -137,7 +137,7 @@ export const HeroIntroSection = () => {
     // Apply text reveal to subtext - from left
     if (subtextRef.current) {
       const subtextAnim = createScrollTextReveal([subtextRef.current], {
-        startTrigger: 'top 80%',
+        startTrigger: 'top 90%',
         endTrigger: 'bottom+=80vh bottom',
         initialX: -200,
         initialOpacity: 0,
@@ -149,7 +149,7 @@ export const HeroIntroSection = () => {
     // Code editor comes from right side slowly
     if (codeEditorRef.current) {
       const editorAnim = createScrollTextReveal([codeEditorRef.current], {
-        startTrigger: 'top 80%',
+        startTrigger: 'top 90%',
         endTrigger: 'bottom+=80vh bottom',
         initialX: 200,
         initialOpacity: 0,
@@ -167,7 +167,7 @@ export const HeroIntroSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-[100vh] w-full overflow-hidden flex items-center justify-center py-32 md:py-48 bg-background">
+    <section ref={sectionRef} className="relative min-h-[100vh] w-full overflow-hidden flex items-center justify-center pt-16 pb-32 md:pt-24 md:pb-48 bg-background">
       {/* Content Container */}
       <div 
         ref={contentRef}

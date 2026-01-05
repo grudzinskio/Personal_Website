@@ -82,7 +82,7 @@ export const VideoScrollSection = () => {
     <section 
       ref={containerRef} 
       className="relative w-full bg-background"
-      style={{ height: '150vh' }} // Tighter spacing between sections
+      style={{ height: '120vh' }} // Reduced spacing between sections
     >
       {/* Sticky container keeps video centered during scroll */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">

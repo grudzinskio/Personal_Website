@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import RoundedButton from './animations/RoundedButton';
 
@@ -64,13 +65,21 @@ export default function SlidingImages() {
             className="flex h-60 w-1/2 items-center justify-center shadow-lg sm:h-80 sm:w-1/4"
             style={{ backgroundColor: project.color }}
           >
-            <div className="relative h-full w-full">
-              <img
-                alt="project"
-                src={project.src}
-                className="w-full h-full object-contain"
-              />
-            </div>
+            <motion.div
+              className="relative h-full w-full cursor-pointer group"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Link to="/projects" className="block h-full w-full">
+                <img
+                  alt="project"
+                  src={project.src}
+                  className="w-full h-full object-contain transition-all duration-300"
+                />
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300 rounded-lg" />
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary transition-all duration-300 rounded-lg" />
+              </Link>
+            </motion.div>
           </div>
         ))}
       </motion.div>
@@ -84,13 +93,21 @@ export default function SlidingImages() {
             className="flex h-60 w-3/4 items-center justify-center sm:h-80 sm:w-1/4"
             style={{ backgroundColor: project.color }}
           >
-            <div className="relative h-full w-full shadow-lg">
-              <img
-                src={project.src}
-                alt="project"
-                className="w-full h-full object-contain"
-              />
-            </div>
+            <motion.div
+              className="relative h-full w-full shadow-lg cursor-pointer group"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Link to="/projects" className="block h-full w-full">
+                <img
+                  src={project.src}
+                  alt="project"
+                  className="w-full h-full object-contain transition-all duration-300"
+                />
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300 rounded-lg" />
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary transition-all duration-300 rounded-lg" />
+              </Link>
+            </motion.div>
           </div>
         ))}
       </motion.div>
