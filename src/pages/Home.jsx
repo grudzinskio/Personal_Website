@@ -3,7 +3,7 @@ import { StarBackground } from "../components/StarBackground";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { LetterCollision } from "../components/LetterCollision";
-import { VideoSection } from "../components/VideoSection";
+import { VideoScrollSection } from "../components/VideoScrollSection";
 import { AboutMeSection } from "../components/AboutMeSection";
 import SlidingImages from "../components/SlidingImages";
 import { initSmoothScroll } from "../animations/smoothScroll";
@@ -68,9 +68,9 @@ export const Home = () => {
                     </Magnetic>
                 )}
 
-                {/* Section 2: Video Background with Text Overlay */}
+                {/* Section 2: Scroll-Driven Video */}
                 <div id="video-section">
-                    <VideoSection />
+                    <VideoScrollSection />
                 </div>
 
                 {/* Section 3: About Me */}

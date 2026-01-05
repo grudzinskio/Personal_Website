@@ -99,7 +99,7 @@ export const AboutMeSection = () => {
       <div 
         className="absolute top-0 left-0 w-full h-[400px] z-10 pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, rgba(5, 13, 24, 1) 0%, rgba(5, 13, 24, 0.95) 15%, rgba(6, 14, 25, 0.85) 30%, rgba(7, 15, 26, 0.65) 50%, rgba(8, 16, 28, 0.35) 70%, transparent 100%)'
+          background: 'linear-gradient(to bottom, hsl(var(--background)) 0%, hsl(var(--background) / 0.95) 15%, hsl(var(--background) / 0.85) 30%, hsl(var(--background) / 0.65) 50%, hsl(var(--background) / 0.35) 70%, transparent 100%)'
         }}
       />
 
