@@ -4,7 +4,7 @@ import { createCardStaggerReveal, createScrollVelocityZone } from '../animations
 import { getLenis } from '../animations/smoothScroll';
 import aboutData from '../data/about.json';
 
-// Random code snippets
+// Random code snippets - reduced by 25%
 const codeSnippets = [
   `const processData = async (input) => {
   const result = await fetch('/api/data', {
@@ -12,40 +12,64 @@ const codeSnippets = [
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(input)
   });
-  return result.json();
+  
+  if (!result.ok) {
+    throw new Error(\`HTTP error! status: \${result.status}\`);
+  }
+  
+  return await result.json();
 };`,
   `function calculateMetrics(data) {
+  if (!data || data.length === 0) return { average: 0, variance: 0 };
+  
   const avg = data.reduce((a, b) => a + b, 0) / data.length;
   const variance = data.reduce((sum, val) => 
     sum + Math.pow(val - avg, 2), 0) / data.length;
-  return { average: avg, variance };
+  
+  return { average: avg, variance: variance };
 }`,
   `const useOptimizedQuery = (query) => {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  
   useEffect(() => {
     const controller = new AbortController();
+    setLoading(true);
+    
     fetch(query, { signal: controller.signal })
       .then(res => res.json())
-      .then(setData);
+      .then(setData)
+      .finally(() => setLoading(false));
+      
     return () => controller.abort();
   }, [query]);
-  return data;
+  
+  return { data, loading };
 };`,
   `class DataProcessor {
   constructor(config) {
     this.config = { ...defaultConfig, ...config };
+    this.cache = new Map();
   }
   
   async transform(input) {
+    const cacheKey = JSON.stringify(input);
+    if (this.cache.has(cacheKey)) {
+      return this.cache.get(cacheKey);
+    }
+    
     const pipeline = this.buildPipeline();
-    return await pipeline.execute(input);
+    const result = await pipeline.execute(input);
+    this.cache.set(cacheKey, result);
+    return result;
   }
 }`,
   `const memoizedCallback = useCallback((id) => {
   const cached = cache.get(id);
-  if (cached) return cached;
+  if (cached) return cached.value;
+  
   const result = expensiveOperation(id);
-  cache.set(id, result);
+  cache.set(id, { value: result, timestamp: Date.now() });
   return result;
 }, [cache]);`,
   `interface UserProfile {
@@ -55,6 +79,18 @@ const codeSnippets = [
   preferences: {
     theme: 'light' | 'dark';
     notifications: boolean;
+  };
+}
+
+const createUserProfile = (data: Partial<UserProfile>): UserProfile => {
+  return {
+    id: generateId(),
+    name: data.name || 'Anonymous',
+    email: data.email || '',
+    preferences: {
+      theme: data.preferences?.theme || 'dark',
+      notifications: data.preferences?.notifications ?? true
+    }
   };
 }`
 ];
@@ -85,14 +121,17 @@ export const HeroIntroSection = () => {
 
     // Apply smooth scroll-triggered text reveal to headline - from left
     if (headlineRef.current) {
-      const headlineAnim = createScrollTextReveal([headlineRef.current], {
-        startTrigger: 'top 80%',
-        endTrigger: 'bottom+=80vh bottom',
-        initialX: -200,
-        initialOpacity: 0,
-        ease: 'power1.out'
-      });
-      animations.push(...headlineAnim);
+      const headlineElements = headlineRef.current.querySelectorAll('h1, h2');
+      if (headlineElements.length > 0) {
+        const headlineAnim = createScrollTextReveal(Array.from(headlineElements), {
+          startTrigger: 'top 80%',
+          endTrigger: 'bottom+=80vh bottom',
+          initialX: -200,
+          initialOpacity: 0,
+          ease: 'power1.out'
+        });
+        animations.push(...headlineAnim);
+      }
     }
 
     // Apply text reveal to subtext - from left
@@ -136,20 +175,57 @@ export const HeroIntroSection = () => {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 lg:gap-32 xl:gap-40 items-center">
           {/* Left Column: Typography */}
-          <div className="flex flex-col justify-center space-y-8 md:space-y-10">
-            <h1 
-              ref={headlineRef}
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tight leading-tight"
-            >
-              {aboutData.personal.title}
-            </h1>
+          <div className="flex flex-col justify-center space-y-8 md:space-y-10 relative">
+            {/* Background accent */}
+            <div className="absolute -left-8 -top-8 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl" />
             
-            <p 
-              ref={subtextRef}
-              className="text-lg md:text-xl lg:text-2xl text-zinc-400 leading-relaxed"
-            >
-              {aboutData.personal.description[0]}
-            </p>
+            <div ref={headlineRef} className="flex flex-col space-y-4 md:space-y-5 relative z-10">
+              {/* First Line: Full Stack Engineer */}
+              <div className="flex flex-col space-y-1">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="h-1 w-1 rounded-full bg-blue-400 animate-pulse" />
+                  <span className="text-xs md:text-sm font-mono text-zinc-500 uppercase tracking-widest">01</span>
+                </div>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-white via-white to-zinc-300 bg-clip-text text-transparent tracking-tight leading-[1.1]">
+                  Full Stack
+                </h1>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white/95 tracking-tight leading-[1.1]">
+                  Engineer
+                </h1>
+              </div>
+              
+              {/* Divider Line with gradient */}
+              <div className="flex items-center gap-3 my-3 md:my-4">
+                <div className="h-px flex-1 max-w-[80px] md:max-w-[120px] bg-gradient-to-r from-transparent via-zinc-600 to-zinc-500" />
+                <div className="w-1.5 h-1.5 rounded-full bg-zinc-500" />
+                <div className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-600 to-transparent" />
+              </div>
+              
+              {/* Second Line: Computer Science Student */}
+              <div className="flex flex-col space-y-1">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="h-1 w-1 rounded-full bg-purple-400 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                  <span className="text-xs md:text-sm font-mono text-zinc-500 uppercase tracking-widest">02</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent tracking-tight leading-[1.1]">
+                  Computer Science
+                </h2>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-white tracking-tight leading-[1.1]">
+                  Student
+                </h2>
+              </div>
+            </div>
+            
+            {/* Description with enhanced styling */}
+            <div className="relative z-10 pt-4 border-l-2 border-zinc-800 pl-6 md:pl-8">
+              <div className="absolute -left-[2px] top-0 w-1 h-8 bg-gradient-to-b from-blue-500/50 to-transparent" />
+              <p 
+                ref={subtextRef}
+                className="text-base md:text-lg lg:text-xl text-zinc-400 leading-relaxed max-w-2xl"
+              >
+                {aboutData.personal.description[0]}
+              </p>
+            </div>
           </div>
           
           {/* Right Column: Code Editor Window */}

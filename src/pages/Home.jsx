@@ -4,7 +4,7 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { LetterCollision } from "../components/LetterCollision";
 import { VideoScrollSection } from "../components/VideoScrollSection";
-import { AboutMeSection } from "../components/AboutMeSection";
+import { HeroIntroSection } from "../components/HeroIntroSection";
 import SlidingImages from "../components/SlidingImages";
 import { initSmoothScroll } from "../animations/smoothScroll";
 import Magnetic from "../components/animations/Magnetic";
@@ -73,8 +73,8 @@ export const Home = () => {
                     <VideoScrollSection />
                 </div>
 
-                {/* Section 3: About Me */}
-                <AboutMeSection />
+                {/* Section 3: Hero Intro */}
+                <HeroIntroSection />
 
                 {/* Section 4: Sliding Images Gallery */}
                 <SlidingImages />
