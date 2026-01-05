@@ -243,39 +243,49 @@ const CodeEditorWindow = () => {
   const [displayedCode, setDisplayedCode] = useState('');
   const [currentSnippetIndex, setCurrentSnippetIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
     const currentSnippet = codeSnippets[currentSnippetIndex];
     
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    
     if (isTyping) {
       if (displayedCode.length < currentSnippet.length) {
-        const timeout = setTimeout(() => {
+        timeoutRef.current = setTimeout(() => {
           setDisplayedCode(currentSnippet.slice(0, displayedCode.length + 1));
         }, 30 + Math.random() * 20);
-        return () => clearTimeout(timeout);
       } else {
         // Finished typing, wait before clearing
-        const timeout = setTimeout(() => {
+        timeoutRef.current = setTimeout(() => {
           setIsTyping(false);
         }, 2000);
-        return () => clearTimeout(timeout);
       }
     } else {
       // Clear code
       if (displayedCode.length > 0) {
-        const timeout = setTimeout(() => {
+        timeoutRef.current = setTimeout(() => {
           setDisplayedCode(displayedCode.slice(0, -1));
         }, 20);
-        return () => clearTimeout(timeout);
       } else {
         // Move to next snippet
-        const timeout = setTimeout(() => {
+        timeoutRef.current = setTimeout(() => {
           setCurrentSnippetIndex((prev) => (prev + 1) % codeSnippets.length);
           setIsTyping(true);
         }, 500);
-        return () => clearTimeout(timeout);
       }
     }
+    
+    // Cleanup function at top level
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+    };
   }, [displayedCode, isTyping, currentSnippetIndex]);
 
   // Render code with basic syntax highlighting

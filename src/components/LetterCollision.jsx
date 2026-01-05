@@ -55,22 +55,21 @@ function animateLettersOnScroll(containerRef) {
 
 export function LetterCollision() {
   const containerRef = useRef(null);
+  const animationsRef = useRef([]);
 
   useEffect(() => {
     if (!containerRef.current) return;
     
-    let animations = [];
-    
     // Wait for next frame to ensure DOM is ready
     const timeoutId = setTimeout(() => {
-      animations = animateLettersOnScroll(containerRef);
+      animationsRef.current = animateLettersOnScroll(containerRef);
       ScrollTrigger.refresh();
     }, 100);
     
     return () => {
       clearTimeout(timeoutId);
-      // Clean up all animations
-      animations.forEach(anim => {
+      // Clean up only our specific animations
+      animationsRef.current.forEach(anim => {
         if (anim && anim.scrollTrigger) {
           anim.scrollTrigger.kill();
         }
@@ -78,7 +77,7 @@ export function LetterCollision() {
           anim.kill();
         }
       });
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      animationsRef.current = [];
     };
   }, []);
 
