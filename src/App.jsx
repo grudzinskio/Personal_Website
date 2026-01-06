@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"
 import { useEffect } from "react"
+import { AnimatePresence } from "framer-motion"
 import { NotFound } from "./pages/NotFound"
 import { Home } from "./pages/Home"
 import { About } from "./pages/About"
@@ -7,6 +8,7 @@ import { Skills } from "./pages/Skills"
 import { Projects } from "./pages/Projects"
 import { Contact } from "./pages/Contact"
 import { scrollToPosition, getLenis } from "./animations/smoothScroll"
+import { PageTransition } from "./components/PageTransition"
 
 function ScrollToTop() {
   const location = useLocation();
@@ -24,22 +26,29 @@ function ScrollToTop() {
   return null;
 }
 
-function App() {
+function AnimatedRoutes() {
+  const location = useLocation();
 
   return (
-    <>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route index element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/skills" element={<Skills />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <AnimatedRoutes />
+    </BrowserRouter>
   )
 }
 

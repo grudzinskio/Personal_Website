@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
+// Force dark mode on initial load
+document.documentElement.classList.add('dark');
+
 // Detect Chrome browser and add class to root element (exclude Edge which also contains "Chrome")
 const isChrome = /Chrome/.test(navigator.userAgent) && 
                  /Google Inc/.test(navigator.vendor) && 

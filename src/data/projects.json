@@ -3,14 +3,14 @@
         {
             "id": 1,
             "title": "AI CPA Agentic Research System",
-            "description": "LLM-powered assistant for tax return analysis and optimization. Built with Python, LangChain, and PydanticAI.",
+            "description": "Intelligent tax assistant leveraging LLM-powered agentic workflows to analyze tax returns and identify optimization opportunities. Built with Python, LangChain, and PydanticAI to automate complex tax research and deliver actionable insights for accounting professionals.",
             "image": "/projects/CPAproject.jpg",
             "tags": [
                 "Python",
                 "LangChain",
                 "LLM",
                 "PydanticAI",
-                "Agentic"
+                "Agentic AI"
             ],
             "demoURL": "https://drive.google.com/file/d/1lfyOCU-jMAndwzvOGJP_BmlPMejIH8OS/view?usp=sharing",
             "githubUrl": "https://github.com/grudzinskio/CPA-AI_Agentic-Deep-Research",
@@ -20,7 +20,7 @@
         {
             "id": 7,
             "title": "Equipment Energy Optimizer (MARL)",
-            "description": "Multi-Agent Reinforcement Learning system using Proximal Policy Optimization to optimize manufacturing equipment scheduling. Treats machines as independent agents that autonomously prioritize high-solar and off-peak windows, achieving a projected 25% reduction in energy costs while maintaining >99% job completion rate.",
+            "description": "Multi-agent reinforcement learning system using Proximal Policy Optimization to intelligently schedule manufacturing equipment during peak solar production and off-peak hours. Achieved 25% projected energy cost reduction while maintaining >99% job completion rate through autonomous agent coordination.",
             "image": "/projects/MARLProject.png",
             "tags": [
                 "Python",
@@ -28,8 +28,7 @@
                 "MARL",
                 "PPO",
                 "Databricks",
-                "AI",
-                "Machine Learning"
+                "AI"
             ],
             "demoURL": "#",
             "githubUrl": "https://github.com/grudzinskio/FactoryReset",
@@ -39,16 +38,14 @@
         {
             "id": 8,
             "title": "Autonomous Visual QA Assistant",
-            "description": "Computer vision pipeline automating quality control using YOLOv8 for detection, MobileNetv2 (CNN) for classification, and a Multimodal LLM for defect analysis. Achieved 99.97% detection accuracy and projected 38% reduction in monthly quality costs (over $96k annually). Automates 'Rework' vs. 'Discard' decisions in seconds.",
+            "description": "End-to-end computer vision pipeline automating quality control in manufacturing. Combines YOLOv8 for defect detection, MobileNetV2 for classification, and multimodal LLM for analysis. Achieved 99.97% detection accuracy with projected annual savings of $96K through automated rework decisions.",
             "image": "/projects/QAProject.jpg",
             "tags": [
                 "Python",
                 "Computer Vision",
                 "YOLOv8",
-                "MobileNetv2",
+                "MobileNetV2",
                 "Multimodal LLM",
-                "Databricks",
-                "AI",
                 "Deep Learning"
             ],
             "demoURL": "#",
@@ -59,7 +56,7 @@
         {
             "id": 9,
             "title": "Photosynthesizers - Milwaukee Domes",
-            "description": "Interactive mobile-first web application for the Milwaukee Domes conservatory enabling plant discovery through AI-powered image recognition. Features BioCLIP for plant classification, GPT-4 for health assessment, multi-language support (English, Spanish, Chinese), and crowd-sourced plant health monitoring. Built with React, TypeScript, FastAPI, and Supabase.",
+            "description": "Mobile-first web application enhancing visitor experience at Milwaukee Domes conservatory through AI-powered plant identification. Features BioCLIP classification, GPT-4 health assessment, multi-language support (English, Spanish, Chinese), and crowd-sourced monitoring. Full-stack implementation with React, TypeScript, FastAPI, and Supabase.",
             "image": "/projects/PhotoSynProject.png",
             "tags": [
                 "React",
@@ -68,10 +65,7 @@
                 "Python",
                 "BioCLIP",
                 "GPT-4",
-                "Supabase",
-                "Computer Vision",
-                "AI",
-                "Full-Stack"
+                "Supabase"
             ],
             "demoURL": "#",
             "githubUrl": "https://github.com/grudzinskio/photosynthesizers",
@@ -80,29 +74,29 @@
         },
         {
             "id": 2,
-            "title": "Diabetes Prediction (Random Forest)",
-            "description": "ML pipeline for diabetes prediction using statistical tests and Random Forest with comprehensive data preprocessing.",
+            "title": "Diabetes Prediction ML Pipeline",
+            "description": "Production-ready machine learning pipeline for diabetes risk prediction. Implements Random Forest classifier with comprehensive feature engineering, statistical validation, and data preprocessing. Designed for clinical decision support with emphasis on model interpretability.",
             "image": "/projects/DiabetesProject.png",
             "tags": [
                 "Python",
                 "Scikit-learn",
                 "ML",
-                "Data Analysis"
+                "Statistical Analysis"
             ],
             "demoURL": "#",
             "githubUrl": "https://github.com/grudzinskio/DiabetesPrediction"
         },
         {
             "id": 3,
-            "title": "Custom Wordle Game",
-            "description": "Java-based Wordle game with admin tools, SQL database, and modular testing for QA.",
+            "title": "Custom Wordle Game Engine",
+            "description": "Feature-rich Wordle implementation with administrative dashboard, persistent SQL storage, and comprehensive test suite. Developed using Agile methodology with modular architecture for extensibility and maintainability.",
             "image": "/projects/WordleProject.png",
             "tags": [
                 "Java",
                 "SQL",
-                "Game Dev",
+                "Game Development",
                 "SCRUM",
-                "Testing"
+                "Unit Testing"
             ],
             "demoURL": "#",
             "githubUrl": "https://github.com/grudzinskio/WordleGame"
@@ -110,44 +104,44 @@
         {
             "id": 4,
             "title": "Automated XML Schema Documentation",
-            "description": "RAG CI/CD pipeline using Python and ML to automate XSD documentation and analysis.",
+            "description": "RAG-powered CI/CD pipeline automating XSD documentation and analysis. Leverages machine learning to extract semantic relationships and generate human-readable documentation, reducing manual documentation time by 80%.",
             "image": "/projects/ActionsProject.png",
             "tags": [
                 "Python",
                 "CI/CD",
-                "ML",
+                "RAG",
                 "GitHub Actions",
-                "RAG"
+                "ML"
             ],
             "demoURL": "#",
             "githubUrl": "#"
         },
         {
             "id": 5,
-            "title": "This Website!",
-            "description": "Website built using modern web development tools! Feel free to see how I made it.",
+            "title": "Modern Portfolio Website",
+            "description": "Performance-optimized personal portfolio built with React, Framer Motion, and Tailwind CSS. Features smooth animations, canvas-based rendering, and Vercel-inspired glassmorphism design. Emphasizes 60fps performance and clean architecture.",
             "image": "/projects/PersonalWebsite.png",
             "tags": [
-                "Frontend",
-                "TailwindCSS",
                 "React",
-                "JavaScript"
+                "Framer Motion",
+                "TailwindCSS",
+                "Canvas API",
+                "Performance"
             ],
             "demoURL": "#",
             "githubUrl": "https://github.com/grudzinskio/Personal_Website"
         },
         {
             "id": 6,
-            "title": "Campaign Poster Management",
-            "description": "Full-stack application for managing campaign posters with user authentication and image upload.",
+            "title": "Campaign Poster Management Platform",
+            "description": "Full-stack web application for managing campaign marketing materials. Features secure authentication, image upload with compression, and RESTful API. Built with React frontend, Node.js backend, and MariaDB for reliable data persistence.",
             "image": "/projects/PosterManagement.png",
             "tags": [
-                "MariaDB",
-                "SQL",
-                "Javascript",
-                "API",
                 "React",
-                "Node.js"
+                "Node.js",
+                "MariaDB",
+                "REST API",
+                "Authentication"
             ],
             "demoURL": "#",
             "githubUrl": "https://github.com/grudzinskio/poster_management"

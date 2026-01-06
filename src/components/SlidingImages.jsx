@@ -1,123 +1,154 @@
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
-// eslint-disable-next-line no-unused-vars
 import { motion, useScroll, useTransform } from 'framer-motion';
-import RoundedButton from './animations/RoundedButton';
+import { useNavigate } from 'react-router-dom';
 
-const slider1 = [
-  {
-    color: 'white',
-    src: '/projects/PhotoSynProject.png'
-  },
-  {
-    color: 'white',
-    src: '/projects/MARLProject.png'
-  },
-  {
-    color: '#21242b',
-    src: '/projects/DiabetesProject.png'
-  },
-  {
-    color: '#21242b',
-    src: '/projects/ActionsProject.png'
-  }
-];
-
-const slider2 = [
-  {
-    color: '#d4e3ec',
-    src: '/projects/CPAproject.jpg'
-  },
-  {
-    color: '#9289BD',
-    src: '/projects/QAProject.jpg'
-  },
-  {
-    color: 'white',
-    src: '/projects/WordleProject.png'
-  },
-  {
-    color: 'white',
-    src: '/projects/PosterManagement.png'
-  }
-];
-
-export default function SlidingImages() {
-  const container = useRef(null);
+/**
+ * SlidingImages - Horizontal parallax image slider at the bottom
+ * Clickable images that navigate to the Projects page
+ */
+const SlidingImages = () => {
+  const containerRef = useRef(null);
+  const navigate = useNavigate();
+  
   const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start end', 'end start']
+    target: containerRef,
+    offset: ["start end", "end start"]
   });
-  const x1 = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const x2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+
+  // Create horizontal slide effect - opposite directions
+  const x1 = useTransform(scrollYProgress, [0, 1], ["-25%", "10%"]);
+  const x2 = useTransform(scrollYProgress, [0, 1], ["10%", "-25%"]);
+
+  // Image sets for two rows
+  const slider1Images = [
+    { src: "/projects/CPAproject.jpg", alt: "AI CPA Project" },
+    { src: "/projects/MARLProject.png", alt: "MARL Project" },
+    { src: "/projects/QAProject.jpg", alt: "QA Assistant" },
+    { src: "/projects/PhotoSynProject.png", alt: "Photosynthesizers" },
+  ];
+
+  const slider2Images = [
+    { src: "/projects/DiabetesProject.png", alt: "Diabetes Prediction" },
+    { src: "/projects/WordleProject.png", alt: "Wordle Game" },
+    { src: "/projects/ActionsProject.png", alt: "Automated Documentation" },
+    { src: "/projects/PersonalWebsite.png", alt: "Personal Website" },
+  ];
+
+  const handleImageClick = () => {
+    navigate('/projects');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <div
-      ref={container}
-      className="relative z-10 mt-[200px] flex flex-col gap-[3vw] bg-background"
-    >
-      <motion.div
-        style={{ x: x1 }}
-        className="relative left-[-10vw] flex w-[300vw] gap-4 sm:w-[120vw] sm:gap-12"
-      >
-        {slider1.map((project, index) => (
-          <div
-            key={index}
-            className="flex h-60 w-1/2 items-center justify-center shadow-lg sm:h-80 sm:w-1/4"
-            style={{ backgroundColor: project.color }}
-          >
-            <motion.div
-              className="relative h-full w-full cursor-pointer group"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Link to="/projects" className="block h-full w-full">
-                <img
-                  alt="project"
-                  src={project.src}
-                  className="w-full h-full object-contain transition-all duration-300"
-                />
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300 rounded-lg" />
-                <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary transition-all duration-300 rounded-lg" />
-              </Link>
-            </motion.div>
-          </div>
-        ))}
-      </motion.div>
-      <motion.div
-        style={{ x: x2 }}
-        className="relative left-[-10vw] flex w-[300vw] gap-6 sm:w-[120vw] sm:gap-12"
-      >
-        {slider2.map((project, index) => (
-          <div
-            key={index}
-            className="flex h-60 w-3/4 items-center justify-center sm:h-80 sm:w-1/4"
-            style={{ backgroundColor: project.color }}
-          >
-            <motion.div
-              className="relative h-full w-full shadow-lg cursor-pointer group"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Link to="/projects" className="block h-full w-full">
-                <img
-                  src={project.src}
-                  alt="project"
-                  className="w-full h-full object-contain transition-all duration-300"
-                />
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300 rounded-lg" />
-                <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary transition-all duration-300 rounded-lg" />
-              </Link>
-            </motion.div>
-          </div>
-        ))}
-      </motion.div>
-      <div className="flex w-full justify-center my-12">
-        <a href="/projects">
-          <RoundedButton backgroundColor="bg-primary">View Projects</RoundedButton>
-        </a>
+    <section ref={containerRef} className="relative py-20 sm:py-24 md:py-32 overflow-x-hidden bg-background">
+      <div className="mb-12 sm:mb-16 text-center px-4">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
+          Featured <span className="text-gradient-animated">Work</span>
+        </h2>
+        <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+          Click any image to explore all projects
+        </p>
       </div>
-    </div>
-  );
-}
 
+      <div className="space-y-6 sm:space-y-8">
+        {/* First sliding row - moves left */}
+        <motion.div
+          style={{ x: x1 }}
+          className="flex gap-4 sm:gap-6 will-change-transform"
+        >
+          {slider1Images.map((image, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.05, y: -8 }}
+              className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[210px] sm:h-[260px] md:h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
+              onClick={handleImageClick}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <p className="font-semibold">{image.alt}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+          {/* Duplicate for seamless loop effect */}
+          {slider1Images.map((image, index) => (
+            <motion.div
+              key={`dup-${index}`}
+              whileHover={{ scale: 1.05, y: -8 }}
+              className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[210px] sm:h-[260px] md:h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
+              onClick={handleImageClick}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <p className="font-semibold">{image.alt}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Second sliding row - moves right */}
+        <motion.div
+          style={{ x: x2 }}
+          className="flex gap-4 sm:gap-6 will-change-transform"
+        >
+          {slider2Images.map((image, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.05, y: -8 }}
+              className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[210px] sm:h-[260px] md:h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
+              onClick={handleImageClick}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <p className="font-semibold">{image.alt}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+          {/* Duplicate for seamless loop effect */}
+          {slider2Images.map((image, index) => (
+            <motion.div
+              key={`dup-${index}`}
+              whileHover={{ scale: 1.05, y: -8 }}
+              className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[210px] sm:h-[260px] md:h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
+              onClick={handleImageClick}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <p className="font-semibold">{image.alt}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default SlidingImages;

@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { X, Menu } from "lucide-react";
-import { ThemeToggle } from "./ThemeToggle";
 import ogLogo from "@/assets/og_logo.png";
 
 const navItems = [
@@ -106,11 +105,11 @@ export const Navbar = () => {
                 }}
             >
                 <div className='w-full relative flex items-center px-4 md:px-8'>
-                    <Link to="/" className="flex items-center group">
+                    <Link to="/" className="flex items-center group p-2" style={{ minWidth: '44px', minHeight: '44px' }}>
                         <img 
                             src={ogLogo} 
                             alt="OG Logo" 
-                            className="h-10 md:h-12 w-auto transition-transform duration-300 group-hover:scale-110"
+                            className="h-8 sm:h-10 md:h-12 w-auto transition-transform duration-300 group-hover:scale-110"
                         />
                     </Link>
 
@@ -150,17 +149,12 @@ export const Navbar = () => {
                         ))}
                     </div>
 
-                    {/* desktop theme toggle */}
-                    <div className="hidden md:block ml-auto">
-                        <ThemeToggle />
-                    </div>
-
-                    {/* mobile nav button and theme toggle */}
-                    <div className="md:hidden flex items-center space-x-4 ml-auto">
-                        <ThemeToggle />
+                    {/* mobile nav button */}
+                    <div className="md:hidden flex items-center ml-auto">
                         <button
                             onClick={() => setIsMenuOpen((prev) => !prev)}
-                            className="p-2 text-foreground z-50 rounded-lg hover:bg-primary/10 transition-colors"
+                            className="p-3 text-foreground z-50 rounded-lg hover:bg-primary/10 transition-colors"
+                            style={{ minWidth: '44px', minHeight: '44px' }}
                             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                         >
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -181,20 +175,22 @@ export const Navbar = () => {
                         aria-label="Close menu"
                         onClick={() => setIsMenuOpen(false)}
                         className="absolute -top-4 -right-4 h-12 w-12 rounded-full border border-border/40 bg-gradient-to-br from-card to-card/80 flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-transform"
+                        style={{ minWidth: '48px', minHeight: '48px' }}
                     >
                         <X size={22} />
                     </button>
-                    <div className="flex flex-col space-y-3 text-lg">
+                    <div className="flex flex-col space-y-4 text-lg">
                         {navItems.map((item, key) => (
                             <Link
                                 key={key}
                                 to={item.href}
                                 className={cn(
-                                    "px-6 py-3 rounded-xl transition-all duration-300 text-center font-medium",
+                                    "px-6 py-4 rounded-xl transition-all duration-300 text-center font-medium",
                                     item.name === activeItem
                                         ? "bg-gradient-to-r from-primary/30 to-primary/20 text-primary border border-primary/40 shadow-[0_0_15px_rgba(139,92,246,0.2)]"
                                         : "text-foreground/80 hover:text-primary border border-border/30 bg-background/30 hover:bg-primary/10 hover:border-primary/30"
                                 )}
+                                style={{ minHeight: '44px' }}
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 {item.name}

@@ -1,92 +1,135 @@
-import { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import videoSource from '../assets/looping_video.mp4';
+import { useRef, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 /**
- * VideoScrollSection - A minimal, scroll-driven video experience with text overlay
- * 
- * Motion Intent:
- * - Video opacity is directly tied to scroll progress (data-driven)
- * - Fades in earlier as user approaches the section
- * - Text animates in with stagger effect
- * - Fades out as user exits the section
- * - Subtle scale effect adds depth without being distracting
- * - Video only plays when in view for performance optimization
- * 
- * Design Philosophy:
- * - Clean text overlay with intentional typography
- * - Data-driven motion
- * - Video feels like part of a living technical system
+ * AnimatedHeroSection - Lightweight alternative to video
+ * Features animated gradient mesh with floating particles
+ * GPU-accelerated, smooth 60fps performance
  */
 export const VideoScrollSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   
-  // Track scroll progress through the entire container
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"] // Track from when section enters viewport to when it exits
+    offset: ["start end", "end start"]
   });
 
-  // Map scroll progress to opacity - starts earlier now
-  // [0, 0.15]: Fade in from 0 to 1 as section enters (faster fade in)
-  // [0.15, 0.85]: Maintain full opacity while scrolling through
-  // [0.85, 1]: Fade out from 1 to 0 as section exits
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.15, 0.85, 1],
-    [0, 1, 1, 0]
-  );
+  // Smooth opacity transitions
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const textOpacity = useTransform(scrollYProgress, [0.15, 0.3, 0.7, 0.85], [0, 1, 1, 0]);
+  const textY = useTransform(scrollYProgress, [0.15, 0.3], [30, 0]);
 
-  // Subtle scale transform for depth (1.0 → 1.05 → 1.0)
-  // Creates a slight zoom effect that feels organic
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [1, 1.05, 1]
-  );
-
-  // Text animation values - fades in slightly after video
-  const textOpacity = useTransform(
-    scrollYProgress,
-    [0.1, 0.25, 0.75, 0.9],
-    [0, 1, 1, 0]
-  );
-
-  const textY = useTransform(
-    scrollYProgress,
-    [0.1, 0.25],
-    [30, 0]
-  );
-
-  // Check if video is in viewport
-  const isInView = useInView(containerRef, { amount: 0.3 });
-
-  // Control video playback based on visibility
+  // Canvas particle animation
   useEffect(() => {
-    if (!videoRef.current) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) return;
 
-    if (isInView) {
-      // Play video when in view
-      videoRef.current.play().catch(err => {
-        // Silently handle autoplay restrictions
-        console.log('Video autoplay prevented:', err);
-      });
-    } else {
-      // Pause video when out of view to save resources
-      videoRef.current.pause();
+    // Set canvas size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Create particles
+    interface Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      opacity: number;
+      hue: number;
     }
-  }, [isInView]);
+
+    const particles: Particle[] = [];
+    // Reduce particle count on mobile for better performance
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 30 : 60;
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 3 + 1,
+        opacity: Math.random() * 0.5 + 0.3,
+        hue: Math.random() * 60 + 240 // Purple to blue range
+      });
+    }
+
+    let animationId: number;
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Update and draw particles
+      particles.forEach(particle => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        
+        // Bounce off edges
+        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+        
+        // Draw particle with glow
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        
+        // Gradient for glow effect
+        const gradient = ctx.createRadialGradient(
+          particle.x, particle.y, 0,
+          particle.x, particle.y, particle.size * 3
+        );
+        gradient.addColorStop(0, `hsla(${particle.hue}, 80%, 60%, ${particle.opacity})`);
+        gradient.addColorStop(1, `hsla(${particle.hue}, 80%, 60%, 0)`);
+        
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      });
+
+      // Draw connections between nearby particles (skip on mobile for better performance)
+      if (!isMobile) {
+        particles.forEach((p1, i) => {
+          particles.slice(i + 1).forEach(p2 => {
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 150) {
+              ctx.beginPath();
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(139, 92, 246, ${(1 - distance / 150) * 0.2})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          });
+        });
+      }
+
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', resizeCanvas);
+    };
+  }, []);
 
   return (
     <section 
       ref={containerRef} 
       className="relative w-full bg-background"
-      style={{ height: '120vh' }} // Reduced spacing between sections
+      style={{ height: '120vh' }}
     >
-      {/* Sticky container keeps video centered during scroll */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
-        
         {/* Gradient fade from previous section */}
         <div 
           className="absolute top-0 left-0 w-full h-32 z-10 pointer-events-none"
@@ -95,63 +138,44 @@ export const VideoScrollSection = () => {
           }}
         />
 
-        {/* Video element with motion-driven opacity and scale */}
-        <motion.video
-          ref={videoRef}
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-          style={{ 
-            opacity,
-            scale,
-            willChange: 'opacity, transform' // Performance optimization
-          }}
-        >
-          <source src={videoSource} type="video/mp4" />
-          Your browser does not support HTML5 video.
-        </motion.video>
-
-        {/* Dark overlay for text readability */}
-        <motion.div 
-          className="absolute inset-0 bg-black/40"
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 gradient-mesh-animated opacity-40" />
+        
+        {/* Canvas particles */}
+        <motion.canvas
+          ref={canvasRef}
+          className="absolute inset-0"
           style={{ opacity }}
-          aria-hidden="true"
         />
+        
+        {/* Gradient overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-transparent" />
 
-        {/* Text Content Overlay */}
+        {/* Text Content */}
         <motion.div 
-          className="absolute inset-0 z-30 flex flex-col items-center justify-center px-4 text-center"
+          className="relative z-10 flex flex-col items-center justify-center px-4 text-center max-w-6xl"
           style={{ 
             opacity: textOpacity,
             y: textY
           }}
         >
-          <motion.h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight" 
-            style={{ 
-              textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 4px 8px rgba(0,0,0,0.6)',
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
+          <motion.h2 
+            className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-bold mb-6 sm:mb-8 tracking-tight"
           >
-            Building tomorrow&apos;s infrastructure
-          </motion.h1>
+            <span className="block text-foreground mb-2 sm:mb-4">Building</span>
+            <span className="block text-gradient-animated text-4xl sm:text-5xl md:text-8xl lg:text-9xl">Tomorrow's</span>
+            <span className="block text-foreground">Infrastructure</span>
+          </motion.h2>
           
-          <motion.p 
-            className="text-xl md:text-2xl lg:text-3xl max-w-3xl leading-relaxed font-light text-white" 
-            style={{
-              textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 4px 8px rgba(0,0,0,0.6)',
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
+          <motion.div 
+            className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-6 text-base sm:text-xl md:text-2xl lg:text-3xl font-light"
           >
-            AI • Machine Learning • System Architecture
-          </motion.p>
+            <span className="text-primary font-medium">AI</span>
+            <span className="text-foreground/30">•</span>
+            <span className="text-primary font-medium">Machine Learning</span>
+            <span className="text-foreground/30 hidden sm:inline">•</span>
+            <span className="text-primary font-medium">System Architecture</span>
+          </motion.div>
         </motion.div>
 
         {/* Gradient fade to next section */}
