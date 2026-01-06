@@ -18,9 +18,6 @@ export const Footer = () => {
                         className="text-sm text-muted-foreground flex items-center gap-2"
                     >
                         <span>&copy; {new Date().getFullYear()} Oliver Grudzinski.</span>
-                        <span className="hidden sm:inline">Built with</span>
-                        <Heart className="w-4 h-4 text-primary inline" fill="currentColor" />
-                        <span className="hidden sm:inline">and React</span>
                     </motion.p>
 
                     {/* Scroll to top button */}
