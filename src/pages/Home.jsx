@@ -61,6 +61,7 @@ export const Home = () => {
             transition={{ duration: 0.4 }}
             ref={scrollContainerRef}
             className="min-h-screen bg-background text-foreground overflow-x-hidden"
+            style={{ maxWidth: '100vw' }}
         >
             {/* Background layers */}
             <StarBackground />
@@ -83,11 +84,12 @@ export const Home = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 1.5 }}
-                            className="fixed bottom-8 right-8 flex cursor-pointer items-center space-x-2 text-2xl md:text-3xl font-semibold z-50 glass-card px-4 py-2 rounded-full hover:scale-105 transition-transform"
+                            className="fixed bottom-6 right-4 sm:bottom-8 sm:right-8 flex cursor-pointer items-center space-x-2 text-lg sm:text-2xl md:text-3xl font-semibold z-50 glass-card px-3 sm:px-4 py-2 rounded-full hover:scale-105 transition-transform"
+                            style={{ minHeight: '44px', minWidth: '44px' }}
                             onClick={scrollToVideo}
                         >
                             <p>Scroll</p>
-                            <ArrowDownRight strokeWidth={3} className="size-5 md:size-6" />
+                            <ArrowDownRight strokeWidth={3} className="size-4 sm:size-5 md:size-6" />
                         </motion.div>
                     </Magnetic>
                 )}

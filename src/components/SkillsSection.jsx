@@ -76,12 +76,12 @@ export const SkillsSection = () => {
                         <span className="text-sm font-medium text-primary">Technical Skills</span>
                     </motion.div>
 
-                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
                         Technology
                         <span className="block text-gradient-animated">Stack</span>
                     </h2>
                     
-                    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+                    <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
                         A comprehensive toolkit spanning full-stack development, AI/ML, and cloud infrastructure
                     </p>
                 </AnimatedSection>
@@ -127,7 +127,7 @@ export const SkillsSection = () => {
                 {/* Skills Grid */}
                 <motion.div
                     layout
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4"
                 >
                     {filteredSkills.map((skill, index) => (
                         <motion.div
@@ -138,9 +138,9 @@ export const SkillsSection = () => {
                             exit={{ opacity: 0, scale: 0.8 }}
                             transition={{ duration: 0.3, delay: index * 0.02 }}
                             whileHover={{ y: -4, scale: 1.05 }}
-                            className="glass-card p-6 rounded-xl text-center group cursor-default"
+                            className="glass-card p-4 sm:p-6 rounded-xl text-center group cursor-default"
                         >
-                            <h3 className="font-medium text-sm md:text-base text-foreground group-hover:text-primary transition-colors">
+                            <h3 className="font-medium text-xs sm:text-sm md:text-base text-foreground group-hover:text-primary transition-colors">
                                 {skill.name}
                             </h3>
                             

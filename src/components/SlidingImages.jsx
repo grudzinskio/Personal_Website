@@ -40,27 +40,27 @@ const SlidingImages = () => {
   };
 
   return (
-    <section ref={containerRef} className="relative py-32 overflow-hidden bg-background">
-      <div className="mb-16 text-center px-4">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+    <section ref={containerRef} className="relative py-20 sm:py-24 md:py-32 overflow-x-hidden bg-background">
+      <div className="mb-12 sm:mb-16 text-center px-4">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
           Featured <span className="text-gradient-animated">Work</span>
         </h2>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
           Click any image to explore all projects
         </p>
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-6 sm:space-y-8">
         {/* First sliding row - moves left */}
         <motion.div
           style={{ x: x1 }}
-          className="flex gap-6 will-change-transform"
+          className="flex gap-4 sm:gap-6 will-change-transform"
         >
           {slider1Images.map((image, index) => (
             <motion.div
               key={index}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="flex-shrink-0 w-[400px] h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group"
+              className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[210px] sm:h-[260px] md:h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
               onClick={handleImageClick}
             >
               <img
@@ -81,7 +81,7 @@ const SlidingImages = () => {
             <motion.div
               key={`dup-${index}`}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="flex-shrink-0 w-[400px] h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group"
+              className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[210px] sm:h-[260px] md:h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
               onClick={handleImageClick}
             >
               <img
@@ -102,13 +102,13 @@ const SlidingImages = () => {
         {/* Second sliding row - moves right */}
         <motion.div
           style={{ x: x2 }}
-          className="flex gap-6 will-change-transform"
+          className="flex gap-4 sm:gap-6 will-change-transform"
         >
           {slider2Images.map((image, index) => (
             <motion.div
               key={index}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="flex-shrink-0 w-[400px] h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group"
+              className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[210px] sm:h-[260px] md:h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
               onClick={handleImageClick}
             >
               <img
@@ -129,7 +129,7 @@ const SlidingImages = () => {
             <motion.div
               key={`dup-${index}`}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="flex-shrink-0 w-[400px] h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group"
+              className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[210px] sm:h-[260px] md:h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
               onClick={handleImageClick}
             >
               <img

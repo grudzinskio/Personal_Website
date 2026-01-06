@@ -20,15 +20,16 @@ export const Projects = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
             className="min-h-screen bg-background text-foreground overflow-x-hidden"
+            style={{ maxWidth: '100vw' }}
         >
             <StarBackground />
             <GradientBackground opacity={0.6} animate={true} />
             <Navbar />
             
-            <main className="relative pt-32 pb-20">
+            <main className="relative pt-24 sm:pt-32 pb-16 sm:pb-20">
                 <div className="container mx-auto max-w-7xl px-4">
                     {/* Header */}
-                    <AnimatedSection className="text-center mb-16">
+                    <AnimatedSection className="text-center mb-12 sm:mb-16">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -39,12 +40,12 @@ export const Projects = () => {
                             <span className="text-sm font-medium text-primary">Portfolio</span>
                         </motion.div>
 
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+                        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
                             Featured
                             <span className="block text-gradient-animated">Projects</span>
                         </h1>
                         
-                        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
                             A collection of my work in AI, web development, and software engineering.
                             Each project represents a unique technical challenge and innovative solution.
                         </p>
@@ -71,7 +72,7 @@ export const Projects = () => {
                                     )}
 
                                     {/* Image */}
-                                    <div className="h-64 overflow-hidden relative bg-muted">
+                                    <div className="h-48 sm:h-56 md:h-64 overflow-hidden relative bg-muted">
                                         <img
                                             src={project.image}
                                             alt={project.title}
@@ -82,7 +83,7 @@ export const Projects = () => {
                                     </div>
 
                                     {/* Content */}
-                                    <div className="p-6">
+                                    <div className="p-4 sm:p-6">
                                         {/* Tags */}
                                         <div className="flex flex-wrap gap-2 mb-4">
                                             {project.tags.slice(0, 3).map((tag, tagIndex) => (
@@ -101,10 +102,10 @@ export const Projects = () => {
                                         </div>
 
                                         {/* Title & Description */}
-                                        <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                                        <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 group-hover:text-primary transition-colors">
                                             {project.title}
                                         </h3>
-                                        <p className="text-muted-foreground text-sm mb-6 line-clamp-2 leading-relaxed">
+                                        <p className="text-muted-foreground text-xs sm:text-sm mb-4 sm:mb-6 line-clamp-2 leading-relaxed">
                                             {project.description}
                                         </p>
 
@@ -145,9 +146,9 @@ export const Projects = () => {
                     </div>
 
                     {/* View All Button */}
-                    <AnimatedSection delay={0.6} className="text-center mt-16">
+                    <AnimatedSection delay={0.6} className="text-center mt-12 sm:mt-16">
                         <a
-                            className="cosmic-button inline-flex items-center gap-2 group"
+                            className="cosmic-button inline-flex items-center justify-center gap-2 group text-sm sm:text-base"
                             href="https://github.com/grudzinskio"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -176,12 +177,13 @@ export const Projects = () => {
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 20 }}
                             transition={{ duration: 0.3 }}
-                            className="glass-card-strong rounded-2xl p-8 max-w-3xl w-full relative max-h-[90vh] overflow-y-auto"
+                            className="glass-card-strong rounded-2xl p-6 sm:p-8 max-w-3xl w-full relative max-h-[90vh] overflow-y-auto"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Close button */}
                             <button
                                 className="absolute top-4 right-4 glass-card p-2 rounded-full hover:bg-white/10 transition-colors"
+                                style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                 onClick={() => setModalProject(null)}
                                 aria-label="Close modal"
                             >
@@ -192,12 +194,12 @@ export const Projects = () => {
                             <img
                                 src={modalProject.image}
                                 alt={modalProject.title}
-                                className="w-full h-72 object-cover rounded-xl mb-6"
+                                className="w-full h-48 sm:h-64 md:h-72 object-cover rounded-xl mb-4 sm:mb-6"
                             />
 
                             {/* Content */}
-                            <h3 className="text-3xl font-bold mb-4">{modalProject.title}</h3>
-                            <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
+                            <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">{modalProject.title}</h3>
+                            <p className="text-muted-foreground mb-4 sm:mb-6 text-base sm:text-lg leading-relaxed">
                                 {modalProject.description}
                             </p>
 
@@ -214,13 +216,13 @@ export const Projects = () => {
                             </div>
 
                             {/* Action buttons */}
-                            <div className="flex gap-4">
+                            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                                 {modalProject.demoURL !== "#" && (
                                     <a
                                         href={modalProject.demoURL}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="cosmic-button inline-flex items-center gap-2"
+                                        className="cosmic-button inline-flex items-center justify-center gap-2 text-sm sm:text-base"
                                     >
                                         <ExternalLink size={18} />
                                         View Demo
@@ -231,7 +233,7 @@ export const Projects = () => {
                                         href={modalProject.githubUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="button-glass inline-flex items-center gap-2"
+                                        className="button-glass inline-flex items-center justify-center gap-2 text-sm sm:text-base"
                                     >
                                         <Github size={18} />
                                         View Code

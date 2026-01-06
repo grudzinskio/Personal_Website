@@ -47,7 +47,9 @@ export const VideoScrollSection = () => {
     }
 
     const particles: Particle[] = [];
-    const particleCount = 60;
+    // Reduce particle count on mobile for better performance
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 30 : 60;
     
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -90,23 +92,25 @@ export const VideoScrollSection = () => {
         ctx.fill();
       });
 
-      // Draw connections between nearby particles
-      particles.forEach((p1, i) => {
-        particles.slice(i + 1).forEach(p2 => {
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 150) {
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(139, 92, 246, ${(1 - distance / 150) * 0.2})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
+      // Draw connections between nearby particles (skip on mobile for better performance)
+      if (!isMobile) {
+        particles.forEach((p1, i) => {
+          particles.slice(i + 1).forEach(p2 => {
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 150) {
+              ctx.beginPath();
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(139, 92, 246, ${(1 - distance / 150) * 0.2})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          });
         });
-      });
+      }
 
       animationId = requestAnimationFrame(animate);
     };
@@ -156,20 +160,20 @@ export const VideoScrollSection = () => {
           }}
         >
           <motion.h2 
-            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight"
+            className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-bold mb-6 sm:mb-8 tracking-tight"
           >
-            <span className="block text-foreground mb-4">Building</span>
-            <span className="block text-gradient-animated text-6xl md:text-8xl lg:text-9xl">Tomorrow's</span>
+            <span className="block text-foreground mb-2 sm:mb-4">Building</span>
+            <span className="block text-gradient-animated text-4xl sm:text-5xl md:text-8xl lg:text-9xl">Tomorrow's</span>
             <span className="block text-foreground">Infrastructure</span>
           </motion.h2>
           
           <motion.div 
-            className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-xl md:text-2xl lg:text-3xl font-light"
+            className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-6 text-base sm:text-xl md:text-2xl lg:text-3xl font-light"
           >
             <span className="text-primary font-medium">AI</span>
             <span className="text-foreground/30">•</span>
             <span className="text-primary font-medium">Machine Learning</span>
-            <span className="text-foreground/30">•</span>
+            <span className="text-foreground/30 hidden sm:inline">•</span>
             <span className="text-primary font-medium">System Architecture</span>
           </motion.div>
         </motion.div>

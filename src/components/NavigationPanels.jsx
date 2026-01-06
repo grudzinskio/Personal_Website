@@ -43,7 +43,7 @@ const NavigationPanels = () => {
   ];
 
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden">
+    <section className="relative py-16 sm:py-20 md:py-32 overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -51,19 +51,19 @@ const NavigationPanels = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
             Explore
             <span className="block text-gradient-animated">More</span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
             Discover more about my work, skills, and how we can collaborate
           </p>
         </motion.div>
 
         {/* Navigation Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {panels.map((panel, index) => (
             <motion.div
               key={panel.title}
@@ -79,7 +79,7 @@ const NavigationPanels = () => {
                   className="relative h-full group"
                 >
                   {/* Card with glassmorphism */}
-                  <div className="glass-card rounded-2xl p-8 h-full flex flex-col justify-between overflow-hidden relative transition-all duration-300 hover:shadow-2xl">
+                  <div className="glass-card rounded-2xl p-6 sm:p-8 h-full flex flex-col justify-between overflow-hidden relative transition-all duration-300 hover:shadow-2xl">
                     {/* Gradient background on hover */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${panel.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
                     
@@ -91,12 +91,12 @@ const NavigationPanels = () => {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                      <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors">
                         {panel.title}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                      <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
                         {panel.description}
                       </p>
                     </div>

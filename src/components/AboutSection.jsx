@@ -30,14 +30,14 @@ export const AboutSection = () => {
                         <span className="text-sm font-medium text-primary">About Me</span>
                     </motion.div>
 
-                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
                         Engineering
                         <span className="block text-gradient-animated">Tomorrow's Solutions</span>
                     </h2>
                 </AnimatedSection>
 
                 {/* Content Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
                     {/* Left Column: Bio */}
                     <AnimatedSection delay={0.2}>
                         <div className="space-y-6">
@@ -112,7 +112,7 @@ export const AboutSection = () => {
                             </div>
                             
                             {/* CTA Buttons */}
-                            <div className="flex flex-col sm:flex-row gap-4">
+                            <div className="flex flex-col gap-3 sm:gap-4">
                                 <a
                                     href="#contact"
                                     className="cosmic-button flex items-center justify-center gap-2 group"

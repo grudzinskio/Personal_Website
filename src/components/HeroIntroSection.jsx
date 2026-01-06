@@ -41,9 +41,9 @@ export const HeroIntroSection = () => {
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen w-full overflow-hidden flex items-center justify-center py-20 md:py-32 bg-background">
-      <div className="container max-w-7xl mx-auto px-6 md:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section ref={sectionRef} className="relative min-h-screen w-full overflow-hidden flex items-center justify-center py-16 sm:py-20 md:py-32 bg-background">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Left Column: Typography */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -58,7 +58,7 @@ export const HeroIntroSection = () => {
 
             {/* Main Title */}
             <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
                 <span className="block text-foreground">Crafting Digital</span>
                 <span className="block text-gradient-animated">Experiences</span>
               </h2>
@@ -74,7 +74,7 @@ export const HeroIntroSection = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                  className="text-base md:text-lg text-muted-foreground leading-relaxed"
+                  className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed"
                 >
                   {paragraph}
                 </motion.p>
@@ -86,19 +86,19 @@ export const HeroIntroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="grid grid-cols-3 gap-6 pt-4"
+              className="grid grid-cols-3 gap-4 sm:gap-6 pt-4"
             >
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-1">10+</div>
-                <div className="text-sm text-muted-foreground">Projects</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">10+</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Projects</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-1">5+</div>
-                <div className="text-sm text-muted-foreground">Technologies</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">5+</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Technologies</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-1">2+</div>
-                <div className="text-sm text-muted-foreground">Years Coding</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">2+</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Years Coding</div>
               </div>
             </motion.div>
           </motion.div>
@@ -186,7 +186,7 @@ const CodeEditorWindow = () => {
   };
 
   return (
-    <div ref={editorRef} className="glass-card rounded-2xl overflow-hidden shadow-2xl h-[500px] md:h-[600px] flex flex-col">
+    <div ref={editorRef} className="glass-card rounded-2xl overflow-hidden shadow-2xl h-[400px] sm:h-[500px] md:h-[600px] flex flex-col">
       {/* Window Header */}
       <div className="flex items-center gap-2 px-5 py-4 bg-black/20 border-b border-border/30">
         <div className="flex gap-2">
@@ -200,7 +200,7 @@ const CodeEditorWindow = () => {
       </div>
       
       {/* Code Content */}
-      <div className="flex-1 p-6 md:p-8 font-mono text-sm md:text-base text-foreground/90 overflow-auto bg-black/5">
+      <div className="flex-1 p-4 sm:p-6 md:p-8 font-mono text-xs sm:text-sm md:text-base text-foreground/90 overflow-auto bg-black/5">
         <pre className="whitespace-pre-wrap m-0">
           <code className="text-zinc-300">
             {renderCode(displayedCode)}

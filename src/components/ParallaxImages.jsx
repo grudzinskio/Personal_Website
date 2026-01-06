@@ -18,13 +18,16 @@ const ParallaxImages = () => {
     offset: ["start end", "end start"]
   });
 
-  // Different parallax speeds for each image
-  const y1 = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [-50, 50]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [150, -150]);
+  // Reduce parallax movement on mobile for better performance
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  
+  // Different parallax speeds for each image - reduced on mobile
+  const y1 = useTransform(scrollYProgress, [0, 1], isMobile ? [50, -50] : [100, -100]);
+  const y2 = useTransform(scrollYProgress, [0, 1], isMobile ? [-25, 25] : [-50, 50]);
+  const y3 = useTransform(scrollYProgress, [0, 1], isMobile ? [75, -75] : [150, -150]);
 
   return (
-    <section ref={containerRef} className="relative py-20 md:py-32 overflow-hidden">
+    <section ref={containerRef} className="relative py-16 sm:py-20 md:py-32 overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -32,13 +35,13 @@ const ParallaxImages = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
             My
             <span className="block text-gradient-animated">Journey</span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
             Moments and milestones from my path in engineering and technology
           </p>
           
@@ -46,7 +49,7 @@ const ParallaxImages = () => {
           <Magnetic>
             <Link
               to="/projects"
-              className="cosmic-button inline-flex items-center gap-2 group"
+              className="cosmic-button inline-flex items-center justify-center gap-2 group text-sm sm:text-base"
             >
               View My Projects
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -55,13 +58,13 @@ const ParallaxImages = () => {
         </motion.div>
 
         {/* Parallax Image Grid - 3 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-center">
           {/* Image 1 - Left */}
           <motion.div
             style={{ y: y1 }}
             className="relative group"
           >
-            <div className="glass-card rounded-2xl overflow-hidden aspect-[4/5]">
+            <div className="glass-card rounded-2xl overflow-hidden aspect-[3/4] sm:aspect-[4/5]">
               <img
                 src={msoeSunset}
                 alt="MSOE Campus at Sunset"
@@ -82,7 +85,7 @@ const ParallaxImages = () => {
             style={{ y: y2 }}
             className="relative group"
           >
-            <div className="glass-card rounded-2xl overflow-hidden aspect-[4/5] md:aspect-[3/4]">
+            <div className="glass-card rounded-2xl overflow-hidden aspect-[3/4]">
               <img
                 src={profPort}
                 alt="Oliver Grudzinski"
@@ -103,7 +106,7 @@ const ParallaxImages = () => {
             style={{ y: y3 }}
             className="relative group"
           >
-            <div className="glass-card rounded-2xl overflow-hidden aspect-[4/5]">
+            <div className="glass-card rounded-2xl overflow-hidden aspect-[3/4] sm:aspect-[4/5]">
               <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center p-8">
                 <div className="text-center">
                   <motion.div

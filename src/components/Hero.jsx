@@ -41,7 +41,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight"
           >
             <span className="block text-foreground mb-2">Building the</span>
             <span className="block text-gradient-animated">future of web</span>
@@ -52,7 +52,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4"
           >
             Full-stack engineer crafting innovative solutions with modern technologies.
             Specializing in AI, machine learning, and scalable system architecture.
@@ -63,17 +63,17 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex flex-wrap items-center justify-center gap-4 pt-4"
+            className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-4"
           >
             <Magnetic>
-              <Link to="/projects" className="cosmic-button inline-flex items-center gap-2 group">
+              <Link to="/projects" className="cosmic-button inline-flex items-center justify-center gap-2 group text-sm sm:text-base">
                 View Projects
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Magnetic>
             
             <Magnetic>
-              <Link to="/contact" className="button-glass inline-flex items-center gap-2 group">
+              <Link to="/contact" className="button-glass inline-flex items-center justify-center gap-2 group text-sm sm:text-base">
                 <Mail className="w-4 h-4" />
                 Get in Touch
               </Link>
@@ -85,9 +85,9 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="pt-8"
+            className="pt-8 px-4"
           >
-            <div className="flex flex-wrap items-center justify-center gap-3 max-w-4xl mx-auto">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 max-w-4xl mx-auto">
               {technologies.map((tech, index) => (
                 <motion.div
                   key={tech}
@@ -95,7 +95,8 @@ export const Hero = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.7 + index * 0.05 }}
                   whileHover={{ scale: 1.05, y: -2 }}
-                  className="glass-card-subtle px-4 py-2 rounded-full text-sm font-medium text-foreground/70 hover:text-foreground hover:border-primary/30 transition-all cursor-default"
+                  className="glass-card-subtle px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-foreground/70 hover:text-foreground hover:border-primary/30 transition-all cursor-default"
+                  style={{ minHeight: '36px' }}
                 >
                   {tech}
                 </motion.div>
@@ -116,6 +117,7 @@ export const Hero = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="glass-card-subtle p-3 rounded-full hover:bg-white/10 transition-all group"
+                style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 aria-label="GitHub"
               >
                 <Github className="w-5 h-5 text-foreground/70 group-hover:text-foreground transition-colors" />
@@ -128,6 +130,7 @@ export const Hero = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="glass-card-subtle p-3 rounded-full hover:bg-white/10 transition-all group"
+                style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5 text-foreground/70 group-hover:text-foreground transition-colors" />
@@ -141,7 +144,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 max-w-5xl mx-auto"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mt-12 sm:mt-20 max-w-5xl mx-auto px-4"
         >
           <FeatureCard
             icon={<Code2 className="w-6 h-6" />}
@@ -197,13 +200,13 @@ const FeatureCard = ({ icon, title, description, delay }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
       whileHover={{ y: -4, scale: 1.02 }}
-      className="glass-card p-6 rounded-2xl group cursor-default"
+      className="glass-card p-5 sm:p-6 rounded-2xl group cursor-default"
     >
-      <div className="text-primary mb-4 group-hover:scale-110 transition-transform">
+      <div className="text-primary mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
         {icon}
       </div>
-      <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
-      <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+      <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2">{title}</h3>
+      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{description}</p>
     </motion.div>
   );
 };
