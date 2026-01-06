@@ -12,7 +12,7 @@ import ParallaxImages from "../components/ParallaxImages";
 import SlidingImages from "../components/SlidingImages";
 import NavigationPanels from "../components/NavigationPanels";
 import Magnetic from "../components/animations/Magnetic";
-import { initSmoothScroll } from "../animations/smoothScroll";
+import { initSmoothScroll, scrollToElement } from "../animations/smoothScroll";
 
 /**
  * Home - Complete original design with all sections restored
@@ -47,10 +47,10 @@ export const Home = () => {
     }, []);
 
     const scrollToVideo = () => {
-        const videoSection = document.getElementById('video-section');
-        if (videoSection) {
-            videoSection.scrollIntoView({ behavior: 'smooth' });
-        }
+        scrollToElement('#video-section', {
+            offset: -100, // Slight offset to prevent overshoot
+            duration: 1.8,
+        });
     };
 
     return (
