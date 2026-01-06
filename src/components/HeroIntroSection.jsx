@@ -89,15 +89,15 @@ export const HeroIntroSection = () => {
               className="grid grid-cols-3 gap-4 sm:gap-6 pt-4"
             >
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">10+</div>
-                <div className="text-xs sm:text-sm text-muted-foreground">Projects</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">3</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Internships</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">5+</div>
-                <div className="text-xs sm:text-sm text-muted-foreground">Technologies</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">4+</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Hackathon Placements</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">2+</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">7+</div>
                 <div className="text-xs sm:text-sm text-muted-foreground">Years Coding</div>
               </div>
             </motion.div>
