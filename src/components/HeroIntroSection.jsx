@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { createScrollTextReveal } from '../animations/textAnimations';
-import { createCardStaggerReveal, createScrollVelocityZone } from '../animations/scrollAnimations';
+import { createScrollVelocityZone } from '../animations/scrollAnimations';
 import { getLenis } from '../animations/smoothScroll';
 import aboutData from '../data/about.json';
 
@@ -297,7 +297,6 @@ const CodeEditorWindow = () => {
     
     return lines.map((line, lineIdx) => {
       const parts = [];
-      let remaining = line;
       let keyCounter = 0;
       
       // Match and replace patterns one by one
