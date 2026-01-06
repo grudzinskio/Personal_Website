@@ -94,11 +94,6 @@
     height: auto;
   }
 
-  /* Force dark mode class on html */
-  html {
-    @apply dark;
-  }
-
   body {
     @apply bg-background text-foreground transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt" 1;
