@@ -97,17 +97,17 @@ export function LetterCollision() {
         <div className="flex flex-wrap items-center p-0 leading-none">
           <LetterDisplay word="Oliver" colorClass="text-primary" />
           <div className="w-4 md:w-8 lg:w-10"></div>
-          <LetterDisplay word="Grudzinski" colorClass="text-gradient" />
+          <LetterDisplay word="Grudzinski" colorClass="text-gradient-animated" />
         </div>
       </div>
       {/* Extra random letters below with proper spacing */}
-      <div className="flex flex-wrap mb-32">
+      <div className="flex flex-wrap mb-32 gap-2 xs:gap-4 sm:gap-6">
         <LetterDisplay word="building " colorClass="text-foreground/60" />
-        <div className="w-2 xs:w-4 sm:w-6"></div>
         <LetterDisplay word="innovative " colorClass="text-foreground/60" />
-        <div className="w-2 xs:w-4 sm:w-6"></div>
         <LetterDisplay word="solutions" colorClass="text-foreground/60" />
       </div>
     </div>
   );
 }
+
+export default LetterCollision;

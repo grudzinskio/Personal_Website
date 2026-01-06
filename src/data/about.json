@@ -1,11 +1,11 @@
 {
   "personal": {
     "name": "Oliver Grudzinski",
-    "title": "Computer Science Student & Full Stack Developer",
+    "title": "Computer Science Student & Full Stack Engineer",
     "description": [
-      "I'm a Computer Science junior at MSOE and Full Stack Development Intern at TESCH Global. I specialize in AI/ML systems, modern web applications, and data-driven solutions.",
-      "My expertise spans full-stack development, machine learning, and agile project management. As an active member of the MSOE AI Club and Society of Software Engineers, I'm always exploring cutting-edge technologies.",
-      "As an Eagle Scout, I bring discipline and leadership to every project."
+      "Computer Science junior at MSOE and Full Stack Development Intern at TESCH Global, specializing in AI/ML systems, modern web applications, and scalable data solutions.",
+      "Passionate about leveraging cutting-edge technologies to solve complex technical challenges. Active member of MSOE AI Club and Society of Software Engineers, continuously exploring emerging innovations in machine learning and software architecture.",
+      "Eagle Scout with a proven track record of leadership, discipline, and delivering high-impact solutions."
     ]
   },
   "education": {
@@ -20,23 +20,23 @@
   },
   "expertise": [
     {
-      "title": "Web Development",
-      "description": "Creating responsive websites and applications using modern frameworks.",
+      "title": "Full-Stack Engineering",
+      "description": "Building responsive, scalable web applications with React, TypeScript, Node.js, and modern frameworks. Focus on clean architecture and exceptional user experiences.",
       "icon": "Code"
     },
     {
       "title": "AI & Machine Learning",
-      "description": "Building intelligent systems and practical AI solutions for real-world problems.",
+      "description": "Developing intelligent systems using computer vision, NLP, and reinforcement learning. Expertise in PyTorch, TensorFlow, and LLM integration for production environments.",
       "icon": "User"
     },
     {
-      "title": "Project Management",
-      "description": "Experienced in Agile and Scrum, I help teams deliver reliable software through clear communication and organized workflows.",
+      "title": "Agile Project Leadership",
+      "description": "Leading cross-functional teams using Scrum and Agile methodologies. Driving efficient delivery through clear communication, iterative development, and strategic planning.",
       "icon": "Briefcase"
     },
     {
-      "title": "Backend Development",
-      "description": "Building scalable server-side applications, APIs, and database architectures for robust system performance.",
+      "title": "Backend & Cloud Architecture",
+      "description": "Designing robust APIs, microservices, and database systems. Proficient in AWS, Docker, and building scalable cloud-native applications for high-performance computing.",
       "icon": "Server"
     }
   ]

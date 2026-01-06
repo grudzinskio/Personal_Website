@@ -1,31 +1,27 @@
-import React from 'react';
+/**
+ * LetterDisplay - Individual letter rendering for GSAP animations
+ * Each letter gets the 'letter' class for scroll-triggered animations
+ */
+export function LetterDisplay({ word, colorClass }) {
+  const letters = word.split('');
 
-function getRandomSpeed() {
-  const randomDecimal = Math.random();
-  return 0.8 + randomDecimal * (1.5 - 0.8);
-}
-
-export function LetterDisplay({ word, colorClass = '' }) {
-  // Use smaller size if it's the dimmer text (foreground/60)
-  const sizeClass = colorClass.includes('/60') 
-    ? 'text-4xl md:text-6xl lg:text-7xl xl:text-8xl' 
-    : 'text-6xl md:text-8xl lg:text-9xl xl:text-[12rem]';
-    
   return (
-    <div className="inline-flex">
-      {word.split('').map((char, i) => (
-        <div
-          key={i}
-          className={`letter ${sizeClass} font-semibold ${colorClass}`}
-          data-speed={getRandomSpeed()}
+    <>
+      {letters.map((letter, index) => (
+        <span
+          key={index}
+          className={`letter inline-block ${colorClass} text-5xl md:text-7xl lg:text-8xl font-bold`}
           style={{
-            display: 'inline-block',
             willChange: 'transform',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden'
           }}
         >
-          {char}
-        </div>
+          {letter === ' ' ? '\u00A0' : letter}
+        </span>
       ))}
-    </div>
+    </>
   );
 }
+
+export default LetterDisplay;

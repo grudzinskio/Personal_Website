@@ -5,19 +5,19 @@
       "category": "languages"
     },
     {
-      "name": "Java",
-      "category": "languages"
-    },
-    {
-      "name": "C++",
-      "category": "languages"
-    },
-    {
       "name": "TypeScript",
       "category": "languages"
     },
     {
       "name": "JavaScript",
+      "category": "languages"
+    },
+    {
+      "name": "Java",
+      "category": "languages"
+    },
+    {
+      "name": "C++",
       "category": "languages"
     },
     {
@@ -37,19 +37,11 @@
       "category": "web"
     },
     {
-      "name": "HTML",
+      "name": "Next.js",
       "category": "web"
     },
     {
-      "name": "CSS",
-      "category": "web"
-    },
-    {
-      "name": "JavaFX",
-      "category": "web"
-    },
-    {
-      "name": "Vite",
+      "name": "FastAPI",
       "category": "web"
     },
     {
@@ -57,27 +49,31 @@
       "category": "web"
     },
     {
+      "name": "Framer Motion",
+      "category": "web"
+    },
+    {
       "name": "Redux",
       "category": "web"
     },
     {
-      "name": "AWS",
+      "name": "Vite",
       "category": "web"
     },
     {
-      "name": "Scikit-learn",
-      "category": "AI"
+      "name": "REST APIs",
+      "category": "web"
     },
     {
-      "name": "Pandas",
-      "category": "AI"
-    },
-    {
-      "name": "NumPy",
+      "name": "PyTorch",
       "category": "AI"
     },
     {
       "name": "TensorFlow",
+      "category": "AI"
+    },
+    {
+      "name": "Scikit-learn",
       "category": "AI"
     },
     {
@@ -89,23 +85,39 @@
       "category": "AI"
     },
     {
-      "name": "LLMs",
+      "name": "OpenAI API",
       "category": "AI"
     },
     {
-      "name": "Generative AI",
+      "name": "RAG Systems",
       "category": "AI"
     },
     {
-      "name": "RAG",
+      "name": "Computer Vision",
       "category": "AI"
     },
     {
-      "name": "Git",
+      "name": "NLP",
+      "category": "AI"
+    },
+    {
+      "name": "Pandas",
+      "category": "AI"
+    },
+    {
+      "name": "NumPy",
+      "category": "AI"
+    },
+    {
+      "name": "AWS",
       "category": "tools"
     },
     {
-      "name": "GitHub",
+      "name": "Docker",
+      "category": "tools"
+    },
+    {
+      "name": "Git",
       "category": "tools"
     },
     {
@@ -121,27 +133,23 @@
       "category": "tools"
     },
     {
+      "name": "PostgreSQL",
+      "category": "tools"
+    },
+    {
+      "name": "Supabase",
+      "category": "tools"
+    },
+    {
       "name": "Snowflake",
       "category": "tools"
     },
     {
-      "name": "Docker",
+      "name": "Databricks",
       "category": "tools"
     },
     {
-      "name": "Jupyter Notebooks",
-      "category": "tools"
-    },
-    {
-      "name": "VSCode",
-      "category": "tools"
-    },
-    {
-      "name": "Sequelize",
-      "category": "tools"
-    },
-    {
-      "name": "Drizzle",
+      "name": "Jupyter",
       "category": "tools"
     },
     {
@@ -149,7 +157,11 @@
       "category": "methodologies"
     },
     {
-      "name": "Waterfall",
+      "name": "Test-Driven Dev",
+      "category": "methodologies"
+    },
+    {
+      "name": "System Design",
       "category": "methodologies"
     }
   ],

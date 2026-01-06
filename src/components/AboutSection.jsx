@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import { Briefcase, Code, User, Server, Mail, Download } from "lucide-react"
+import { AnimatedSection } from "./AnimatedSection";
 import teschLogo from "../assets/TESCHGlobal_logo.png"
 import msoeLogo from "../assets/MSOE_logo.png"
 import aboutData from "../data/about.json"
@@ -12,119 +14,165 @@ const iconMap = {
 
 export const AboutSection = () => {
     const resumeFile = `${import.meta.env.BASE_URL}Oliver_Grudzinski_Resume.pdf`;
-    return <section id="about" className="py-24 px-4 relative">
-        {" "}
-        <div className="container mx-auto max-w-5xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-                About <span className="text-primary"> Me</span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div className="space-y-6">
-                    <div className="flex items-center gap-4 mb-6">
-                        <h3 className="text-2xl font-semibold">{aboutData.personal.name}</h3>
-                        <div className="flex items-center justify-center px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
-                            <img 
-                                src={teschLogo} 
-                                alt="TESCH Global" 
-                                className="h-8 w-16 object-contain"
-                            />
-                        </div>
-                        <div className="flex items-center justify-center px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
-                            <img 
-                                src={msoeLogo} 
-                                alt="MSOE" 
-                                className="h-8 w-16 object-contain"
-                            />
-                        </div>
-                    </div>
-                    
-                    {aboutData.personal.description.map((paragraph, index) => (
-                        <p key={index} className="text-muted-foreground text-lg leading-relaxed mb-4">
-                            {index === 0 ? (
-                                <>
-                                    {paragraph.split('TESCH Global')[0]}
-                                    <strong className="text-foreground">TESCH Global</strong>
-                                    {paragraph.split('TESCH Global')[1]}
-                                </>
-                            ) : (
-                                paragraph
-                            )}
-                        </p>
-                    ))}
-                    
-                    <div className="space-y-3 mt-8 p-4 bg-muted/30 rounded-lg border border-muted">
-                        <div className="flex items-center justify-between">
-                            <span className="font-semibold text-foreground">{aboutData.education.degree}</span>
-                            <span className="text-sm text-muted-foreground">{aboutData.education.expectedGraduation}</span>
-                        </div>
-                        <div className="text-muted-foreground text-sm flex items-center gap-2">
-                            <img 
-                                src={msoeLogo} 
-                                alt="MSOE" 
-                                className="h-10 w-10 object-contain"
-                            />
-                            {aboutData.education.school}
-                        </div>
-                        <hr className="border-muted" />
-                        <div className="flex items-center justify-between">
-                            <span className="font-semibold text-foreground">{aboutData.currentRole.title}</span>
-                            <span className="text-sm text-muted-foreground">{aboutData.currentRole.status}</span>
-                        </div>
-                        <div className="text-muted-foreground text-sm flex items-center gap-2">
-                            <img 
-                                src={teschLogo} 
-                                alt="TESCH Global" 
-                                className="h-10 w-10 object-contain"
-                            />
-                            {aboutData.currentRole.company}
-                        </div>
-                    </div>
-                    
-                    <div className="flex flex-col sm:flex-row gap-4 pt-6 justify-center">
-                        <a
-                            href="#contact"
-                            aria-label="Jump to contact section"
-                            className="cosmic-button relative overflow-hidden group flex items-center gap-2"
-                        >
-                            <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-radial-[ellipse_at_center] from-primary/25 via-primary/10 to-transparent" />
-                            <Mail className="h-5 w-5 relative z-10" aria-hidden="true" />
-                            <span className="relative z-10">Get In Touch</span>
-                        </a>
+    
+    return (
+        <section id="about" className="py-32 px-4 relative">
+            <div className="container mx-auto max-w-6xl">
+                {/* Header */}
+                <AnimatedSection className="text-center mb-16">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                        className="inline-flex glass-card px-4 py-2 rounded-full mb-6"
+                    >
+                        <User className="w-4 h-4 text-primary mr-2" />
+                        <span className="text-sm font-medium text-primary">About Me</span>
+                    </motion.div>
 
-                        <a
-                            href={resumeFile}
-                            download
-                            aria-label="Download my resume as PDF"
-                            className="relative overflow-hidden group px-6 py-2 rounded-full border border-primary/50 text-primary font-medium transition-all duration-300 focus-ring hover:text-primary-foreground hover:bg-primary hover:shadow-[0_0_14px_hsl(var(--primary)/0.55)] flex items-center gap-2"
-                        >
-                            <span className="absolute inset-0 before:content-[''] before:absolute before:inset-0 before:bg-linear-to-r before:from-transparent before:via-primary/30 before:to-transparent before:translate-x-[-120%] group-hover:before:translate-x-[120%] before:transition before:duration-700 before:rounded-full" />
-                            <Download className="h-5 w-5 relative z-10" aria-hidden="true" />
-                            <span className="relative z-10">Download Resume</span>
-                        </a>
-                    </div>
-                </div>
+                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+                        Engineering
+                        <span className="block text-gradient-animated">Tomorrow's Solutions</span>
+                    </h2>
+                </AnimatedSection>
 
-                <div className="grid grid-cols-1 gap-6">
-                    {aboutData.expertise.map((item, index) => {
-                        const IconComponent = iconMap[item.icon];
-                        return (
-                            <div key={index} className="gradient-border p-6 card-hover">
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 rounded-full bg-primary/10">
-                                        <IconComponent className="h-6 w-6 text-primary" />
+                {/* Content Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    {/* Left Column: Bio */}
+                    <AnimatedSection delay={0.2}>
+                        <div className="space-y-6">
+                            {/* Name and logos */}
+                            <div className="glass-card p-6 rounded-2xl">
+                                <div className="flex items-center gap-4 mb-4 flex-wrap">
+                                    <h3 className="text-2xl font-semibold">{aboutData.personal.name}</h3>
+                                    <div className="flex items-center gap-2">
+                                        <div className="glass-card-subtle px-3 py-2 rounded-lg">
+                                            <img 
+                                                src={teschLogo} 
+                                                alt="TESCH Global" 
+                                                className="h-6 w-auto object-contain"
+                                            />
+                                        </div>
+                                        <div className="glass-card-subtle px-3 py-2 rounded-lg">
+                                            <img 
+                                                src={msoeLogo} 
+                                                alt="MSOE" 
+                                                className="h-6 w-auto object-contain"
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="text-left">
-                                        <h4 className="font-semibold text-lg">{item.title}</h4>
-                                        <p className="text-muted-foreground">
-                                            {item.description}
-                                        </p>
+                                </div>
+                                
+                                {aboutData.personal.description.map((paragraph, index) => (
+                                    <p key={index} className="text-muted-foreground text-base leading-relaxed mb-4">
+                                        {index === 0 ? (
+                                            <>
+                                                {paragraph.split('TESCH Global')[0]}
+                                                <strong className="text-foreground font-semibold">TESCH Global</strong>
+                                                {paragraph.split('TESCH Global')[1]}
+                                            </>
+                                        ) : (
+                                            paragraph
+                                        )}
+                                    </p>
+                                ))}
+                            </div>
+                            
+                            {/* Education & Role */}
+                            <div className="glass-card p-6 rounded-2xl space-y-4">
+                                <div className="flex items-start gap-4 pb-4 border-b border-border/30">
+                                    <img 
+                                        src={msoeLogo} 
+                                        alt="MSOE" 
+                                        className="h-12 w-12 object-contain mt-1"
+                                    />
+                                    <div className="flex-1">
+                                        <div className="flex items-start justify-between gap-2 mb-1">
+                                            <span className="font-semibold text-foreground">{aboutData.education.degree}</span>
+                                            <span className="text-xs text-muted-foreground whitespace-nowrap">{aboutData.education.expectedGraduation}</span>
+                                        </div>
+                                        <span className="text-sm text-muted-foreground">{aboutData.education.school}</span>
+                                    </div>
+                                </div>
+                                
+                                <div className="flex items-start gap-4">
+                                    <img 
+                                        src={teschLogo} 
+                                        alt="TESCH Global" 
+                                        className="h-12 w-12 object-contain mt-1"
+                                    />
+                                    <div className="flex-1">
+                                        <div className="flex items-start justify-between gap-2 mb-1">
+                                            <span className="font-semibold text-foreground">{aboutData.currentRole.title}</span>
+                                            <span className="text-xs text-primary">{aboutData.currentRole.status}</span>
+                                        </div>
+                                        <span className="text-sm text-muted-foreground">{aboutData.currentRole.company}</span>
                                     </div>
                                 </div>
                             </div>
-                        );
-                    })}
+                            
+                            {/* CTA Buttons */}
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <a
+                                    href="#contact"
+                                    className="cosmic-button flex items-center justify-center gap-2 group"
+                                >
+                                    <Mail className="h-5 w-5" />
+                                    <span>Get In Touch</span>
+                                </a>
+
+                                <a
+                                    href={resumeFile}
+                                    download
+                                    className="button-glass flex items-center justify-center gap-2 group"
+                                >
+                                    <Download className="h-5 w-5" />
+                                    <span>Download Resume</span>
+                                </a>
+                            </div>
+                        </div>
+                    </AnimatedSection>
+
+                    {/* Right Column: Expertise Cards */}
+                    <AnimatedSection delay={0.4}>
+                        <div className="grid grid-cols-1 gap-6">
+                            {aboutData.expertise.map((item, index) => {
+                                const IconComponent = iconMap[item.icon];
+                                return (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, x: 20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        whileHover={{ y: -4, scale: 1.02 }}
+                                        className="glass-card p-6 rounded-2xl group cursor-default"
+                                    >
+                                        <div className="flex items-start gap-4">
+                                            <div className="glass-card-strong p-3 rounded-xl text-primary group-hover:scale-110 transition-transform">
+                                                <IconComponent className="h-6 w-6" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <h4 className="font-semibold text-lg mb-2">{item.title}</h4>
+                                                <p className="text-muted-foreground text-sm leading-relaxed">
+                                                    {item.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        
+                                        {/* Hover indicator */}
+                                        <div className="mt-4 pt-4 border-t border-border/30 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <div className="h-1 w-12 bg-gradient-to-r from-primary to-secondary rounded-full" />
+                                        </div>
+                                    </motion.div>
+                                );
+                            })}
+                        </div>
+                    </AnimatedSection>
                 </div>
             </div>
-        </div>
-    </section>
-}
+        </section>
+    );
+};
+
+export default AboutSection;

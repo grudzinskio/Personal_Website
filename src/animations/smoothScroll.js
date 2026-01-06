@@ -1,15 +1,11 @@
 import Lenis from 'lenis';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 let lenis = null;
-let rafCallback = null;
 
 /**
  * Initialize Lenis smooth scrolling for the entire page
  * Returns a cleanup function to destroy Lenis instance
+ * Optimized for 60fps performance
  */
 export const initSmoothScroll = () => {
   // Prevent multiple instances
@@ -17,42 +13,33 @@ export const initSmoothScroll = () => {
     lenis.destroy();
   }
 
-  // Create new Lenis instance with optimal settings for performance
+  // Create new Lenis instance with optimized settings
   lenis = new Lenis({
-    duration: 1.0,        // Reduced duration for snappier feel
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing function
+    duration: 1.0,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: true,
-    wheelMultiplier: 0.8, // Reduced for less CPU usage
-    smoothTouch: false,   // Disable on touch devices for native feel
+    wheelMultiplier: 0.8,
+    smoothTouch: false, // Disable on touch for native feel
     touchMultiplier: 2,
     infinite: false,
-    syncTouch: false,     // Better mobile performance
+    syncTouch: false,
   });
 
-  // Sync Lenis with GSAP ScrollTrigger
-  lenis.on('scroll', ScrollTrigger.update);
-
-  // Store the callback reference for proper cleanup
-  rafCallback = (time) => {
-    lenis.raf(time * 1000);
+  // Animation loop
+  const animate = (time) => {
+    if (lenis) {
+      lenis.raf(time);
+      requestAnimationFrame(animate);
+    }
   };
 
-  // Integrate Lenis with GSAP ticker for smooth animations
-  gsap.ticker.add(rafCallback);
-
-  // Disable lag smoothing for better sync
-  gsap.ticker.lagSmoothing(0);
+  requestAnimationFrame(animate);
 
   // Return cleanup function
   return () => {
     if (lenis) {
-      // Remove the correct callback reference from ticker
-      if (rafCallback) {
-        gsap.ticker.remove(rafCallback);
-        rafCallback = null;
-      }
       lenis.destroy();
       lenis = null;
     }
@@ -135,62 +122,4 @@ export const startScroll = () => {
   if (lenis) {
     lenis.start();
   }
-};
-
-/**
- * Create a scroll-triggered animation sequence
- * @param {string} trigger - Element that triggers the animation
- * @param {Object} config - GSAP ScrollTrigger configuration
- */
-export const createScrollTrigger = (trigger, config = {}) => {
-  return ScrollTrigger.create({
-    trigger,
-    start: 'top center',
-    end: 'bottom center',
-    ...config
-  });
-};
-
-/**
- * Add smooth reveal animation on scroll
- * @param {string} selector - CSS selector for elements to animate
- * @param {Object} options - Animation options
- */
-export const addScrollReveal = (selector, options = {}) => {
-  const {
-    y = 50,
-    opacity = 0,
-    duration = 0.8,
-    stagger = 0.1,
-    ease = 'power2.out',
-    start = 'top 80%'
-  } = options;
-
-  const elements = document.querySelectorAll(selector);
-  
-  elements.forEach((element, index) => {
-    gsap.fromTo(
-      element,
-      { y, opacity },
-      {
-        y: 0,
-        opacity: 1,
-        duration,
-        ease,
-        delay: stagger * index,
-        scrollTrigger: {
-          trigger: element,
-          start,
-          toggleActions: 'play none none none'
-        }
-      }
-    );
-  });
-};
-
-/**
- * Cleanup all ScrollTriggers
- */
-export const cleanupScrollTriggers = () => {
-  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 };
