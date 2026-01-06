@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { X, Menu } from "lucide-react";
-import ogLogo from "@/assets/og_logo.png";
+import ogLogo from "@/assets/Portfolio.png";
 
 const navItems = [
     { name: "Home", href: "/" },
@@ -108,7 +108,7 @@ export const Navbar = () => {
                     <Link to="/" className="flex items-center group p-2" style={{ minWidth: '44px', minHeight: '44px' }}>
                         <img 
                             src={ogLogo} 
-                            alt="OG Logo" 
+                            alt="Portfolio" 
                             className="h-8 sm:h-10 md:h-12 w-auto transition-transform duration-300 group-hover:scale-110"
                         />
                     </Link>
