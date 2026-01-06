@@ -534,3 +534,60 @@ video {
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+
+/* Chrome-specific font size overrides for LetterCollision component */
+/* Reduce by ~30-35% to match Edge rendering */
+.chrome .text-4xl {
+  font-size: 1.875rem; /* Reduced from 2.25rem (text-4xl) */
+  line-height: 1;
+}
+
+.chrome .text-5xl {
+  font-size: 2rem; /* Reduced from 3rem (text-5xl) */
+  line-height: 1;
+}
+
+.chrome .text-6xl {
+  font-size: 2.5rem; /* Reduced from 3.75rem (text-6xl) */
+  line-height: 1;
+}
+
+.chrome .md\:text-6xl {
+  font-size: 3.25rem; /* Reduced from 3.75rem (md:text-6xl) */
+  line-height: 1;
+}
+
+.chrome .md\:text-7xl {
+  font-size: 3rem; /* Reduced from 4.5rem (text-7xl) */
+  line-height: 1;
+}
+
+.chrome .md\:text-8xl {
+  font-size: 4rem; /* Reduced from 6rem (text-8xl) */
+  line-height: 1;
+}
+
+.chrome .lg\:text-7xl {
+  font-size: 3.75rem; /* Reduced from 4.5rem (lg:text-7xl) */
+  line-height: 1;
+}
+
+.chrome .lg\:text-8xl {
+  font-size: 4.25rem; /* Reduced from 6rem (lg:text-8xl) */
+  line-height: 1;
+}
+
+.chrome .lg\:text-9xl {
+  font-size: 5.5rem; /* Reduced from 8rem (text-9xl) */
+  line-height: 1;
+}
+
+.chrome .xl\:text-8xl {
+  font-size: 4.5rem; /* Reduced from 6rem (xl:text-8xl) */
+  line-height: 1;
+}
+
+.chrome .xl\:text-\[12rem\] {
+  font-size: 8rem; /* Reduced from 12rem */
+  line-height: 1;
+}
