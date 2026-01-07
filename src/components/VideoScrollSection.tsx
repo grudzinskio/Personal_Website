@@ -159,23 +159,16 @@ export const VideoScrollSection = () => {
             y: textY
           }}
         >
-          <motion.h2 
-            className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-bold mb-6 sm:mb-8 tracking-tight"
-          >
-            <span className="block text-foreground mb-2 sm:mb-4">Building</span>
-            <span className="block text-gradient-animated text-4xl sm:text-5xl md:text-8xl lg:text-9xl">Tomorrow's</span>
-            <span className="block text-foreground">Infrastructure</span>
-          </motion.h2>
+          {/* Glow behind text */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] bg-gradient-radial from-accent-purple/10 via-transparent to-transparent blur-3xl pointer-events-none" />
           
-          <motion.div 
-            className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-6 text-base sm:text-xl md:text-2xl lg:text-3xl font-light"
-          >
-            <span className="text-primary font-medium">AI</span>
-            <span className="text-foreground/30">•</span>
-            <span className="text-primary font-medium">Machine Learning</span>
-            <span className="text-foreground/30 hidden sm:inline">•</span>
-            <span className="text-primary font-medium">System Architecture</span>
-          </motion.div>
+          <p className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight text-white relative">
+            I build systems that{' '}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent-blue to-accent-purple">
+              make sense
+            </span>
+            .
+          </p>
         </motion.div>
 
         {/* Gradient fade to next section */}

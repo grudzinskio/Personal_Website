@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
 import { StarBackground } from "../components/StarBackground";
 import { GradientBackground } from "../components/GradientBackground";
+import { Background } from "../components/Background";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { LetterCollision } from "../components/LetterCollision";
@@ -21,6 +22,7 @@ import { initSmoothScroll, scrollToElement } from "../animations/smoothScroll";
 export const Home = () => {
     const [showScrollButton, setShowScrollButton] = useState(true);
     const scrollContainerRef = useRef(null);
+    const { scrollYProgress } = useScroll();
 
     useEffect(() => {
         // Scroll to top on mount
@@ -65,10 +67,17 @@ export const Home = () => {
         >
             {/* Background layers */}
             <StarBackground />
+            <Background />
             <GradientBackground opacity={0.8} animate={true} />
             
             {/* Navigation */}
             <Navbar />
+
+            {/* Scroll Progress Bar */}
+            <motion.div
+                className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink origin-left z-50"
+                style={{ scaleX: scrollYProgress }}
+            />
             
             {/* Main content */}
             <main className="scroll-smooth">

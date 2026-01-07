@@ -77,6 +77,15 @@
     --border: 217 33% 20%;
     --muted: 217 33% 20%;
     --muted-foreground: 213 15% 75%;
+
+    /* Accent colors from Portfolio V2 */
+    --accent-blue: #0070f3;
+    --accent-purple: #7928ca;
+    --accent-pink: #ff0080;
+    
+    /* Dark color shades */
+    --dark-900: #0a0a0a;
+    --dark-950: #000000;
   }
 
   /* Global element resets & quality-of-life */
@@ -192,6 +201,15 @@
   color: transparent;
   background-size: 200% 200%;
   animation: gradient-shift 8s ease infinite;
+}
+
+/* Accent gradient text from Portfolio V2 */
+@utility gradient-text-accent {
+  background: linear-gradient(to right, var(--accent-blue), var(--accent-purple), var(--accent-pink));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
 }
 
 /* Gradient border effect - Vercel style */
@@ -356,6 +374,19 @@ html.lenis {
   box-shadow: 0 0 30px hsl(var(--primary) / 0.6);
 }
 
+/* Glow effects from Portfolio V2 */
+@utility glow-blue {
+  box-shadow: 0 0 60px -15px rgba(0, 112, 243, 0.5);
+}
+
+@utility glow-purple {
+  box-shadow: 0 0 60px -15px rgba(121, 40, 202, 0.5);
+}
+
+@utility glow-text {
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
 /* Text shimmer effect for loading states */
 @keyframes shimmer {
   0% {
@@ -390,6 +421,78 @@ html.lenis {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Grid pattern background from Portfolio V2 */
+@utility bg-grid {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@utility bg-grid-small {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Noise texture overlay from Portfolio V2 */
+@utility noise {
+  position: relative;
+}
+
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Radial gradient utility */
+@utility bg-gradient-radial {
+  background-image: radial-gradient(var(--tw-gradient-stops));
+}
+
+/* Accent color utilities */
+@utility from-accent-blue {
+  --tw-gradient-from: var(--accent-blue);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent);
+}
+
+@utility via-accent-purple {
+  --tw-gradient-via: var(--accent-purple);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to, transparent);
+}
+
+@utility to-accent-pink {
+  --tw-gradient-to: var(--accent-pink);
+}
+
+@utility to-accent-purple {
+  --tw-gradient-to: var(--accent-purple);
+}
+
+@utility from-dark-950 {
+  --tw-gradient-from: var(--dark-950);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent);
+}
+
+@utility via-dark-900 {
+  --tw-gradient-via: var(--dark-900);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to, transparent);
+}
+
+@utility to-dark-950 {
+  --tw-gradient-to: var(--dark-950);
+}
+
+/* Animation delays from Portfolio V2 */
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-400 { animation-delay: 400ms; }
 
 /* Root element */
 #root {

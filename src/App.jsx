@@ -8,7 +8,6 @@ import { Skills } from "./pages/Skills"
 import { Projects } from "./pages/Projects"
 import { Contact } from "./pages/Contact"
 import { scrollToPosition, getLenis } from "./animations/smoothScroll"
-import { PageTransition } from "./components/PageTransition"
 
 function ScrollToTop() {
   const location = useLocation();
