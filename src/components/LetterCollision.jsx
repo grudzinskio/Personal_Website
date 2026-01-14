@@ -30,7 +30,7 @@ function animateLettersOnScroll(containerRef) {
 
     // Reset to initial position first
     gsap.set(letter, { y: 0, rotation: 0, opacity: 1 });
-    
+
     const anim = gsap.to(letter, {
       y: (i, el) =>
         (1 - parseFloat(el.getAttribute('data-speed'))) *
@@ -46,10 +46,10 @@ function animateLettersOnScroll(containerRef) {
       },
       rotation: getRandomRotation()
     });
-    
+
     animations.push(anim);
   });
-  
+
   return animations;
 }
 
@@ -59,13 +59,13 @@ export function LetterCollision() {
 
   useEffect(() => {
     if (!containerRef.current) return;
-    
+
     // Wait for next frame to ensure DOM is ready
     const timeoutId = setTimeout(() => {
       animationsRef.current = animateLettersOnScroll(containerRef);
       ScrollTrigger.refresh();
     }, 100);
-    
+
     return () => {
       clearTimeout(timeoutId);
       // Clean up only our specific animations
@@ -92,7 +92,7 @@ export function LetterCollision() {
             <LetterDisplay word="I'm" colorClass="text-foreground/80" />
           </div>
         </div>
-        
+
         {/* Animated name with gap - prevent wrapping within words */}
         <div className="flex flex-wrap items-center p-0 leading-none">
           <div className="whitespace-nowrap">

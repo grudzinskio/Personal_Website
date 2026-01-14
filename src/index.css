@@ -255,6 +255,11 @@
   background-size: 200% auto;
 }
 
+/* Animated gradient shift utility */
+@utility animate-gradient-shift {
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
 /* Gradient border effect - Vercel style */
 @utility gradient-border {
   position: relative;
