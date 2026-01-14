@@ -62,10 +62,10 @@ export const HeroIntroSection = () => {
                 <span className="block text-foreground">Crafting Digital</span>
                 <span className="block text-gradient-animated">Experiences</span>
               </h2>
-              
+
               <div className="h-1 w-20 bg-gradient-to-r from-primary to-secondary rounded-full" />
             </div>
-            
+
             {/* Description */}
             <div className="space-y-4">
               {aboutData.personal.description.slice(0, 2).map((paragraph, index) => (
@@ -102,7 +102,7 @@ export const HeroIntroSection = () => {
               </div>
             </motion.div>
           </motion.div>
-          
+
           {/* Right Column: Code Editor */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -131,11 +131,11 @@ const CodeEditorWindow = () => {
     if (!isInView) return;
 
     const currentSnippet = codeSnippets[currentSnippetIndex];
-    
+
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-    
+
     if (isTyping) {
       if (displayedCode.length < currentSnippet.length) {
         // Typing - faster speed
@@ -162,7 +162,7 @@ const CodeEditorWindow = () => {
         }, 500);
       }
     }
-    
+
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
@@ -170,19 +170,11 @@ const CodeEditorWindow = () => {
     };
   }, [displayedCode, isTyping, currentSnippetIndex, isInView]);
 
-  // Simple syntax highlighting
+  // Simple text rendering for better performance (removed regex highlighting which was causing lag and bugs)
   const renderCode = (code) => {
-    return code.split('\n').map((line, lineIdx) => {
-      // Basic keyword highlighting
-      const highlighted = line
-        .replace(/\b(const|let|var|function|class|async|await|return|if|else|while|for|new|this)\b/g, '<span class="text-blue-400">$1</span>')
-        .replace(/(['"`])(?:(?=(\\?))\2.)*?\1/g, '<span class="text-green-400">$&</span>')
-        .replace(/\b(\d+)\b/g, '<span class="text-orange-400">$1</span>');
-      
-      return (
-        <div key={lineIdx} dangerouslySetInnerHTML={{ __html: highlighted }} />
-      );
-    });
+    return code.split('\n').map((line, lineIdx) => (
+      <div key={lineIdx}>{line || '\u00A0'}</div>
+    ));
   };
 
   return (
@@ -198,7 +190,7 @@ const CodeEditorWindow = () => {
           <span className="text-sm text-muted-foreground font-mono">code.js</span>
         </div>
       </div>
-      
+
       {/* Code Content */}
       <div className="flex-1 p-4 sm:p-6 md:p-8 font-mono text-xs sm:text-sm md:text-base text-foreground/90 overflow-auto bg-black/5">
         <pre className="whitespace-pre-wrap m-0">

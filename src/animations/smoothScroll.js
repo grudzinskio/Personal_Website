@@ -13,19 +13,25 @@ export const initSmoothScroll = () => {
     lenis.destroy();
   }
 
+  // Optimize for mobile - completely disable Lenis on small devices
+  const isMobile = window.innerWidth < 768;
+  
   // Create new Lenis instance with optimized settings
-  lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    orientation: 'vertical',
-    gestureOrientation: 'vertical',
-    smoothWheel: true,
-    wheelMultiplier: 0.7, // Reduced to prevent overshoot
-    smoothTouch: false, // Disable on touch for native feel
-    touchMultiplier: 2,
-    infinite: false,
-    syncTouch: false,
-  });
+  // Only initialize on desktop/tablet (not mobile)
+  if (!isMobile) {
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 0.7, // Reduced to prevent overshoot
+      smoothTouch: false, // Disable on touch for native feel
+      touchMultiplier: 2,
+      infinite: false,
+      syncTouch: false,
+    });
+  }
 
   // Animation loop
   const animate = (time) => {

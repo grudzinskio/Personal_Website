@@ -18,9 +18,9 @@ export const Navbar = () => {
     const [scrollProgress, setScrollProgress] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [hoveredItem, setHoveredItem] = useState(null);
-    
+
     const isHomePage = location.pathname === '/';
-    
+
     // Get active item from current route
     const activeItem = navItems.find(item => item.href === location.pathname)?.name || "Home";
 
@@ -68,11 +68,11 @@ export const Navbar = () => {
         window.addEventListener('resize', handle);
         return () => window.removeEventListener('resize', handle);
     }, [targetItem]);
-    
+
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 10);
-            
+
             // Calculate scroll progress for fade out on home page
             if (isHomePage) {
                 const maxScroll = window.innerHeight * 0.2; // Fade out by 20% of viewport - faster fade
@@ -88,17 +88,17 @@ export const Navbar = () => {
     // Calculate opacity based on scroll progress (only on home page)
     const navOpacity = isHomePage ? 1 - scrollProgress : 1;
     const navTransform = isHomePage ? `translateY(-${scrollProgress * 10}px)` : 'translateY(0)';
-    
+
     return (
         <>
-            <nav 
+            <nav
                 className={cn(
                     "fixed w-full z-40 transition-all duration-300",
                     isScrolled
                         ? "py-2 bg-card/80 backdrop-blur-lg shadow-xl border-b border-border/40"
                         : "py-3 bg-card/40 backdrop-blur-md border-b border-border/20"
                 )}
-                style={{ 
+                style={{
                     opacity: navOpacity,
                     transform: navTransform,
                     pointerEvents: isHomePage && scrollProgress > 0.9 ? 'none' : 'auto'
@@ -106,10 +106,11 @@ export const Navbar = () => {
             >
                 <div className='w-full relative flex items-center px-4 md:px-8'>
                     <Link to="/" className="flex items-center group p-2" style={{ minWidth: '44px', minHeight: '44px' }}>
-                        <img 
-                            src={ogLogo} 
-                            alt="Portfolio" 
+                        <img
+                            src={ogLogo}
+                            alt="Portfolio"
                             className="h-8 sm:h-10 md:h-12 w-auto transition-transform duration-300 group-hover:scale-110"
+                            decoding="async"
                         />
                     </Link>
 
@@ -139,8 +140,8 @@ export const Navbar = () => {
                                 onBlur={() => setHoveredItem(null)}
                                 className={cn(
                                     "relative z-10 px-4 py-2 rounded-full font-medium transition-all duration-300",
-                                    item.name === activeItem 
-                                        ? "text-primary" 
+                                    item.name === activeItem
+                                        ? "text-primary"
                                         : "text-foreground/70 hover:text-primary hover:scale-105"
                                 )}
                             >
