@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { StarBackground } from "../components/StarBackground";
-import { GradientBackground } from "../components/GradientBackground";
+import { Background } from "../components/Background";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { AnimatedSection } from "../components/AnimatedSection";
@@ -19,13 +18,12 @@ export const Projects = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="min-h-screen bg-background text-foreground overflow-x-hidden"
+            className="min-h-screen text-foreground overflow-x-hidden"
             style={{ maxWidth: '100vw' }}
         >
-            <StarBackground />
-            <GradientBackground opacity={0.6} animate={true} />
+            <Background />
             <Navbar />
-            
+
             <main className="relative pt-24 sm:pt-32 pb-16 sm:pb-20">
                 <div className="container mx-auto max-w-7xl px-4">
                     {/* Header */}
@@ -44,7 +42,7 @@ export const Projects = () => {
                             Featured
                             <span className="block text-gradient-animated">Projects</span>
                         </h1>
-                        
+
                         <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
                             A collection of my work in AI, web development, and software engineering.
                             Each project represents a unique technical challenge and innovative solution.
@@ -58,9 +56,8 @@ export const Projects = () => {
                                 <motion.div
                                     whileHover={{ y: -8, scale: 1.02 }}
                                     transition={{ duration: 0.3 }}
-                                    className={`group glass-card rounded-2xl overflow-hidden cursor-pointer relative ${
-                                        project.featured ? "ring-2 ring-primary/30" : ""
-                                    }`}
+                                    className={`group glass-card rounded-2xl overflow-hidden cursor-pointer relative ${project.featured ? "ring-2 ring-primary/30" : ""
+                                        }`}
                                     onClick={() => setModalProject(project)}
                                 >
                                     {/* Status badge */}
@@ -159,7 +156,7 @@ export const Projects = () => {
                     </AnimatedSection>
                 </div>
             </main>
-            
+
             <Footer />
 
             {/* Project Modal */}

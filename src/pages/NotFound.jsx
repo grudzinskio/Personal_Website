@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Home, ArrowLeft } from "lucide-react";
-import { StarBackground } from "../components/StarBackground";
-import { GradientBackground } from "../components/GradientBackground";
+import { Background } from "../components/Background";
 import { Navbar } from "../components/Navbar";
 
 export const NotFound = () => {
@@ -12,12 +11,11 @@ export const NotFound = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="min-h-screen bg-background text-foreground overflow-x-hidden flex flex-col"
+            className="min-h-screen text-foreground overflow-x-hidden flex flex-col"
         >
-            <StarBackground />
-            <GradientBackground opacity={0.6} animate={true} />
+            <Background />
             <Navbar />
-            
+
             <main className="flex-1 flex items-center justify-center px-4">
                 <div className="text-center max-w-2xl">
                     <motion.div
@@ -50,7 +48,7 @@ export const NotFound = () => {
                             <Home className="w-5 h-5" />
                             Go Home
                         </Link>
-                        
+
                         <button
                             onClick={() => window.history.back()}
                             className="button-glass inline-flex items-center justify-center gap-2 group"

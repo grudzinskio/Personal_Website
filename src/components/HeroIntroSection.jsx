@@ -41,7 +41,7 @@ export const HeroIntroSection = () => {
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen w-full overflow-hidden flex items-center justify-center py-16 sm:py-20 md:py-32 bg-background">
+    <section ref={sectionRef} className="relative min-h-screen w-full overflow-hidden flex items-center justify-center py-16 sm:py-20 md:py-32">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Left Column: Typography */}

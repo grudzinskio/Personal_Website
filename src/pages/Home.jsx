@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
-import { StarBackground } from "../components/StarBackground";
-import { GradientBackground } from "../components/GradientBackground";
 import { Background } from "../components/Background";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
@@ -62,13 +60,11 @@ export const Home = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
             ref={scrollContainerRef}
-            className="min-h-screen bg-background text-foreground overflow-x-hidden"
+            className="min-h-screen text-foreground overflow-x-hidden"
             style={{ maxWidth: '100vw' }}
         >
             {/* Background layers */}
-            <StarBackground />
             <Background />
-            <GradientBackground opacity={0.8} animate={true} />
 
             {/* Navigation */}
             <Navbar />
