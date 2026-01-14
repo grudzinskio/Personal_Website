@@ -129,31 +129,42 @@ export const VideoScrollSection = () => {
       className="relative w-full bg-background"
       style={{ height: '120vh' }}
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
-        {/* Gradient fade from previous section */}
-        <div
-          className="absolute top-0 left-0 w-full h-32 z-10 pointer-events-none"
-          style={{
-            background: 'linear-gradient(to bottom, hsl(var(--background)) 0%, transparent 100%)'
-          }}
-        />
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center">
+        {/* Background layer with overflow hidden */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Gradient fade from previous section */}
+          <div
+            className="absolute top-0 left-0 w-full h-32 z-10 pointer-events-none"
+            style={{
+              background: 'linear-gradient(to bottom, hsl(var(--background)) 0%, transparent 100%)'
+            }}
+          />
 
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 gradient-mesh-animated opacity-40" />
+          {/* Animated gradient background */}
+          <div className="absolute inset-0 gradient-mesh-animated opacity-40" />
 
-        {/* Canvas particles */}
-        <motion.canvas
-          ref={canvasRef}
-          className="absolute inset-0"
-          style={{ opacity }}
-        />
+          {/* Canvas particles */}
+          <motion.canvas
+            ref={canvasRef}
+            className="absolute inset-0"
+            style={{ opacity }}
+          />
 
-        {/* Gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-transparent" />
+          {/* Gradient overlay for depth */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-transparent" />
 
-        {/* Text Content */}
+          {/* Gradient fade to next section */}
+          <div
+            className="absolute bottom-0 left-0 w-full h-32 z-10 pointer-events-none"
+            style={{
+              background: 'linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%)'
+            }}
+          />
+        </div>
+
+        {/* Text Content - separate layer with overflow visible */}
         <motion.div
-          className="relative z-10 flex flex-col items-center justify-center px-4 text-center max-w-6xl"
+          className="relative z-10 flex flex-col items-center justify-center px-6 md:px-4 text-center max-w-6xl"
           style={{
             opacity: textOpacity,
             y: textY
@@ -162,79 +173,74 @@ export const VideoScrollSection = () => {
           {/* Glow behind text */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] bg-gradient-radial from-accent-purple/10 via-transparent to-transparent blur-3xl pointer-events-none" />
 
-          <p className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight text-white relative">
-            {/* Animate each word separately */}
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8, filter: 'blur(10px)', letterSpacing: '0.2em' }}
-              whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-block"
-            >
-              I
-            </motion.span>
-            {' '}
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8, filter: 'blur(10px)', letterSpacing: '0.2em' }}
-              whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-block"
-            >
-              build
-            </motion.span>
-            {' '}
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8, filter: 'blur(10px)', letterSpacing: '0.2em' }}
-              whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-block"
-            >
-              systems
-            </motion.span>
-            {' '}
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8, filter: 'blur(10px)', letterSpacing: '0.2em' }}
-              whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-block"
-            >
-              that
-            </motion.span>
-            {' '}
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8, filter: 'blur(10px)', letterSpacing: '0.2em' }}
-              whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-accent-blue to-accent-purple animate-gradient-shift"
-              style={{
-                backgroundSize: '200% 200%',
-              }}
-            >
-              make sense
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-block"
-            >
-              .
-            </motion.span>
-          </p>
-        </motion.div>
 
-        {/* Gradient fade to next section */}
-        <div
-          className="absolute bottom-0 left-0 w-full h-32 z-10 pointer-events-none"
-          style={{
-            background: 'linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%)'
-          }}
-        />
+          <div className="w-full">
+            <p className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight text-white relative px-8 md:px-4">
+              {/* Animate each word separately */}
+              <motion.span
+                initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
+                whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block"
+              >
+                I
+              </motion.span>
+              {' '}
+              <motion.span
+                initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
+                whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block"
+              >
+                build
+              </motion.span>
+              {' '}
+              <motion.span
+                initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
+                whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block"
+              >
+                systems
+              </motion.span>
+              {' '}
+              <motion.span
+                initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
+                whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block"
+              >
+                that
+              </motion.span>
+              {' '}
+              <motion.span
+                initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
+                whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-accent-blue to-accent-purple animate-gradient-shift"
+                style={{
+                  backgroundSize: '200% 200%',
+                }}
+              >
+                make sense
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block"
+              >
+                .
+              </motion.span>
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
