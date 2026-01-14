@@ -10,7 +10,7 @@ const experiences = [
         company: 'TESCHGlobal',
         location: 'Grafton, WI',
         period: 'June 2025 - Present',
-        description: 'Engineered autonomous CI/CD pipeline reducing documentation time by 95%. Developed healthcare web applications using React, TypeScript, and HL7 FHIR REST APIs.',
+        description: 'Transforms healthcare data to follow FHIR CMS reliant standards. Engineered autonomous CI/CD pipelines. Developed healthcare web applications using React, TypeScript, and HL7 FHIR REST APIs.',
         logo: teschGlobalLogo,
     },
     {
