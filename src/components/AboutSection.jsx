@@ -14,7 +14,7 @@ const iconMap = {
 
 export const AboutSection = () => {
     const resumeFile = `${import.meta.env.BASE_URL}Oliver_Grudzinski_Resume.pdf`;
-    
+
     return (
         <section id="about" className="py-32 px-4 relative">
             <div className="container mx-auto max-w-6xl">
@@ -47,22 +47,22 @@ export const AboutSection = () => {
                                     <h3 className="text-2xl font-semibold">{aboutData.personal.name}</h3>
                                     <div className="flex items-center gap-2">
                                         <div className="glass-card-subtle px-3 py-2 rounded-lg">
-                                            <img 
-                                                src={teschLogo} 
-                                                alt="TESCH Global" 
+                                            <img
+                                                src={teschLogo}
+                                                alt="TESCH Global"
                                                 className="h-6 w-auto object-contain"
                                             />
                                         </div>
                                         <div className="glass-card-subtle px-3 py-2 rounded-lg">
-                                            <img 
-                                                src={msoeLogo} 
-                                                alt="MSOE" 
+                                            <img
+                                                src={msoeLogo}
+                                                alt="MSOE"
                                                 className="h-6 w-auto object-contain"
                                             />
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 {aboutData.personal.description.map((paragraph, index) => (
                                     <p key={index} className="text-muted-foreground text-base leading-relaxed mb-4">
                                         {index === 0 ? (
@@ -77,13 +77,13 @@ export const AboutSection = () => {
                                     </p>
                                 ))}
                             </div>
-                            
+
                             {/* Education & Role */}
                             <div className="glass-card p-6 rounded-2xl space-y-4">
                                 <div className="flex items-start gap-4 pb-4 border-b border-border/30">
-                                    <img 
-                                        src={msoeLogo} 
-                                        alt="MSOE" 
+                                    <img
+                                        src={msoeLogo}
+                                        alt="MSOE"
                                         className="h-12 w-12 object-contain mt-1"
                                     />
                                     <div className="flex-1">
@@ -94,11 +94,11 @@ export const AboutSection = () => {
                                         <span className="text-sm text-muted-foreground">{aboutData.education.school}</span>
                                     </div>
                                 </div>
-                                
+
                                 <div className="flex items-start gap-4">
-                                    <img 
-                                        src={teschLogo} 
-                                        alt="TESCH Global" 
+                                    <img
+                                        src={teschLogo}
+                                        alt="TESCH Global"
                                         className="h-12 w-12 object-contain mt-1"
                                     />
                                     <div className="flex-1">
@@ -110,7 +110,7 @@ export const AboutSection = () => {
                                     </div>
                                 </div>
                             </div>
-                            
+
                             {/* CTA Buttons */}
                             <div className="flex flex-col gap-3 sm:gap-4">
                                 <a
@@ -159,7 +159,7 @@ export const AboutSection = () => {
                                                 </p>
                                             </div>
                                         </div>
-                                        
+
                                         {/* Hover indicator */}
                                         <div className="mt-4 pt-4 border-t border-border/30 opacity-0 group-hover:opacity-100 transition-opacity">
                                             <div className="h-1 w-12 bg-gradient-to-r from-primary to-secondary rounded-full" />

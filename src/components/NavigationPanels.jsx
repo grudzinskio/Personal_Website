@@ -10,7 +10,7 @@ const NavigationPanels = () => {
   const panels = [
     {
       title: 'About Me',
-      description: 'Learn about my journey, education, and expertise',
+      description: 'Learn about my experience, education, and expertise',
       icon: User,
       href: '/about',
       gradient: 'from-blue-500/20 to-cyan-500/20',
@@ -82,7 +82,7 @@ const NavigationPanels = () => {
                   <div className="glass-card rounded-2xl p-6 sm:p-8 h-full flex flex-col justify-between overflow-hidden relative transition-all duration-300 hover:shadow-2xl">
                     {/* Gradient background on hover */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${panel.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                    
+
                     {/* Content */}
                     <div className="relative z-10">
                       {/* Icon */}

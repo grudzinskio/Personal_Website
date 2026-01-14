@@ -12,7 +12,7 @@ import Magnetic from './animations/Magnetic';
  */
 const ParallaxImages = () => {
   const containerRef = useRef(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
@@ -20,7 +20,7 @@ const ParallaxImages = () => {
 
   // Reduce parallax movement on mobile for better performance
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  
+
   // Different parallax speeds for each image - reduced on mobile
   const y1 = useTransform(scrollYProgress, [0, 1], isMobile ? [50, -50] : [100, -100]);
   const y2 = useTransform(scrollYProgress, [0, 1], isMobile ? [-25, 25] : [-50, 50]);
@@ -44,7 +44,7 @@ const ParallaxImages = () => {
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
             Moments and milestones from my path in engineering and technology
           </p>
-          
+
           {/* View Projects Button */}
           <Magnetic>
             <Link

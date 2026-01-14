@@ -5,11 +5,11 @@ import { useRef } from 'react';
  * AnimatedSection - Reusable scroll-triggered animation wrapper
  * Fades in and slides up when element enters viewport
  */
-export const AnimatedSection = ({ 
-  children, 
-  delay = 0, 
+export const AnimatedSection = ({
+  children,
+  delay = 0,
   className = '',
-  once = true 
+  once = true
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, amount: 0.2 });
@@ -46,10 +46,10 @@ export const AnimatedSection = ({
 /**
  * AnimatedStagger - Stagger animation for child elements
  */
-export const AnimatedStagger = ({ 
-  children, 
-  staggerDelay = 0.1, 
-  className = '' 
+export const AnimatedStagger = ({
+  children,
+  staggerDelay = 0.1,
+  className = ''
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
@@ -86,10 +86,10 @@ export const AnimatedStagger = ({
     >
       {Array.isArray(children)
         ? children.map((child, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              {child}
-            </motion.div>
-          ))
+          <motion.div key={index} variants={itemVariants}>
+            {child}
+          </motion.div>
+        ))
         : children}
     </motion.div>
   );

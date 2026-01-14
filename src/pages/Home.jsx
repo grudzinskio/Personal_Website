@@ -9,7 +9,7 @@ import { Footer } from "../components/Footer";
 import { LetterCollision } from "../components/LetterCollision";
 import { VideoScrollSection } from "../components/VideoScrollSection";
 import { HeroIntroSection } from "../components/HeroIntroSection";
-import ParallaxImages from "../components/ParallaxImages";
+import Experience from "../components/Experience";
 import SlidingImages from "../components/SlidingImages";
 import NavigationPanels from "../components/NavigationPanels";
 import Magnetic from "../components/animations/Magnetic";
@@ -69,7 +69,7 @@ export const Home = () => {
             <StarBackground />
             <Background />
             <GradientBackground opacity={0.8} animate={true} />
-            
+
             {/* Navigation */}
             <Navbar />
 
@@ -78,7 +78,7 @@ export const Home = () => {
                 className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink origin-left z-50"
                 style={{ scaleX: scrollYProgress }}
             />
-            
+
             {/* Main content */}
             <main className="scroll-smooth">
                 {/* Section 1: Letter Collision - Your animated name */}
@@ -111,8 +111,8 @@ export const Home = () => {
                 {/* Section 3: Hero Intro with Code Editor */}
                 <HeroIntroSection />
 
-                {/* Section 4: Parallax Images with Your Picture (3 bars) */}
-                <ParallaxImages />
+                {/* Section 4: Experience Timeline */}
+                <Experience />
 
                 {/* Section 5: Sliding Images Gallery (Horizontal scroll) */}
                 <SlidingImages />
@@ -120,7 +120,7 @@ export const Home = () => {
                 {/* Section 6: Navigation Panels - Cool navigation cards */}
                 <NavigationPanels />
             </main>
-            
+
             {/* Footer */}
             <Footer />
         </motion.div>
