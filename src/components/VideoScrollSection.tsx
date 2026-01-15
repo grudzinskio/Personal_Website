@@ -180,7 +180,7 @@ export const VideoScrollSection = () => {
               <motion.span
                 initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
                 whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className="inline-block"
               >
@@ -190,7 +190,7 @@ export const VideoScrollSection = () => {
               <motion.span
                 initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
                 whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 className="inline-block"
               >
@@ -200,7 +200,7 @@ export const VideoScrollSection = () => {
               <motion.span
                 initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
                 whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 className="inline-block"
               >
@@ -210,7 +210,7 @@ export const VideoScrollSection = () => {
               <motion.span
                 initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
                 whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 className="inline-block"
               >
@@ -220,7 +220,7 @@ export const VideoScrollSection = () => {
               <motion.span
                 initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
                 whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-accent-blue to-accent-purple animate-gradient-shift"
                 style={{
@@ -232,7 +232,7 @@ export const VideoScrollSection = () => {
               <motion.span
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.5, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 className="inline-block"
               >
