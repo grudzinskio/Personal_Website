@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
-import { Background } from "../components/Background";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
-import { LetterCollision } from "../components/LetterCollision";
-import { VideoScrollSection } from "../components/VideoScrollSection";
-import { HeroIntroSection } from "../components/HeroIntroSection";
-import Experience from "../components/Experience";
-import SlidingImages from "../components/SlidingImages";
-import NavigationPanels from "../components/NavigationPanels";
-import Magnetic from "../components/animations/Magnetic";
-import { initSmoothScroll, scrollToElement } from "../animations/smoothScroll";
+import { Background } from "../components/ui/Background";
+import { Navbar } from "../components/ui/Navbar";
+import { Footer } from "../components/ui/Footer";
+import { LetterCollision } from "../components/sections/LetterCollision";
+import { VideoScrollSection } from "../components/sections/VideoScrollSection";
+import { HeroIntroSection } from "../components/sections/HeroIntroSection";
+import Experience from "../components/sections/Experience";
+import SlidingImages from "../components/sections/SlidingImages";
+import NavigationPanels from "../components/sections/NavigationPanels";
+import Magnetic from "../utils/animations/Magnetic";
+import { initSmoothScroll, scrollToElement } from "../utils/animations/smoothScroll";
 
 /**
  * Home - Complete original design with all sections restored

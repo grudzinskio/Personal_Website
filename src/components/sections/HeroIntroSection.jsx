@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import aboutData from '../data/about.json';
+import aboutData from '../../data/about.json';
 
 // Optimized code snippets - reduced size for better performance
 const codeSnippets = [

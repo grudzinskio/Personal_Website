@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { Background } from "../components/Background";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
-import { AboutSection } from "../components/AboutSection";
+import { Background } from "../components/ui/Background";
+import { Navbar } from "../components/ui/Navbar";
+import { Footer } from "../components/ui/Footer";
+import { AboutSection } from "../components/sections/AboutSection";
 
 export const About = () => {
     return (

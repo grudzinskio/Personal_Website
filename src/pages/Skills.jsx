@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { Background } from "../components/Background";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
-import { SkillsSection } from "../components/SkillsSection";
+import { Background } from "../components/ui/Background";
+import { Navbar } from "../components/ui/Navbar";
+import { Footer } from "../components/ui/Footer";
+import { SkillsSection } from "../components/sections/SkillsSection";
 
 export const Skills = () => {
     return (

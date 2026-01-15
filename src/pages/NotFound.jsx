@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Home, ArrowLeft } from "lucide-react";
-import { Background } from "../components/Background";
-import { Navbar } from "../components/Navbar";
+import { Background } from "../components/ui/Background";
+import { Navbar } from "../components/ui/Navbar";
 
 export const NotFound = () => {
     return (

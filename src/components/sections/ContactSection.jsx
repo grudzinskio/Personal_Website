@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
-import { AnimatedSection } from "./AnimatedSection";
-import Magnetic from "./animations/Magnetic";
+import { AnimatedSection } from "../ui/AnimatedSection";
+import Magnetic from "../../utils/animations/Magnetic";
 
 export const ContactSection = () => {
     return (
@@ -23,7 +23,7 @@ export const ContactSection = () => {
                         Start a
                         <span className="block text-gradient-animated">Conversation</span>
                     </h2>
-                    
+
                     <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                         I'm always open to discussing new projects, innovative ideas, or opportunities to contribute to your vision
                     </p>
@@ -46,7 +46,7 @@ export const ContactSection = () => {
                             <p className="text-muted-foreground group-hover:text-foreground transition-colors text-center text-sm break-words">
                                 grudzinskioliver@gmail.com
                             </p>
-                            
+
                             {/* Hover indicator */}
                             <div className="mt-6 pt-4 border-t border-border/30 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <div className="h-1 w-12 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto" />
@@ -69,7 +69,7 @@ export const ContactSection = () => {
                             <p className="text-muted-foreground group-hover:text-foreground transition-colors text-center">
                                 +1 (262) 665-4897
                             </p>
-                            
+
                             {/* Hover indicator */}
                             <div className="mt-6 pt-4 border-t border-border/30 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <div className="h-1 w-12 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto" />
@@ -91,7 +91,7 @@ export const ContactSection = () => {
                             <p className="text-muted-foreground text-center">
                                 Greater Milwaukee Area, WI
                             </p>
-                            
+
                             {/* Hover indicator */}
                             <div className="mt-6 pt-4 border-t border-border/30 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <div className="h-1 w-12 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto" />
@@ -105,8 +105,8 @@ export const ContactSection = () => {
                     <h4 className="font-semibold text-2xl mb-8">Connect With Me</h4>
                     <div className="flex justify-center gap-4">
                         <Magnetic>
-                            <a 
-                                href="https://www.linkedin.com/in/grudzinskioliver/" 
+                            <a
+                                href="https://www.linkedin.com/in/grudzinskioliver/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="glass-card p-4 rounded-full hover:bg-white/10 text-primary transition-all group"
@@ -115,10 +115,10 @@ export const ContactSection = () => {
                                 <Linkedin className="h-6 w-6 group-hover:scale-110 transition-transform" />
                             </a>
                         </Magnetic>
-                        
+
                         <Magnetic>
-                            <a 
-                                href="https://github.com/grudzinskio" 
+                            <a
+                                href="https://github.com/grudzinskio"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="glass-card p-4 rounded-full hover:bg-white/10 text-primary transition-all group"
@@ -127,10 +127,10 @@ export const ContactSection = () => {
                                 <Github className="h-6 w-6 group-hover:scale-110 transition-transform" />
                             </a>
                         </Magnetic>
-                        
+
                         <Magnetic>
-                            <a 
-                                href="https://www.instagram.com/olivergrud/" 
+                            <a
+                                href="https://www.instagram.com/olivergrud/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="glass-card p-4 rounded-full hover:bg-white/10 text-primary transition-all group"

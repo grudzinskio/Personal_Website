@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Briefcase, Code, User, Server, Mail, Download } from "lucide-react"
-import { AnimatedSection } from "./AnimatedSection";
-import teschLogo from "../assets/TESCHGlobal_logo.png"
-import msoeLogo from "../assets/MSOE_logo.png"
-import aboutData from "../data/about.json"
+import { AnimatedSection } from "../ui/AnimatedSection";
+import teschLogo from "../../assets/logos/TESCHGlobal_logo.png"
+import msoeLogo from "../../assets/logos/MSOE_logo.png"
+import aboutData from "../../data/about.json"
 
 const iconMap = {
     Code,

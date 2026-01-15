@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Background } from "../components/Background";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
-import { AnimatedSection } from "../components/AnimatedSection";
+import { Background } from "../components/ui/Background";
+import { Navbar } from "../components/ui/Navbar";
+import { Footer } from "../components/ui/Footer";
+import { AnimatedSection } from "../components/ui/AnimatedSection";
 import { ArrowRight, ExternalLink, Github, Award, Code2, X } from "lucide-react";
 import projectsData from "../data/projects.json";
 

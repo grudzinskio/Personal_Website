@@ -7,11 +7,11 @@ import { About } from "./pages/About"
 import { Skills } from "./pages/Skills"
 import { Projects } from "./pages/Projects"
 import { Contact } from "./pages/Contact"
-import { scrollToPosition, getLenis } from "./animations/smoothScroll"
+import { scrollToPosition, getLenis } from "./utils/animations/smoothScroll"
 
 function ScrollToTop() {
   const location = useLocation();
-  
+
   useEffect(() => {
     // Use Lenis for smooth scroll to top on route change
     const lenis = getLenis();
@@ -21,7 +21,7 @@ function ScrollToTop() {
       window.scrollTo(0, 0);
     }
   }, [location.pathname]);
-  
+
   return null;
 }
 

@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { AnimatedSection } from "./AnimatedSection";
+import { cn } from "@/utils/cn";
+import { AnimatedSection } from "../ui/AnimatedSection";
 import { Sparkles } from "lucide-react";
-import skillsData from "../data/skills.json";
+import skillsData from "../../data/skills.json";
 
 const { skills, categories } = skillsData;
 
@@ -80,7 +80,7 @@ export const SkillsSection = () => {
                         Technology
                         <span className="block text-gradient-animated">Stack</span>
                     </h2>
-                    
+
                     <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
                         A comprehensive toolkit spanning full-stack development, AI/ML, and cloud infrastructure
                     </p>
@@ -143,7 +143,7 @@ export const SkillsSection = () => {
                             <h3 className="font-medium text-xs sm:text-sm md:text-base text-foreground group-hover:text-primary transition-colors">
                                 {skill.name}
                             </h3>
-                            
+
                             {/* Hover indicator */}
                             <div className="mt-3 mx-auto h-0.5 w-0 group-hover:w-8 bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-300" />
                         </motion.div>

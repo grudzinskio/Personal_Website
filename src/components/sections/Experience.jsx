@@ -1,8 +1,8 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import teschGlobalLogo from '../assets/TESCHGlobal_logo.png';
-import wisconsinStampingLogo from '../assets/wisconsinstamping.png';
-import msoeLogo from '../assets/MSOE_logo.png';
+import teschGlobalLogo from '../../assets/logos/TESCHGlobal_logo.png';
+import wisconsinStampingLogo from '../../assets/logos/wisconsinstamping.png';
+import msoeLogo from '../../assets/logos/MSOE_logo.png';
 
 const experiences = [
     {

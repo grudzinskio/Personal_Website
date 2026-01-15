@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import { X, Menu } from "lucide-react";
 import ogLogo from "@/assets/Portfolio.png";
 
