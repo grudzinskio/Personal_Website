@@ -130,8 +130,8 @@ export const VideoScrollSection = () => {
       style={{ height: '120vh' }}
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center">
-        {/* Background layer with overflow hidden */}
-        <div className="absolute inset-0 overflow-hidden">
+        {/* Background layer with overflow hidden - extends to full section height */}
+        <div className="absolute top-0 left-0 right-0 overflow-hidden" style={{ height: '120vh' }}>
           {/* Gradient fade from previous section */}
           <div
             className="absolute top-0 left-0 w-full h-32 z-10 pointer-events-none"
