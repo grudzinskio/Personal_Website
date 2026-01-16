@@ -132,11 +132,12 @@ export const VideoScrollSection = () => {
       <div className="sticky top-0 h-screen w-full flex items-center justify-center">
         {/* Background layer with overflow hidden - extends to full section height */}
         <div className="absolute top-0 left-0 right-0 overflow-hidden" style={{ height: '120vh' }}>
-          {/* Gradient fade from previous section */}
+          {/* Glowing border at top */}
+          {/* The line itself */}
           <div
-            className="absolute top-0 left-0 w-full h-32 z-10 pointer-events-none"
+            className="absolute top-0 left-0 w-full h-px z-20"
             style={{
-              background: 'linear-gradient(to bottom, hsl(var(--background)) 0%, transparent 100%)'
+              background: 'linear-gradient(90deg, transparent 0%, #0070f3 20%, #7928ca 50%, #ff0080 80%, transparent 100%)'
             }}
           />
 
@@ -153,11 +154,12 @@ export const VideoScrollSection = () => {
           {/* Gradient overlay for depth */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-transparent" />
 
-          {/* Gradient fade to next section */}
+
+          {/* Glowing border at bottom */}
           <div
-            className="absolute bottom-0 left-0 w-full h-32 z-10 pointer-events-none"
+            className="absolute bottom-0 left-0 w-full h-px z-20"
             style={{
-              background: 'linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%)'
+              background: 'linear-gradient(90deg, transparent 0%, #0070f3 20%, #7928ca 50%, #ff0080 80%, transparent 100%)'
             }}
           />
         </div>
@@ -170,8 +172,7 @@ export const VideoScrollSection = () => {
             y: textY
           }}
         >
-          {/* Glow behind text */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] bg-gradient-radial from-accent-purple/10 via-transparent to-transparent blur-3xl pointer-events-none" />
+
 
 
           <div className="w-full">
