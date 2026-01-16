@@ -17,8 +17,8 @@ export const VideoScrollSection = () => {
 
   // Smooth opacity transitions
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const textOpacity = useTransform(scrollYProgress, [0.15, 0.3, 0.7, 0.85], [0, 1, 1, 0]);
-  const textY = useTransform(scrollYProgress, [0.15, 0.3], [30, 0]);
+  const textOpacity = useTransform(scrollYProgress, [0.2, 0.35, 0.7, 0.85], [0, 1, 1, 0]);
+  const textY = useTransform(scrollYProgress, [0.2, 0.35], [30, 0]);
 
   // Canvas particle animation
   useEffect(() => {
@@ -172,7 +172,7 @@ export const VideoScrollSection = () => {
 
         {/* Text Content - separate layer with overflow visible */}
         <motion.div
-          className="relative z-10 flex flex-col items-center justify-center px-6 md:px-4 text-center max-w-6xl"
+          className="relative z-10 flex flex-col items-center justify-center px-6 md:px-4 text-center max-w-6xl mt-[15vh]"
           style={{
             opacity: textOpacity,
             y: textY
@@ -188,7 +188,7 @@ export const VideoScrollSection = () => {
                 initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
                 whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
                 viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 className="inline-block"
               >
                 I
@@ -198,7 +198,7 @@ export const VideoScrollSection = () => {
                 initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
                 whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
                 viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 className="inline-block"
               >
                 build
@@ -208,7 +208,7 @@ export const VideoScrollSection = () => {
                 initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
                 whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
                 viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 className="inline-block"
               >
                 systems
@@ -218,7 +218,7 @@ export const VideoScrollSection = () => {
                 initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
                 whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
                 viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.8, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
                 className="inline-block"
               >
                 that
@@ -228,7 +228,7 @@ export const VideoScrollSection = () => {
                 initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
                 whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
                 viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.8, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
                 className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-accent-blue to-accent-purple animate-gradient-shift"
                 style={{
                   backgroundSize: '200% 200%',
@@ -240,7 +240,8 @@ export const VideoScrollSection = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 0.5, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.5, delay: 0.95, ease: [0.22, 1, 0.36, 1] }}
+
                 className="inline-block"
               >
                 .
