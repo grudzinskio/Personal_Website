@@ -11,11 +11,6 @@ export function LetterDisplay({ word, colorClass }) {
         <span
           key={index}
           className={`letter inline-block ${colorClass} text-5xl md:text-7xl lg:text-8xl font-bold`}
-          style={{
-            willChange: 'transform',
-            transform: 'translateZ(0)',
-            backfaceVisibility: 'hidden'
-          }}
         >
           {letter === ' ' ? '\u00A0' : letter}
         </span>

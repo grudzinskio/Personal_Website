@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 
 /**
  * AnimatedHeroSection - Lightweight alternative to video
@@ -9,6 +9,9 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 export const VideoScrollSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Optimization: Only animate when in view to save resources for other sections
+  const isInView = useInView(containerRef, { margin: "0px 0px -20% 0px" });
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -20,8 +23,25 @@ export const VideoScrollSection = () => {
   const textOpacity = useTransform(scrollYProgress, [0.2, 0.35, 0.7, 0.85], [0, 1, 1, 0]);
   const textY = useTransform(scrollYProgress, [0.2, 0.35], [30, 0]);
 
+  // Define Particle interface
+  interface Particle {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    size: number;
+    opacity: number;
+    hue: number;
+  }
+
+  // Persist particles across re-renders/scrolls so they don't reset positions
+  const particlesRef = useRef<Particle[]>([]);
+
   // Canvas particle animation
   useEffect(() => {
+    // Stop animation if not in view
+    if (!isInView) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d', { alpha: true });
@@ -41,40 +61,33 @@ export const VideoScrollSection = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Create particles
-    interface Particle {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      size: number;
-      opacity: number;
-      hue: number;
-    }
+    // Initialize particles only if they don't exist yet
+    if (particlesRef.current.length === 0) {
+      // Reduce particle count on mobile for better performance
+      const isMobile = window.innerWidth < 768;
+      const particleCount = isMobile ? 30 : 60;
 
-    const particles: Particle[] = [];
-    // Reduce particle count on mobile for better performance
-    const isMobile = window.innerWidth < 768;
-    const particleCount = isMobile ? 30 : 60;
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 3 + 1,
-        opacity: Math.random() * 0.5 + 0.3,
-        hue: Math.random() * 60 + 240 // Purple to blue range
-      });
+      for (let i = 0; i < particleCount; i++) {
+        particlesRef.current.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          size: Math.random() * 3 + 1,
+          opacity: Math.random() * 0.5 + 0.3,
+          hue: Math.random() * 60 + 240 // Purple to blue range
+        });
+      }
     }
 
     let animationId: number;
+    const isMobile = window.innerWidth < 768;
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Update and draw particles
-      particles.forEach(particle => {
+      particlesRef.current.forEach(particle => {
         particle.x += particle.vx;
         particle.y += particle.vy;
 
@@ -100,8 +113,8 @@ export const VideoScrollSection = () => {
 
       // Draw connections between nearby particles (skip on mobile for better performance)
       if (!isMobile) {
-        particles.forEach((p1, i) => {
-          particles.slice(i + 1).forEach(p2 => {
+        particlesRef.current.forEach((p1, i) => {
+          particlesRef.current.slice(i + 1).forEach(p2 => {
             const dx = p1.x - p2.x;
             const dy = p1.y - p2.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
@@ -127,7 +140,7 @@ export const VideoScrollSection = () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, []);
+  }, [isInView]);
 
   return (
     <section

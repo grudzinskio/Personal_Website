@@ -14,71 +14,49 @@ function getRandomRotation() {
   return Math.random() * 60 - 30;
 }
 
-function animateLettersOnScroll(containerRef) {
-  const lettersContainer = containerRef.current;
-  const letterElements = lettersContainer?.querySelectorAll('.letter');
-
-  if (!letterElements || letterElements.length === 0) return [];
-
-  const animations = [];
-
-  letterElements.forEach((letter) => {
-    // Set random speed if not already set
-    if (!letter.getAttribute('data-speed')) {
-      letter.setAttribute('data-speed', getRandomSpeed());
-    }
-
-    // Reset to initial position first
-    gsap.set(letter, { y: 0, rotation: 0, opacity: 1 });
-
-    const anim = gsap.to(letter, {
-      y: (i, el) =>
-        (1 - parseFloat(el.getAttribute('data-speed'))) *
-        ScrollTrigger.maxScroll(window),
-      opacity: 0, // Fade out completely
-      ease: 'none',
-      scrollTrigger: {
-        trigger: document.documentElement,
-        start: 0,
-        end: window.innerHeight, // Letters disappear by end of viewport
-        invalidateOnRefresh: true,
-        scrub: 0.5
-      },
-      rotation: getRandomRotation()
-    });
-
-    animations.push(anim);
-  });
-
-  return animations;
-}
-
 export function LetterCollision() {
   const containerRef = useRef(null);
-  const animationsRef = useRef([]);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Wait for next frame to ensure DOM is ready
-    const timeoutId = setTimeout(() => {
-      animationsRef.current = animateLettersOnScroll(containerRef);
-      ScrollTrigger.refresh();
-    }, 100);
+    // Use gsap.context for proper cleanup and scoping
+    const ctx = gsap.context(() => {
+      const letters = gsap.utils.toArray('.letter');
 
-    return () => {
-      clearTimeout(timeoutId);
-      // Clean up only our specific animations
-      animationsRef.current.forEach(anim => {
-        if (anim && anim.scrollTrigger) {
-          anim.scrollTrigger.kill();
-        }
-        if (anim && anim.kill) {
-          anim.kill();
+      if (letters.length === 0) return;
+
+      // Assign random speeds to letters if needed
+      letters.forEach((letter) => {
+        if (!letter.getAttribute('data-speed')) {
+          letter.setAttribute('data-speed', getRandomSpeed());
         }
       });
-      animationsRef.current = [];
-    };
+
+      // Reset to initial position
+      gsap.set(letters, { y: 0, rotation: 0, opacity: 1 });
+
+      // Create a SINGLE interaction observer/scroll trigger for all letters
+      // This is much more performant than creating 50+ individual ScrollTriggers
+      gsap.to(letters, {
+        y: (i, el) => {
+          const speed = parseFloat(el.getAttribute('data-speed') || '1');
+          return (1 - speed) * ScrollTrigger.maxScroll(window);
+        },
+        opacity: 0,
+        rotation: () => getRandomRotation(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.documentElement,
+          start: 0,
+          end: window.innerHeight, // Letters disappear by end of viewport
+          scrub: 0.5,
+          invalidateOnRefresh: true, // Recalculate values on resize
+        },
+      });
+    }, containerRef);
+
+    return () => ctx.revert(); // Automatic cleanup
   }, []);
 
   return (
