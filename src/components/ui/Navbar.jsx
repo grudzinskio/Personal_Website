@@ -93,11 +93,14 @@ export const Navbar = () => {
         <>
             <nav
                 className={cn(
-                    "fixed w-full z-40 transition-all duration-300",
+                    "fixed w-full z-40 transition-all duration-500",
                     isScrolled
-                        ? "py-2 bg-card/80 backdrop-blur-lg shadow-xl border-b border-border/40"
-                        : "py-3 bg-card/40 backdrop-blur-md border-b border-border/20"
+                        ? "py-2 backdrop-blur-2xl border-b border-white/[0.06]"
+                        : "py-3 border-b border-transparent"
                 )}
+                style={{
+                    background: isScrolled ? 'rgba(0,0,0,0.72)' : 'transparent',
+                }}
                 style={{
                     opacity: navOpacity,
                     transform: navTransform,
@@ -122,12 +125,18 @@ export const Navbar = () => {
                         role="menubar"
                         aria-label="Main navigation"
                     >
-                        {/* Moving highlight bubble with modern gradient */}
+                        {/* Moving highlight bubble — Apple-style pure white pill */}
                         <span
                             ref={bubbleRef}
                             aria-hidden="true"
-                            className="absolute top-0 left-0 z-0 rounded-full bg-gradient-to-r from-primary/30 to-primary/20 backdrop-blur-sm shadow-[0_0_15px_rgba(139,92,246,0.3)] transition-all duration-300 ease-out pointer-events-none"
-                            style={{ opacity: 0, transform: 'translate(0,0)', width: 0, height: 0 }}
+                            className="absolute top-0 left-0 z-0 rounded-full transition-all duration-300 ease-out pointer-events-none"
+                            style={{
+                                opacity: 0,
+                                transform: 'translate(0,0)',
+                                width: 0,
+                                height: 0,
+                                background: 'rgba(255,255,255,0.08)',
+                            }}
                         />
                         {navItems.map((item) => (
                             <Link
@@ -139,10 +148,10 @@ export const Navbar = () => {
                                 onFocus={() => setHoveredItem(item.name)}
                                 onBlur={() => setHoveredItem(null)}
                                 className={cn(
-                                    "relative z-10 px-4 py-2 rounded-full font-medium transition-all duration-300",
+                                    "relative z-10 px-4 py-2 rounded-full text-sm font-medium tracking-[-0.01em] transition-all duration-300",
                                     item.name === activeItem
-                                        ? "text-primary"
-                                        : "text-foreground/70 hover:text-primary hover:scale-105"
+                                        ? "text-white"
+                                        : "text-white/50 hover:text-white/90"
                                 )}
                             >
                                 {item.name}
@@ -167,29 +176,31 @@ export const Navbar = () => {
             {/* mobile menu overlay */}
             <div
                 className={cn(
-                    "fixed inset-0 bg-background/95 backdrop-blur-lg z-50 flex md:hidden transition-all duration-300",
+                    "fixed inset-0 z-50 flex md:hidden transition-all duration-400",
                     isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                 )}
+                style={{ background: 'rgba(0,0,0,0.92)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)' }}
             >
-                <div className="relative m-auto w-[85%] max-w-sm rounded-3xl border border-border/40 bg-gradient-to-br from-card/95 to-card/90 p-8 shadow-2xl flex flex-col items-stretch">
+                <div className="relative m-auto w-[85%] max-w-sm rounded-2xl border border-white/[0.08] p-8 flex flex-col items-stretch"
+                    style={{ background: 'rgba(28,28,30,0.95)' }}>
                     <button
                         aria-label="Close menu"
                         onClick={() => setIsMenuOpen(false)}
-                        className="absolute -top-4 -right-4 h-12 w-12 rounded-full border border-border/40 bg-gradient-to-br from-card to-card/80 flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-transform"
-                        style={{ minWidth: '48px', minHeight: '48px' }}
+                        className="absolute -top-4 -right-4 h-10 w-10 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+                        style={{ background: 'rgba(28,28,30,0.9)', minWidth: '40px', minHeight: '40px' }}
                     >
-                        <X size={22} />
+                        <X size={18} />
                     </button>
-                    <div className="flex flex-col space-y-4 text-lg">
+                    <div className="flex flex-col space-y-2">
                         {navItems.map((item, key) => (
                             <Link
                                 key={key}
                                 to={item.href}
                                 className={cn(
-                                    "px-6 py-4 rounded-xl transition-all duration-300 text-center font-medium",
+                                    "px-5 py-4 rounded-xl transition-all duration-200 text-center text-sm font-medium tracking-[-0.01em]",
                                     item.name === activeItem
-                                        ? "bg-gradient-to-r from-primary/30 to-primary/20 text-primary border border-primary/40 shadow-[0_0_15px_rgba(139,92,246,0.2)]"
-                                        : "text-foreground/80 hover:text-primary border border-border/30 bg-background/30 hover:bg-primary/10 hover:border-primary/30"
+                                        ? "text-white bg-white/10"
+                                        : "text-white/50 hover:text-white hover:bg-white/5"
                                 )}
                                 style={{ minHeight: '44px' }}
                                 onClick={() => setIsMenuOpen(false)}

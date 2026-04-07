@@ -67,6 +67,33 @@
   }
 }
 
+/* Apple-style ambient orb pulse */
+@keyframes orbPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+/* Expanding ring pulse — AirPods-style */
+@keyframes ringPulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
 /* Blob animation for background gradient blobs */
 @keyframes blob {
   0% {
@@ -105,7 +132,7 @@
     --muted: 217 33% 20%;
     --muted-foreground: 213 15% 75%;
 
-    /* Accent colors from Portfolio V2 */
+    /* Accent colors */
     --accent-blue: #0070f3;
     --accent-purple: #7928ca;
     --accent-pink: #ff0080;
@@ -133,10 +160,13 @@
 
   body {
     @apply bg-background text-foreground transition-colors duration-300;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overscroll-behavior: none;
+    letter-spacing: -0.01em;
   }
 }
 
@@ -191,25 +221,25 @@
   animation: gradient-shift 15s ease infinite;
 }
 
-/* Glassmorphism Effects */
+/* Glassmorphism Effects — Apple-style frosted glass */
 @utility glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 @utility glass-card-strong {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 @utility glass-card-subtle {
   background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(8px) saturate(150%);
-  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 

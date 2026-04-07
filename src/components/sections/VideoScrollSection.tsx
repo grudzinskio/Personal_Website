@@ -1,266 +1,82 @@
-import { useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 /**
- * AnimatedHeroSection - Lightweight alternative to video
- * Features animated gradient mesh with floating particles
- * GPU-accelerated, smooth 60fps performance
+ * StatementSection — "I build systems that make sense"
+ * Sits in normal page flow, global background shows through.
+ * Overlay: radial dark scrim + ambient orb for visual depth.
  */
 export const VideoScrollSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  // Optimization: Only animate when in view to save resources for other sections
-  const isInView = useInView(containerRef, { margin: "0px 0px -20% 0px" });
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  // Smooth opacity transitions
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const textOpacity = useTransform(scrollYProgress, [0.2, 0.35, 0.7, 0.85], [0, 1, 1, 0]);
-  const textY = useTransform(scrollYProgress, [0.2, 0.35], [30, 0]);
-
-  // Define Particle interface
-  interface Particle {
-    x: number;
-    y: number;
-    vx: number;
-    vy: number;
-    size: number;
-    opacity: number;
-    hue: number;
-  }
-
-  // Persist particles across re-renders/scrolls so they don't reset positions
-  const particlesRef = useRef<Particle[]>([]);
-
-  // Canvas particle animation
-  useEffect(() => {
-    // Stop animation if not in view
-    if (!isInView) return;
-
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d', { alpha: true });
-    if (!ctx) return;
-
-    // Set canvas size
-    const resizeCanvas = () => {
-      if (containerRef.current) {
-        // Use container dimensions to ensure canvas covers the full 120vh section
-        canvas.width = containerRef.current.offsetWidth;
-        canvas.height = containerRef.current.offsetHeight;
-      } else {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-    };
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    // Initialize particles only if they don't exist yet
-    if (particlesRef.current.length === 0) {
-      // Reduce particle count on mobile for better performance
-      const isMobile = window.innerWidth < 768;
-      const particleCount = isMobile ? 30 : 60;
-
-      for (let i = 0; i < particleCount; i++) {
-        particlesRef.current.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 3 + 1,
-          opacity: Math.random() * 0.5 + 0.3,
-          hue: Math.random() * 60 + 240 // Purple to blue range
-        });
-      }
-    }
-
-    let animationId: number;
-    const isMobile = window.innerWidth < 768;
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Update and draw particles
-      particlesRef.current.forEach(particle => {
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-
-        // Bounce off edges
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-
-        // Draw particle with glow
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-
-        // Gradient for glow effect
-        const gradient = ctx.createRadialGradient(
-          particle.x, particle.y, 0,
-          particle.x, particle.y, particle.size * 3
-        );
-        gradient.addColorStop(0, `hsla(${particle.hue}, 80%, 60%, ${particle.opacity})`);
-        gradient.addColorStop(1, `hsla(${particle.hue}, 80%, 60%, 0)`);
-
-        ctx.fillStyle = gradient;
-        ctx.fill();
-      });
-
-      // Draw connections between nearby particles (skip on mobile for better performance)
-      if (!isMobile) {
-        particlesRef.current.forEach((p1, i) => {
-          particlesRef.current.slice(i + 1).forEach(p2 => {
-            const dx = p1.x - p2.x;
-            const dy = p1.y - p2.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < 150) {
-              ctx.beginPath();
-              ctx.moveTo(p1.x, p1.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = `rgba(139, 92, 246, ${(1 - distance / 150) * 0.2})`;
-              ctx.lineWidth = 1;
-              ctx.stroke();
-            }
-          });
-        });
-      }
-
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener('resize', resizeCanvas);
-    };
-  }, [isInView]);
+  const words = [
+    { text: 'I', delay: 0.1 },
+    { text: 'build', delay: 0.2 },
+    { text: 'systems', delay: 0.3 },
+    { text: 'that', delay: 0.4 },
+  ];
 
   return (
-    <section
-      ref={containerRef}
-      className="relative w-full bg-background"
-      style={{ height: '120vh' }}
-    >
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center">
-        {/* Background layer with overflow hidden - extends to full section height */}
-        <div className="absolute top-0 left-0 right-0 overflow-hidden" style={{ height: '120vh' }}>
-          {/* Glowing border at top */}
-          {/* The line itself */}
-          <div
-            className="absolute top-0 left-0 w-full h-px z-20"
-            style={{
-              background: 'linear-gradient(90deg, transparent 0%, #0070f3 20%, #7928ca 50%, #ff0080 80%, transparent 100%)'
-            }}
-          />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-32">
 
-          {/* Animated gradient background */}
-          <div className="absolute inset-0 gradient-mesh-animated opacity-40" />
+      {/* Radial dark scrim — makes text readable against the grid background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,0,0,0.55) 0%, transparent 100%)',
+        }}
+      />
 
-          {/* Canvas particles */}
-          <motion.canvas
-            ref={canvasRef}
-            className="absolute inset-0"
-            style={{ opacity }}
-          />
-
-          {/* Gradient overlay for depth */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-transparent" />
-
-
-          {/* Glowing border at bottom */}
-          <div
-            className="absolute bottom-0 left-0 w-full h-px z-20"
-            style={{
-              background: 'linear-gradient(90deg, transparent 0%, #0070f3 20%, #7928ca 50%, #ff0080 80%, transparent 100%)'
-            }}
-          />
-        </div>
-
-        {/* Text Content - separate layer with overflow visible */}
-        <motion.div
-          className="relative z-10 flex flex-col items-center justify-center px-6 md:px-4 text-center max-w-6xl mt-[15vh]"
+      {/* Ambient orb — adds colour depth matching the site palette */}
+      <div
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        aria-hidden="true"
+      >
+        <div
+          className="w-[700px] h-[700px] rounded-full"
           style={{
-            opacity: textOpacity,
-            y: textY
+            background: 'radial-gradient(circle at center, rgba(121,40,202,0.16) 0%, rgba(0,112,243,0.07) 45%, transparent 70%)',
+            filter: 'blur(80px)',
+            animation: 'orbPulse 10s ease-in-out infinite',
           }}
-        >
+        />
+      </div>
 
+      {/* Text */}
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+        <p className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-light leading-[1.08] tracking-tight">
+          {words.map(({ text, delay }) => (
+            <motion.span
+              key={text}
+              initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+              whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+              viewport={{ once: false, margin: '-8%' }}
+              transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-block text-white/90 mr-[0.25em]"
+            >
+              {text}
+            </motion.span>
+          ))}
 
+          {/* "make sense" — site accent gradient */}
+          <motion.span
+            initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            viewport={{ once: false, margin: '-8%' }}
+            transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-accent-blue to-accent-purple animate-gradient-shift"
+            style={{ backgroundSize: '200% 200%' }}
+          >
+            make sense
+          </motion.span>
 
-          <div className="w-full">
-            <p className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight text-white relative px-8 md:px-4">
-              {/* Animate each word separately */}
-              <motion.span
-                initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
-                whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-                viewport={{ once: false, margin: "-10%" }}
-                transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                className="inline-block"
-              >
-                I
-              </motion.span>
-              {' '}
-              <motion.span
-                initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
-                whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-                viewport={{ once: false, margin: "-10%" }}
-                transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="inline-block"
-              >
-                build
-              </motion.span>
-              {' '}
-              <motion.span
-                initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
-                whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-                viewport={{ once: false, margin: "-10%" }}
-                transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="inline-block"
-              >
-                systems
-              </motion.span>
-              {' '}
-              <motion.span
-                initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
-                whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-                viewport={{ once: false, margin: "-10%" }}
-                transition={{ duration: 0.8, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="inline-block"
-              >
-                that
-              </motion.span>
-              {' '}
-              <motion.span
-                initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', letterSpacing: '0.05em' }}
-                whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: 'normal' }}
-                viewport={{ once: false, margin: "-10%" }}
-                transition={{ duration: 0.8, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-accent-blue to-accent-purple animate-gradient-shift"
-                style={{
-                  backgroundSize: '200% 200%',
-                }}
-              >
-                make sense
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: false, margin: "-10%" }}
-                transition={{ duration: 0.5, delay: 0.95, ease: [0.22, 1, 0.36, 1] }}
-                className="inline-block"
-              >
-                .
-              </motion.span>
-            </p>
-          </div>
-        </motion.div>
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: false, margin: '-8%' }}
+            transition={{ duration: 0.5, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-block text-white/35 ml-[0.05em]"
+          >
+            .
+          </motion.span>
+        </p>
       </div>
     </section>
   );
