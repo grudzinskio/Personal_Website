@@ -22,20 +22,17 @@ export const Background = () => {
                 }}
             />
 
-            {/* Layer 2: Grid Pattern */}
-            <div className="absolute inset-0 bg-grid" style={{ opacity: 1 }} />
-
             {/* Layer 3: Animated Gradient Blob 1 (Blue) */}
             <motion.div
                 style={{ y: blob1Y }}
-                className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full animate-blob"
+                className="absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full animate-blob"
                 aria-hidden="true"
             >
                 <div
                     className="w-full h-full"
                     style={{
-                        background: 'radial-gradient(circle, rgba(0,112,243,0.2) 0%, rgba(0,112,243,0.05) 50%, transparent 100%)',
-                        filter: 'blur(60px)'
+                        background: 'radial-gradient(circle, rgba(0,112,243,0.18) 0%, rgba(0,112,243,0.04) 60%, transparent 100%)',
+                        filter: 'blur(80px)'
                     }}
                 />
             </motion.div>
@@ -43,19 +40,19 @@ export const Background = () => {
             {/* Layer 4: Animated Gradient Blob 2 (Purple) */}
             <motion.div
                 style={{ y: blob2Y }}
-                className="absolute top-1/3 -right-40 w-[500px] h-[500px] rounded-full animate-blob animation-delay-200"
+                className="absolute top-1/3 -right-40 w-[600px] h-[600px] rounded-full animate-blob animation-delay-200"
                 aria-hidden="true"
             >
                 <div
                     className="w-full h-full"
                     style={{
-                        background: 'radial-gradient(circle, rgba(121,40,202,0.15) 0%, rgba(121,40,202,0.05) 50%, transparent 100%)',
-                        filter: 'blur(60px)'
+                        background: 'radial-gradient(circle, rgba(121,40,202,0.14) 0%, rgba(121,40,202,0.03) 60%, transparent 100%)',
+                        filter: 'blur(80px)'
                     }}
                 />
             </motion.div>
 
-            {/* Layer 5: Animated Gradient Blob 3 (Pink) */}
+            {/* Layer 5: Animated Gradient Blob 3 (Pink/Indigo) */}
             <motion.div
                 style={{ y: blob3Y }}
                 className="absolute bottom-0 left-1/3 w-[700px] h-[700px] rounded-full animate-blob animation-delay-400"
@@ -64,17 +61,17 @@ export const Background = () => {
                 <div
                     className="w-full h-full"
                     style={{
-                        background: 'radial-gradient(circle, rgba(255,0,128,0.1) 0%, transparent 100%)',
-                        filter: 'blur(60px)'
+                        background: 'radial-gradient(circle, rgba(99,60,220,0.1) 0%, transparent 100%)',
+                        filter: 'blur(100px)'
                     }}
                 />
             </motion.div>
 
-            {/* Layer 6: Radial Gradient Overlay (Top) */}
+            {/* Layer 6: Apple-style top radial highlight */}
             <div
-                className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[800px]"
+                className="absolute top-0 left-1/2 -translate-x-1/2 w-[120%] h-[600px]"
                 style={{
-                    background: 'radial-gradient(circle at center, rgba(0,112,243,0.05) 0%, transparent 50%, transparent 100%)'
+                    background: 'radial-gradient(ellipse at center top, rgba(80,60,200,0.07) 0%, transparent 70%)'
                 }}
             />
 

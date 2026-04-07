@@ -38,7 +38,7 @@ const codeSnippets = [
 
 export const HeroIntroSection = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const isInView = useInView(sectionRef, { once: false, amount: 0.2 });
 
   return (
     <section ref={sectionRef} className="relative min-h-screen w-full overflow-hidden flex items-center justify-center py-16 sm:py-20 md:py-32">
@@ -47,7 +47,7 @@ export const HeroIntroSection = () => {
           {/* Left Column: Typography */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
             className="space-y-8"
           >
@@ -72,7 +72,7 @@ export const HeroIntroSection = () => {
                 <motion.p
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
                   className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed"
                 >
@@ -84,7 +84,7 @@ export const HeroIntroSection = () => {
             {/* Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               className="grid grid-cols-3 gap-4 sm:gap-6 pt-4"
             >
@@ -106,7 +106,7 @@ export const HeroIntroSection = () => {
           {/* Right Column: Code Editor */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
           >
             <CodeEditorWindow />
@@ -124,7 +124,7 @@ const CodeEditorWindow = () => {
   const [isTyping, setIsTyping] = useState(true);
   const timeoutRef = useRef(null);
   const editorRef = useRef(null);
-  const isInView = useInView(editorRef, { once: false, amount: 0.3 });
+  const isInView = useInView(editorRef, { once: false, amount: 0.2 });
 
   useEffect(() => {
     // Only animate when in view

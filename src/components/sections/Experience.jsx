@@ -41,7 +41,7 @@ const experiences = [
 
 const ExperienceItem = ({ role, company, location, period, description, index, logo }) => {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: '-50px' });
+    const isInView = useInView(ref, { once: false, margin: '-50px' });
 
     return (
         <motion.div
@@ -89,7 +89,7 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
 
 export const Experience = () => {
     const sectionRef = useRef(null);
-    const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+    const isInView = useInView(sectionRef, { once: false, margin: '-100px' });
 
     return (
         <div id="experience" className="min-h-screen flex flex-col items-center justify-center px-6 md:px-8 py-20 md:py-32">
@@ -138,25 +138,6 @@ export const Experience = () => {
                     </div>
                 </div>
 
-                {/* Skills summary */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                    className="mt-20 text-center"
-                >
-                    <h3 className="text-lg font-medium text-foreground mb-6">Core Technologies</h3>
-                    <div className="flex flex-wrap justify-center gap-3">
-                        {['Python', 'TypeScript', 'React', 'Node.js', 'Java', 'SQL', 'Machine Learning', 'LangChain', 'Docker', 'GitHub Actions'].map((skill) => (
-                            <span
-                                key={skill}
-                                className="px-4 py-2 text-sm text-muted-foreground bg-card rounded-lg border border-border hover:border-primary/30 hover:bg-card/80 transition-all cursor-default"
-                            >
-                                {skill}
-                            </span>
-                        ))}
-                    </div>
-                </motion.div>
             </div>
         </div>
     );

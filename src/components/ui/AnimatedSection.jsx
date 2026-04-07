@@ -9,7 +9,7 @@ export const AnimatedSection = ({
   children,
   delay = 0,
   className = '',
-  once = true
+  once = false
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, amount: 0.2 });
@@ -52,7 +52,7 @@ export const AnimatedStagger = ({
   className = ''
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
 
   const containerVariants = {
     hidden: { opacity: 0 },
