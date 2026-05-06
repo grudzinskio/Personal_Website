@@ -5,8 +5,8 @@ import { Background } from "../components/ui/Background";
 import { Navbar } from "../components/ui/Navbar";
 import { Footer } from "../components/ui/Footer";
 import { LetterCollision } from "../components/sections/LetterCollision";
-import { VideoScrollSection } from "../components/sections/VideoScrollSection";
-import { HeroIntroSection } from "../components/sections/HeroIntroSection";
+import { IntroductionSection } from "../components/sections/IntroductionSection";
+import { PreclinicalExplorer } from "../components/sections/PreclinicalExplorer";
 import Experience from "../components/sections/Experience";
 import SlidingImages from "../components/sections/SlidingImages";
 import NavigationPanels from "../components/sections/NavigationPanels";
@@ -71,7 +71,7 @@ export const Home = () => {
 
             {/* Scroll Progress Bar */}
             <motion.div
-                className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink origin-left z-50"
+                className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-500 via-sky-400 to-cyan-300 origin-left z-50"
                 style={{ scaleX: scrollYProgress }}
             />
 
@@ -81,6 +81,12 @@ export const Home = () => {
                 <section className="relative px-4">
                     <LetterCollision />
                 </section>
+
+                {/* Section 2: New Introduction */}
+                <IntroductionSection />
+
+                {/* Section 3: Preclinical Explorer */}
+                <PreclinicalExplorer />
 
                 {/* Scroll indicator button */}
                 {showScrollButton && (
@@ -98,14 +104,6 @@ export const Home = () => {
                         </motion.div>
                     </Magnetic>
                 )}
-
-                {/* Section 2: Scroll-Driven Video */}
-                <div id="video-section">
-                    <VideoScrollSection />
-                </div>
-
-                {/* Section 3: Hero Intro with Code Editor */}
-                <HeroIntroSection />
 
                 {/* Section 4: Experience Timeline */}
                 <Experience />

@@ -21,8 +21,8 @@ const NavigationPanels = () => {
       description: 'Explore my technical skills and proficiencies',
       icon: Sparkles,
       href: '/skills',
-      gradient: 'from-purple-500/20 to-pink-500/20',
-      hoverGradient: 'from-purple-500/30 to-pink-500/30',
+      gradient: 'from-sky-500/20 to-cyan-500/20',
+      hoverGradient: 'from-sky-500/30 to-cyan-500/30',
     },
     {
       title: 'Projects',

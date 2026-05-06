@@ -122,10 +122,10 @@
 
     --card: 222 47% 8%;
 
-    --primary: 250 65% 65%;
+    --primary: 213 94% 64%;
     --primary-foreground: 213 31% 91%;
 
-    --secondary: 282 100% 81%;
+    --secondary: 199 89% 58%;
     --secondary-foreground: 24 9.8% 10%;
 
     --border: 217 33% 20%;
@@ -134,8 +134,6 @@
 
     /* Accent colors */
     --accent-blue: #0070f3;
-    --accent-purple: #7928ca;
-    --accent-pink: #ff0080;
 
     /* Dark color shades */
     --dark-900: #0a0a0a;
@@ -201,21 +199,21 @@
 @utility gradient-mesh {
   background:
     radial-gradient(at 27% 37%, hsla(215, 98%, 61%, 0.12) 0px, transparent 50%),
-    radial-gradient(at 97% 21%, hsla(240, 98%, 61%, 0.1) 0px, transparent 50%),
-    radial-gradient(at 52% 99%, hsla(260, 98%, 61%, 0.09) 0px, transparent 50%),
-    radial-gradient(at 10% 29%, hsla(290, 98%, 61%, 0.07) 0px, transparent 50%),
+    radial-gradient(at 97% 21%, hsla(202, 98%, 61%, 0.10) 0px, transparent 50%),
+    radial-gradient(at 52% 99%, hsla(195, 98%, 61%, 0.09) 0px, transparent 50%),
+    radial-gradient(at 10% 29%, hsla(210, 98%, 61%, 0.07) 0px, transparent 50%),
     radial-gradient(at 97% 96%, hsla(220, 98%, 61%, 0.07) 0px, transparent 50%),
-    radial-gradient(at 33% 50%, hsla(250, 98%, 61%, 0.08) 0px, transparent 50%),
-    radial-gradient(at 79% 53%, hsla(270, 98%, 61%, 0.06) 0px, transparent 50%);
+    radial-gradient(at 33% 50%, hsla(205, 98%, 61%, 0.08) 0px, transparent 50%),
+    radial-gradient(at 79% 53%, hsla(200, 98%, 61%, 0.06) 0px, transparent 50%);
 }
 
 /* Animated gradient mesh - subtle movement */
 @utility gradient-mesh-animated {
   background:
     radial-gradient(at 27% 37%, hsla(215, 98%, 61%, 0.12) 0px, transparent 50%),
-    radial-gradient(at 97% 21%, hsla(240, 98%, 61%, 0.1) 0px, transparent 50%),
-    radial-gradient(at 52% 99%, hsla(260, 98%, 61%, 0.09) 0px, transparent 50%),
-    radial-gradient(at 10% 29%, hsla(290, 98%, 61%, 0.07) 0px, transparent 50%),
+    radial-gradient(at 97% 21%, hsla(202, 98%, 61%, 0.10) 0px, transparent 50%),
+    radial-gradient(at 52% 99%, hsla(195, 98%, 61%, 0.09) 0px, transparent 50%),
+    radial-gradient(at 10% 29%, hsla(210, 98%, 61%, 0.07) 0px, transparent 50%),
     radial-gradient(at 97% 96%, hsla(220, 98%, 61%, 0.07) 0px, transparent 50%);
   background-size: 200% 200%;
   animation: gradient-shift 15s ease infinite;
@@ -260,7 +258,7 @@
 
 /* Gradient text effect */
 @utility text-gradient {
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(250 80% 70%) 50%, hsl(270 80% 70%) 100%);
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(203 95% 66%) 52%, hsl(190 95% 62%) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -268,7 +266,7 @@
 }
 
 @utility text-gradient-animated {
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(250 80% 70%) 50%, hsl(270 80% 70%) 100%);
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(203 95% 66%) 52%, hsl(190 95% 62%) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -278,7 +276,7 @@
 
 /* Accent gradient text from Portfolio V2 */
 @utility gradient-text-accent {
-  background: linear-gradient(to right, var(--accent-blue), var(--accent-purple), var(--accent-pink));
+  background: linear-gradient(to right, #3b82f6, #38bdf8, #22d3ee);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -310,7 +308,7 @@
 }
 
 .cosmic-button:hover {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 22px rgba(59, 130, 246, 0.5);
 }
 
 @utility button-glass {
@@ -456,10 +454,6 @@ html.lenis {
   box-shadow: 0 0 60px -15px rgba(0, 112, 243, 0.5);
 }
 
-@utility glow-purple {
-  box-shadow: 0 0 60px -15px rgba(121, 40, 202, 0.5);
-}
-
 @utility glow-text {
   text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
 }
@@ -538,19 +532,6 @@ html.lenis {
 @utility from-accent-blue {
   --tw-gradient-from: var(--accent-blue);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent);
-}
-
-@utility via-accent-purple {
-  --tw-gradient-via: var(--accent-purple);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to, transparent);
-}
-
-@utility to-accent-pink {
-  --tw-gradient-to: var(--accent-pink);
-}
-
-@utility to-accent-purple {
-  --tw-gradient-to: var(--accent-purple);
 }
 
 @utility from-dark-950 {

@@ -100,8 +100,6 @@ export const Navbar = () => {
                 )}
                 style={{
                     background: isScrolled ? 'rgba(0,0,0,0.72)' : 'transparent',
-                }}
-                style={{
                     opacity: navOpacity,
                     transform: navTransform,
                     pointerEvents: isHomePage && scrollProgress > 0.9 ? 'none' : 'auto'

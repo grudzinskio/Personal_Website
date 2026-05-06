@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 /**
- * Background — dark purple-tinted canvas with grid, drifting blobs, noise, and vignette
+ * Background — dark charcoal/navy canvas with grid, drifting blue/cyan blobs, noise, and vignette
  */
 export const Background = () => {
     const { scrollYProgress } = useScroll();
@@ -36,7 +36,7 @@ export const Background = () => {
                 />
             </motion.div>
 
-            {/* Blob 2 — right purple */}
+            {/* Blob 2 — right cyan */}
             <motion.div
                 style={{ y: blob2Y }}
                 className="absolute top-1/3 -right-40 w-[500px] h-[500px] rounded-full animate-blob animation-delay-200"
@@ -45,13 +45,13 @@ export const Background = () => {
                 <div
                     className="w-full h-full"
                     style={{
-                        background: 'radial-gradient(circle, rgba(121,40,202,0.18) 0%, rgba(121,40,202,0.05) 50%, transparent 100%)',
+                        background: 'radial-gradient(circle, rgba(56,189,248,0.16) 0%, rgba(56,189,248,0.05) 50%, transparent 100%)',
                         filter: 'blur(60px)',
                     }}
                 />
             </motion.div>
 
-            {/* Blob 3 — bottom-center pink */}
+            {/* Blob 3 — bottom-center blue */}
             <motion.div
                 style={{ y: blob3Y }}
                 className="absolute bottom-0 left-1/3 w-[700px] h-[700px] rounded-full animate-blob animation-delay-400"
@@ -60,7 +60,7 @@ export const Background = () => {
                 <div
                     className="w-full h-full"
                     style={{
-                        background: 'radial-gradient(circle, rgba(121,40,202,0.10) 0%, transparent 100%)',
+                        background: 'radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 100%)',
                         filter: 'blur(80px)',
                     }}
                 />
