@@ -40,7 +40,7 @@ const SlidingImages = () => {
   };
 
   return (
-    <section ref={containerRef} className="relative py-20 sm:py-24 md:py-32 overflow-x-hidden bg-background">
+    <section ref={containerRef} className="relative py-20 sm:py-24 md:py-32 overflow-x-hidden bg-transparent">
       <div className="mb-12 sm:mb-16 text-center px-4">
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
           Featured <span className="text-gradient-animated">Work</span>

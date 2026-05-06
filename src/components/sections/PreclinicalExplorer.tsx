@@ -14,9 +14,9 @@ type InfoCardProps = {
 
 function InfoCard({ title, body }: InfoCardProps) {
   return (
-    <article className="glass-card-subtle rounded-2xl border border-white/8 border-t border-t-blue-500/50 p-6 sm:p-7 md:p-8 shadow-[0_0_50px_rgba(59,130,246,0.08)] backdrop-blur-xl">
-      <p className="text-[11px] font-medium uppercase tracking-[0.26em] text-sky-200/70">{title}</p>
-      <p className="mt-4 text-sm sm:text-base leading-relaxed text-white/55">{body}</p>
+    <article className="relative flex min-h-[320px] flex-col justify-center overflow-hidden rounded-3xl border border-sky-300/20 bg-gradient-to-b from-white/[0.09] via-white/[0.03] to-sky-950/20 px-5 py-10 sm:px-6 sm:py-11 lg:min-h-[380px] lg:px-5 lg:py-12 shadow-[0_0_0_1px_rgba(56,189,248,0.06),0_24px_80px_rgba(2,6,23,0.55),0_0_60px_rgba(56,189,248,0.07)] backdrop-blur-xl before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-sky-300/45 before:to-transparent after:pointer-events-none after:absolute after:inset-0 after:rounded-3xl after:ring-1 after:ring-inset after:ring-white/[0.06]">
+      <p className="relative text-[11px] font-medium uppercase tracking-[0.26em] text-sky-200/80">{title}</p>
+      <p className="relative mt-5 text-sm sm:text-[15px] leading-relaxed text-white/60">{body}</p>
     </article>
   );
 }
@@ -25,12 +25,31 @@ export function PreclinicalExplorer() {
   return (
     <section className="relative px-4 pb-20 sm:pb-24 md:pb-32 pt-6 sm:pt-10">
       <div className="mx-auto max-w-7xl">
+        <motion.h2
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-10 text-center text-3xl font-bold tracking-tight text-white/95 sm:mb-14 sm:text-4xl md:mb-16 md:text-5xl"
+        >
+          Research
+        </motion.h2>
+
         <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-[0.9fr_1.2fr_0.9fr] lg:items-center">
-          <div className="order-2 lg:order-1">
-            <InfoCard
-              title="Segmentation Layers"
-              body="My research focus is automated longitudinal segmentation for multi-modality preclinical scans (CT, SPECT, PET), developed through Master of Science in Machine Learning coursework at MSOE."
-            />
+          <div className="order-2 flex justify-center lg:order-1 lg:justify-end lg:pe-6 xl:pe-10">
+            <div className="w-full max-w-sm lg:w-[min(100%,240px)] lg:max-w-[240px] xl:w-[min(100%,256px)] xl:max-w-[256px]">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <InfoCard
+                  title="Segmentation Layers"
+                  body="My research focus is automated longitudinal segmentation for multi-modality preclinical scans (CT, SPECT, PET), developed through Master of Science in Machine Learning coursework at MSOE."
+                />
+              </motion.div>
+            </div>
           </div>
 
           <div className="order-1 lg:order-2">
@@ -79,11 +98,20 @@ export function PreclinicalExplorer() {
             </div>
           </div>
 
-          <div className="order-3">
-            <InfoCard
-              title="CRO Workflow"
-              body="These intelligence views are built for structured readouts across biodistribution and radiopharmaceutical imaging workflows, with emphasis on clean data handling and review-ready exports for RPT Labworks."
-            />
+          <div className="order-3 flex justify-center lg:justify-start lg:ps-6 xl:ps-10">
+            <div className="w-full max-w-sm lg:w-[min(100%,240px)] lg:max-w-[240px] xl:w-[min(100%,256px)] xl:max-w-[256px]">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.9, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <InfoCard
+                  title="CRO Workflow"
+                  body="These intelligence views are built for structured readouts across biodistribution and radiopharmaceutical imaging workflows, with emphasis on clean data handling and review-ready exports for RPT Labworks."
+                />
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
