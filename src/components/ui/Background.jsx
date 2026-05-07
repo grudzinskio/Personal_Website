@@ -1,13 +1,7 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-
 /**
  * Background - smooth clinical Apple-style surface without visible grid lines.
  */
 export const Background = () => {
-    const { scrollYProgress } = useScroll();
-    const washY = useTransform(scrollYProgress, [0, 1], [0, 120]);
-    const sheenY = useTransform(scrollYProgress, [0, 1], [-80, 80]);
-
     return (
         <div className="fixed inset-0 -z-10 overflow-hidden">
             <div
@@ -18,25 +12,23 @@ export const Background = () => {
                 }}
             />
 
-            <motion.div
+            <div
                 className="absolute inset-x-[-20%] top-[-26rem] h-[62rem]"
                 aria-hidden="true"
                 style={{
-                    y: washY,
                     background:
-                        'radial-gradient(ellipse at 50% 30%, rgba(130, 236, 226, 0.13) 0%, rgba(52, 144, 168, 0.075) 34%, rgba(3, 8, 12, 0) 72%)',
-                    filter: 'blur(18px)',
+                        'radial-gradient(ellipse at 50% 30%, rgba(130, 236, 226, 0.15) 0%, rgba(52, 144, 168, 0.085) 34%, rgba(3, 8, 12, 0) 72%)',
+                    filter: 'blur(14px)',
                 }}
             />
 
-            <motion.div
+            <div
                 className="absolute inset-x-[-12%] top-[18%] h-[38rem] rotate-[-8deg]"
                 aria-hidden="true"
                 style={{
-                    y: sheenY,
                     background:
-                        'linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.018) 24%, rgba(153, 246, 228, 0.048) 50%, rgba(255,255,255,0.014) 68%, transparent 100%)',
-                    filter: 'blur(22px)',
+                        'linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.024) 24%, rgba(153, 246, 228, 0.055) 50%, rgba(255,255,255,0.018) 68%, transparent 100%)',
+                    filter: 'blur(16px)',
                 }}
             />
 

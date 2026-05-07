@@ -15,18 +15,19 @@ export const initSmoothScroll = () => {
   }
 
   // Optimize for mobile - completely disable Lenis on small devices
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = window.innerWidth < 768;
   
   // Create new Lenis instance with optimized settings
   // Only initialize on desktop/tablet (not mobile)
-  if (!isMobile) {
+  if (!isMobile && !prefersReducedMotion) {
     lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.85,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.7, // Reduced to prevent overshoot
+      wheelMultiplier: 0.85,
       smoothTouch: false, // Disable on touch for native feel
       touchMultiplier: 2,
       infinite: false,
@@ -36,21 +37,25 @@ export const initSmoothScroll = () => {
     lenis.on('scroll', ScrollTrigger.update);
   }
 
-  // Animation loop
-  const animate = (time) => {
-    if (lenis) {
-      lenis.raf(time);
-      requestAnimationFrame(animate);
-    }
-  };
+  let frameId = null;
 
-  requestAnimationFrame(animate);
+  if (lenis) {
+    const animate = (time) => {
+      lenis?.raf(time);
+      frameId = requestAnimationFrame(animate);
+    };
+
+    frameId = requestAnimationFrame(animate);
+  }
 
   // Return cleanup function
   return () => {
     if (lenis) {
       lenis.destroy();
       lenis = null;
+    }
+    if (frameId) {
+      cancelAnimationFrame(frameId);
     }
   };
 };

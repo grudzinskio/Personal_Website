@@ -64,10 +64,10 @@ export function LetterCollision() {
       <div className="-mt-40 sm:-mt-24 md:-mt-28 mb-40 sm:mb-28 md:mb-36 flex h-screen flex-col justify-end pr-2 sm:pr-4">
         {/* Animated greeting text */}
         <div className="flex flex-wrap items-center p-0 leading-none mb-2">
-          <div className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-normal text-foreground/80 flex">
-            <LetterDisplay word="Hello, " colorClass="text-foreground/80" />
+          <div className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-normal text-foreground/92 flex">
+            <LetterDisplay word="Hello, " colorClass="text-foreground/92" />
             <div className="w-2 sm:w-3 md:w-5"></div>
-            <LetterDisplay word="I'm" colorClass="text-foreground/80" />
+            <LetterDisplay word="I'm" colorClass="text-foreground/92" />
           </div>
         </div>
 
@@ -84,9 +84,9 @@ export function LetterCollision() {
       </div>
       {/* Extra random letters below with proper spacing */}
       <div className="flex flex-wrap mb-24 sm:mb-32 gap-2 xs:gap-4 sm:gap-6 pr-2 sm:pr-4">
-        <LetterDisplay word="building " colorClass="text-foreground/60" />
-        <LetterDisplay word="innovative " colorClass="text-foreground/60" />
-        <LetterDisplay word="solutions" colorClass="text-foreground/60" />
+        <LetterDisplay word="building " colorClass="text-foreground/82" />
+        <LetterDisplay word="innovative " colorClass="text-foreground/82" />
+        <LetterDisplay word="solutions" colorClass="text-foreground/82" />
       </div>
     </div>
   );

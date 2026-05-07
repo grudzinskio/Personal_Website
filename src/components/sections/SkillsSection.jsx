@@ -114,7 +114,7 @@ export const SkillsSection = () => {
                                         "relative z-10 px-6 py-2.5 rounded-xl font-medium transition-all duration-300 focus-ring",
                                         activeCategory === category
                                             ? "text-primary-foreground"
-                                            : "text-foreground/70 hover:text-foreground"
+                                            : "text-foreground/88 hover:text-foreground"
                                     )}
                                 >
                                     {category === "AI" ? "AI" : category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()}

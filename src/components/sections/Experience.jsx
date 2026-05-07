@@ -41,7 +41,7 @@ const experiences = [
 
 const ExperienceItem = ({ role, company, location, period, description, index, logo }) => {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: false, margin: '-50px' });
+    const isInView = useInView(ref, { once: true, margin: '-50px' });
 
     return (
         <motion.div
@@ -78,7 +78,7 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
                 {/* Role & Company */}
                 <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-1">{role}</h3>
                 <p className="text-muted-foreground mb-1 font-medium">{company}</p>
-                {location && <p className="text-muted-foreground/60 text-sm mb-4">{location}</p>}
+                {location && <p className="text-muted-foreground/85 text-sm mb-4">{location}</p>}
 
                 {/* Description */}
                 <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
@@ -89,7 +89,7 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
 
 export const Experience = () => {
     const sectionRef = useRef(null);
-    const isInView = useInView(sectionRef, { once: false, margin: '-100px' });
+    const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
     return (
         <div id="experience" className="min-h-screen flex flex-col items-center justify-center px-6 md:px-8 py-20 md:py-32">

@@ -31,7 +31,7 @@ export function IntroductionSection() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[11px] sm:text-xs font-medium uppercase tracking-[0.32em] text-cyan-100/64"
+            className="text-[11px] sm:text-xs font-medium uppercase tracking-[0.32em] text-cyan-100/82"
           >
             DATA SCIENCE & SOFTWARE ENGINEERING
           </motion.p>
@@ -49,7 +49,7 @@ export function IntroductionSection() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto mt-6 max-w-3xl text-pretty text-base leading-relaxed text-white/55 sm:text-lg md:mx-0 md:text-xl"
+            className="mx-auto mt-6 max-w-3xl text-pretty text-base leading-relaxed text-white/84 sm:text-lg md:mx-0 md:text-xl"
           >
             I architect the data pipelines that power machine learning models, and engineer the full-stack applications that bring them to life. From processing complex datasets to building crisp, high-performance interfaces, 
             I design solutions where heavy logic meets effortless usability.

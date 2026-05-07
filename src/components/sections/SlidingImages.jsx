@@ -1,6 +1,20 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+
+const slider1Images = [
+  { src: "/projects/CPAproject.jpg", alt: "AI CPA Project" },
+  { src: "/projects/MARLProject.png", alt: "MARL Project" },
+  { src: "/projects/QAProject.jpg", alt: "QA Assistant" },
+  { src: "/projects/PhotoSynProject.png", alt: "Photosynthesizers" },
+];
+
+const slider2Images = [
+  { src: "/projects/DiabetesProject.png", alt: "Diabetes Prediction" },
+  { src: "/projects/WordleProject.png", alt: "Wordle Game" },
+  { src: "/projects/ActionsProject.png", alt: "Automated Documentation" },
+  { src: "/projects/PersonalWebsite.png", alt: "Personal Website" },
+];
 
 /**
  * SlidingImages - Horizontal parallax image slider at the bottom
@@ -9,6 +23,7 @@ import { useNavigate } from 'react-router-dom';
 const SlidingImages = () => {
   const containerRef = useRef(null);
   const navigate = useNavigate();
+  const shouldReduceMotion = useReducedMotion();
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -18,21 +33,6 @@ const SlidingImages = () => {
   // Create horizontal slide effect - opposite directions
   const x1 = useTransform(scrollYProgress, [0, 1], ["-25%", "10%"]);
   const x2 = useTransform(scrollYProgress, [0, 1], ["10%", "-25%"]);
-
-  // Image sets for two rows
-  const slider1Images = [
-    { src: "/projects/CPAproject.jpg", alt: "AI CPA Project" },
-    { src: "/projects/MARLProject.png", alt: "MARL Project" },
-    { src: "/projects/QAProject.jpg", alt: "QA Assistant" },
-    { src: "/projects/PhotoSynProject.png", alt: "Photosynthesizers" },
-  ];
-
-  const slider2Images = [
-    { src: "/projects/DiabetesProject.png", alt: "Diabetes Prediction" },
-    { src: "/projects/WordleProject.png", alt: "Wordle Game" },
-    { src: "/projects/ActionsProject.png", alt: "Automated Documentation" },
-    { src: "/projects/PersonalWebsite.png", alt: "Personal Website" },
-  ];
 
   const handleImageClick = () => {
     navigate('/projects');
@@ -53,7 +53,7 @@ const SlidingImages = () => {
       <div className="space-y-6 sm:space-y-8">
         {/* First sliding row - moves left */}
         <motion.div
-          style={{ x: x1 }}
+          style={{ x: shouldReduceMotion ? 0 : x1 }}
           className="flex gap-4 sm:gap-6 will-change-transform"
         >
           {slider1Images.map((image, index) => (
@@ -68,27 +68,7 @@ const SlidingImages = () => {
                 alt={image.alt}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="font-semibold">{image.alt}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-          {/* Duplicate for seamless loop effect */}
-          {slider1Images.map((image, index) => (
-            <motion.div
-              key={`dup-${index}`}
-              whileHover={{ scale: 1.05, y: -8 }}
-              className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[210px] sm:h-[260px] md:h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
-              onClick={handleImageClick}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
@@ -101,7 +81,7 @@ const SlidingImages = () => {
 
         {/* Second sliding row - moves right */}
         <motion.div
-          style={{ x: x2 }}
+          style={{ x: shouldReduceMotion ? 0 : x2 }}
           className="flex gap-4 sm:gap-6 will-change-transform"
         >
           {slider2Images.map((image, index) => (
@@ -116,27 +96,7 @@ const SlidingImages = () => {
                 alt={image.alt}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="font-semibold">{image.alt}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-          {/* Duplicate for seamless loop effect */}
-          {slider2Images.map((image, index) => (
-            <motion.div
-              key={`dup-${index}`}
-              whileHover={{ scale: 1.05, y: -8 }}
-              className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[210px] sm:h-[260px] md:h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
-              onClick={handleImageClick}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white">

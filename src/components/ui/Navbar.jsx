@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/utils/cn";
 import { X, Menu } from "lucide-react";
-import ogLogo from "@/assets/Portfolio.png";
+import ogLogo from "@/assets/Portfolio-logo.png";
 
 const navItems = [
     { name: "Home", href: "/" },
@@ -27,6 +27,7 @@ export const Navbar = () => {
     const bubbleRef = useRef(null);
     const navGroupRef = useRef(null);
     const linkRefs = useRef({});
+    const frameRef = useRef(null);
 
     const targetItem = hoveredItem || activeItem;
 
@@ -70,19 +71,43 @@ export const Navbar = () => {
     }, [targetItem]);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 10);
+        let lastScrolled = null;
+        let lastProgress = null;
 
-            // Calculate scroll progress for fade out on home page
-            if (isHomePage) {
-                const maxScroll = window.innerHeight * 0.2; // Fade out by 20% of viewport - faster fade
-                const currentScroll = window.scrollY;
-                const progress = Math.min(currentScroll / maxScroll, 1);
-                setScrollProgress(progress);
+        const handleScroll = () => {
+            if (frameRef.current) return;
+
+            frameRef.current = requestAnimationFrame(() => {
+                frameRef.current = null;
+
+                const nextScrolled = window.scrollY > 10;
+                if (nextScrolled !== lastScrolled) {
+                    lastScrolled = nextScrolled;
+                    setIsScrolled(nextScrolled);
+                }
+
+                if (isHomePage) {
+                    const maxScroll = window.innerHeight * 0.2;
+                    const nextProgress = Math.min(window.scrollY / maxScroll, 1);
+                    const roundedProgress = Math.round(nextProgress * 100) / 100;
+
+                    if (roundedProgress !== lastProgress) {
+                        lastProgress = roundedProgress;
+                        setScrollProgress(roundedProgress);
+                    }
+                }
+            });
+        };
+
+        handleScroll();
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            if (frameRef.current) {
+                cancelAnimationFrame(frameRef.current);
             }
         };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
     }, [isHomePage]);
 
     // Calculate opacity based on scroll progress (only on home page)
@@ -95,7 +120,7 @@ export const Navbar = () => {
                 className={cn(
                     "fixed w-full z-40 transition-all duration-500",
                     isScrolled
-                        ? "py-2 backdrop-blur-2xl border-b border-white/[0.06]"
+                        ? "py-2 backdrop-blur-md border-b border-white/[0.1]"
                         : "py-3 border-b border-transparent"
                 )}
                 style={{
@@ -149,7 +174,7 @@ export const Navbar = () => {
                                     "relative z-10 px-4 py-2 rounded-full text-sm font-medium tracking-[-0.01em] transition-all duration-300",
                                     item.name === activeItem
                                         ? "text-white"
-                                        : "text-white/50 hover:text-white/90"
+                                        : "text-white/72 hover:text-white"
                                 )}
                             >
                                 {item.name}
@@ -177,14 +202,14 @@ export const Navbar = () => {
                     "fixed inset-0 z-50 flex md:hidden transition-all duration-400",
                     isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                 )}
-                style={{ background: 'rgba(0,0,0,0.92)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)' }}
+                style={{ background: 'rgba(0,0,0,0.94)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
             >
                 <div className="relative m-auto w-[85%] max-w-sm rounded-2xl border border-white/[0.08] p-8 flex flex-col items-stretch"
                     style={{ background: 'rgba(28,28,30,0.95)' }}>
                     <button
                         aria-label="Close menu"
                         onClick={() => setIsMenuOpen(false)}
-                        className="absolute -top-4 -right-4 h-10 w-10 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+                        className="absolute -top-4 -right-4 h-10 w-10 rounded-full border border-white/10 flex items-center justify-center text-white/80 hover:text-white transition-colors"
                         style={{ background: 'rgba(28,28,30,0.9)', minWidth: '40px', minHeight: '40px' }}
                     >
                         <X size={18} />
@@ -198,7 +223,7 @@ export const Navbar = () => {
                                     "px-5 py-4 rounded-xl transition-all duration-200 text-center text-sm font-medium tracking-[-0.01em]",
                                     item.name === activeItem
                                         ? "text-white bg-white/10"
-                                        : "text-white/50 hover:text-white hover:bg-white/5"
+                                        : "text-white/75 hover:text-white hover:bg-white/5"
                                 )}
                                 style={{ minHeight: '44px' }}
                                 onClick={() => setIsMenuOpen(false)}

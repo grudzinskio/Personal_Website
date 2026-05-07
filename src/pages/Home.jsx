@@ -20,6 +20,7 @@ import { initSmoothScroll, scrollToElement } from "../utils/animations/smoothScr
 export const Home = () => {
     const [showScrollButton, setShowScrollButton] = useState(true);
     const scrollContainerRef = useRef(null);
+    const scrollFrameRef = useRef(null);
     const { scrollYProgress } = useScroll();
 
     useEffect(() => {
@@ -31,18 +32,22 @@ export const Home = () => {
 
         // Handle scroll button visibility
         const handleScroll = () => {
-            if (window?.scrollY > 100) {
-                setShowScrollButton(false);
-            } else {
-                setShowScrollButton(true);
-            }
+            if (scrollFrameRef.current) return;
+
+            scrollFrameRef.current = requestAnimationFrame(() => {
+                scrollFrameRef.current = null;
+                setShowScrollButton(window.scrollY <= 100);
+            });
         };
 
-        window?.addEventListener('scroll', handleScroll);
+        window?.addEventListener('scroll', handleScroll, { passive: true });
 
         return () => {
             if (cleanup) cleanup();
             window?.removeEventListener('scroll', handleScroll);
+            if (scrollFrameRef.current) {
+                cancelAnimationFrame(scrollFrameRef.current);
+            }
         };
     }, []);
 
@@ -95,7 +100,7 @@ export const Home = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 1.5 }}
-                            className="fixed bottom-6 right-4 z-50 flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-white/[0.08] bg-black/40 px-4 py-2 text-sm font-medium text-white/72 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-transform hover:scale-105 hover:text-white sm:bottom-8 sm:right-8"
+                            className="fixed bottom-6 right-4 z-50 flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-white/[0.12] bg-black/50 px-4 py-2 text-sm font-medium text-white/88 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-md transition-transform hover:scale-105 hover:text-white sm:bottom-8 sm:right-8"
                             style={{ minHeight: '44px', minWidth: '44px' }}
                             onClick={scrollToResearch}
                         >

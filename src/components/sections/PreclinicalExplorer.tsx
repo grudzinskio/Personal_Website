@@ -25,12 +25,12 @@ type InfoCardProps = {
 
 function InfoCard({ title, body, logo, logoAlt, note, tags }: InfoCardProps) {
   return (
-    <article className="relative flex h-[500px] min-h-0 flex-col overflow-hidden rounded-[1.65rem] border border-sky-300/18 bg-gradient-to-b from-white/[0.075] via-white/[0.028] to-cyan-950/12 px-5 py-9 shadow-[0_0_0_1px_rgba(56,189,248,0.05),0_22px_70px_rgba(2,6,23,0.42),0_0_48px_rgba(56,189,248,0.055)] backdrop-blur-xl before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-sky-300/35 before:to-transparent after:pointer-events-none after:absolute after:inset-0 after:rounded-[1.65rem] after:ring-1 after:ring-inset after:ring-white/[0.055]">
+    <article className="relative flex h-[500px] min-h-0 flex-col overflow-hidden rounded-[1.65rem] border border-sky-300/18 bg-gradient-to-b from-white/[0.085] via-white/[0.04] to-cyan-950/12 px-5 py-9 shadow-[0_0_0_1px_rgba(56,189,248,0.05),0_22px_70px_rgba(2,6,23,0.42),0_0_48px_rgba(56,189,248,0.055)] backdrop-blur-md before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-sky-300/35 before:to-transparent after:pointer-events-none after:absolute after:inset-0 after:rounded-[1.65rem] after:ring-1 after:ring-inset after:ring-white/[0.055]">
       <div className="relative my-auto">
         <p className="text-[11px] font-medium uppercase tracking-[0.26em] text-sky-200/80">{title}</p>
-        <p className="mt-5 text-sm leading-7 text-white/60">{body}</p>
+        <p className="mt-5 text-sm leading-7 text-white/84">{body}</p>
         {note && (
-          <p className="mt-5 text-sm leading-7 text-white/50">{note}</p>
+          <p className="mt-5 text-sm leading-7 text-white/78">{note}</p>
         )}
         {tags && (
           <div className="mt-7 flex flex-wrap gap-2">
@@ -63,18 +63,22 @@ export function PreclinicalExplorer() {
 
   useLayoutEffect(() => {
     if (!stageRef.current) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const compactViewport = window.innerWidth < 900;
 
     const ctx = gsap.context(() => {
       const segments = gsap.utils.toArray<SVGPathElement>(".research-segment");
 
-      gsap.set(".research-ring", { autoAlpha: 0.45, scale: 0.94 });
-      gsap.set(".research-mouse", { y: 18, scale: 0.96 });
+      gsap.set(".research-ring", { autoAlpha: compactViewport || reduceMotion ? 0.7 : 0.45, scale: 0.98 });
+      gsap.set(".research-mouse", { y: compactViewport || reduceMotion ? 0 : 18, scale: 0.98 });
       gsap.set(segments, {
-        autoAlpha: 0,
-        y: 460,
-        scale: 0.92,
+        autoAlpha: compactViewport || reduceMotion ? 1 : 0,
+        y: compactViewport || reduceMotion ? 0 : 460,
+        scale: compactViewport || reduceMotion ? 1 : 0.92,
         transformOrigin: "50% 50%",
       });
+
+      if (compactViewport || reduceMotion) return;
 
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -123,7 +127,7 @@ export function PreclinicalExplorer() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.7 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="text-[11px] font-medium uppercase tracking-[0.34em] text-cyan-100/65 sm:text-xs"
+                className="text-[11px] font-medium uppercase tracking-[0.34em] text-cyan-100/82 sm:text-xs"
               >
                 Preclinical Imaging
               </motion.p>
@@ -141,7 +145,7 @@ export function PreclinicalExplorer() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.55 }}
                 transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-                className="mx-auto mt-4 max-w-3xl text-pretty text-sm leading-6 text-white/58 sm:text-base"
+                className="mx-auto mt-4 max-w-3xl text-pretty text-sm leading-6 text-white/84 sm:text-base"
               >
                 Automated longitudinal segmentation for multi-modality preclinical studies, shaped around the precision,
                 traceability, and calm visual language expected in medical research tooling.
@@ -177,7 +181,7 @@ export function PreclinicalExplorer() {
                   />
                   <div className="research-mouse relative aspect-[1684/2528] w-full">
                     <img
-                      src="/Mouse Transparent.png"
+                      src="/Mouse-Transparent-optimized.png"
                       alt="Transparent preclinical mouse scan"
                       className="relative z-10 h-full w-full select-none object-contain opacity-95 brightness-105 contrast-105 drop-shadow-[0_30px_90px_rgba(8,145,178,0.12)]"
                       loading="eager"

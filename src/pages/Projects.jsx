@@ -114,7 +114,7 @@ export const Projects = () => {
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     onClick={(e) => e.stopPropagation()}
-                                                    className="flex items-center gap-2 text-sm text-foreground/70 hover:text-primary transition-colors duration-300 font-medium"
+                                                    className="flex items-center gap-2 text-sm text-foreground/88 hover:text-primary transition-colors duration-300 font-medium"
                                                 >
                                                     <ExternalLink size={16} />
                                                     Demo
@@ -126,7 +126,7 @@ export const Projects = () => {
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     onClick={(e) => e.stopPropagation()}
-                                                    className="flex items-center gap-2 text-sm text-foreground/70 hover:text-primary transition-colors duration-300 font-medium"
+                                                    className="flex items-center gap-2 text-sm text-foreground/88 hover:text-primary transition-colors duration-300 font-medium"
                                                 >
                                                     <Github size={16} />
                                                     Code
