@@ -1,16 +1,15 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { User, Code2, Briefcase, Mail, Sparkles, ArrowRight } from 'lucide-react';
+import { User, Briefcase, Mail, Sparkles, ArrowRight } from 'lucide-react';
 
 /**
- * NavigationPanels - Cool interactive navigation cards at the bottom
- * Modern, clickable panels with hover effects and animations
+ * NavigationPanels - Quiet next-step navigation.
  */
 const NavigationPanels = () => {
   const panels = [
     {
       title: 'About Me',
-      description: 'Learn about my experience, education, and expertise',
+      description: 'Background, education, and the systems I like to build.',
       icon: User,
       href: '/about',
       gradient: 'from-blue-500/20 to-cyan-500/20',
@@ -18,7 +17,7 @@ const NavigationPanels = () => {
     },
     {
       title: 'Skills',
-      description: 'Explore my technical skills and proficiencies',
+      description: 'Languages, frameworks, tooling, and engineering strengths.',
       icon: Sparkles,
       href: '/skills',
       gradient: 'from-sky-500/20 to-cyan-500/20',
@@ -26,7 +25,7 @@ const NavigationPanels = () => {
     },
     {
       title: 'Projects',
-      description: 'View my portfolio of work and achievements',
+      description: 'A focused archive of software and research-adjacent work.',
       icon: Briefcase,
       href: '/projects',
       gradient: 'from-orange-500/20 to-red-500/20',
@@ -34,7 +33,7 @@ const NavigationPanels = () => {
     },
     {
       title: 'Contact',
-      description: "Let's connect and build something amazing",
+      description: "Start a conversation about internships, research, or software.",
       icon: Mail,
       href: '/contact',
       gradient: 'from-green-500/20 to-emerald-500/20',
@@ -43,26 +42,27 @@ const NavigationPanels = () => {
   ];
 
   return (
-    <section className="relative py-16 sm:py-20 md:py-32 overflow-hidden">
-      <div className="container max-w-7xl mx-auto px-4">
+    <section className="relative overflow-hidden px-4 py-20 sm:py-24 md:py-32">
+      <div className="mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16"
+          className="mx-auto mb-12 max-w-3xl text-center sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-            Explore
-            <span className="block text-gradient-animated">More</span>
+          <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.34em] text-cyan-100/55 sm:text-xs">
+            Continue
+          </p>
+          <h2 className="text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
+            The rest of the system.
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-            Discover more about my work, skills, and how we can collaborate
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
+            Move through the portfolio like a product surface: clear paths, light chrome, and only the details that matter.
           </p>
         </motion.div>
 
-        {/* Navigation Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {panels.map((panel, index) => (
             <motion.div
@@ -74,74 +74,37 @@ const NavigationPanels = () => {
             >
               <Link to={panel.href}>
                 <motion.div
-                  whileHover={{ y: -8, scale: 1.02 }}
+                  whileHover={{ y: -6 }}
                   whileTap={{ scale: 0.98 }}
                   className="relative h-full group"
                 >
-                  {/* Card with glassmorphism */}
-                  <div className="glass-card rounded-2xl p-6 sm:p-8 h-full flex flex-col justify-between overflow-hidden relative transition-all duration-300 hover:shadow-2xl">
-                    {/* Gradient background on hover */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${panel.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                  <div className="relative flex h-full min-h-[260px] flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.035] p-6 shadow-[0_20px_70px_rgba(0,0,0,0.22)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-100/18 hover:bg-white/[0.055] sm:p-7">
+                    <div className={`absolute inset-x-0 top-0 h-24 bg-gradient-to-b ${panel.gradient} opacity-45 transition-opacity duration-300 group-hover:opacity-70`} />
 
-                    {/* Content */}
                     <div className="relative z-10">
-                      {/* Icon */}
-                      <div className="inline-flex glass-card-strong p-4 rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <panel.icon className="w-8 h-8 text-primary" />
+                      <div className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.045] text-cyan-100 transition-transform duration-300 group-hover:scale-105">
+                        <panel.icon className="size-5" strokeWidth={1.8} />
                       </div>
 
-                      {/* Title */}
-                      <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors">
+                      <h3 className="mb-3 text-xl font-semibold tracking-tight text-white transition-colors group-hover:text-cyan-100 sm:text-2xl">
                         {panel.title}
                       </h3>
 
-                      {/* Description */}
-                      <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
+                      <p className="text-sm leading-6 text-white/54">
                         {panel.description}
                       </p>
                     </div>
 
-                    {/* Arrow indicator */}
-                    <div className="relative z-10 flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all">
-                      <span>Explore</span>
+                    <div className="relative z-10 flex items-center gap-2 text-sm font-medium text-cyan-100/72 transition-colors group-hover:text-cyan-100">
+                      <span>Open</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </div>
-
-                    {/* Bottom gradient accent */}
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </motion.div>
               </Link>
             </motion.div>
           ))}
         </div>
-
-        {/* Alternative Layout - Large Feature Cards (uncomment if preferred) */}
-        {/* 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-          <Link to="/projects">
-            <motion.div
-              whileHover={{ scale: 1.02, y: -4 }}
-              className="glass-card rounded-2xl p-12 bg-gradient-to-br from-primary/10 to-secondary/10 hover:from-primary/20 hover:to-secondary/20 transition-all group"
-            >
-              <Code2 className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-3xl font-bold mb-3">View All Projects</h3>
-              <p className="text-muted-foreground">Explore my complete portfolio</p>
-            </motion.div>
-          </Link>
-          
-          <Link to="/contact">
-            <motion.div
-              whileHover={{ scale: 1.02, y: -4 }}
-              className="glass-card rounded-2xl p-12 bg-gradient-to-br from-green-500/10 to-emerald-500/10 hover:from-green-500/20 hover:to-emerald-500/20 transition-all group"
-            >
-              <Mail className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-3xl font-bold mb-3">Get In Touch</h3>
-              <p className="text-muted-foreground">Let's work together</p>
-            </motion.div>
-          </Link>
-        </div>
-        */}
       </div>
     </section>
   );
