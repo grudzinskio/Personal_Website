@@ -143,7 +143,7 @@ export function PreclinicalExplorer() {
                 transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
                 className="mx-auto mt-4 max-w-3xl text-pretty text-sm leading-6 text-white/58 sm:text-base"
               >
-                Automated longitudinal segmentation for multi-modality mouse studies, shaped around the precision,
+                Automated longitudinal segmentation for multi-modality preclinical studies, shaped around the precision,
                 traceability, and calm visual language expected in medical research tooling.
               </motion.p>
             </div>
