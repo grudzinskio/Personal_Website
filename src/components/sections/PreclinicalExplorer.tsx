@@ -1,4 +1,11 @@
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLayoutEffect, useRef } from "react";
+import msoeLogo from "../../assets/logos/MSOE_logo.png";
+import rptLogo from "../../assets/logos/RPT_LOGO.svg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const layerPaths = [
   "M723.5 966L680.5 1004V1053.5L711 1062.5L779 1027L811 1008L807.5 966L817 937L789.5 903L756 926L772 954.5L750 981L723.5 966Z",
@@ -10,111 +17,212 @@ const layerPaths = [
 type InfoCardProps = {
   title: string;
   body: string;
+  logo?: string;
+  logoAlt?: string;
+  note?: string;
+  tags?: string[];
 };
 
-function InfoCard({ title, body }: InfoCardProps) {
+function InfoCard({ title, body, logo, logoAlt, note, tags }: InfoCardProps) {
   return (
-    <article className="relative flex min-h-[320px] flex-col justify-center overflow-hidden rounded-3xl border border-sky-300/20 bg-gradient-to-b from-white/[0.09] via-white/[0.03] to-sky-950/20 px-5 py-10 sm:px-6 sm:py-11 lg:min-h-[380px] lg:px-5 lg:py-12 shadow-[0_0_0_1px_rgba(56,189,248,0.06),0_24px_80px_rgba(2,6,23,0.55),0_0_60px_rgba(56,189,248,0.07)] backdrop-blur-xl before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-sky-300/45 before:to-transparent after:pointer-events-none after:absolute after:inset-0 after:rounded-3xl after:ring-1 after:ring-inset after:ring-white/[0.06]">
-      <p className="relative text-[11px] font-medium uppercase tracking-[0.26em] text-sky-200/80">{title}</p>
-      <p className="relative mt-5 text-sm sm:text-[15px] leading-relaxed text-white/60">{body}</p>
+    <article className="relative flex h-[500px] min-h-0 flex-col overflow-hidden rounded-[1.65rem] border border-sky-300/18 bg-gradient-to-b from-white/[0.075] via-white/[0.028] to-cyan-950/12 px-5 py-9 shadow-[0_0_0_1px_rgba(56,189,248,0.05),0_22px_70px_rgba(2,6,23,0.42),0_0_48px_rgba(56,189,248,0.055)] backdrop-blur-xl before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-sky-300/35 before:to-transparent after:pointer-events-none after:absolute after:inset-0 after:rounded-[1.65rem] after:ring-1 after:ring-inset after:ring-white/[0.055]">
+      <div className="relative my-auto">
+        <p className="text-[11px] font-medium uppercase tracking-[0.26em] text-sky-200/80">{title}</p>
+        <p className="mt-5 text-sm leading-7 text-white/60">{body}</p>
+        {note && (
+          <p className="mt-5 text-sm leading-7 text-white/50">{note}</p>
+        )}
+        {tags && (
+          <div className="mt-7 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border border-cyan-100/12 bg-cyan-100/[0.055] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-cyan-100/72"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+      {logo && (
+        <img
+          src={logo}
+          alt={logoAlt ?? ""}
+          className="relative mt-9 h-20 w-auto max-w-[180px] object-contain opacity-90"
+          loading="lazy"
+          decoding="async"
+        />
+      )}
     </article>
   );
 }
 
 export function PreclinicalExplorer() {
-  return (
-    <section className="relative px-4 pb-20 sm:pb-24 md:pb-32 pt-6 sm:pt-10">
-      <div className="mx-auto max-w-7xl">
-        <motion.h2
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-10 text-center text-3xl font-bold tracking-tight text-white/95 sm:mb-14 sm:text-4xl md:mb-16 md:text-5xl"
-        >
-          Research
-        </motion.h2>
+  const stageRef = useRef<HTMLDivElement | null>(null);
 
-        <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-[0.9fr_1.2fr_0.9fr] lg:items-center">
-          <div className="order-2 flex justify-center lg:order-1 lg:justify-end lg:pe-6 xl:pe-10">
-            <div className="w-full max-w-sm lg:w-[min(100%,240px)] lg:max-w-[240px] xl:w-[min(100%,256px)] xl:max-w-[256px]">
-              <motion.div
+  useLayoutEffect(() => {
+    if (!stageRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const segments = gsap.utils.toArray<SVGPathElement>(".research-segment");
+
+      gsap.set(".research-ring", { autoAlpha: 0.45, scale: 0.94 });
+      gsap.set(".research-mouse", { y: 18, scale: 0.96 });
+      gsap.set(segments, {
+        autoAlpha: 0,
+        y: 460,
+        scale: 0.92,
+        transformOrigin: "50% 50%",
+      });
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: stageRef.current,
+          start: "top+=200 top",
+          end: "+=1500",
+          pin: true,
+          scrub: 0.75,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      timeline
+        .to(".research-ring", { autoAlpha: 1, scale: 1.04, duration: 0.18, ease: "none" }, 0)
+        .to(".research-mouse", { y: -8, scale: 1.02, duration: 0.72, ease: "none" }, 0);
+
+      segments.forEach((segment, index) => {
+        timeline.to(
+          segment,
+          {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.22,
+            ease: "power2.out",
+          },
+          0.05 + index * 0.16
+        );
+      });
+
+      timeline.to(".research-ring", { autoAlpha: 0.65, duration: 0.18, ease: "none" }, 0.82);
+    }, stageRef);
+
+    ScrollTrigger.refresh();
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section id="preclinical-research" className="relative overflow-visible px-4">
+      <div ref={stageRef} className="relative mb-12 flex min-h-screen items-center overflow-visible py-6 sm:mb-16 sm:py-8 md:mb-20 md:py-10">
+        <div className="relative mx-auto w-full max-w-7xl">
+            <div className="mx-auto max-w-4xl text-center">
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.7 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="text-[11px] font-medium uppercase tracking-[0.34em] text-cyan-100/65 sm:text-xs"
+              >
+                Preclinical Imaging
+              </motion.p>
+              <motion.h2
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.9, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-4 text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl"
+              >
+                Academic Research
+              </motion.h2>
+              <motion.p
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.55 }}
+                transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+                className="mx-auto mt-4 max-w-3xl text-pretty text-sm leading-6 text-white/58 sm:text-base"
+              >
+                Automated longitudinal segmentation for multi-modality mouse studies, shaped around the precision,
+                traceability, and calm visual language expected in medical research tooling.
+              </motion.p>
+            </div>
+
+            <div className="mt-7 grid items-center gap-7 sm:mt-9 lg:grid-cols-[245px_minmax(430px,520px)_245px] lg:justify-center lg:gap-20 xl:grid-cols-[265px_minmax(500px,590px)_265px] xl:gap-28">
+              <motion.div
+                initial={{ opacity: 0, x: -22 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                className="order-2 hidden lg:order-1 lg:block"
               >
                 <InfoCard
                   title="Segmentation Layers"
                   body="My research focus is automated longitudinal segmentation for multi-modality preclinical scans (CT, SPECT, PET), developed through Master of Science in Machine Learning coursework at MSOE."
+                  note="The work connects imaging research with software systems built for repeatable analysis."
+                  logo={msoeLogo}
+                  logoAlt="MSOE logo"
                 />
               </motion.div>
-            </div>
-          </div>
 
-          <div className="order-1 lg:order-2">
-            <div className="relative mx-auto w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[520px]">
-              <div className="absolute inset-[-14%] rounded-[999px] bg-[radial-gradient(circle_at_50%_45%,rgba(59,130,246,0.16)_0%,rgba(14,165,233,0.08)_42%,transparent_72%)] blur-3xl" aria-hidden="true" />
-              <div
-                className="absolute inset-[-7%] rounded-[999px] border border-sky-200/10 shadow-[0_0_90px_rgba(56,189,248,0.14)]"
-                aria-hidden="true"
-              />
-
-              <motion.div
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-                className="relative aspect-[1684/2528] w-full"
-              >
-                <img
-                  src="/Mouse Transparent.png"
-                  alt="Transparent preclinical mouse scan"
-                  className="relative z-10 h-full w-full select-none object-contain drop-shadow-[0_30px_90px_rgba(2,132,199,0.18)]"
-                  loading="eager"
-                  decoding="async"
-                />
-
-                <svg
-                  viewBox="0 0 1684 2528"
-                  className="absolute inset-0 z-20 h-full w-full overflow-visible"
-                  role="img"
-                  aria-label="Interactive segmentation overlay"
-                >
-                  {layerPaths.map((d, idx) => (
-                    <motion.path
-                      key={d}
-                      d={d}
-                      initial={{ opacity: 0, pathLength: 0 }}
-                      whileInView={{ opacity: 1, pathLength: 1 }}
-                      viewport={{ once: true, amount: 0.65 }}
-                      transition={{ duration: 0.95, delay: 0.06 + idx * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                      className="cursor-pointer fill-blue-500/0 stroke-blue-200/55 stroke-[6] transition duration-300 hover:fill-blue-500/30 hover:stroke-blue-400 hover:drop-shadow-[0_0_10px_rgba(96,165,250,0.8)]"
-                      vectorEffect="non-scaling-stroke"
+              <div className="order-1 lg:order-2">
+                <div className="relative mx-auto w-full max-w-[250px] sm:max-w-[315px] lg:max-w-[390px] xl:max-w-[430px]">
+                  <div
+                    className="research-ring absolute inset-[-8%] rounded-full border border-cyan-100/10 shadow-[0_0_55px_rgba(103,232,249,0.12)]"
+                    aria-hidden="true"
+                  />
+                  <div
+                    className="research-ring absolute inset-[-14%] rounded-full bg-[radial-gradient(circle_at_50%_45%,rgba(103,232,249,0.10)_0%,rgba(45,212,191,0.045)_40%,transparent_70%)] blur-2xl"
+                    aria-hidden="true"
+                  />
+                  <div className="research-mouse relative aspect-[1684/2528] w-full">
+                    <img
+                      src="/Mouse Transparent.png"
+                      alt="Transparent preclinical mouse scan"
+                      className="relative z-10 h-full w-full select-none object-contain opacity-95 brightness-105 contrast-105 drop-shadow-[0_30px_90px_rgba(8,145,178,0.12)]"
+                      loading="eager"
+                      decoding="async"
                     />
-                  ))}
-                </svg>
-              </motion.div>
-            </div>
-          </div>
 
-          <div className="order-3 flex justify-center lg:justify-start lg:ps-6 xl:ps-10">
-            <div className="w-full max-w-sm lg:w-[min(100%,240px)] lg:max-w-[240px] xl:w-[min(100%,256px)] xl:max-w-[256px]">
+                    <svg
+                      viewBox="0 0 1684 2528"
+                      className="absolute inset-0 z-20 h-full w-full overflow-visible"
+                      role="img"
+                      aria-label="Segmentation overlay"
+                    >
+                      {layerPaths.map((d, idx) => (
+                        <path
+                          key={d}
+                          d={d}
+                          className="research-segment cursor-pointer fill-cyan-300/0 stroke-cyan-100/58 stroke-[6] transition duration-300 hover:fill-cyan-300/22 hover:stroke-white"
+                          vectorEffect="non-scaling-stroke"
+                        />
+                      ))}
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 22 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.9, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                className="order-3 hidden lg:block"
               >
                 <InfoCard
                   title="CRO Workflow"
-                  body="These intelligence views are built for structured readouts across biodistribution and radiopharmaceutical imaging workflows, with emphasis on clean data handling and review-ready exports for RPT Labworks."
+                  body="The workflow starts with structured CT, SPECT, and PET study data, then moves into organ ROI review, measurement handling, and export-ready outputs for radiopharmaceutical imaging work."
+                  tags={["CT", "SPECT", "PET"]}
+                  logo={rptLogo}
+                  logoAlt="RPT logo"
                 />
               </motion.div>
             </div>
           </div>
         </div>
-      </div>
+
+      <div className="pb-16 sm:pb-20 md:pb-24" />
     </section>
   );
 }

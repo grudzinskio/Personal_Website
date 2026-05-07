@@ -1,4 +1,5 @@
 import Lenis from 'lenis';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 let lenis = null;
 
@@ -31,6 +32,8 @@ export const initSmoothScroll = () => {
       infinite: false,
       syncTouch: false,
     });
+
+    lenis.on('scroll', ScrollTrigger.update);
   }
 
   // Animation loop
