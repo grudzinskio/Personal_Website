@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/utils/cn";
+import { getScrollY } from "@/utils/animations/smoothScroll";
 import { X, Menu } from "lucide-react";
 import ogLogo from "@/assets/Portfolio-logo.png";
 
@@ -15,7 +16,7 @@ const navItems = [
 export const Navbar = () => {
     const location = useLocation();
     const [isScrolled, setIsScrolled] = useState(false);
-    const [scrollProgress, setScrollProgress] = useState(0);
+    const [homeHideProgress, setHomeHideProgress] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [hoveredItem, setHoveredItem] = useState(null);
 
@@ -27,7 +28,6 @@ export const Navbar = () => {
     const bubbleRef = useRef(null);
     const navGroupRef = useRef(null);
     const linkRefs = useRef({});
-    const frameRef = useRef(null);
 
     const targetItem = hoveredItem || activeItem;
 
@@ -71,63 +71,71 @@ export const Navbar = () => {
     }, [targetItem]);
 
     useEffect(() => {
-        let lastScrolled = null;
         let lastProgress = null;
+        let lastScrolled = null;
+        let rafId = null;
 
-        const handleScroll = () => {
-            if (frameRef.current) return;
+        const tick = () => {
+            const scrollY = getScrollY();
 
-            frameRef.current = requestAnimationFrame(() => {
-                frameRef.current = null;
+            if (isHomePage) {
+                const hideDistance = 120; // px until fully hidden
+                const nextProgress = Math.max(0, Math.min(scrollY / hideDistance, 1));
+                const rounded = Math.round(nextProgress * 100) / 100;
 
-                const nextScrolled = window.scrollY > 10;
-                if (nextScrolled !== lastScrolled) {
-                    lastScrolled = nextScrolled;
-                    setIsScrolled(nextScrolled);
+                if (rounded !== lastProgress) {
+                    lastProgress = rounded;
+                    setHomeHideProgress(rounded);
                 }
 
-                if (isHomePage) {
-                    const maxScroll = window.innerHeight * 0.2;
-                    const nextProgress = Math.min(window.scrollY / maxScroll, 1);
-                    const roundedProgress = Math.round(nextProgress * 100) / 100;
-
-                    if (roundedProgress !== lastProgress) {
-                        lastProgress = roundedProgress;
-                        setScrollProgress(roundedProgress);
-                    }
+                if (lastScrolled !== false) {
+                    lastScrolled = false;
+                    setIsScrolled(false);
                 }
-            });
+            } else {
+                const scrolled = scrollY > 10;
+                if (scrolled !== lastScrolled) {
+                    lastScrolled = scrolled;
+                    setIsScrolled(scrolled);
+                }
+                if (lastProgress !== 0) {
+                    lastProgress = 0;
+                    setHomeHideProgress(0);
+                }
+            }
+
+            rafId = requestAnimationFrame(tick);
         };
 
-        handleScroll();
-        window.addEventListener("scroll", handleScroll, { passive: true });
-
+        rafId = requestAnimationFrame(tick);
         return () => {
-            window.removeEventListener("scroll", handleScroll);
-            if (frameRef.current) {
-                cancelAnimationFrame(frameRef.current);
-            }
+            if (rafId) cancelAnimationFrame(rafId);
         };
     }, [isHomePage]);
 
-    // Calculate opacity based on scroll progress (only on home page)
-    const navOpacity = isHomePage ? 1 - scrollProgress : 1;
-    const navTransform = isHomePage ? `translateY(-${scrollProgress * 10}px)` : 'translateY(0)';
+    const isNavHidden = isHomePage && homeHideProgress >= 1;
 
     return (
         <>
             <nav
                 className={cn(
-                    "fixed w-full z-40 transition-all duration-500",
-                    isScrolled
-                        ? "py-2 backdrop-blur-md border-b border-white/[0.1]"
-                        : "py-3 border-b border-transparent"
+                    "fixed w-full z-40 transition-[opacity,transform] duration-200 ease-out",
+                    isHomePage
+                        ? "py-3 backdrop-blur-sm border-b border-white/[0.06]"
+                        : isScrolled
+                            ? "py-2 backdrop-blur-md border-b border-white/[0.1]"
+                            : "py-3 backdrop-blur-sm border-b border-white/[0.06]"
                 )}
                 style={{
-                    background: isScrolled ? 'rgba(0,0,0,0.72)' : 'transparent',
-                    opacity: navOpacity,
-                    transform: navTransform,
-                    pointerEvents: isHomePage && scrollProgress > 0.9 ? 'none' : 'auto'
+                    background: isHomePage
+                        ? "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.10) 100%)"
+                        : isScrolled
+                            ? "rgba(0,0,0,0.72)"
+                            : "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.10) 100%)",
+                    opacity: isHomePage ? 1 - homeHideProgress : 1,
+                    transform: isHomePage ? `translateY(-${homeHideProgress * 100}%)` : "translateY(0)",
+                    visibility: isNavHidden ? "hidden" : "visible",
+                    pointerEvents: isHomePage && homeHideProgress > 0.9 ? "none" : "auto",
                 }}
             >
                 <div className='w-full relative flex items-center px-4 md:px-8'>

@@ -78,11 +78,11 @@ const NavigationPanels = () => {
                   whileTap={{ scale: 0.98 }}
                   className="relative h-full group"
                 >
-                  <div className="relative flex h-full min-h-[260px] flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.12] bg-white/[0.06] p-6 shadow-[0_20px_70px_rgba(0,0,0,0.22)] backdrop-blur-md transition-all duration-300 hover:border-cyan-100/24 hover:bg-white/[0.08] sm:p-7">
+                  <div className="relative flex h-full min-h-[260px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/[0.08] sm:p-7">
                     <div className={`absolute inset-x-0 top-0 h-24 bg-gradient-to-b ${panel.gradient} opacity-45 transition-opacity duration-300 group-hover:opacity-70`} />
 
                     <div className="relative z-10">
-                      <div className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.045] text-cyan-100 transition-transform duration-300 group-hover:scale-105">
+                      <div className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cyan-100 backdrop-blur-xl transition-transform duration-300 group-hover:scale-105">
                         <panel.icon className="size-5" strokeWidth={1.8} />
                       </div>
 

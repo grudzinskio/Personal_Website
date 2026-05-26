@@ -66,6 +66,14 @@ export const initSmoothScroll = () => {
 export const getLenis = () => lenis;
 
 /**
+ * Current vertical scroll position (Lenis virtual scroll or native window scroll)
+ */
+export const getScrollY = () => {
+  if (lenis) return lenis.scroll ?? 0;
+  return window.scrollY || document.documentElement.scrollTop || 0;
+};
+
+/**
  * Scroll to a specific element smoothly using Lenis
  * @param {string|HTMLElement} target - CSS selector or DOM element
  * @param {Object} options - Scroll options
