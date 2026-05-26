@@ -13,7 +13,7 @@ const iconMap = {
 }
 
 export const AboutSection = () => {
-    const resumeFile = `${import.meta.env.BASE_URL}Oliver_Grudzinski_Resume.pdf`;
+    const resumeFile = `${import.meta.env.BASE_URL}Resume.pdf`;
 
     return (
         <section id="about" className="py-32 px-4 relative">
