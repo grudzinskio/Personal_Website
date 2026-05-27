@@ -50,7 +50,8 @@ const SlidingImages = () => {
         </p>
       </div>
 
-      <div className="space-y-6 sm:space-y-8">
+      {/* Full-bleed rows — break out of any parent padding */}
+      <div className="space-y-6 sm:space-y-8 w-screen relative left-1/2 -translate-x-1/2">
         {/* First sliding row - moves left */}
         <motion.div
           style={{ x: shouldReduceMotion ? 0 : x1 }}
@@ -60,7 +61,8 @@ const SlidingImages = () => {
             <motion.div
               key={index}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[210px] sm:h-[260px] md:h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
+              className="flex-shrink-0 rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
+              style={{ width: 'calc(27vw)', minWidth: '280px', height: 'calc(27vw * 0.75)', minHeight: '210px' }}
               onClick={handleImageClick}
             >
               <img
@@ -88,7 +90,8 @@ const SlidingImages = () => {
             <motion.div
               key={index}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] h-[210px] sm:h-[260px] md:h-[300px] rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
+              className="flex-shrink-0 rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
+              style={{ width: 'calc(27vw)', minWidth: '280px', height: 'calc(27vw * 0.75)', minHeight: '210px' }}
               onClick={handleImageClick}
             >
               <img
