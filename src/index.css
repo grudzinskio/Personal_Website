@@ -243,6 +243,22 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
+@utility glass-readable {
+  background: linear-gradient(135deg, rgba(9, 16, 32, 0.72), rgba(12, 24, 44, 0.54));
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.26);
+}
+
+@utility glass-experience {
+  background: linear-gradient(135deg, rgba(9, 16, 32, 0.82), rgba(12, 26, 48, 0.68));
+  backdrop-filter: blur(18px) saturate(155%);
+  -webkit-backdrop-filter: blur(18px) saturate(155%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 18px 56px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
 @utility glass-card-subtle {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px) saturate(135%);
@@ -256,6 +272,8 @@
   .glass-card,
   .glass-card-strong,
   .glass-card-subtle,
+  .glass-readable,
+  .glass-experience,
   .button-glass {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
