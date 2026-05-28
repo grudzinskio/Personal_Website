@@ -49,8 +49,8 @@ export function LetterCollision() {
         scrollTrigger: {
           trigger: document.documentElement,
           start: 0,
-          end: window.innerHeight, // Letters disappear by end of viewport
-          scrub: 0.5,
+          end: window.innerHeight * 0.72, // Clear the hero letters before the intro copy enters laptop viewports
+          scrub: 0.42,
           invalidateOnRefresh: true, // Recalculate values on resize
         },
       });
@@ -63,7 +63,7 @@ export function LetterCollision() {
     <div ref={containerRef} className="ml-2 sm:ml-4 md:ml-8 scroll-smooth">
       <div className="-mt-40 sm:-mt-24 md:-mt-28 mb-40 sm:mb-28 md:mb-36 flex h-screen flex-col justify-end pr-2 sm:pr-4">
         {/* Animated greeting text */}
-        <div className="flex flex-wrap items-center p-0 leading-none mb-2">
+        <div className="flex flex-wrap items-center p-0 leading-[0.9] -mb-1 sm:-mb-2 md:-mb-3">
           <div className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-normal text-foreground/92 flex">
             <LetterDisplay word="Hello, " colorClass="text-foreground/92" />
             <div className="w-2 sm:w-3 md:w-5"></div>
@@ -72,7 +72,7 @@ export function LetterCollision() {
         </div>
 
         {/* Animated name with gap - prevent wrapping within words */}
-        <div className="flex flex-wrap items-center p-0 leading-none">
+        <div className="flex flex-wrap items-center p-0 leading-[0.9]">
           <div className="whitespace-nowrap">
             <LetterDisplay word="Oliver" colorClass="text-primary" />
           </div>

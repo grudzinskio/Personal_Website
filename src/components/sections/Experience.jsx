@@ -55,7 +55,7 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
             }}
             className="relative"
         >
-            <div className="glass-card p-6 md:p-8 rounded-2xl hover:scale-[1.02] transition-all duration-300">
+            <div className="glass-experience rounded-2xl p-6 hover:-translate-y-1 hover:border-white/24 hover:shadow-[0_24px_70px_rgba(0,0,0,0.42)] transition-all duration-300">
                 {/* Logo - if available */}
                 {logo && (
                     <div className="mb-4 flex items-center justify-start">
@@ -68,7 +68,7 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
                 )}
 
                 {/* Period badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-4 border border-primary/20">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/14 text-sky-100 text-xs font-medium mb-4 border border-primary/25">
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
@@ -76,12 +76,12 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
                 </div>
 
                 {/* Role & Company */}
-                <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-1">{role}</h3>
-                <p className="text-muted-foreground mb-1 font-medium">{company}</p>
-                {location && <p className="text-muted-foreground/85 text-sm mb-4">{location}</p>}
+                <h3 className="text-xl md:text-2xl font-semibold text-white mb-1 leading-tight">{role}</h3>
+                <p className="text-white/82 mb-1 font-medium">{company}</p>
+                {location && <p className="text-white/70 text-sm mb-4">{location}</p>}
 
                 {/* Description */}
-                <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+                <p className="text-white/82 text-sm leading-relaxed">{description}</p>
             </div>
         </motion.div>
     );
