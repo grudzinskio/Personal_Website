@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /Resume.pdf
+Disallow: /Oliver_Grudzinski_Resume.pdf
