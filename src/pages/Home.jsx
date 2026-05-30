@@ -104,7 +104,7 @@ export const Home = () => {
                             style={{ minHeight: '44px', minWidth: '44px' }}
                             onClick={scrollToResearch}
                         >
-                            <p>Research</p>
+                            <p>Scroll</p>
                             <ArrowDownRight strokeWidth={2.2} className="size-4" />
                         </motion.div>
                     </Magnetic>
