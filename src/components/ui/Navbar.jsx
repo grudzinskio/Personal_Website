@@ -21,6 +21,7 @@ export const Navbar = () => {
     const [hoveredItem, setHoveredItem] = useState(null);
 
     const isHomePage = location.pathname === '/';
+    const isCompact = isHomePage ? homeHideProgress >= 0.55 : isScrolled;
 
     // Get active item from current route
     const activeItem = navItems.find(item => item.href === location.pathname)?.name || "Home";
@@ -48,7 +49,7 @@ export const Navbar = () => {
         };
         const id = requestAnimationFrame(moveBubble);
         return () => cancelAnimationFrame(id);
-    }, [targetItem, activeItem]);
+    }, [targetItem, activeItem, isCompact]);
 
     // Reposition on resize
     useEffect(() => {
@@ -68,7 +69,7 @@ export const Navbar = () => {
         };
         window.addEventListener('resize', handle);
         return () => window.removeEventListener('resize', handle);
-    }, [targetItem]);
+    }, [targetItem, isCompact]);
 
     useEffect(() => {
         let lastProgress = null;
@@ -113,37 +114,37 @@ export const Navbar = () => {
         };
     }, [isHomePage]);
 
-    const isNavHidden = isHomePage && homeHideProgress >= 1;
-
     return (
         <>
             <nav
                 className={cn(
-                    "fixed w-full z-40 transition-[opacity,transform] duration-200 ease-out",
-                    isHomePage
-                        ? "py-3 backdrop-blur-sm border-b border-white/[0.06]"
-                        : isScrolled
-                            ? "py-2 backdrop-blur-md border-b border-white/[0.1]"
-                            : "py-3 backdrop-blur-sm border-b border-white/[0.06]"
+                    "fixed w-full z-40 border-b transition-[padding,background-color,backdrop-filter,border-color,box-shadow] duration-300 ease-out",
+                    isCompact
+                        ? "py-1 backdrop-blur-md border-white/[0.1] shadow-[0_10px_36px_rgba(0,0,0,0.24)]"
+                        : "py-3 backdrop-blur-sm border-white/[0.06]"
                 )}
                 style={{
-                    background: isHomePage
-                        ? "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.10) 100%)"
-                        : isScrolled
+                    background: isCompact
                             ? "rgba(0,0,0,0.72)"
                             : "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.10) 100%)",
-                    opacity: isHomePage ? 1 - homeHideProgress : 1,
-                    transform: isHomePage ? `translateY(-${homeHideProgress * 100}%)` : "translateY(0)",
-                    visibility: isNavHidden ? "hidden" : "visible",
-                    pointerEvents: isHomePage && homeHideProgress > 0.9 ? "none" : "auto",
                 }}
             >
                 <div className='w-full relative flex items-center px-4 md:px-8'>
-                    <Link to="/" className="flex items-center group p-2" style={{ minWidth: '44px', minHeight: '44px' }}>
+                    <Link
+                        to="/"
+                        className={cn(
+                            "flex items-center group transition-all duration-300",
+                            isCompact ? "p-1.5" : "p-2"
+                        )}
+                        style={{ minWidth: '44px', minHeight: '44px' }}
+                    >
                         <img
                             src={ogLogo}
                             alt="Portfolio"
-                            className="h-8 sm:h-10 md:h-12 w-auto transition-transform duration-300 group-hover:scale-110"
+                            className={cn(
+                                "w-auto transition-all duration-300 group-hover:scale-110",
+                                isCompact ? "h-7 md:h-8" : "h-8 sm:h-10 md:h-12"
+                            )}
                             decoding="async"
                         />
                     </Link>
@@ -179,7 +180,8 @@ export const Navbar = () => {
                                 onFocus={() => setHoveredItem(item.name)}
                                 onBlur={() => setHoveredItem(null)}
                                 className={cn(
-                                    "relative z-10 px-4 py-2 rounded-full text-sm font-medium tracking-[-0.01em] transition-all duration-300",
+                                    "relative z-10 rounded-full font-medium tracking-[-0.01em] transition-all duration-300",
+                                    isCompact ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm",
                                     item.name === activeItem
                                         ? "text-white"
                                         : "text-white/72 hover:text-white"
@@ -194,7 +196,10 @@ export const Navbar = () => {
                     <div className="md:hidden flex items-center ml-auto">
                         <button
                             onClick={() => setIsMenuOpen((prev) => !prev)}
-                            className="p-3 text-foreground z-50 rounded-lg hover:bg-primary/10 transition-colors"
+                            className={cn(
+                                "text-foreground z-50 rounded-lg hover:bg-primary/10 transition-all duration-300",
+                                isCompact ? "p-2" : "p-3"
+                            )}
                             style={{ minWidth: '44px', minHeight: '44px' }}
                             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                         >
