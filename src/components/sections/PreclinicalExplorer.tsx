@@ -152,7 +152,7 @@ export function PreclinicalExplorer() {
               </motion.p>
             </div>
 
-            <div className="mt-7 grid items-center gap-7 sm:mt-9 lg:grid-cols-[245px_minmax(430px,520px)_245px] lg:justify-center lg:gap-20 xl:grid-cols-[265px_minmax(500px,590px)_265px] xl:gap-28">
+            <div className="mt-16 grid items-center gap-7 sm:mt-20 md:mt-24 lg:grid-cols-[245px_minmax(430px,520px)_245px] lg:justify-center lg:gap-20 xl:grid-cols-[265px_minmax(500px,590px)_265px] xl:gap-28">
               <motion.div
                 initial={{ opacity: 0, x: -22 }}
                 whileInView={{ opacity: 1, x: 0 }}
