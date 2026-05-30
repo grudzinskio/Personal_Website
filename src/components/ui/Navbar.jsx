@@ -48,7 +48,11 @@ export const Navbar = () => {
             bubbleRef.current.style.height = `${rect.height}px`;
         };
         const id = requestAnimationFrame(moveBubble);
-        return () => cancelAnimationFrame(id);
+        const transitionId = setTimeout(moveBubble, 330);
+        return () => {
+            cancelAnimationFrame(id);
+            clearTimeout(transitionId);
+        };
     }, [targetItem, activeItem, isCompact]);
 
     // Reposition on resize
