@@ -7,8 +7,8 @@ export const Footer = () => {
     };
 
     return (
-        <footer className="relative py-8 px-4 border-t border-border/30">
-            <div className="container max-w-6xl mx-auto">
+        <footer className="relative border-t border-border/40 bg-slate-950/35 px-4 py-8 backdrop-blur-sm">
+            <div className="content-shell">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                     {/* Copyright */}
                     <motion.p

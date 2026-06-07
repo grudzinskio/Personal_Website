@@ -100,7 +100,7 @@ export const Home = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 1.5 }}
-                            className="fixed bottom-6 right-4 z-50 flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/88 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all hover:scale-105 hover:border-white/20 hover:bg-white/[0.08] hover:text-white sm:bottom-8 sm:right-8"
+                            className="fixed bottom-6 right-4 z-50 flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-sky-100/18 bg-slate-950/80 px-4 py-2 text-sm font-medium text-white/90 shadow-[0_18px_50px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-all hover:scale-105 hover:border-sky-100/28 hover:bg-slate-900/88 hover:text-white sm:bottom-8 sm:right-8"
                             style={{ minHeight: '44px', minWidth: '44px' }}
                             onClick={scrollToResearch}
                         >

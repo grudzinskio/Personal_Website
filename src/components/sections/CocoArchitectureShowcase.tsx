@@ -29,16 +29,16 @@ const systemDescription = [
 
 export function CocoArchitectureShowcase() {
   return (
-    <article className="relative w-full overflow-hidden rounded-3xl border border-white/10 bg-black/40 p-4 text-white shadow-[0_24px_90px_rgba(0,0,0,0.36)] backdrop-blur-xl sm:p-5 lg:p-6">
+    <article className="glass-readable relative w-full overflow-hidden rounded-lg p-4 text-white sm:p-5 lg:p-6">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_28%,rgba(168,85,247,0.24),transparent_34%),radial-gradient(circle_at_72%_30%,rgba(236,72,153,0.16),transparent_30%),linear-gradient(135deg,rgba(14,165,233,0.08),transparent_46%)]" />
 
       <div className="relative mx-auto max-w-6xl">
         <section className="relative flex min-h-[300px] items-center justify-center px-2 py-8 sm:min-h-[360px] lg:py-10">
-          <div className="absolute left-1/2 top-1/2 h-[70%] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-[3rem] border border-purple-300/18 bg-purple-400/[0.03] shadow-[0_0_80px_rgba(168,85,247,0.16),inset_0_0_70px_rgba(236,72,153,0.07)]" />
-          <div className="absolute left-1/2 top-1/2 h-[56%] w-[62%] -translate-x-1/2 -translate-y-1/2 rounded-[2.5rem] border border-white/10 shadow-[0_0_55px_rgba(255,255,255,0.08)]" />
+          <div className="absolute left-1/2 top-1/2 h-[70%] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-lg border border-sky-300/18 bg-sky-400/[0.04] shadow-[0_0_80px_rgba(14,165,233,0.14),inset_0_0_70px_rgba(56,189,248,0.06)]" />
+          <div className="absolute left-1/2 top-1/2 h-[56%] w-[62%] -translate-x-1/2 -translate-y-1/2 rounded-lg border border-white/10 shadow-[0_0_55px_rgba(255,255,255,0.08)]" />
 
-          <div className="relative w-full max-w-5xl rounded-[2rem] border border-white/20 bg-white p-2 shadow-[0_0_70px_rgba(168,85,247,0.26),0_24px_90px_rgba(0,0,0,0.42)]">
-            <div className="overflow-hidden rounded-[1.55rem] bg-white">
+          <div className="relative w-full max-w-5xl rounded-lg border border-white/20 bg-white p-2 shadow-[0_0_70px_rgba(14,165,233,0.2),0_24px_90px_rgba(0,0,0,0.42)]">
+            <div className="overflow-hidden rounded-lg bg-white">
               <img
                 src={cocoDiagram}
                 alt="CoCo canonical healthcare interoperability architecture"
@@ -50,7 +50,7 @@ export function CocoArchitectureShowcase() {
           </div>
         </section>
 
-        <section className="rounded-3xl border border-white/14 bg-black/55 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_18px_60px_rgba(0,0,0,0.34)] backdrop-blur-md sm:p-5">
+        <section className="rounded-lg border border-white/14 bg-black/60 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_18px_60px_rgba(0,0,0,0.34)] backdrop-blur-md sm:p-5">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400">
@@ -74,7 +74,7 @@ export function CocoArchitectureShowcase() {
             </div>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-white/14 bg-white/[0.065] p-4">
+          <div className="mt-5 rounded-lg border border-white/14 bg-white/[0.075] p-4">
             <h4 className="text-xs font-semibold uppercase tracking-widest text-gray-400">
               Architecture &amp; Data Flow
             </h4>
@@ -106,7 +106,7 @@ export function CocoArchitectureShowcase() {
             {systemDescription.map((point) => (
               <section
                 key={point.title}
-                className="rounded-2xl border border-white/14 bg-white/[0.065] p-4"
+                className="rounded-lg border border-white/14 bg-white/[0.075] p-4"
               >
                 <h4 className="break-words text-sm font-semibold leading-5 text-white">
                   {point.title}

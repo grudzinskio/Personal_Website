@@ -17,21 +17,21 @@ export const AboutSection = () => {
     const resumeFile = `${import.meta.env.BASE_URL}Resume.pdf`;
 
     return (
-        <section id="about" className="py-32 px-4 relative">
-            <div className="container mx-auto max-w-6xl">
+        <section id="about" className="page-section">
+            <div className="content-shell">
                 {/* Header */}
-                <AnimatedSection className="text-center mb-16">
+                <AnimatedSection className="section-header mb-16">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5 }}
-                        className="inline-flex glass-card px-4 py-2 rounded-full mb-6"
+                        className="section-eyebrow"
                     >
-                        <User className="w-4 h-4 text-primary mr-2" />
-                        <span className="text-sm font-medium text-primary">About Me</span>
+                        <User className="w-4 h-4 text-primary" />
+                        <span>About Me</span>
                     </motion.div>
 
-                    <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+                    <h2 className="section-title">
                         Engineering
                         <span className="block text-gradient-animated">Tomorrow's Solutions</span>
                     </h2>
@@ -43,11 +43,11 @@ export const AboutSection = () => {
                     <AnimatedSection delay={0.2}>
                         <div className="space-y-6">
                             {/* Name and logos */}
-                            <div className="glass-card p-6 rounded-2xl">
+                            <div className="glass-card p-6 rounded-lg">
                                 <div className="flex items-center gap-4 mb-4 flex-wrap">
                                     <h3 className="text-2xl font-semibold">{aboutData.personal.name}</h3>
                                     <div className="flex items-center gap-2">
-                                        <div className="rounded-xl bg-white px-4 py-3 shadow-[0_12px_32px_rgba(0,0,0,0.18)]">
+                                        <div className="rounded-lg bg-white px-4 py-3 shadow-[0_12px_32px_rgba(0,0,0,0.18)]">
                                             <img
                                                 src={clariosLogo}
                                                 alt="Clarios"
@@ -89,7 +89,7 @@ export const AboutSection = () => {
                             </div>
 
                             {/* Education & Role */}
-                            <div className="glass-card p-6 rounded-2xl space-y-4">
+                            <div className="glass-card p-6 rounded-lg space-y-4">
                                 <div className="flex items-start gap-4 pb-4 border-b border-border/30">
                                     <img
                                         src={msoeLogo}
@@ -113,7 +113,7 @@ export const AboutSection = () => {
                                     <img
                                         src={clariosLogo}
                                         alt="Clarios"
-                                        className="h-16 w-24 rounded-xl bg-white object-contain p-2 shadow-[0_12px_32px_rgba(0,0,0,0.18)]"
+                                        className="h-16 w-24 rounded-lg bg-white object-contain p-2 shadow-[0_12px_32px_rgba(0,0,0,0.18)]"
                                     />
                                     <div className="flex-1">
                                         <div className="flex items-start justify-between gap-2 mb-1">
@@ -160,10 +160,10 @@ export const AboutSection = () => {
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.5, delay: index * 0.1 }}
                                         whileHover={{ y: -4, scale: 1.02 }}
-                                        className="glass-card p-6 rounded-2xl group cursor-default"
+                                        className="glass-card p-6 rounded-lg group cursor-default"
                                     >
                                         <div className="flex items-start gap-4">
-                                            <div className="glass-card-strong p-3 rounded-xl text-primary group-hover:scale-110 transition-transform">
+                                            <div className="glass-card-strong p-3 rounded-lg text-primary group-hover:scale-110 transition-transform">
                                                 <IconComponent className="h-6 w-6" />
                                             </div>
                                             <div className="flex-1">

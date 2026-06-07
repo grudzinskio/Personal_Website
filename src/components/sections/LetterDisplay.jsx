@@ -10,7 +10,7 @@ export function LetterDisplay({ word, colorClass }) {
       {letters.map((letter, index) => (
         <span
           key={index}
-          className={`letter inline-block ${colorClass} text-5xl md:text-7xl lg:text-8xl font-bold`}
+          className={`letter inline-block ${colorClass} text-[clamp(3rem,7vw,9.25rem)] font-bold`}
         >
           {letter === ' ' ? '\u00A0' : letter}
         </span>

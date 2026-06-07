@@ -35,12 +35,12 @@ const SlidingImages = () => {
   };
 
   return (
-    <section ref={containerRef} className="relative py-20 sm:py-24 md:py-32 overflow-x-hidden bg-transparent">
-      <div className="mb-12 sm:mb-16 text-center px-4">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
+    <section ref={containerRef} className="page-section overflow-x-hidden bg-transparent">
+      <div className="section-header mb-12 sm:mb-16">
+        <h2 className="section-title-compact">
           Featured <span className="text-gradient-animated">Work</span>
         </h2>
-        <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="section-copy">
           Click any image to explore all projects
         </p>
       </div>
@@ -56,8 +56,8 @@ const SlidingImages = () => {
             <motion.div
               key={project.id}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="flex-shrink-0 rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
-              style={{ width: 'calc(27vw)', minWidth: '280px', height: 'calc(27vw * 0.75)', minHeight: '210px' }}
+              className="flex-shrink-0 rounded-lg overflow-hidden border border-border/50 shadow-[0_22px_70px_rgba(0,0,0,0.38)] hover:border-primary/50 transition-all cursor-pointer group relative"
+              style={{ width: 'calc(25vw)', minWidth: '300px', maxWidth: '520px', height: 'calc(25vw * 0.72)', minHeight: '216px', maxHeight: '374px' }}
               onClick={handleImageClick}
             >
               <img
@@ -85,8 +85,8 @@ const SlidingImages = () => {
             <motion.div
               key={project.id}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="flex-shrink-0 rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
-              style={{ width: 'calc(27vw)', minWidth: '280px', height: 'calc(27vw * 0.75)', minHeight: '210px' }}
+              className="flex-shrink-0 rounded-lg overflow-hidden border border-border/50 shadow-[0_22px_70px_rgba(0,0,0,0.38)] hover:border-primary/50 transition-all cursor-pointer group relative"
+              style={{ width: 'calc(25vw)', minWidth: '300px', maxWidth: '520px', height: 'calc(25vw * 0.72)', minHeight: '216px', maxHeight: '374px' }}
               onClick={handleImageClick}
             >
               <img
