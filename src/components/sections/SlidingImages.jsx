@@ -13,7 +13,6 @@ const slider2Images = [
   { src: "/projects/DiabetesProject.png", alt: "Diabetes Prediction" },
   { src: "/projects/WordleProject.png", alt: "Wordle Game" },
   { src: "/projects/ActionsProject.png", alt: "Automated Documentation" },
-  { src: "/projects/PersonalWebsite.png", alt: "Personal Website" },
 ];
 
 /**

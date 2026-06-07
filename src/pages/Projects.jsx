@@ -51,8 +51,8 @@ export const Projects = () => {
 
                     {/* Projects Grid - Bento Style */}
                     <div className="bento-grid">
-                        {projects.map((project, index) => (
-                            <AnimatedSection key={project.id} delay={index * 0.1}>
+                        {projects.map((project) => (
+                            <div key={project.id}>
                                 <motion.div
                                     whileHover={{ y: -8, scale: 1.02 }}
                                     transition={{ duration: 0.3 }}
@@ -138,7 +138,7 @@ export const Projects = () => {
                                     {/* Hover effect indicator */}
                                     <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </motion.div>
-                            </AnimatedSection>
+                            </div>
                         ))}
                     </div>
 

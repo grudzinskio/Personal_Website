@@ -1,14 +1,13 @@
 import { motion } from "framer-motion";
-import { Github, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, Github, Instagram, Linkedin, Mail, MapPin } from "lucide-react";
 import { AnimatedSection } from "../ui/AnimatedSection";
 import Magnetic from "../../utils/animations/Magnetic";
 
 export const ContactSection = () => {
     return (
-        <section id="contact" className="py-32 px-4 relative">
-            <div className="container mx-auto max-w-5xl">
-                {/* Header */}
-                <AnimatedSection className="text-center mb-16">
+        <section id="contact" className="py-28 sm:py-32 px-4 relative">
+            <div className="container mx-auto max-w-6xl">
+                <AnimatedSection className="text-center mb-14">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -19,144 +18,127 @@ export const ContactSection = () => {
                         <span className="text-sm font-medium text-primary">Let's Connect</span>
                     </motion.div>
 
-                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-                        Start a
-                        <span className="block text-gradient-animated">Conversation</span>
+                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+                        Professional
+                        <span className="block text-gradient-animated">Contact</span>
                     </h2>
 
                     <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                        I'm always open to discussing new projects, innovative ideas, or opportunities to contribute to your vision
+                        Reach out for software engineering, AI, data, or internship opportunities. I typically respond by email.
                     </p>
                 </AnimatedSection>
 
-                {/* Contact Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_0.75fr] gap-6 lg:gap-8 items-stretch">
                     <AnimatedSection delay={0.2}>
-                        <motion.a
-                            href="mailto:grudzinskioliver@gmail.com"
-                            whileHover={{ y: -8, scale: 1.02 }}
-                            className="glass-card p-8 rounded-2xl block group cursor-pointer"
-                        >
-                            <div className="flex justify-center mb-6">
-                                <div className="glass-card-strong p-4 rounded-xl text-primary group-hover:scale-110 group-hover:glow-primary transition-all">
-                                    <Mail className="h-8 w-8" />
+                        <div className="glass-card p-6 sm:p-8 rounded-2xl h-full">
+                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-8">
+                                <div>
+                                    <p className="text-sm font-medium text-primary mb-3">Best way to reach me</p>
+                                    <h3 className="text-2xl sm:text-3xl font-bold mb-3">
+                                        Email for opportunities and collaborations.
+                                    </h3>
+                                    <p className="text-muted-foreground leading-relaxed max-w-2xl">
+                                        I am based near Milwaukee and open to engineering roles, AI/data projects, and thoughtful technical conversations.
+                                    </p>
+                                </div>
+                                <div className="glass-card-strong p-4 rounded-xl text-primary self-start">
+                                    <BriefcaseBusiness className="h-7 w-7" />
                                 </div>
                             </div>
-                            <h4 className="font-semibold text-lg mb-3 text-center">Email</h4>
-                            <p className="text-muted-foreground group-hover:text-foreground transition-colors text-center text-sm break-words">
-                                grudzinskioliver@gmail.com
-                            </p>
 
-                            {/* Hover indicator */}
-                            <div className="mt-6 pt-4 border-t border-border/30 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <div className="h-1 w-12 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto" />
+                            <a
+                                href="mailto:grudzinskioliver@gmail.com"
+                                className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-xl border border-border/40 bg-white/[0.03] hover:bg-white/[0.06] transition-colors"
+                            >
+                                <span className="flex items-center gap-4 min-w-0">
+                                    <span className="glass-card-strong p-3 rounded-lg text-primary shrink-0">
+                                        <Mail className="h-5 w-5" />
+                                    </span>
+                                    <span className="min-w-0">
+                                        <span className="block text-sm text-muted-foreground mb-1">Email</span>
+                                        <span className="block font-semibold text-foreground break-words">
+                                            grudzinskioliver@gmail.com
+                                        </span>
+                                    </span>
+                                </span>
+                                <ArrowRight className="h-5 w-5 text-primary transition-transform group-hover:translate-x-1 shrink-0" />
+                            </a>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                                <div className="p-5 rounded-xl border border-border/30 bg-white/[0.02]">
+                                    <MapPin className="h-5 w-5 text-primary mb-3" />
+                                    <p className="text-sm text-muted-foreground mb-1">Location</p>
+                                    <p className="font-semibold">Greater Milwaukee Area, WI</p>
+                                </div>
+                                <div className="p-5 rounded-xl border border-border/30 bg-white/[0.02]">
+                                    <Mail className="h-5 w-5 text-primary mb-3" />
+                                    <p className="text-sm text-muted-foreground mb-1">Response</p>
+                                    <p className="font-semibold">Email preferred</p>
+                                </div>
                             </div>
-                        </motion.a>
+                        </div>
                     </AnimatedSection>
 
                     <AnimatedSection delay={0.3}>
-                        <motion.a
-                            href="tel:+12626654897"
-                            whileHover={{ y: -8, scale: 1.02 }}
-                            className="glass-card p-8 rounded-2xl block group cursor-pointer"
-                        >
-                            <div className="flex justify-center mb-6">
-                                <div className="glass-card-strong p-4 rounded-xl text-primary group-hover:scale-110 group-hover:glow-primary transition-all">
-                                    <Phone className="h-8 w-8" />
+                        <div className="glass-card p-6 sm:p-8 rounded-2xl h-full flex flex-col justify-between">
+                            <div>
+                                <h4 className="font-semibold text-2xl mb-4">Professional Profiles</h4>
+                                <p className="text-muted-foreground leading-relaxed mb-8">
+                                    View my work, experience, and current projects through the links below.
+                                </p>
+
+                                <div className="space-y-3">
+                                    <a
+                                        href="https://www.linkedin.com/in/grudzinskioliver/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-between gap-4 p-4 rounded-xl border border-border/30 hover:bg-white/[0.05] transition-colors group"
+                                    >
+                                        <span className="flex items-center gap-3">
+                                            <Linkedin className="h-5 w-5 text-primary" />
+                                            <span className="font-medium">LinkedIn</span>
+                                        </span>
+                                        <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                                    </a>
+                                    <a
+                                        href="https://github.com/grudzinskio"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-between gap-4 p-4 rounded-xl border border-border/30 hover:bg-white/[0.05] transition-colors group"
+                                    >
+                                        <span className="flex items-center gap-3">
+                                            <Github className="h-5 w-5 text-primary" />
+                                            <span className="font-medium">GitHub</span>
+                                        </span>
+                                        <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                                    </a>
+                                    <a
+                                        href="https://www.instagram.com/olivergrud/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-between gap-4 p-4 rounded-xl border border-border/30 hover:bg-white/[0.05] transition-colors group"
+                                    >
+                                        <span className="flex items-center gap-3">
+                                            <Instagram className="h-5 w-5 text-primary" />
+                                            <span className="font-medium">Instagram</span>
+                                        </span>
+                                        <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                                    </a>
                                 </div>
                             </div>
-                            <h4 className="font-semibold text-lg mb-3 text-center">Phone</h4>
-                            <p className="text-muted-foreground group-hover:text-foreground transition-colors text-center">
-                                +1 (262) 665-4897
-                            </p>
 
-                            {/* Hover indicator */}
-                            <div className="mt-6 pt-4 border-t border-border/30 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <div className="h-1 w-12 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto" />
-                            </div>
-                        </motion.a>
-                    </AnimatedSection>
-
-                    <AnimatedSection delay={0.4}>
-                        <motion.div
-                            whileHover={{ y: -8, scale: 1.02 }}
-                            className="glass-card p-8 rounded-2xl group cursor-default"
-                        >
-                            <div className="flex justify-center mb-6">
-                                <div className="glass-card-strong p-4 rounded-xl text-primary group-hover:scale-110 transition-transform">
-                                    <MapPin className="h-8 w-8" />
-                                </div>
-                            </div>
-                            <h4 className="font-semibold text-lg mb-3 text-center">Location</h4>
-                            <p className="text-muted-foreground text-center">
-                                Greater Milwaukee Area, WI
-                            </p>
-
-                            {/* Hover indicator */}
-                            <div className="mt-6 pt-4 border-t border-border/30 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <div className="h-1 w-12 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto" />
-                            </div>
-                        </motion.div>
+                            <Magnetic>
+                                <a
+                                    href="mailto:grudzinskioliver@gmail.com"
+                                    className="cosmic-button inline-flex items-center justify-center gap-2 group w-full mt-8"
+                                >
+                                    <Mail className="h-5 w-5" />
+                                    Send an Email
+                                </a>
+                            </Magnetic>
+                        </div>
                     </AnimatedSection>
                 </div>
-
-                {/* Social Links */}
-                <AnimatedSection delay={0.5} className="text-center">
-                    <h4 className="font-semibold text-2xl mb-8">Connect With Me</h4>
-                    <div className="flex justify-center gap-4">
-                        <Magnetic>
-                            <a
-                                href="https://www.linkedin.com/in/grudzinskioliver/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="glass-card p-4 rounded-full hover:bg-white/10 text-primary transition-all group"
-                                aria-label="LinkedIn"
-                            >
-                                <Linkedin className="h-6 w-6 group-hover:scale-110 transition-transform" />
-                            </a>
-                        </Magnetic>
-
-                        <Magnetic>
-                            <a
-                                href="https://github.com/grudzinskio"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="glass-card p-4 rounded-full hover:bg-white/10 text-primary transition-all group"
-                                aria-label="GitHub"
-                            >
-                                <Github className="h-6 w-6 group-hover:scale-110 transition-transform" />
-                            </a>
-                        </Magnetic>
-
-                        <Magnetic>
-                            <a
-                                href="https://www.instagram.com/olivergrud/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="glass-card p-4 rounded-full hover:bg-white/10 text-primary transition-all group"
-                                aria-label="Instagram"
-                            >
-                                <Instagram className="h-6 w-6 group-hover:scale-110 transition-transform" />
-                            </a>
-                        </Magnetic>
-                    </div>
-                </AnimatedSection>
-
-                {/* CTA */}
-                <AnimatedSection delay={0.6} className="text-center mt-16">
-                    <p className="text-muted-foreground mb-6">
-                        Ready to bring your ideas to life?
-                    </p>
-                    <Magnetic>
-                        <a
-                            href="mailto:grudzinskioliver@gmail.com"
-                            className="cosmic-button inline-flex items-center gap-2 group"
-                        >
-                            <Mail className="h-5 w-5" />
-                            Send an Email
-                        </a>
-                    </Magnetic>
-                </AnimatedSection>
             </div>
         </section>
     );

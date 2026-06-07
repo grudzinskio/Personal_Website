@@ -115,36 +115,6 @@
             ],
             "demoURL": "#",
             "githubUrl": "#"
-        },
-        {
-            "id": 5,
-            "title": "Modern Portfolio Website",
-            "description": "Performance-optimized personal portfolio built with React, Framer Motion, and Tailwind CSS. Features smooth animations, canvas-based rendering, and Vercel-inspired glassmorphism design. Emphasizes 60fps performance and clean architecture.",
-            "image": "/projects/PersonalWebsite.png",
-            "tags": [
-                "React",
-                "Framer Motion",
-                "TailwindCSS",
-                "Canvas API",
-                "Performance"
-            ],
-            "demoURL": "#",
-            "githubUrl": "https://github.com/grudzinskio/Personal_Website"
-        },
-        {
-            "id": 6,
-            "title": "Campaign Poster Management Platform",
-            "description": "Full-stack web application for managing campaign marketing materials. Features secure authentication, image upload with compression, and RESTful API. Built with React frontend, Node.js backend, and MariaDB for reliable data persistence.",
-            "image": "/projects/PosterManagement.png",
-            "tags": [
-                "React",
-                "Node.js",
-                "MariaDB",
-                "REST API",
-                "Authentication"
-            ],
-            "demoURL": "#",
-            "githubUrl": "https://github.com/grudzinskio/poster_management"
         }
     ]
 }
