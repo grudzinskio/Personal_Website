@@ -25,7 +25,7 @@ type InfoCardProps = {
 
 function InfoCard({ title, body, logo, logoAlt, note, tags }: InfoCardProps) {
   return (
-    <article className="relative flex h-[500px] min-h-0 flex-col overflow-hidden rounded-[1.65rem] border border-sky-300/18 bg-gradient-to-b from-white/[0.085] via-white/[0.04] to-cyan-950/12 px-5 py-9 shadow-[0_0_0_1px_rgba(56,189,248,0.05),0_22px_70px_rgba(2,6,23,0.42),0_0_48px_rgba(56,189,248,0.055)] backdrop-blur-md before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-sky-300/35 before:to-transparent after:pointer-events-none after:absolute after:inset-0 after:rounded-[1.65rem] after:ring-1 after:ring-inset after:ring-white/[0.055]">
+    <article className="glass-readable relative flex h-[500px] min-h-0 flex-col overflow-hidden rounded-lg px-5 py-9">
       <div className="relative my-auto">
         <p className="text-[11px] font-medium uppercase tracking-[0.26em] text-sky-200/80">{title}</p>
         <p className="mt-5 text-sm leading-7 text-white/84">{body}</p>
@@ -120,14 +120,14 @@ export function PreclinicalExplorer() {
   return (
     <section id="preclinical-research" className="relative overflow-visible px-4">
       <div ref={stageRef} className="relative mb-12 flex min-h-screen items-center overflow-visible py-6 sm:mb-16 sm:py-8 md:mb-20 md:py-10">
-        <div className="relative mx-auto w-full max-w-7xl">
+        <div className="content-shell relative">
             <div className="mx-auto max-w-4xl text-center">
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.7 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="text-[11px] font-medium uppercase tracking-[0.34em] text-cyan-100/82 sm:text-xs"
+              className="section-eyebrow"
               >
                 Preclinical Imaging
               </motion.p>
@@ -136,7 +136,7 @@ export function PreclinicalExplorer() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 0.9, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-4 text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl"
+              className="section-title-compact mt-5"
               >
                 Academic Research
               </motion.h2>
@@ -145,7 +145,7 @@ export function PreclinicalExplorer() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.55 }}
                 transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-                className="mx-auto mt-4 max-w-3xl text-pretty text-sm leading-6 text-white/84 sm:text-base"
+              className="section-copy max-w-3xl text-sm sm:text-base"
               >
                 Automated longitudinal segmentation for multi-modality preclinical studies, shaped around the precision,
                 traceability, and calm visual language expected in medical research tooling.

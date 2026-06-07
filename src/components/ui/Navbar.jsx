@@ -8,7 +8,6 @@ import ogLogo from "@/assets/Portfolio-logo.png";
 const navItems = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Skills", href: "/skills" },
     { name: "Projects", href: "/projects" },
     { name: "Contact", href: "/contact" },
 ]
@@ -129,11 +128,11 @@ export const Navbar = () => {
                 )}
                 style={{
                     background: isCompact
-                            ? "rgba(0,0,0,0.72)"
-                            : "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.10) 100%)",
+                            ? "rgba(2, 6, 23, 0.88)"
+                            : "linear-gradient(to bottom, rgba(2,6,23,0.72) 0%, rgba(2,6,23,0.24) 100%)",
                 }}
             >
-                <div className='w-full relative flex items-center px-4 md:px-8'>
+                <div className='content-shell relative flex items-center px-4 md:px-8'>
                     <Link
                         to="/"
                         className={cn(
@@ -157,7 +156,7 @@ export const Navbar = () => {
                     <div
                         ref={navGroupRef}
                         onMouseLeave={() => setHoveredItem(null)}
-                        className="hidden md:flex items-center space-x-1 absolute left-1/2 -translate-x-1/2"
+                        className="hidden md:flex items-center space-x-1 absolute left-1/2 -translate-x-1/2 rounded-full border border-white/10 bg-slate-950/42 p-1 shadow-[0_12px_38px_rgba(0,0,0,0.28)]"
                         role="menubar"
                         aria-label="Main navigation"
                     >
@@ -171,7 +170,7 @@ export const Navbar = () => {
                                 transform: 'translate(0,0)',
                                 width: 0,
                                 height: 0,
-                                background: 'rgba(255,255,255,0.08)',
+                                background: 'rgba(186,230,253,0.14)',
                             }}
                         />
                         {navItems.map((item) => (
@@ -221,8 +220,8 @@ export const Navbar = () => {
                 )}
                 style={{ background: 'rgba(0,0,0,0.94)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
             >
-                <div className="relative m-auto w-[85%] max-w-sm rounded-2xl border border-white/[0.08] p-8 flex flex-col items-stretch"
-                    style={{ background: 'rgba(28,28,30,0.95)' }}>
+                <div className="relative m-auto w-[85%] max-w-sm rounded-lg border border-white/[0.12] p-8 flex flex-col items-stretch"
+                    style={{ background: 'rgba(15,23,42,0.96)' }}>
                     <button
                         aria-label="Close menu"
                         onClick={() => setIsMenuOpen(false)}
