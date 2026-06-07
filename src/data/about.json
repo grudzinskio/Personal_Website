@@ -3,16 +3,23 @@
     "name": "Oliver Grudzinski",
     "title": "Computer Science Student & Data Science Intern",
     "description": [
-      "Computer Science junior at MSOE, Data Science Intern at Clarios, and Full Stack Development Intern at TESCH Global, specializing in AI/ML systems, modern web applications, and scalable data solutions.",
+      "Computer Science senior at MSOE, Data Science Intern at Clarios, and Full Stack Development Intern at TESCH Global, specializing in AI/ML systems, modern web applications, and scalable data solutions.",
       "Passionate about leveraging cutting-edge technologies to solve complex technical challenges. Active member of MSOE AI Club and Society of Software Engineers, continuously exploring emerging innovations in machine learning and software architecture.",
       "Eagle Scout with a proven track record of leadership, discipline, and delivering high-impact solutions."
     ]
   },
-  "education": {
-    "degree": "B.S. Computer Science",
-    "school": "Milwaukee School of Engineering",
-    "expectedGraduation": "Expected May 2027"
-  },
+  "education": [
+    {
+      "degree": "B.S. Computer Science",
+      "school": "Milwaukee School of Engineering",
+      "expectedGraduation": "Expected May 2027"
+    },
+    {
+      "degree": "M.S. Machine Learning",
+      "school": "Milwaukee School of Engineering",
+      "expectedGraduation": "Expected 2028"
+    }
+  ],
   "currentRole": {
     "title": "Data Science Intern",
     "company": "Clarios",

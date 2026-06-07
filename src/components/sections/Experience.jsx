@@ -31,7 +31,15 @@ const experiences = [
         company: 'Milwaukee School of Engineering',
         location: 'Milwaukee, WI',
         period: 'Aug 2023 - May 2027',
-        description: 'Junior C.S. Student. Active member of MSOE AI Club and Society of Software Engineers.',
+        description: 'Senior C.S. Student. Active member of MSOE AI Club and Society of Software Engineers.',
+        logo: msoeLogo,
+    },
+    {
+        role: 'M.S. Machine Learning',
+        company: 'Milwaukee School of Engineering',
+        location: 'Milwaukee, WI',
+        period: 'Expected 2028',
+        description: 'Expected Master of Science in Machine Learning at MSOE, extending applied AI and machine learning coursework into advanced research and systems work.',
         logo: msoeLogo,
     },
     {

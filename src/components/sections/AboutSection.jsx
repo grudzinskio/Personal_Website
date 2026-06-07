@@ -96,12 +96,16 @@ export const AboutSection = () => {
                                         alt="MSOE"
                                         className="h-12 w-12 object-contain mt-1"
                                     />
-                                    <div className="flex-1">
-                                        <div className="flex items-start justify-between gap-2 mb-1">
-                                            <span className="font-semibold text-foreground">{aboutData.education.degree}</span>
-                                            <span className="text-xs text-muted-foreground whitespace-nowrap">{aboutData.education.expectedGraduation}</span>
-                                        </div>
-                                        <span className="text-sm text-muted-foreground">{aboutData.education.school}</span>
+                                    <div className="flex-1 space-y-3">
+                                        {aboutData.education.map((education) => (
+                                            <div key={education.degree}>
+                                                <div className="flex items-start justify-between gap-2 mb-1">
+                                                    <span className="font-semibold text-foreground">{education.degree}</span>
+                                                    <span className="text-xs text-muted-foreground whitespace-nowrap">{education.expectedGraduation}</span>
+                                                </div>
+                                                <span className="text-sm text-muted-foreground">{education.school}</span>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
 
