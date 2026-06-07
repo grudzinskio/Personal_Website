@@ -58,26 +58,26 @@ export const Projects = () => {
             <Background />
             <Navbar />
 
-            <main className="relative pt-24 sm:pt-32 pb-16 sm:pb-20">
-                <div className="container mx-auto max-w-7xl px-4">
+            <main className="page-section pt-24 sm:pt-32">
+                <div className="content-shell">
                     {/* Header */}
-                    <AnimatedSection className="text-center mb-12 sm:mb-16">
+                    <AnimatedSection className="section-header mb-12 sm:mb-16">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5 }}
-                            className="inline-flex glass-card px-4 py-2 rounded-full mb-6"
+                            className="section-eyebrow"
                         >
-                            <Code2 className="w-4 h-4 text-primary mr-2" />
-                            <span className="text-sm font-medium text-primary">Portfolio</span>
+                            <Code2 className="w-4 h-4 text-primary" />
+                            <span>Portfolio</span>
                         </motion.div>
 
-                        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
+                        <h1 className="section-title">
                             Featured
                             <span className="block text-gradient-animated">Projects</span>
                         </h1>
 
-                        <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
+                        <p className="section-copy">
                             A collection of my work in AI, web development, and software engineering.
                             Each project represents a unique technical challenge and innovative solution.
                         </p>
@@ -90,7 +90,7 @@ export const Projects = () => {
                                 <motion.div
                                     whileHover={{ y: -8, scale: 1.02 }}
                                     transition={{ duration: 0.3 }}
-                                    className={`group glass-card rounded-2xl overflow-hidden cursor-pointer relative ${project.featured ? "ring-2 ring-primary/30" : ""
+                                    className={`group glass-card rounded-lg overflow-hidden cursor-pointer relative ${project.featured ? "ring-2 ring-primary/30" : ""
                                         }`}
                                     onClick={() => setModalProject(project)}
                                 >
@@ -123,7 +123,7 @@ export const Projects = () => {
                                             {project.tags.slice(0, 3).map((tag, tagIndex) => (
                                                 <span
                                                     key={tagIndex}
-                                                    className="glass-card-subtle px-3 py-1 text-xs font-medium rounded-full text-primary border border-primary/20"
+                                                className="glass-card-subtle px-3 py-1 text-xs font-medium rounded-full text-primary border border-primary/20"
                                                 >
                                                     {tag}
                                                 </span>
@@ -211,7 +211,7 @@ export const Projects = () => {
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 20 }}
                             transition={{ duration: 0.3 }}
-                            className="glass-card-strong rounded-2xl p-6 sm:p-8 max-w-3xl w-full relative max-h-[90vh] overflow-y-auto"
+                            className="glass-card-strong rounded-lg p-6 sm:p-8 max-w-3xl w-full relative max-h-[90vh] overflow-y-auto"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Close button */}
@@ -228,7 +228,7 @@ export const Projects = () => {
                             <img
                                 src={modalProject.image}
                                 alt={modalProject.title}
-                                className="w-full h-48 sm:h-64 md:h-72 object-cover rounded-xl mb-4 sm:mb-6"
+                                className="w-full h-48 sm:h-64 md:h-72 object-cover rounded-lg mb-4 sm:mb-6"
                             />
 
                             {/* Content */}

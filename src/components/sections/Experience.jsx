@@ -68,7 +68,7 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
             }}
             className="relative"
         >
-            <div className="glass-experience rounded-2xl p-6 hover:-translate-y-1 hover:border-white/24 hover:shadow-[0_24px_70px_rgba(0,0,0,0.42)] transition-all duration-300">
+            <div className="glass-experience rounded-lg p-6 hover:-translate-y-1 hover:border-white/24 hover:shadow-[0_24px_70px_rgba(0,0,0,0.42)] transition-all duration-300">
                 {/* Logo - if available */}
                 {logo && (
                     <div className="mb-4 flex items-center justify-start">
@@ -107,8 +107,8 @@ export const Experience = () => {
     const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
     return (
-        <div id="experience" className="min-h-screen flex flex-col items-center justify-center px-6 md:px-8 py-20 md:py-32">
-            <div className="max-w-7xl w-full">
+        <div id="experience" className="page-section min-h-screen flex flex-col items-center justify-center">
+            <div className="content-shell">
                 <motion.div
                     initial={{ opacity: 0, y: 28 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -116,16 +116,16 @@ export const Experience = () => {
                     transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
                     className="mb-16 md:mb-20"
                 >
-                    <div className="mx-auto mb-8 max-w-4xl text-center">
-                        <div className="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 backdrop-blur-xl">
-                            <Code2 className="mr-2 h-4 w-4 text-primary" />
-                            <span className="text-sm font-medium text-primary">Featured Work</span>
+                    <div className="section-header mb-8">
+                        <div className="section-eyebrow">
+                            <Code2 className="h-4 w-4 text-primary" />
+                            <span>Featured Work</span>
                         </div>
-                        <h3 className="mb-4 text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+                        <h3 className="section-title-compact mt-5">
                             Real-World Healthcare Interoperability:
                             <span className="block text-gradient-animated">CoCo Data</span>
                         </h3>
-                        <p className="mx-auto max-w-2xl px-4 text-base leading-7 text-muted-foreground sm:text-lg">
+                        <p className="section-copy max-w-3xl">
                             A production-facing healthcare system for normalizing payer data, validating compliance
                             assets, and routing canonical transformations into FHIR-ready outputs.
                         </p>
@@ -139,15 +139,15 @@ export const Experience = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                     transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="text-center mb-16 md:mb-20"
+                    className="section-header mb-16 md:mb-20"
                 >
                     <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4">
                         Journey
                     </p>
-                    <h2 className="text-4xl md:text-5xl font-semibold text-foreground mb-6">
+                    <h2 className="section-title-compact">
                         Experience
                     </h2>
-                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    <p className="section-copy">
                         Building expertise through challenging problems and meaningful projects.
                     </p>
                 </motion.div>

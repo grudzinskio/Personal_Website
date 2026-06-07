@@ -17,7 +17,7 @@ export const Background = () => {
                 style={{
                     zIndex: -1,
                     background:
-                        'linear-gradient(to bottom, rgba(5,5,5,0.35) 0%, rgba(5,5,5,0.45) 50%, rgba(5,5,5,0.75) 100%)',
+                        'radial-gradient(circle at 50% 22%, rgba(14, 165, 233, 0.14), transparent 42%), linear-gradient(to bottom, rgba(2,6,23,0.68) 0%, rgba(2,6,23,0.72) 48%, rgba(2,6,23,0.88) 100%), linear-gradient(90deg, rgba(2,6,23,0.88), rgba(2,6,23,0.42) 46%, rgba(2,6,23,0.88))',
                 }}
                 aria-hidden="true"
             />
