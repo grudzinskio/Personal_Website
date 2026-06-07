@@ -9,6 +9,40 @@ import projectsData from "../data/projects.json";
 
 const { projects } = projectsData;
 
+const getStatusStyle = (status) => {
+    if (!status) return null;
+    if (status.includes("🏆")) return {
+        wrapper: "bg-yellow-500 border border-yellow-300 shadow-[0_0_12px_rgba(234,179,8,0.5)]",
+        icon: "text-yellow-900",
+        text: "text-yellow-900",
+        label: status.replace("🏆", "").trim(),
+    };
+    if (status.includes("🥈")) return {
+        wrapper: "bg-slate-300 border border-slate-100 shadow-[0_0_12px_rgba(203,213,225,0.4)]",
+        icon: "text-slate-700",
+        text: "text-slate-700",
+        label: status.replace("🥈", "").trim(),
+    };
+    if (status.includes("🥉")) return {
+        wrapper: "bg-amber-800 border border-amber-600 shadow-[0_0_12px_rgba(120,53,15,0.5)]",
+        icon: "text-amber-200",
+        text: "text-amber-200",
+        label: status.replace("🥉", "").trim(),
+    };
+    if (status.toLowerCase().includes("professional")) return {
+        wrapper: "bg-cyan-500 border border-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.4)]",
+        icon: "text-cyan-950",
+        text: "text-cyan-950",
+        label: status,
+    };
+    return {
+        wrapper: "glass-card-strong",
+        icon: "text-primary",
+        text: "text-foreground",
+        label: status,
+    };
+};
+
 export const Projects = () => {
     const [modalProject, setModalProject] = useState(null);
 
@@ -61,12 +95,15 @@ export const Projects = () => {
                                     onClick={() => setModalProject(project)}
                                 >
                                     {/* Status badge */}
-                                    {project.status && (
-                                        <div className="absolute top-4 left-4 z-10 glass-card-strong px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1.5">
-                                            <Award size={14} className="text-primary" />
-                                            <span className="text-foreground">{project.status.replace("🏆", "").replace("🥈", "").replace("🥉", "").trim()}</span>
-                                        </div>
-                                    )}
+                                    {project.status && (() => {
+                                        const s = getStatusStyle(project.status);
+                                        return (
+                                            <div className={`absolute top-4 left-4 z-10 px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 ${s.wrapper}`}>
+                                                <Award size={14} className={s.icon} />
+                                                <span className={s.text}>{s.label}</span>
+                                            </div>
+                                        );
+                                    })()}
 
                                     {/* Image */}
                                     <div className="h-48 sm:h-56 md:h-64 overflow-hidden relative bg-muted">
@@ -195,7 +232,16 @@ export const Projects = () => {
                             />
 
                             {/* Content */}
-                            <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">{modalProject.title}</h3>
+                            <h3 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-3">{modalProject.title}</h3>
+                            {modalProject.status && (() => {
+                                const s = getStatusStyle(modalProject.status);
+                                return (
+                                    <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold mb-4 ${s.wrapper}`}>
+                                        <Award size={13} className={s.icon} />
+                                        <span className={s.text}>{s.label}</span>
+                                    </div>
+                                );
+                            })()}
                             <p className="text-muted-foreground mb-4 sm:mb-6 text-base sm:text-lg leading-relaxed">
                                 {modalProject.description}
                             </p>

@@ -54,6 +54,48 @@
             "featured": true
         },
         {
+            "id": 10,
+            "title": "Hack 4 Health - Medical College of Wisconsin",
+            "description": "AI pipeline that converts raw radiology and biomedical reports into plain-language patient summaries (~6th–8th grade reading level) with zero hallucinated findings. Uses scispaCy + medspaCy for clinical NER and UMLS entity linking, LangGraph StateGraph for multi-step orchestration (extract → RAG → summarize → validate → refine), and OpenAI API as the generation backbone. Validation layer combines textstat readability scoring, rapidfuzz fidelity checks, and custom safety/provenance rules to catch false reassurance and invented measurements. Human-in-the-loop Next.js dashboard lets radiologists approve, edit, or reject before patient release.",
+            "image": "/projects/Radiohead.png",
+            "tags": [
+                "Python",
+                "LangGraph",
+                "scispaCy",
+                "OpenAI API",
+                "FastAPI",
+                "Next.js",
+                "RAG",
+                "NLP"
+            ],
+            "demoURL": "#",
+            "githubUrl": "https://github.com/grudzinskio/radiology_patient_summarizer",
+            "status": "3rd Place - Hack 4 Health MCW / MSOE 🥉",
+            "featured": true
+        },
+        {
+            "id": 11,
+            "title": "OncoGrid AI",
+            "description": "Dual-AI population health system answering where cancer rates are rising (macro) and which demographic cohorts face the worst mortality-to-incidence gap (micro). Macro layer: Auto-ARIMA + Facebook Prophet time-series ensemble forecasting 5-year state-level cancer incidence across the US. Micro layer: serverless PyCaret Gradient Boosting classifier (AUC 0.9781) flagging high-risk demographic cohorts. A custom spatial allocation engine joins both signals in Unity Catalog, applying H3 hexagonal indexing and Haversine deduplication to score 83,000+ CDC SVI census tracts against existing oncology centers. Simulated 300-machine rollout: 2,850 early detections vs. 975 under a volume-only baseline — a 192% uplift representing $456M+ in projected ecosystem value. Full Lakehouse stack: Delta Lake, Lakeflow SDP, MLflow, MosaicML, and Unity Catalog. Interface: GPU-accelerated deck.gl spatial simulator (FastAPI + React) and a LangGraph conversational agent that produces evidence-backed deployment memos.",
+            "image": "/projects/ONCO_GRID_AI.jpg",
+            "tags": [
+                "Python",
+                "Prophet",
+                "Auto-ARIMA",
+                "PyCaret",
+                "LangGraph",
+                "Databricks",
+                "H3 Indexing",
+                "FastAPI",
+                "React",
+                "MLflow"
+            ],
+            "demoURL": "#",
+            "githubUrl": "https://github.com/grudzinskio/OncoGrid",
+            "status": "Best Deployment - Persistent Systems x Databricks Hackathon 🏆",
+            "featured": true
+        },
+        {
             "id": 9,
             "title": "Photosynthesizers - Milwaukee Domes",
             "description": "Mobile-first web application enhancing visitor experience at Milwaukee Domes conservatory through AI-powered plant identification. Features BioCLIP classification, GPT-4 health assessment, multi-language support (English, Spanish, Chinese), and crowd-sourced monitoring. Full-stack implementation with React, TypeScript, FastAPI, and Supabase.",
@@ -70,6 +112,28 @@
             "demoURL": "#",
             "githubUrl": "https://github.com/grudzinskio/photosynthesizers",
             "status": "HacksGiving 2025",
+            "featured": true
+        },
+        {
+            "id": 12,
+            "title": "CoCo: Compliance Open Source Canonical Pipeline",
+            "description": "Healthcare interoperability platform that bridges complex proprietary payer systems with strict CMS regulations (9115/0057). Ingests member, provider, claims, clinical, and UM data from disparate payer silos, runs client-specific ETL for cleansing and standardization, then transforms the output through a canonical XSLT mapping layer validated by Pytest and W3C XSD specs. Adapters emit FHIR-ready outputs targeting FHIR servers, Snowflake, NDH, and TEFCA. Ships with an interactive React/Vite operations console (CoCoFlow) for schema navigation and transformation inspection, a FastAPI backend for sample builds, and a fully Dockerized runtime coordinating the UI, Express proxy, and API across repeatable deployment environments.",
+            "image": "/projects/CocoProject.png",
+            "tags": [
+                "Python",
+                "FastAPI",
+                "React 18",
+                "TypeScript",
+                "XSLT",
+                "Docker",
+                "Pytest",
+                "FHIR",
+                "Vite",
+                "Tailwind"
+            ],
+            "demoURL": "https://github.com/HealthLX/coco-flow",
+            "githubUrl": "https://github.com/HealthLX/coco-canonical",
+            "status": "Professional Project - Healthcare Interoperability",
             "featured": true
         },
         {
