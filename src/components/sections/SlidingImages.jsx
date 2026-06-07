@@ -1,19 +1,15 @@
 import { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import projectsData from '../../data/projects.json';
 
-const slider1Images = [
-  { src: "/projects/CPAproject.jpg", alt: "AI CPA Project" },
-  { src: "/projects/MARLProject.png", alt: "MARL Project" },
-  { src: "/projects/QAProject.jpg", alt: "QA Assistant" },
-  { src: "/projects/PhotoSynProject.png", alt: "Photosynthesizers" },
-];
+const featuredProjectIds = [11, 10, 12, 1, 7, 8, 9, 2, 4, 3];
+const featuredProjects = featuredProjectIds
+  .map((id) => projectsData.projects.find((project) => project.id === id))
+  .filter(Boolean);
 
-const slider2Images = [
-  { src: "/projects/DiabetesProject.png", alt: "Diabetes Prediction" },
-  { src: "/projects/WordleProject.png", alt: "Wordle Game" },
-  { src: "/projects/ActionsProject.png", alt: "Automated Documentation" },
-];
+const slider1Images = featuredProjects.slice(0, 5);
+const slider2Images = featuredProjects.slice(5, 10);
 
 /**
  * SlidingImages - Horizontal parallax image slider at the bottom
@@ -56,24 +52,24 @@ const SlidingImages = () => {
           style={{ x: shouldReduceMotion ? 0 : x1 }}
           className="flex gap-4 sm:gap-6 will-change-transform"
         >
-          {slider1Images.map((image, index) => (
+          {slider1Images.map((project) => (
             <motion.div
-              key={index}
+              key={project.id}
               whileHover={{ scale: 1.05, y: -8 }}
               className="flex-shrink-0 rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
               style={{ width: 'calc(27vw)', minWidth: '280px', height: 'calc(27vw * 0.75)', minHeight: '210px' }}
               onClick={handleImageClick}
             >
               <img
-                src={image.src}
-                alt={image.alt}
+                src={project.image}
+                alt={project.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 loading="lazy"
                 decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="font-semibold">{image.alt}</p>
+                  <p className="font-semibold">{project.title}</p>
                 </div>
               </div>
             </motion.div>
@@ -85,24 +81,24 @@ const SlidingImages = () => {
           style={{ x: shouldReduceMotion ? 0 : x2 }}
           className="flex gap-4 sm:gap-6 will-change-transform"
         >
-          {slider2Images.map((image, index) => (
+          {slider2Images.map((project) => (
             <motion.div
-              key={index}
+              key={project.id}
               whileHover={{ scale: 1.05, y: -8 }}
               className="flex-shrink-0 rounded-2xl overflow-hidden border border-border/30 hover:border-primary/50 transition-all cursor-pointer group relative"
               style={{ width: 'calc(27vw)', minWidth: '280px', height: 'calc(27vw * 0.75)', minHeight: '210px' }}
               onClick={handleImageClick}
             >
               <img
-                src={image.src}
-                alt={image.alt}
+                src={project.image}
+                alt={project.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 loading="lazy"
                 decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="font-semibold">{image.alt}</p>
+                  <p className="font-semibold">{project.title}</p>
                 </div>
               </div>
             </motion.div>
