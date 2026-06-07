@@ -10,14 +10,14 @@
   },
   "education": [
     {
-      "degree": "B.S. Computer Science",
-      "school": "Milwaukee School of Engineering",
-      "expectedGraduation": "Expected May 2027"
-    },
-    {
       "degree": "M.S. Machine Learning",
       "school": "Milwaukee School of Engineering",
       "expectedGraduation": "Expected 2028"
+    },
+    {
+      "degree": "B.S. Computer Science",
+      "school": "Milwaukee School of Engineering",
+      "expectedGraduation": "Expected May 2027"
     }
   ],
   "currentRole": {
