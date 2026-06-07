@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Briefcase, Code, User, Server, Mail, Download } from "lucide-react"
 import { AnimatedSection } from "../ui/AnimatedSection";
+import clariosLogo from "../../assets/logos/CLARIOS_LOGO.png"
 import teschLogo from "../../assets/logos/TESCHGlobal_logo.png"
 import msoeLogo from "../../assets/logos/MSOE_logo.png"
 import aboutData from "../../data/about.json"
@@ -46,6 +47,13 @@ export const AboutSection = () => {
                                 <div className="flex items-center gap-4 mb-4 flex-wrap">
                                     <h3 className="text-2xl font-semibold">{aboutData.personal.name}</h3>
                                     <div className="flex items-center gap-2">
+                                        <div className="rounded-xl bg-white px-4 py-3 shadow-[0_12px_32px_rgba(0,0,0,0.18)]">
+                                            <img
+                                                src={clariosLogo}
+                                                alt="Clarios"
+                                                className="h-10 w-auto object-contain"
+                                            />
+                                        </div>
                                         <div className="glass-card-subtle px-3 py-2 rounded-lg">
                                             <img
                                                 src={teschLogo}
@@ -67,7 +75,9 @@ export const AboutSection = () => {
                                     <p key={index} className="text-muted-foreground text-base leading-relaxed mb-4">
                                         {index === 0 ? (
                                             <>
-                                                {paragraph.split('TESCH Global')[0]}
+                                                {paragraph.split('Clarios')[0]}
+                                                <strong className="text-foreground font-semibold">Clarios</strong>
+                                                {paragraph.split('Clarios')[1].split('TESCH Global')[0]}
                                                 <strong className="text-foreground font-semibold">TESCH Global</strong>
                                                 {paragraph.split('TESCH Global')[1]}
                                             </>
@@ -97,9 +107,9 @@ export const AboutSection = () => {
 
                                 <div className="flex items-start gap-4">
                                     <img
-                                        src={teschLogo}
-                                        alt="TESCH Global"
-                                        className="h-12 w-12 object-contain mt-1"
+                                        src={clariosLogo}
+                                        alt="Clarios"
+                                        className="h-16 w-24 rounded-xl bg-white object-contain p-2 shadow-[0_12px_32px_rgba(0,0,0,0.18)]"
                                     />
                                     <div className="flex-1">
                                         <div className="flex items-start justify-between gap-2 mb-1">

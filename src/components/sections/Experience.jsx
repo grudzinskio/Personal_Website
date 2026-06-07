@@ -1,12 +1,23 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Code2 } from 'lucide-react';
+import clariosLogo from '../../assets/logos/CLARIOS_LOGO.png';
 import teschGlobalLogo from '../../assets/logos/TESCHGlobal_logo.png';
 import wisconsinStampingLogo from '../../assets/logos/wisconsinstamping.png';
 import msoeLogo from '../../assets/logos/MSOE_logo.png';
 import CocoArchitectureShowcase from './CocoArchitectureShowcase';
 
 const experiences = [
+    {
+        role: 'Data Science Intern',
+        company: 'Clarios',
+        location: 'Glendale, WI',
+        period: 'June 2026 - Present',
+        description: 'Applying AI and machine learning at the global market leader in advanced battery manufacturing to optimize production, improve process intelligence, and support data-driven manufacturing decisions.',
+        logo: clariosLogo,
+        logoFrameClass: 'rounded-xl bg-white px-4 py-3 shadow-[0_12px_32px_rgba(0,0,0,0.18)]',
+        logoClass: 'h-14 md:h-16',
+    },
     {
         role: 'Full Stack Software Development Intern',
         company: 'TESCHGlobal',
@@ -41,7 +52,7 @@ const experiences = [
     },
 ];
 
-const ExperienceItem = ({ role, company, location, period, description, index, logo }) => {
+const ExperienceItem = ({ role, company, location, period, description, index, logo, logoFrameClass = '', logoClass = 'h-8 md:h-10' }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: '-50px' });
 
@@ -61,11 +72,13 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
                 {/* Logo - if available */}
                 {logo && (
                     <div className="mb-4 flex items-center justify-start">
-                        <img
-                            src={logo}
-                            alt={`${company} logo`}
-                            className="h-8 md:h-10 w-auto object-contain"
-                        />
+                        <div className={logoFrameClass}>
+                            <img
+                                src={logo}
+                                alt={`${company} logo`}
+                                className={`${logoClass} w-auto object-contain`}
+                            />
+                        </div>
                     </div>
                 )}
 
