@@ -170,16 +170,18 @@ export const Experience = () => {
                         {experiences.map((exp, index) => (
                             <div
                                 key={exp.company}
-                                className={`md:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
-                                    }`}
+                                className="relative"
                             >
-                                {/* Timeline dot - positioned by percentage */}
                                 <div
-                                    className="hidden md:block absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-background border-2 border-primary"
-                                    style={{ top: `${index * 25 + 12}%` }}
+                                    className="hidden md:block absolute left-1/2 top-8 -translate-x-1/2 w-3 h-3 rounded-full bg-background border-2 border-primary"
                                 />
 
-                                <ExperienceItem {...exp} index={index} />
+                                <div
+                                    className={`md:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
+                                        }`}
+                                >
+                                    <ExperienceItem {...exp} index={index} />
+                                </div>
                             </div>
                         ))}
                     </div>

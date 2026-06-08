@@ -1,10 +1,10 @@
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import cocoDiagram from "../../assets/logos/coco_diagram_white_background.png";
 
 const techStack = [
-  "React 18",
+  "React",
   "TypeScript",
-  "Vite",
-  "Tailwind",
   "FastAPI",
   "Python",
   "XSLT",
@@ -12,110 +12,127 @@ const techStack = [
   "Pytest",
 ] as const;
 
-const systemDescription = [
+const dataFlow = [
   {
-    title: "Interactive Operations Console (CoCoFlow)",
-    body: "A sleek React and Vite interface for navigating schemas, inspecting transformation assets, and triggering sample builds through a FastAPI backend.",
+    label: "Source ingestion",
+    detail: "Member, provider, claims, clinical, and UM data are standardized from payer systems.",
   },
   {
-    title: "Compliance Validation Layer",
-    body: "Automated pipelines generate representative medical datasets, execute mappings, and validate XML integrity against strict W3C XSD specifications.",
+    label: "Canonical core",
+    detail: "CoCo converts inconsistent source data into compliance-oriented canonical XML assets.",
   },
   {
-    title: "Deterministic Service Runtime",
-    body: "A fully Dockerized architecture coordinates the React UI, Express proxy, and FastAPI backend across repeatable deployment environments.",
+    label: "Validation",
+    detail: "Automated checks verify representative datasets against W3C XSD requirements.",
+  },
+  {
+    label: "Adapters",
+    detail: "XSLT translators prepare outputs for FHIR servers, Snowflake, NDH, TEFCA, and analytics.",
   },
 ] as const;
 
+const systemNotes = [
+  "Built an operations console for browsing schemas, inspecting transformation assets, and triggering sample builds.",
+  "Connected the React interface to a FastAPI service layer for repeatable local and containerized workflows.",
+  "Supported compliance-heavy healthcare interoperability work where traceability and deterministic output matter.",
+] as const;
+
 export function CocoArchitectureShowcase() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const detailsId = "coco-architecture-details";
+
   return (
-    <article className="glass-readable relative w-full overflow-hidden rounded-lg p-4 text-white sm:p-5 lg:p-6">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_28%,rgba(168,85,247,0.24),transparent_34%),radial-gradient(circle_at_72%_30%,rgba(236,72,153,0.16),transparent_30%),linear-gradient(135deg,rgba(14,165,233,0.08),transparent_46%)]" />
+    <article className="mx-auto w-full max-w-6xl text-white">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-center">
+        <div className="overflow-hidden rounded-lg border border-white/14 bg-white p-2 shadow-[0_18px_60px_rgba(0,0,0,0.34)]">
+          <img
+            src={cocoDiagram}
+            alt="CoCo canonical healthcare interoperability architecture"
+            className="h-auto w-full rounded-md object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
 
-      <div className="relative mx-auto max-w-6xl">
-        <section className="relative flex min-h-[300px] items-center justify-center px-2 py-8 sm:min-h-[360px] lg:py-10">
-          <div className="absolute left-1/2 top-1/2 h-[70%] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-lg border border-sky-300/18 bg-sky-400/[0.04] shadow-[0_0_80px_rgba(14,165,233,0.14),inset_0_0_70px_rgba(56,189,248,0.06)]" />
-          <div className="absolute left-1/2 top-1/2 h-[56%] w-[62%] -translate-x-1/2 -translate-y-1/2 rounded-lg border border-white/10 shadow-[0_0_55px_rgba(255,255,255,0.08)]" />
-
-          <div className="relative w-full max-w-5xl rounded-lg border border-white/20 bg-white p-2 shadow-[0_0_70px_rgba(14,165,233,0.2),0_24px_90px_rgba(0,0,0,0.42)]">
-            <div className="overflow-hidden rounded-lg bg-white">
-              <img
-                src={cocoDiagram}
-                alt="CoCo canonical healthcare interoperability architecture"
-                className="h-auto w-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </div>
-        </section>
-
-        <section className="rounded-lg border border-white/14 bg-black/60 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_18px_60px_rgba(0,0,0,0.34)] backdrop-blur-md sm:p-5">
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400">
-                CoCo: Compliance Open Source Canonical Pipeline
-              </h3>
-              <p className="mt-2 max-w-3xl text-sm leading-7 text-white/84">
-                CoCo bridges complex proprietary payer systems with strict CMS regulations. It ingests
-                disparate healthcare data, validates compliance-oriented XML assets, applies canonical
-                XSLT mappings, and emits FHIR-ready outputs through a containerized architecture.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2 md:max-w-md md:justify-end">
-              {techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-full border border-white/16 bg-white/[0.075] px-2.5 py-1 text-[10px] font-medium text-white/82"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+        <div className="space-y-5">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-sky-200/80">
+              Compliance Open Source Canonical Pipeline
+            </p>
+            <h3 className="mt-3 text-2xl font-semibold leading-tight text-white md:text-3xl">
+              A cleaner path from payer data to compliant healthcare outputs.
+            </h3>
+            <p className="mt-4 text-sm leading-7 text-white/82">
+              CoCo normalizes proprietary payer data, validates compliance-oriented XML, and routes
+              canonical transformations into FHIR-ready destinations through a containerized system.
+            </p>
           </div>
 
-          <div className="mt-5 rounded-lg border border-white/14 bg-white/[0.075] p-4">
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-gray-400">
-              Architecture &amp; Data Flow
-            </h4>
-            <div className="mt-3 grid gap-3 text-xs leading-6 text-white/82 md:grid-cols-5">
-              <p>
-                <span className="font-semibold text-white">Payer Source Data:</span> Member, provider,
-                claims, clinical, and UM domains are extracted from disparate payer silos.
-              </p>
-              <p>
-                <span className="font-semibold text-white">Proprietary Ingestion:</span> Client-specific
-                ETL handles cleansing, standardization, and mastering.
-              </p>
-              <p>
-                <span className="font-semibold text-white">The CoCo Core:</span> Chaotic data becomes a
-                compliant canonical standard, validated by Pytest and W3C XSD checks.
-              </p>
-              <p>
-                <span className="font-semibold text-white">The Adapters:</span> XSLT translators target
-                FHIR servers, Snowflake, NDH, and TEFCA.
-              </p>
-              <p>
-                <span className="font-semibold text-white">Downstream Ecosystem:</span> Outputs power CMS
-                9115/0057 APIs, provider directories, and analytics dashboards.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-5 grid gap-3 md:grid-cols-3">
-            {systemDescription.map((point) => (
-              <section
-                key={point.title}
-                className="rounded-lg border border-white/14 bg-white/[0.075] p-4"
+          <div className="flex flex-wrap gap-2">
+            {techStack.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-sky-200/16 bg-sky-200/[0.07] px-3 py-1 text-[11px] font-medium text-sky-50/86"
               >
-                <h4 className="break-words text-sm font-semibold leading-5 text-white">
-                  {point.title}
-                </h4>
-                <p className="mt-2 break-words text-xs leading-6 text-white/78">{point.body}</p>
-              </section>
+                {tech}
+              </span>
             ))}
           </div>
-        </section>
+
+          <button
+            type="button"
+            aria-expanded={isExpanded}
+            aria-controls={detailsId}
+            onClick={() => setIsExpanded((current) => !current)}
+            className="focus-ring inline-flex min-h-11 items-center gap-2 rounded-full border border-white/18 bg-white/[0.07] px-4 py-2 text-sm font-semibold text-white transition hover:border-sky-200/36 hover:bg-white/[0.11]"
+          >
+            <span>{isExpanded ? "Hide architecture details" : "View architecture details"}</span>
+            <ChevronDown
+              aria-hidden="true"
+              className={`h-4 w-4 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+            />
+          </button>
+        </div>
+      </div>
+
+      <div
+        id={detailsId}
+        className={`grid overflow-hidden transition-[grid-template-rows,opacity,margin] duration-300 ease-out ${
+          isExpanded ? "mt-8 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="min-h-0">
+          <div className="border-t border-white/14 pt-6">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.72fr)]">
+              <div>
+                <h4 className="text-sm font-semibold uppercase tracking-widest text-sky-200/80">
+                  Architecture Flow
+                </h4>
+                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                  {dataFlow.map((item) => (
+                    <div key={item.label} className="border-l border-sky-200/24 pl-4">
+                      <p className="text-sm font-semibold text-white">{item.label}</p>
+                      <p className="mt-1 text-xs leading-6 text-white/74">{item.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-sm font-semibold uppercase tracking-widest text-sky-200/80">
+                  My Contribution
+                </h4>
+                <ul className="mt-4 space-y-3 text-sm leading-6 text-white/78">
+                  {systemNotes.map((note) => (
+                    <li key={note} className="border-l border-white/14 pl-4">
+                      {note}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
   );
