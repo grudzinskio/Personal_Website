@@ -96,17 +96,33 @@ export const Home = () => {
                 {/* Scroll indicator button */}
                 {showScrollButton && (
                     <Magnetic>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 1.5 }}
-                            className="fixed bottom-6 right-4 z-50 flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-sky-100/18 bg-slate-950/80 px-4 py-2 text-sm font-medium text-white/90 shadow-[0_18px_50px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-all hover:scale-105 hover:border-sky-100/28 hover:bg-slate-900/88 hover:text-white sm:bottom-8 sm:right-8"
-                            style={{ minHeight: '44px', minWidth: '44px' }}
+                        <motion.button
+                            type="button"
+                            aria-label="Scroll to research section"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{
+                                opacity: 1,
+                                y: [0, -7, 0],
+                            }}
+                            transition={{
+                                opacity: { delay: 1.4, duration: 0.4 },
+                                y: {
+                                    delay: 1.7,
+                                    duration: 1.8,
+                                    repeat: Infinity,
+                                    repeatDelay: 1.4,
+                                    ease: "easeInOut",
+                                },
+                            }}
+                            whileHover={{ scale: 1.06, y: -4 }}
+                            whileTap={{ scale: 0.96 }}
+                            className="group fixed bottom-6 right-4 z-50 flex min-h-12 cursor-pointer items-center gap-2.5 rounded-full border border-sky-100/24 bg-slate-950/86 px-5 py-2.5 text-base font-semibold text-white/95 shadow-[0_18px_54px_rgba(8,145,178,0.24),0_10px_34px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-colors hover:border-sky-100/40 hover:bg-slate-900/92 hover:text-white sm:bottom-8 sm:right-8 sm:min-h-14 sm:px-5 sm:py-3"
                             onClick={scrollToResearch}
                         >
+                            <span className="pointer-events-none absolute inset-[-5px] -z-10 rounded-full border border-cyan-300/18 opacity-55 shadow-[0_0_24px_rgba(34,211,238,0.2)] transition-opacity group-hover:opacity-80" />
                             <p>Scroll</p>
-                            <ArrowDownRight strokeWidth={2.2} className="size-4" />
-                        </motion.div>
+                            <ArrowDownRight strokeWidth={2.35} className="size-5" />
+                        </motion.button>
                     </Magnetic>
                 )}
 
