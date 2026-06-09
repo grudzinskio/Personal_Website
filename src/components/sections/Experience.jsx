@@ -110,38 +110,13 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
     );
 };
 
-export const Experience = () => {
+export const ExperienceTimeline = () => {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
     return (
         <div id="experience" className="page-section min-h-screen flex flex-col items-center justify-center">
             <div className="content-shell">
-                <motion.div
-                    initial={{ opacity: 0, y: 28 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.22 }}
-                    transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="mb-16 md:mb-20"
-                >
-                    <div className="section-header mb-8">
-                        <div className="section-eyebrow">
-                            <Code2 className="h-4 w-4 text-primary" />
-                            <span>Featured Work</span>
-                        </div>
-                        <h3 className="section-title-compact mt-5">
-                            Real-World Healthcare Interoperability:
-                            <span className="block text-gradient-animated">CoCo Data</span>
-                        </h3>
-                        <p className="section-copy max-w-3xl">
-                            A production-facing healthcare system for normalizing payer data, validating compliance
-                            assets, and routing canonical transformations into FHIR-ready outputs.
-                        </p>
-                    </div>
-                    <CocoArchitectureShowcase />
-                </motion.div>
-
-                {/* Section Header */}
                 <motion.div
                     ref={sectionRef}
                     initial={{ opacity: 0, y: 30 }}
@@ -160,12 +135,9 @@ export const Experience = () => {
                     </p>
                 </motion.div>
 
-                {/* Timeline */}
                 <div className="relative mx-auto max-w-4xl">
-                    {/* Timeline line - centered vertical gradient line */}
                     <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-secondary/50 to-primary/50 hidden md:block" />
 
-                    {/* Experience items */}
                     <div className="space-y-8">
                         {experiences.map((exp, index) => (
                             <div
@@ -186,10 +158,39 @@ export const Experience = () => {
                         ))}
                     </div>
                 </div>
-
             </div>
         </div>
     );
 };
 
-export default Experience;
+export const CocoFeature = () => (
+    <section id="coco-data" className="page-section">
+        <div className="content-shell">
+            <motion.div
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.22 }}
+                transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+                <div className="section-header mb-10">
+                    <div className="section-eyebrow">
+                        <Code2 className="h-4 w-4 text-primary" />
+                        <span>Featured Work</span>
+                    </div>
+                    <h3 className="section-title-compact mt-5 max-w-4xl mx-auto">
+                        CoCo Data
+                    </h3>
+                    <p className="section-copy max-w-2xl">
+                        A healthcare data pipeline that turns fragmented payer exports into canonical,
+                        FHIR-ready outputs.
+                    </p>
+                </div>
+                <CocoArchitectureShowcase />
+            </motion.div>
+        </div>
+    </section>
+);
+
+export const Experience = ExperienceTimeline;
+
+export default ExperienceTimeline;
