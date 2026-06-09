@@ -327,7 +327,7 @@ export function CocoArchitectureShowcase() {
   const containerRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 48%", "end 35%"],
+    offset: ["start 320px", "end 35%"],
   });
   const matchedProgress = useTransform(scrollYProgress, [0, 0.48], [0, 1]);
   const smoothProgress = useSpring(matchedProgress, {

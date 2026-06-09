@@ -1,11 +1,22 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Code2 } from "lucide-react";
 import { Background } from "../components/ui/Background";
 import { Navbar } from "../components/ui/Navbar";
 import { Footer } from "../components/ui/Footer";
 import CocoArchitectureShowcase from "../components/sections/CocoArchitectureShowcase";
+import { getLenis, scrollToPosition } from "../utils/animations/smoothScroll";
 
 export const CocoProject = () => {
+    useEffect(() => {
+        const lenis = getLenis();
+        if (lenis) {
+            scrollToPosition(0, { immediate: true });
+        } else {
+            window.scrollTo(0, 0);
+        }
+    }, []);
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
