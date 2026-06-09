@@ -6,6 +6,7 @@ import { scrollToPosition, getLenis } from "./utils/animations/smoothScroll"
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
 const Projects = lazy(() => import("./pages/Projects"));
+const CocoProject = lazy(() => import("./pages/CocoProject"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -35,6 +36,7 @@ function AnimatedRoutes() {
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/coco" element={<CocoProject />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

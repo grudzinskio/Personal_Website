@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { Background } from "../components/ui/Background";
 import { Navbar } from "../components/ui/Navbar";
 import { Footer } from "../components/ui/Footer";
@@ -45,6 +46,7 @@ const getStatusStyle = (status) => {
 
 export const Projects = () => {
     const [modalProject, setModalProject] = useState(null);
+    const navigate = useNavigate();
 
     return (
         <motion.div
@@ -92,7 +94,13 @@ export const Projects = () => {
                                     transition={{ duration: 0.3 }}
                                     className={`group glass-card rounded-lg overflow-hidden cursor-pointer relative ${project.featured ? "ring-2 ring-primary/30" : ""
                                         }`}
-                                    onClick={() => setModalProject(project)}
+                                    onClick={() => {
+                                        if (project.id === 12) {
+                                            navigate("/projects/coco");
+                                            return;
+                                        }
+                                        setModalProject(project);
+                                    }}
                                 >
                                     {/* Status badge */}
                                     {project.status && (() => {

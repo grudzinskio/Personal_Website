@@ -7,7 +7,7 @@ import { Footer } from "../components/ui/Footer";
 import { LetterCollision } from "../components/sections/LetterCollision";
 import { IntroductionSection } from "../components/sections/IntroductionSection";
 import { PreclinicalExplorer } from "../components/sections/PreclinicalExplorer";
-import Experience from "../components/sections/Experience";
+import { ExperienceTimeline } from "../components/sections/Experience";
 import SlidingImages from "../components/sections/SlidingImages";
 import NavigationPanels from "../components/sections/NavigationPanels";
 import Magnetic from "../utils/animations/Magnetic";
@@ -90,8 +90,8 @@ export const Home = () => {
                 {/* Section 2: New Introduction */}
                 <IntroductionSection />
 
-                {/* Section 3: Preclinical Explorer */}
-                <PreclinicalExplorer />
+                {/* Section 3: Experience Timeline */}
+                <ExperienceTimeline />
 
                 {/* Scroll indicator button */}
                 {showScrollButton && (
@@ -126,8 +126,8 @@ export const Home = () => {
                     </Magnetic>
                 )}
 
-                {/* Section 4: Experience Timeline */}
-                <Experience />
+                {/* Section 4: Preclinical Explorer */}
+                <PreclinicalExplorer />
 
                 {/* Section 5: Sliding Images Gallery (Horizontal scroll) */}
                 <SlidingImages />
