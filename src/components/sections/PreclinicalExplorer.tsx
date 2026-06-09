@@ -60,9 +60,10 @@ function InfoCard({ title, body, logo, logoAlt, note, tags }: InfoCardProps) {
 
 export function PreclinicalExplorer() {
   const stageRef = useRef<HTMLDivElement | null>(null);
+  const columnsRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
-    if (!stageRef.current) return;
+    if (!stageRef.current || !columnsRef.current) return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const compactViewport = window.innerWidth < 900;
 
@@ -82,10 +83,10 @@ export function PreclinicalExplorer() {
 
       const timeline = gsap.timeline({
         scrollTrigger: {
-          trigger: stageRef.current,
-          start: "top+=200 top",
+          trigger: columnsRef.current,
+          start: "center center",
           end: "+=1500",
-          pin: true,
+          pin: stageRef.current,
           scrub: 0.75,
           anticipatePin: 1,
           invalidateOnRefresh: true,
@@ -152,7 +153,7 @@ export function PreclinicalExplorer() {
               </motion.p>
             </div>
 
-            <div className="mt-16 grid items-center gap-7 sm:mt-20 md:mt-24 lg:grid-cols-[245px_minmax(430px,520px)_245px] lg:justify-center lg:gap-20 xl:grid-cols-[265px_minmax(500px,590px)_265px] xl:gap-28">
+            <div ref={columnsRef} className="mt-16 grid items-center gap-7 sm:mt-20 md:mt-24 lg:grid-cols-[245px_minmax(430px,520px)_245px] lg:justify-center lg:gap-20 xl:grid-cols-[265px_minmax(500px,590px)_265px] xl:gap-28">
               <motion.div
                 initial={{ opacity: 0, x: -22 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -170,7 +171,7 @@ export function PreclinicalExplorer() {
               </motion.div>
 
               <div className="order-1 lg:order-2">
-                <div className="relative mx-auto w-full max-w-[250px] sm:max-w-[315px] lg:max-w-[390px] xl:max-w-[430px]">
+                <div className="relative mx-auto w-full max-w-[225px] sm:max-w-[284px] lg:max-w-[351px] xl:max-w-[387px]">
                   <div
                     className="research-ring absolute inset-[-8%] rounded-full border border-cyan-100/10 shadow-[0_0_55px_rgba(103,232,249,0.12)]"
                     aria-hidden="true"
