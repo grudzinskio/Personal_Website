@@ -7,7 +7,7 @@ import { Footer } from "../components/ui/Footer";
 import { LetterCollision } from "../components/sections/LetterCollision";
 import { IntroductionSection } from "../components/sections/IntroductionSection";
 import { PreclinicalExplorer } from "../components/sections/PreclinicalExplorer";
-import { CocoFeature, ExperienceTimeline } from "../components/sections/Experience";
+import { ExperienceTimeline } from "../components/sections/Experience";
 import SlidingImages from "../components/sections/SlidingImages";
 import NavigationPanels from "../components/sections/NavigationPanels";
 import Magnetic from "../utils/animations/Magnetic";
@@ -129,13 +129,10 @@ export const Home = () => {
                 {/* Section 4: Preclinical Explorer */}
                 <PreclinicalExplorer />
 
-                {/* Section 5: Featured Work */}
-                <CocoFeature />
-
-                {/* Section 6: Sliding Images Gallery (Horizontal scroll) */}
+                {/* Section 5: Sliding Images Gallery (Horizontal scroll) */}
                 <SlidingImages />
 
-                {/* Section 7: Navigation Panels - Cool navigation cards */}
+                {/* Section 6: Navigation Panels - Cool navigation cards */}
                 <NavigationPanels />
             </main>
 

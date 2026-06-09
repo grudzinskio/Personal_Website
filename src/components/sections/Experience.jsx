@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { Code2 } from 'lucide-react';
 import clariosLogo from '../../assets/logos/CLARIOS_LOGO.png';
 import teschGlobalLogo from '../../assets/logos/TESCHGlobal_logo.png';
@@ -25,6 +26,7 @@ const experiences = [
         period: 'June 2025 - Present',
         description: 'Transforms healthcare data to follow FHIR CMS reliant standards. Engineered autonomous CI/CD pipelines. Developed healthcare web applications using React, TypeScript, and HL7 FHIR REST APIs.',
         logo: teschGlobalLogo,
+        projectLink: '/projects/coco',
     },
     {
         role: 'M.S. Machine Learning',
@@ -60,7 +62,7 @@ const experiences = [
     },
 ];
 
-const ExperienceItem = ({ role, company, location, period, description, index, logo, logoFrameClass = '', logoClass = 'h-8 md:h-10' }) => {
+const ExperienceItem = ({ role, company, location, period, description, index, logo, logoFrameClass = '', logoClass = 'h-8 md:h-10', projectLink }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: '-50px' });
 
@@ -105,6 +107,17 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
 
                 {/* Description */}
                 <p className="text-white/82 text-sm leading-relaxed">{description}</p>
+                {projectLink && (
+                    <p className="mt-4 text-sm font-semibold text-white/82">
+                        Main Developer:{" "}
+                        <Link
+                            to={projectLink}
+                            className="text-cyan-200 transition hover:text-white"
+                        >
+                            CoCo Project
+                        </Link>
+                    </p>
+                )}
             </div>
         </motion.div>
     );

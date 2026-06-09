@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import {
   motion,
   useMotionTemplate,
@@ -7,7 +7,6 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
-import { X } from "lucide-react";
 import cocoLogo from "../../assets/logos/CocoLogo_Transparent.png";
 import cocoDiagram from "../../assets/logos/coco_diagram_white_background.png";
 
@@ -326,12 +325,11 @@ function PipelineDiagram({ progress }: { progress: MotionValue<number> }) {
 
 export function CocoArchitectureShowcase() {
   const containerRef = useRef<HTMLElement | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["center 78%", "end 38%"],
+    offset: ["start 48%", "end 35%"],
   });
-  const matchedProgress = useTransform(scrollYProgress, [0, 0.82], [0, 1]);
+  const matchedProgress = useTransform(scrollYProgress, [0, 0.48], [0, 1]);
   const smoothProgress = useSpring(matchedProgress, {
     stiffness: 220,
     damping: 26,
@@ -359,54 +357,10 @@ export function CocoArchitectureShowcase() {
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setIsModalOpen(true)}
-          className="group absolute bottom-5 right-5 z-20 grid w-[min(330px,calc(100%-2.5rem))] grid-cols-[86px_minmax(0,1fr)] items-center gap-3 rounded-lg border border-cyan-100/16 bg-slate-950/78 p-2.5 text-left shadow-[0_18px_54px_rgba(0,0,0,0.38)] backdrop-blur-xl transition hover:border-cyan-100/32 hover:bg-slate-900/88 sm:grid-cols-[104px_minmax(0,1fr)]"
-        >
-          <span className="overflow-hidden rounded-md border border-white/12 bg-white p-1">
-            <img
-              src={cocoDiagram}
-              alt=""
-              className="aspect-[4/3] w-full rounded-sm object-cover object-left"
-              loading="lazy"
-              decoding="async"
-            />
-          </span>
-          <span>
-            <span className="block text-sm font-semibold text-white">Architecture details</span>
-            <span className="mt-1 block text-xs leading-5 text-cyan-100/72">
-              Click to learn more
-            </span>
-          </span>
-        </button>
       </div>
 
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/82 px-4 py-6 backdrop-blur-xl"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="coco-architecture-modal-title"
-          onClick={() => setIsModalOpen(false)}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 18, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative max-h-[88vh] w-full max-w-6xl overflow-y-auto rounded-lg border border-cyan-100/18 bg-slate-950 p-4 shadow-[0_32px_110px_rgba(0,0,0,0.58)] sm:p-6"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <button
-              type="button"
-              aria-label="Close architecture details"
-              onClick={() => setIsModalOpen(false)}
-              className="focus-ring absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/14 bg-white/[0.07] text-white transition hover:border-cyan-100/30 hover:bg-white/[0.12]"
-            >
-              <X aria-hidden="true" className="h-5 w-5" />
-            </button>
-
-            <div className="grid gap-8 pr-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-center">
+      <section className="mt-10 rounded-lg border border-cyan-100/14 bg-[linear-gradient(145deg,rgba(4,12,26,0.82),rgba(8,24,45,0.68))] p-4 shadow-[0_22px_72px_rgba(0,0,0,0.32),inset_0_1px_0_rgba(255,255,255,0.06)] sm:p-6">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-center">
               <div className="overflow-hidden rounded-lg border border-white/14 bg-white p-2 shadow-[0_18px_60px_rgba(0,0,0,0.34)]">
                 <img
                   src={cocoDiagram}
@@ -477,9 +431,7 @@ export function CocoArchitectureShowcase() {
                 </div>
               </div>
             </div>
-          </motion.div>
-        </div>
-      )}
+      </section>
     </article>
   );
 }
