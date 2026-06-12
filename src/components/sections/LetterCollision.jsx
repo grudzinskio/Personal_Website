@@ -63,7 +63,7 @@ export function LetterCollision() {
     <div ref={containerRef} className="content-shell scroll-smooth px-2 sm:px-4">
       <div className="-mt-40 sm:-mt-24 md:-mt-28 mb-40 sm:mb-28 md:mb-36 flex h-screen flex-col justify-end pr-2 sm:pr-4">
         {/* Animated greeting text */}
-        <div className="flex flex-wrap items-center p-0 leading-[0.9] -mb-1 sm:-mb-2 md:-mb-3">
+        <div className="flex flex-wrap items-center p-0 leading-[0.9] mb-1 sm:mb-2 md:mb-3">
           <div className="flex text-[clamp(2rem,6vw,8.25rem)] font-normal text-white">
             <LetterDisplay word="Hello, " colorClass="text-white" />
             <div className="w-2 sm:w-3 md:w-5"></div>

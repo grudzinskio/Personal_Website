@@ -621,6 +621,49 @@ html.lenis {
   animation: shimmer 3s linear infinite;
 }
 
+/* Subtle pre-explosion rumble for the hero letters.
+   Uses the individual translate/rotate properties so it composes with the
+   inline `transform` GSAP sets during the scroll explosion. */
+@keyframes letter-rumble {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+
+  20% {
+    translate: 0.2px -0.26px;
+    rotate: -0.13deg;
+  }
+
+  40% {
+    translate: -0.22px 0.15px;
+    rotate: 0.1deg;
+  }
+
+  60% {
+    translate: 0.15px 0.24px;
+    rotate: 0.13deg;
+  }
+
+  80% {
+    translate: -0.17px -0.17px;
+    rotate: -0.1deg;
+  }
+}
+
+.letter-rumble {
+  animation: letter-rumble var(--rumble-dur, 0.5s) ease-in-out var(--rumble-delay, 0s) infinite;
+}
+
+/* The animation shorthand above would clobber text-gradient-warm's
+   gradient-shift, so gradient letters run both */
+.letter-rumble.text-gradient-warm {
+  animation:
+    letter-rumble var(--rumble-dur, 0.5s) ease-in-out var(--rumble-delay, 0s) infinite,
+    gradient-shift 8s ease infinite;
+}
+
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
 
