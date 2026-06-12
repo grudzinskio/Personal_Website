@@ -7,7 +7,7 @@ export const Footer = () => {
     };
 
     return (
-        <footer className="relative border-t border-border/40 bg-slate-950/35 px-4 py-8 backdrop-blur-sm">
+        <footer className="relative border-t border-white/[0.08] px-4 py-8">
             <div className="content-shell">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                     {/* Copyright */}
@@ -28,7 +28,7 @@ export const Footer = () => {
                         onClick={scrollToTop}
                         whileHover={{ scale: 1.1, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className="glass-card p-3 rounded-full hover:bg-white/10 text-primary transition-all group"
+                        className="glass-card p-3 rounded-full hover:bg-white/[0.06] text-white/70 hover:text-white transition-all group"
                         aria-label="Scroll to top"
                     >
                         <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />

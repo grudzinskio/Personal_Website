@@ -37,11 +37,12 @@ const SlidingImages = () => {
   return (
     <section ref={containerRef} className="page-section overflow-x-hidden bg-transparent">
       <div className="section-header mb-12 sm:mb-16">
-        <h2 className="section-title-compact">
-          Featured <span className="text-gradient-animated">Work</span>
+        <p className="section-eyebrow">Projects</p>
+        <h2 className="section-title-compact mt-6">
+          Selected <span className="text-gradient-warm">work.</span>
         </h2>
         <p className="section-copy">
-          Click any image to explore all projects
+          Click any image to explore all projects.
         </p>
       </div>
 
@@ -56,7 +57,7 @@ const SlidingImages = () => {
             <motion.div
               key={project.id}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="flex-shrink-0 rounded-lg overflow-hidden border border-border/50 shadow-[0_22px_70px_rgba(0,0,0,0.38)] hover:border-primary/50 transition-all cursor-pointer group relative"
+              className="flex-shrink-0 rounded-xl overflow-hidden border border-white/10 hover:border-sky-300/40 transition-all cursor-pointer group relative"
               style={{ width: 'calc(25vw)', minWidth: '300px', maxWidth: '520px', height: 'calc(25vw * 0.72)', minHeight: '216px', maxHeight: '374px' }}
               onClick={handleImageClick}
             >
@@ -85,7 +86,7 @@ const SlidingImages = () => {
             <motion.div
               key={project.id}
               whileHover={{ scale: 1.05, y: -8 }}
-              className="flex-shrink-0 rounded-lg overflow-hidden border border-border/50 shadow-[0_22px_70px_rgba(0,0,0,0.38)] hover:border-primary/50 transition-all cursor-pointer group relative"
+              className="flex-shrink-0 rounded-xl overflow-hidden border border-white/10 hover:border-sky-300/40 transition-all cursor-pointer group relative"
               style={{ width: 'calc(25vw)', minWidth: '300px', maxWidth: '520px', height: 'calc(25vw * 0.72)', minHeight: '216px', maxHeight: '374px' }}
               onClick={handleImageClick}
             >

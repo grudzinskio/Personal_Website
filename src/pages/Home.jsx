@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
 import { Background } from "../components/ui/Background";
 import { Navbar } from "../components/ui/Navbar";
@@ -21,7 +21,6 @@ export const Home = () => {
     const [showScrollButton, setShowScrollButton] = useState(true);
     const scrollContainerRef = useRef(null);
     const scrollFrameRef = useRef(null);
-    const { scrollYProgress } = useScroll();
 
     useEffect(() => {
         // Scroll to top on mount
@@ -74,12 +73,6 @@ export const Home = () => {
                 className="min-h-screen text-foreground overflow-x-hidden"
                 style={{ maxWidth: '100vw' }}
             >
-            {/* Scroll Progress Bar */}
-            <motion.div
-                className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-500 via-sky-400 to-cyan-300 origin-left z-50"
-                style={{ scaleX: scrollYProgress }}
-            />
-
             {/* Main content */}
             <main className="scroll-smooth">
                 {/* Section 1: Letter Collision - Your animated name */}
@@ -116,12 +109,11 @@ export const Home = () => {
                             }}
                             whileHover={{ scale: 1.06, y: -4 }}
                             whileTap={{ scale: 0.96 }}
-                            className="group fixed bottom-6 right-4 z-50 flex min-h-12 cursor-pointer items-center gap-2.5 rounded-full border border-sky-100/24 bg-slate-950/86 px-5 py-2.5 text-base font-semibold text-white/95 shadow-[0_18px_54px_rgba(8,145,178,0.24),0_10px_34px_rgba(0,0,0,0.38)] backdrop-blur-xl transition-colors hover:border-sky-100/40 hover:bg-slate-900/92 hover:text-white sm:bottom-8 sm:right-8 sm:min-h-14 sm:px-5 sm:py-3"
+                            className="group fixed bottom-6 right-4 z-50 flex min-h-12 cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-[rgba(2,6,23,0.82)] px-5 py-2.5 text-sm font-medium text-white backdrop-blur-xl transition-colors hover:border-white/20 sm:bottom-8 sm:right-8 sm:px-6 sm:py-3"
                             onClick={scrollToResearch}
                         >
-                            <span className="pointer-events-none absolute inset-[-5px] -z-10 rounded-full border border-cyan-300/18 opacity-55 shadow-[0_0_24px_rgba(34,211,238,0.2)] transition-opacity group-hover:opacity-80" />
                             <p>Scroll</p>
-                            <ArrowDownRight strokeWidth={2.35} className="size-5" />
+                            <ArrowDownRight strokeWidth={2} className="size-4" />
                         </motion.button>
                     </Magnetic>
                 )}

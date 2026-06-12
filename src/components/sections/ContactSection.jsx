@@ -20,7 +20,7 @@ export const ContactSection = () => {
 
                     <h2 className="section-title">
                         Professional
-                        <span className="block text-gradient-animated">Contact</span>
+                        <span className="block text-gradient-warm">Contact</span>
                     </h2>
 
                     <p className="section-copy">

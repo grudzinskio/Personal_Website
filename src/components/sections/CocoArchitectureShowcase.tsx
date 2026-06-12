@@ -121,7 +121,7 @@ function PhaseCopy({ phase, progress }: { phase: Phase; progress: MotionValue<nu
         {phase.eyebrow}
       </p>
       <h4 className="mt-3 text-2xl font-semibold leading-tight text-white">{phase.title}</h4>
-      <p className="mt-3 text-sm leading-7 text-zinc-300">{phase.detail}</p>
+      <p className="mt-3 text-sm leading-7 text-white">{phase.detail}</p>
     </motion.div>
   );
 }
@@ -338,10 +338,8 @@ export function CocoArchitectureShowcase() {
 
   return (
     <article ref={containerRef} className="relative z-10 mx-auto w-full max-w-6xl text-white">
-      <div className="relative flex min-h-[820px] items-center justify-center overflow-hidden rounded-lg border border-cyan-100/14 bg-[linear-gradient(145deg,rgba(4,12,26,0.82),rgba(8,24,45,0.68))] shadow-[0_22px_72px_rgba(0,0,0,0.36),inset_0_1px_0_rgba(255,255,255,0.06)] lg:min-h-[900px] xl:min-h-[1040px]">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_46%,rgba(34,211,238,0.12),transparent_40%),linear-gradient(180deg,rgba(2,6,23,0.06)_0%,rgba(2,6,23,0.38)_100%)]" />
-        <div className="pointer-events-none absolute inset-0 bg-grid-small opacity-20" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-100/24 to-transparent" />
+      <div className="relative flex min-h-[820px] items-center justify-center overflow-hidden rounded-2xl border border-white/[0.08] bg-[rgba(2,6,23,0.6)] backdrop-blur-xl lg:min-h-[900px] xl:min-h-[1040px]">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_46%,rgba(34,211,238,0.06),transparent_40%)]" />
 
         <div className="relative z-10 flex h-full w-full max-w-7xl items-center justify-center px-4">
           {phases.map((phase) => (
@@ -359,7 +357,7 @@ export function CocoArchitectureShowcase() {
 
       </div>
 
-      <section className="mt-10 rounded-lg border border-cyan-100/14 bg-[linear-gradient(145deg,rgba(4,12,26,0.82),rgba(8,24,45,0.68))] p-4 shadow-[0_22px_72px_rgba(0,0,0,0.32),inset_0_1px_0_rgba(255,255,255,0.06)] sm:p-6">
+      <section className="mt-10 rounded-2xl border border-white/[0.08] bg-[rgba(2,6,23,0.6)] backdrop-blur-xl p-4 sm:p-6">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-center">
               <div className="overflow-hidden rounded-lg border border-white/14 bg-white p-2 shadow-[0_18px_60px_rgba(0,0,0,0.34)]">
                 <img
@@ -373,7 +371,7 @@ export function CocoArchitectureShowcase() {
 
               <div className="space-y-5">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-sky-200/80">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-sky-300/85">
                     Compliance Open Source Canonical Pipeline
                   </p>
                   <h3
@@ -382,7 +380,7 @@ export function CocoArchitectureShowcase() {
                   >
                     A cleaner path from payer data to compliant healthcare outputs.
                   </h3>
-                  <p className="mt-4 text-sm leading-7 text-white/82">
+                  <p className="mt-4 text-sm leading-7 text-white">
                     CoCo normalizes proprietary payer data, validates compliance-oriented XML, and routes
                     canonical transformations into FHIR-ready destinations through a containerized system.
                   </p>
@@ -392,7 +390,7 @@ export function CocoArchitectureShowcase() {
                   {techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-full border border-sky-200/16 bg-sky-200/[0.07] px-3 py-1 text-[11px] font-medium text-sky-50/86"
+                      className="rounded-full border border-sky-300/20 bg-sky-400/[0.08] px-3 py-1 text-[11px] font-medium text-sky-200/85"
                     >
                       {tech}
                     </span>
@@ -404,24 +402,24 @@ export function CocoArchitectureShowcase() {
             <div className="mt-8 border-t border-white/14 pt-6">
               <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.72fr)]">
                 <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-widest text-sky-200/80">
+                  <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-sky-300/85">
                     Architecture Flow
                   </h4>
                   <div className="mt-4 grid gap-4 sm:grid-cols-2">
                     {dataFlow.map((item) => (
                       <div key={item.label} className="border-l border-sky-200/24 pl-4">
                         <p className="text-sm font-semibold text-white">{item.label}</p>
-                        <p className="mt-1 text-xs leading-6 text-white/74">{item.detail}</p>
+                        <p className="mt-1 text-xs leading-6 text-white">{item.detail}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-widest text-sky-200/80">
+                  <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-sky-300/85">
                     My Contribution
                   </h4>
-                  <ul className="mt-4 space-y-3 text-sm leading-6 text-white/78">
+                  <ul className="mt-4 space-y-3 text-sm leading-6 text-white">
                     {systemNotes.map((note) => (
                       <li key={note} className="border-l border-white/14 pl-4">
                         {note}
@@ -447,7 +445,7 @@ function PhaseCopyMobile({ phase, progress }: { phase: Phase; progress: MotionVa
     >
       <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-200/70">{phase.eyebrow}</p>
       <h4 className="mt-1 text-lg font-semibold leading-tight text-white">{phase.title}</h4>
-      <p className="mt-2 text-xs leading-5 text-zinc-300">{phase.detail}</p>
+      <p className="mt-2 text-xs leading-5 text-white">{phase.detail}</p>
     </motion.div>
   );
 }

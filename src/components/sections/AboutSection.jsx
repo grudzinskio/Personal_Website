@@ -13,6 +13,13 @@ const iconMap = {
     Server
 }
 
+const iconChipClasses = {
+    Code: 'border-sky-300/25 bg-sky-400/10 text-sky-300',
+    User: 'border-violet-300/25 bg-violet-400/10 text-violet-300',
+    Briefcase: 'border-emerald-300/25 bg-emerald-400/10 text-emerald-300',
+    Server: 'border-orange-300/25 bg-orange-400/10 text-orange-300',
+}
+
 export const AboutSection = () => {
     const resumeFile = `${import.meta.env.BASE_URL}Resume.pdf`;
 
@@ -33,7 +40,7 @@ export const AboutSection = () => {
 
                     <h2 className="section-title">
                         Engineering
-                        <span className="block text-gradient-animated">Tomorrow's Solutions</span>
+                        <span className="block text-gradient-warm">Tomorrow's Solutions</span>
                     </h2>
                 </AnimatedSection>
 
@@ -43,7 +50,7 @@ export const AboutSection = () => {
                     <AnimatedSection delay={0.2}>
                         <div className="space-y-6">
                             {/* Name and logos */}
-                            <div className="glass-card p-6 rounded-lg">
+                            <div className="glass-card p-6 rounded-2xl">
                                 <div className="flex items-center gap-4 mb-4 flex-wrap">
                                     <h3 className="text-2xl font-semibold">{aboutData.personal.name}</h3>
                                     <div className="flex items-center gap-2">
@@ -89,7 +96,7 @@ export const AboutSection = () => {
                             </div>
 
                             {/* Education & Role */}
-                            <div className="glass-card p-6 rounded-lg space-y-4">
+                            <div className="glass-card p-6 rounded-2xl space-y-4">
                                 <div className="flex items-start gap-4 pb-4 border-b border-border/30">
                                     <img
                                         src={msoeLogo}
@@ -159,24 +166,19 @@ export const AboutSection = () => {
                                         whileInView={{ opacity: 1, x: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.5, delay: index * 0.1 }}
-                                        whileHover={{ y: -4, scale: 1.02 }}
-                                        className="glass-card p-6 rounded-lg group cursor-default"
+                                        whileHover={{ y: -4 }}
+                                        className="glass-card p-6 rounded-2xl group cursor-default transition-colors duration-300 hover:border-sky-300/25"
                                     >
                                         <div className="flex items-start gap-4">
-                                            <div className="glass-card-strong p-3 rounded-lg text-primary group-hover:scale-110 transition-transform">
-                                                <IconComponent className="h-6 w-6" />
+                                            <div className={`inline-flex size-11 shrink-0 items-center justify-center rounded-xl border transition-transform group-hover:scale-110 ${iconChipClasses[item.icon] ?? 'border-sky-300/25 bg-sky-400/10 text-sky-300'}`}>
+                                                <IconComponent className="h-5 w-5" />
                                             </div>
                                             <div className="flex-1">
-                                                <h4 className="font-semibold text-lg mb-2">{item.title}</h4>
-                                                <p className="text-muted-foreground text-sm leading-relaxed">
+                                                <h4 className="font-semibold text-lg mb-2 text-white">{item.title}</h4>
+                                                <p className="text-white text-sm leading-relaxed">
                                                     {item.description}
                                                 </p>
                                             </div>
-                                        </div>
-
-                                        {/* Hover indicator */}
-                                        <div className="mt-4 pt-4 border-t border-border/30 opacity-0 group-hover:opacity-100 transition-opacity">
-                                            <div className="h-1 w-12 bg-gradient-to-r from-primary to-secondary rounded-full" />
                                         </div>
                                     </motion.div>
                                 );

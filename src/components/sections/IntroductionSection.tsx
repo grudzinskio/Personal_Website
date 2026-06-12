@@ -1,61 +1,69 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import presentingImage from "../../assets/presenting_image.jpg";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export function IntroductionSection() {
   return (
     <section className="page-section">
-      <div className="content-shell grid min-h-[70vh] items-center gap-12 md:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      <div className="content-shell grid items-center gap-12 md:grid-cols-[1.25fr_0.75fr] lg:gap-24">
         <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 18 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          className="flex justify-center md:justify-center"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.9, ease }}
         >
-          <div className="relative size-56 overflow-hidden rounded-full border border-white/12 bg-white/[0.03] shadow-[0_28px_90px_rgba(14,165,233,0.24)] sm:size-72 lg:size-80">
-            <img
-              src={presentingImage}
-              alt="Oliver presenting"
-              className="h-full w-full object-cover"
-            />
-            <div className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/18" />
-          </div>
+          <p className="section-eyebrow">About</p>
+
+          <h2 className="section-title-compact mt-6">
+            Intelligent systems,
+            <br />
+            <span className="text-gradient-warm">built cleanly.</span>
+          </h2>
+
+          <p className="mt-6 max-w-md text-base leading-relaxed text-white sm:text-lg">
+            I build data pipelines for machine learning, and the full-stack
+            products that put them to work.
+          </p>
+
+          <motion.div
+            animate={{ rotate: [0, -1.5, 1.5, -1, 1, 0], y: [0, -2, 0] }}
+            transition={{
+              duration: 0.6,
+              repeat: Infinity,
+              repeatDelay: 1.1,
+              ease: "easeInOut",
+            }}
+            className="mt-8 inline-block"
+          >
+            <Link
+              to="/about"
+              className="group inline-flex items-center gap-2.5 text-lg font-semibold text-amber-200 transition-colors hover:text-amber-100"
+            >
+              More about me
+              <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center md:text-left"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.9, delay: 0.1, ease }}
+          className="mx-auto w-full max-w-[260px] sm:max-w-[300px] lg:max-w-[340px]"
         >
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-            className="section-eyebrow"
-          >
-            DATA SCIENCE & SOFTWARE ENGINEERING
-          </motion.p>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-            className="section-title-compact mt-5"
-          >
-            Intelligent systems. Clean architecture.
-          </motion.h2>
-
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="glass-readable mx-auto mt-6 max-w-3xl rounded-lg p-5 text-left sm:p-6 md:mx-0"
-          >
-            <p className="text-pretty text-base leading-8 text-white/90 sm:text-lg md:text-xl md:leading-9">
-              I architect the data pipelines that power machine learning models, and engineer the full-stack applications that bring them to life. From processing complex datasets to building crisp, high-performance interfaces,
-              I design solutions where heavy logic meets effortless usability.
-            </p>
-          </motion.div>
+          <div className="overflow-hidden rounded-2xl border border-white/10 shadow-[0_24px_70px_rgba(8,47,73,0.45)]">
+            <img
+              src={presentingImage}
+              alt="Oliver presenting"
+              className="aspect-[4/5] w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </motion.div>
       </div>
     </section>

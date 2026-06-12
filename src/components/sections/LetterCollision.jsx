@@ -64,29 +64,29 @@ export function LetterCollision() {
       <div className="-mt-40 sm:-mt-24 md:-mt-28 mb-40 sm:mb-28 md:mb-36 flex h-screen flex-col justify-end pr-2 sm:pr-4">
         {/* Animated greeting text */}
         <div className="flex flex-wrap items-center p-0 leading-[0.9] -mb-1 sm:-mb-2 md:-mb-3">
-          <div className="flex text-[clamp(2rem,6vw,8.25rem)] font-normal text-foreground/92">
-            <LetterDisplay word="Hello, " colorClass="text-foreground/92" />
+          <div className="flex text-[clamp(2rem,6vw,8.25rem)] font-normal text-white">
+            <LetterDisplay word="Hello, " colorClass="text-white" />
             <div className="w-2 sm:w-3 md:w-5"></div>
-            <LetterDisplay word="I'm" colorClass="text-foreground/92" />
+            <LetterDisplay word="I'm" colorClass="text-white" />
           </div>
         </div>
 
         {/* Animated name with gap - prevent wrapping within words */}
         <div className="flex flex-wrap items-center p-0 leading-[0.9]">
           <div className="whitespace-nowrap">
-            <LetterDisplay word="Oliver" colorClass="text-primary" />
+            <LetterDisplay word="Oliver" colorClass="text-amber-300" />
           </div>
           <div className="w-3 sm:w-4 md:w-8 lg:w-10 flex-shrink-0"></div>
           <div className="whitespace-nowrap">
-            <LetterDisplay word="Grudzinski" colorClass="text-gradient-animated" />
+            <LetterDisplay word="Grudzinski" colorClass="text-gradient-warm" />
           </div>
         </div>
       </div>
       {/* Extra random letters below with proper spacing */}
       <div className="flex flex-wrap mb-24 sm:mb-32 gap-2 xs:gap-4 sm:gap-6 pr-2 sm:pr-4">
-        <LetterDisplay word="building " colorClass="text-foreground/82" />
-        <LetterDisplay word="innovative " colorClass="text-foreground/82" />
-        <LetterDisplay word="solutions" colorClass="text-foreground/82" />
+        <LetterDisplay word="building " colorClass="text-white" />
+        <LetterDisplay word="innovative " colorClass="text-white" />
+        <LetterDisplay word="solutions" colorClass="text-white" />
       </div>
     </div>
   );

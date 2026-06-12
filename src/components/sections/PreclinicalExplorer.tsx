@@ -25,19 +25,19 @@ type InfoCardProps = {
 
 function InfoCard({ title, body, logo, logoAlt, note, tags }: InfoCardProps) {
   return (
-    <article className="glass-readable relative flex h-[500px] min-h-0 flex-col overflow-hidden rounded-lg px-5 py-9">
+    <article className="glass-readable relative flex h-[500px] min-h-0 flex-col overflow-hidden rounded-2xl px-6 py-9">
       <div className="relative my-auto">
-        <p className="text-[11px] font-medium uppercase tracking-[0.26em] text-sky-200/80">{title}</p>
-        <p className="mt-5 text-sm leading-7 text-white/84">{body}</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-sky-300/85">{title}</p>
+        <p className="mt-5 text-sm leading-7 text-white">{body}</p>
         {note && (
-          <p className="mt-5 text-sm leading-7 text-white/78">{note}</p>
+          <p className="mt-5 text-sm leading-7 text-white">{note}</p>
         )}
         {tags && (
           <div className="mt-7 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-cyan-100/12 bg-cyan-100/[0.055] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-cyan-100/72"
+                className="rounded-full border border-sky-300/20 bg-sky-400/[0.08] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-sky-200/85"
               >
                 {tag}
               </span>
@@ -49,7 +49,7 @@ function InfoCard({ title, body, logo, logoAlt, note, tags }: InfoCardProps) {
         <img
           src={logo}
           alt={logoAlt ?? ""}
-          className="relative mt-9 h-20 w-auto max-w-[180px] object-contain opacity-90"
+          className="relative mt-9 h-20 w-auto max-w-[180px] object-contain opacity-80"
           loading="lazy"
           decoding="async"
         />
@@ -130,26 +130,25 @@ export function PreclinicalExplorer() {
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="section-eyebrow"
               >
-                Preclinical Imaging
+                Research
               </motion.p>
               <motion.h2
                 initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 0.9, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-              className="section-title-compact mt-5"
+              className="section-title-compact mt-6"
               >
-                Academic Research
+                Preclinical imaging.
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.55 }}
                 transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="section-copy max-w-3xl text-sm sm:text-base"
+              className="section-copy"
               >
-                Automated longitudinal segmentation for multi-modality preclinical studies, shaped around the precision,
-                traceability, and calm visual language expected in medical research tooling.
+                Automated longitudinal segmentation for multi-modality preclinical studies.
               </motion.p>
             </div>
 

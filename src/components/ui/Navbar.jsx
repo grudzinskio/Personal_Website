@@ -128,8 +128,8 @@ export const Navbar = () => {
                 )}
                 style={{
                     background: isCompact
-                            ? "rgba(2, 6, 23, 0.88)"
-                            : "linear-gradient(to bottom, rgba(2,6,23,0.72) 0%, rgba(2,6,23,0.24) 100%)",
+                            ? "rgba(2, 6, 23, 0.85)"
+                            : "linear-gradient(to bottom, rgba(2,6,23,0.6) 0%, rgba(2,6,23,0) 100%)",
                 }}
             >
                 <div className='content-shell relative flex items-center px-4 md:px-8'>
@@ -156,7 +156,7 @@ export const Navbar = () => {
                     <div
                         ref={navGroupRef}
                         onMouseLeave={() => setHoveredItem(null)}
-                        className="hidden md:flex items-center space-x-1 absolute left-1/2 -translate-x-1/2 rounded-full border border-white/10 bg-slate-950/42 p-1 shadow-[0_12px_38px_rgba(0,0,0,0.28)]"
+                        className="hidden md:flex items-center space-x-1 absolute left-1/2 -translate-x-1/2 rounded-full border border-white/10 bg-black/40 p-1"
                         role="menubar"
                         aria-label="Main navigation"
                     >
@@ -170,7 +170,7 @@ export const Navbar = () => {
                                 transform: 'translate(0,0)',
                                 width: 0,
                                 height: 0,
-                                background: 'rgba(186,230,253,0.14)',
+                                background: 'rgba(255,255,255,0.1)',
                             }}
                         />
                         {navItems.map((item) => (
@@ -187,7 +187,7 @@ export const Navbar = () => {
                                     isCompact ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm",
                                     item.name === activeItem
                                         ? "text-white"
-                                        : "text-white/72 hover:text-white"
+                                        : "text-white/85 hover:text-white"
                                 )}
                             >
                                 {item.name}
@@ -239,7 +239,7 @@ export const Navbar = () => {
                                     "px-5 py-4 rounded-xl transition-all duration-200 text-center text-sm font-medium tracking-[-0.01em]",
                                     item.name === activeItem
                                         ? "text-white bg-white/10"
-                                        : "text-white/75 hover:text-white hover:bg-white/5"
+                                        : "text-white/85 hover:text-white hover:bg-white/5"
                                 )}
                                 style={{ minHeight: '44px' }}
                                 onClick={() => setIsMenuOpen(false)}

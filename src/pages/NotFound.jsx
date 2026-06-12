@@ -24,7 +24,7 @@ export const NotFound = () => {
                         transition={{ duration: 0.5 }}
                         className="mb-8"
                     >
-                        <h1 className="text-9xl md:text-[12rem] font-bold text-gradient-animated mb-4">
+                        <h1 className="text-9xl md:text-[12rem] font-bold text-gradient-warm mb-4">
                             404
                         </h1>
                         <h2 className="section-title-compact mb-4">

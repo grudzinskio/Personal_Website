@@ -1,7 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Code2 } from 'lucide-react';
 import clariosLogo from '../../assets/logos/CLARIOS_LOGO.png';
 import teschGlobalLogo from '../../assets/logos/TESCHGlobal_logo.png';
 import wisconsinStampingLogo from '../../assets/logos/wisconsinstamping.png';
@@ -78,10 +77,10 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
             }}
             className="relative"
         >
-            <div className="glass-experience rounded-lg p-6 hover:-translate-y-1 hover:border-white/24 hover:shadow-[0_24px_70px_rgba(0,0,0,0.42)] transition-all duration-300">
+            <div className="glass-experience rounded-2xl p-6 transition-colors duration-300 hover:border-sky-300/25 sm:p-7">
                 {/* Logo - if available */}
                 {logo && (
-                    <div className="mb-4 flex items-center justify-start">
+                    <div className="mb-5 flex items-center justify-start">
                         <div className={logoFrameClass}>
                             <img
                                 src={logo}
@@ -92,27 +91,26 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
                     </div>
                 )}
 
-                {/* Period badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/14 text-sky-100 text-xs font-medium mb-4 border border-primary/25">
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+                {/* Period */}
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-sky-300/80">
                     {period}
-                </div>
+                </p>
 
                 {/* Role & Company */}
-                <h3 className="text-xl md:text-2xl font-semibold text-white mb-1 leading-tight">{role}</h3>
-                <p className="text-white/82 mb-1 font-medium">{company}</p>
-                {location && <p className="text-white/70 text-sm mb-4">{location}</p>}
+                <h3 className="text-lg md:text-xl font-semibold text-white mb-1 leading-tight">{role}</h3>
+                <p className="text-white mb-4 text-sm font-medium">
+                    {company}
+                    {location && <span className="font-normal text-white"> · {location}</span>}
+                </p>
 
                 {/* Description */}
-                <p className="text-white/82 text-sm leading-relaxed">{description}</p>
+                <p className="text-white text-sm leading-relaxed">{description}</p>
                 {projectLink && (
-                    <p className="mt-4 text-sm font-semibold text-white/82">
-                        Main Developer:{" "}
+                    <p className="mt-4 text-sm text-white">
+                        Main developer:{" "}
                         <Link
                             to={projectLink}
-                            className="text-cyan-200 transition hover:text-white"
+                            className="font-medium text-sky-300 transition-colors hover:text-sky-200"
                         >
                             CoCo Project
                         </Link>
@@ -137,28 +135,23 @@ export const ExperienceTimeline = () => {
                     transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
                     className="section-header mb-16 md:mb-20"
                 >
-                    <p className="text-primary text-sm font-medium tracking-widest uppercase mb-4">
-                        Journey
-                    </p>
-                    <h2 className="section-title-compact">
-                        Experience
+                    <p className="section-eyebrow">Experience</p>
+                    <h2 className="section-title-compact mt-6">
+                        Where I've been.
                     </h2>
-                    <p className="section-copy">
-                        Building expertise through challenging problems and meaningful projects.
-                    </p>
                 </motion.div>
 
                 <div className="relative mx-auto max-w-4xl">
-                    <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-secondary/50 to-primary/50 hidden md:block" />
+                    <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-white/10 hidden md:block" />
 
                     <div className="space-y-8">
                         {experiences.map((exp, index) => (
                             <div
-                                key={exp.company}
+                                key={`${exp.company}-${exp.role}`}
                                 className="relative"
                             >
                                 <div
-                                    className="hidden md:block absolute left-1/2 top-8 -translate-x-1/2 w-3 h-3 rounded-full bg-background border-2 border-primary"
+                                    className="hidden md:block absolute left-1/2 top-8 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-background border border-white/30"
                                 />
 
                                 <div
@@ -186,14 +179,11 @@ export const CocoFeature = () => (
                 transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
             >
                 <div className="section-header mb-10">
-                    <div className="section-eyebrow">
-                        <Code2 className="h-4 w-4 text-primary" />
-                        <span>Featured Work</span>
-                    </div>
-                    <h3 className="section-title-compact mt-5 max-w-4xl mx-auto">
-                        CoCo Data
+                    <p className="section-eyebrow">Featured Work</p>
+                    <h3 className="section-title-compact mt-6 max-w-4xl mx-auto">
+                        CoCo Data.
                     </h3>
-                    <p className="section-copy max-w-2xl">
+                    <p className="section-copy">
                         A healthcare data pipeline that turns fragmented payer exports into canonical,
                         FHIR-ready outputs.
                     </p>
