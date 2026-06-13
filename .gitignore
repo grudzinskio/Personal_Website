@@ -15,6 +15,9 @@ dist-ssr
 # Example code folder
 example_code
 
+# Local QA / browser-automation scratch dirs
+.tmp-chrome-qa*
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

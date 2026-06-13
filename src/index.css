@@ -767,10 +767,10 @@ html.lenis {
 /* Full-screen 3D background image: prefer WebP, fall back to the original PNG
    for browsers without image-set / WebP support. */
 .app-bg-image {
-  background-image: url("/background.png");
+  background-image: url("/background.jpg");
   background-image: -webkit-image-set(url("/background.webp") 1x);
   background-image: image-set(
     url("/background.webp") type("image/webp"),
-    url("/background.png") type("image/png")
+    url("/background.jpg") type("image/jpeg")
   );
 }
