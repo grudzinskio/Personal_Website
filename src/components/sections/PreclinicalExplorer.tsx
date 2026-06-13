@@ -181,7 +181,7 @@ export function PreclinicalExplorer() {
                   />
                   <div className="research-mouse relative aspect-[1684/2528] w-full">
                     <img
-                      src="/Mouse-Transparent-optimized.png"
+                      src="/Mouse-Transparent-optimized.webp"
                       alt="Transparent preclinical mouse scan"
                       className="relative z-10 h-full w-full select-none object-contain opacity-95 brightness-105 contrast-105 drop-shadow-[0_30px_90px_rgba(8,145,178,0.12)]"
                       loading="eager"

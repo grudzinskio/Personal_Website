@@ -7,8 +7,8 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
-import cocoLogo from "../../assets/logos/CocoLogo_Transparent.png";
-import cocoDiagram from "../../assets/logos/coco_diagram_white_background.png";
+import cocoLogo from "../../assets/logos/CocoLogo_Transparent.webp";
+import cocoDiagram from "../../assets/logos/coco_diagram_white_background.webp";
 
 type Phase = {
   eyebrow: string;

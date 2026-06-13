@@ -9,5 +9,19 @@ export default defineConfig({
     alias: {
       "@":  path.resolve(__dirname, './src'),
     }
-  }
+  },
+  build: {
+    // Split large third-party libs into stable, separately-cached chunks so a
+    // change to app code doesn't invalidate the vendor bundles.
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'framer-motion': ['framer-motion'],
+          'gsap': ['gsap'],
+          'lenis': ['lenis'],
+        },
+      },
+    },
+  },
 });

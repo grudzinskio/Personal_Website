@@ -6,8 +6,8 @@ export const Background = () => {
         <>
             {/* Layer 1: Static 3D background image with pure-black fallback */}
             <div
-                className="fixed inset-0 bg-black bg-cover bg-center bg-no-repeat"
-                style={{ zIndex: -2, backgroundImage: "url('/background.png')" }}
+                className="app-bg-image fixed inset-0 bg-black bg-cover bg-center bg-no-repeat"
+                style={{ zIndex: -2 }}
                 aria-hidden="true"
             />
 
