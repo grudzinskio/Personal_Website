@@ -76,7 +76,7 @@ export const Projects = () => {
 
                         <h1 className="section-title">
                             Featured
-                            <span className="block text-gradient-warm">Projects</span>
+                            <span className="block text-gradient-warm pb-[0.3em] -mb-[0.3em]">Projects</span>
                         </h1>
 
                         <p className="section-copy">

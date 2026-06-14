@@ -3,9 +3,9 @@
     "name": "Oliver Grudzinski",
     "title": "Computer Science Student & Data Science Intern",
     "description": [
-      "Computer Science senior at MSOE, Data Science Intern at Clarios, and Full Stack Development Intern at TESCH Global, specializing in AI/ML systems, modern web applications, and scalable data solutions.",
-      "Passionate about leveraging cutting-edge technologies to solve complex technical challenges. Active member of MSOE AI Club and Society of Software Engineers, continuously exploring emerging innovations in machine learning and software architecture.",
-      "Eagle Scout with a proven track record of leadership, discipline, and delivering high-impact solutions."
+      "Computer Science senior at MSOE, Data Science Intern at Clarios, and Full Stack Development Intern at TESCH Global. I work across AI/ML systems, web applications, and data pipelines.",
+      "Most of my work sits where machine learning meets real systems, getting models and data into products people actually use. Active in the MSOE AI Club and Society of Software Engineers.",
+      "Eagle Scout, where I picked up the discipline and follow-through I bring to engineering work."
     ]
   },
   "education": [
@@ -28,22 +28,22 @@
   "expertise": [
     {
       "title": "Full-Stack Engineering",
-      "description": "Building responsive, scalable web applications with React, TypeScript, Node.js, and modern frameworks. Focus on clean architecture and exceptional user experiences.",
+      "description": "Production web apps built with React, TypeScript, and Node.js. I care about clean architecture, fast load times, and interfaces that stay out of the way.",
       "icon": "Code"
     },
     {
       "title": "AI & Machine Learning",
-      "description": "Developing intelligent systems using computer vision, NLP, and reinforcement learning. Expertise in PyTorch, TensorFlow, and LLM integration for production environments.",
+      "description": "Applied work across computer vision, NLP, and LLM integration, using PyTorch and TensorFlow to ship models that hold up outside the notebook.",
       "icon": "User"
     },
     {
       "title": "Agile Project Leadership",
-      "description": "Leading cross-functional teams using Scrum and Agile methodologies. Driving efficient delivery through clear communication, iterative development, and strategic planning.",
+      "description": "Leading cross-functional teams with Scrum: clear communication, short iterations, and work that actually gets finished.",
       "icon": "Briefcase"
     },
     {
       "title": "Backend & Cloud Architecture",
-      "description": "Designing robust APIs, microservices, and database systems. Proficient in AWS, Docker, and building scalable cloud-native applications for high-performance computing.",
+      "description": "APIs, services, and data layers designed to scale. Comfortable across AWS, Docker, and containerized deployments.",
       "icon": "Server"
     }
   ]

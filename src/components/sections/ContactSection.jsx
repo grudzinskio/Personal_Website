@@ -18,13 +18,14 @@ export const ContactSection = () => {
                         <span>Let's Connect</span>
                     </motion.div>
 
-                    <h2 className="section-title">
-                        Professional
-                        <span className="block text-gradient-warm">Contact</span>
-                    </h2>
+                    <h1 className="section-title">
+                        Let's build
+                        <span className="block text-gradient-warm pb-[0.3em] -mb-[0.3em]">something together.</span>
+                    </h1>
 
                     <p className="section-copy">
-                        Reach out for software engineering, AI, data, or internship opportunities. I typically respond by email.
+                        Open to software engineering, AI, and data roles, and to a good technical
+                        conversation. Email is the fastest way to reach me.
                     </p>
                 </AnimatedSection>
 

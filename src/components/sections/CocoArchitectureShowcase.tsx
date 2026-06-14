@@ -338,8 +338,9 @@ export function CocoArchitectureShowcase() {
 
   return (
     <article ref={containerRef} className="relative z-10 mx-auto w-full max-w-6xl text-white">
-      <div className="relative flex min-h-[820px] items-center justify-center overflow-hidden rounded-2xl border border-white/[0.08] bg-[rgba(2,6,23,0.6)] backdrop-blur-xl lg:min-h-[900px] xl:min-h-[1040px]">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_46%,rgba(34,211,238,0.06),transparent_40%)]" />
+      <div className="glass-card relative flex min-h-[820px] items-center justify-center overflow-hidden rounded-3xl lg:min-h-[900px] xl:min-h-[1040px]">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(34,211,238,0.08),transparent_55%)]" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
         <div className="relative z-10 flex h-full w-full max-w-7xl items-center justify-center px-4">
           {phases.map((phase) => (
@@ -357,17 +358,19 @@ export function CocoArchitectureShowcase() {
 
       </div>
 
-      <section className="mt-10 rounded-2xl border border-white/[0.08] bg-[rgba(2,6,23,0.6)] backdrop-blur-xl p-4 sm:p-6">
-            <div className="grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-center">
-              <div className="overflow-hidden rounded-lg border border-white/14 bg-white p-2 shadow-[0_18px_60px_rgba(0,0,0,0.34)]">
-                <img
-                  src={cocoDiagram}
-                  alt="CoCo canonical healthcare interoperability architecture"
-                  className="h-auto w-full rounded-md object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+      <section className="glass-card mt-8 rounded-3xl p-6 sm:p-8 lg:p-10">
+            <div className="grid gap-8 lg:gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-center">
+              <figure className="rounded-2xl bg-gradient-to-b from-white/12 to-white/[0.04] p-2 ring-1 ring-white/10 shadow-[0_24px_70px_rgba(0,0,0,0.45)]">
+                <div className="overflow-hidden rounded-xl bg-white p-3">
+                  <img
+                    src={cocoDiagram}
+                    alt="CoCo canonical healthcare interoperability architecture"
+                    className="h-auto w-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </figure>
 
               <div className="space-y-5">
                 <div>

@@ -38,16 +38,22 @@ export const AboutSection = () => {
                         <span>About Me</span>
                     </motion.div>
 
-                    <h2 className="section-title">
-                        Engineering
-                        <span className="block text-gradient-warm">Tomorrow's Solutions</span>
-                    </h2>
+                    <h1 className="section-title">
+                        Engineering across
+                        <span className="block text-gradient-warm">the full stack.</span>
+                    </h1>
+
+                    <p className="section-copy">
+                        Computer Science senior building AI/ML systems and web applications
+                        across internships at Clarios and TESCH Global. Here is the work and
+                        how I think about it.
+                    </p>
                 </AnimatedSection>
 
                 {/* Content Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
                     {/* Left Column: Bio */}
-                    <AnimatedSection delay={0.2}>
+                    <AnimatedSection delay={0.05}>
                         <div className="space-y-6">
                             {/* Name and logos */}
                             <div className="glass-card p-6 rounded-2xl">
@@ -155,7 +161,7 @@ export const AboutSection = () => {
                     </AnimatedSection>
 
                     {/* Right Column: Expertise Cards */}
-                    <AnimatedSection delay={0.4}>
+                    <AnimatedSection delay={0.15}>
                         <div className="grid grid-cols-1 gap-6">
                             {aboutData.expertise.map((item, index) => {
                                 const IconComponent = iconMap[item.icon];
