@@ -25,9 +25,9 @@ type InfoCardProps = {
 
 function InfoCard({ title, body, logo, logoAlt, note, tags }: InfoCardProps) {
   return (
-    <article className="glass-readable relative flex h-[500px] min-h-0 flex-col overflow-hidden rounded-2xl px-6 py-9">
-      <div className="relative my-auto">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-sky-300/85">{title}</p>
+    <article className="glass-readable relative flex h-[500px] min-h-0 flex-col justify-between overflow-hidden rounded-2xl px-6 py-9">
+      <div className="relative">
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent/85">{title}</p>
         <p className="mt-5 text-sm leading-7 text-white">{body}</p>
         {note && (
           <p className="mt-5 text-sm leading-7 text-white">{note}</p>
@@ -37,7 +37,7 @@ function InfoCard({ title, body, logo, logoAlt, note, tags }: InfoCardProps) {
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-sky-300/20 bg-sky-400/[0.08] px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-sky-200/85"
+                className="rounded-full border border-white/12 bg-white/[0.04] px-3 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-white/70"
               >
                 {tag}
               </span>
@@ -49,7 +49,7 @@ function InfoCard({ title, body, logo, logoAlt, note, tags }: InfoCardProps) {
         <img
           src={logo}
           alt={logoAlt ?? ""}
-          className="relative mt-9 h-20 w-auto max-w-[180px] object-contain opacity-80"
+          className="relative mt-6 h-16 w-auto max-w-[180px] shrink-0 object-contain opacity-80"
           loading="lazy"
           decoding="async"
         />
@@ -172,18 +172,18 @@ export function PreclinicalExplorer() {
               <div className="order-1 lg:order-2">
                 <div className="relative mx-auto w-full max-w-[225px] sm:max-w-[284px] lg:max-w-[351px] xl:max-w-[387px]">
                   <div
-                    className="research-ring absolute inset-[-8%] rounded-full border border-cyan-100/10 shadow-[0_0_55px_rgba(103,232,249,0.12)]"
+                    className="research-ring absolute inset-[-8%] rounded-full border border-amber-100/10 shadow-[0_0_55px_rgba(245,181,68,0.12)]"
                     aria-hidden="true"
                   />
                   <div
-                    className="research-ring absolute inset-[-14%] rounded-full bg-[radial-gradient(circle_at_50%_45%,rgba(103,232,249,0.10)_0%,rgba(45,212,191,0.045)_40%,transparent_70%)] blur-2xl"
+                    className="research-ring absolute inset-[-14%] rounded-full bg-[radial-gradient(circle_at_50%_45%,rgba(245,181,68,0.10)_0%,rgba(245,181,68,0.045)_40%,transparent_70%)] blur-2xl"
                     aria-hidden="true"
                   />
                   <div className="research-mouse relative aspect-[1684/2528] w-full">
                     <img
                       src="/Mouse-Transparent-optimized.webp"
                       alt="Transparent preclinical mouse scan"
-                      className="relative z-10 h-full w-full select-none object-contain opacity-95 brightness-105 contrast-105 drop-shadow-[0_30px_90px_rgba(8,145,178,0.12)]"
+                      className="relative z-10 h-full w-full select-none object-contain opacity-95 brightness-105 contrast-105 drop-shadow-[0_30px_90px_rgba(245,181,68,0.10)]"
                       loading="eager"
                       decoding="async"
                     />
@@ -198,7 +198,7 @@ export function PreclinicalExplorer() {
                         <path
                           key={d}
                           d={d}
-                          className="research-segment cursor-pointer fill-cyan-300/0 stroke-cyan-100/58 stroke-[6] transition duration-300 hover:fill-cyan-300/22 hover:stroke-white"
+                          className="research-segment cursor-pointer fill-amber-300/0 stroke-amber-100/58 stroke-[6] transition duration-300 hover:fill-amber-300/22 hover:stroke-white"
                           vectorEffect="non-scaling-stroke"
                         />
                       ))}

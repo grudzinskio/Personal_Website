@@ -117,7 +117,7 @@ function PhaseCopy({ phase, progress }: { phase: Phase; progress: MotionValue<nu
           : "right-[max(2rem,calc(50%-35rem))] text-left"
       }`}
     >
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200/70">
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent/80">
         {phase.eyebrow}
       </p>
       <h4 className="mt-3 text-2xl font-semibold leading-tight text-white">{phase.title}</h4>
@@ -374,7 +374,7 @@ export function CocoArchitectureShowcase() {
 
               <div className="space-y-5">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-sky-300/85">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent/85">
                     Compliance Open Source Canonical Pipeline
                   </p>
                   <h3
@@ -393,7 +393,7 @@ export function CocoArchitectureShowcase() {
                   {techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-full border border-sky-300/20 bg-sky-400/[0.08] px-3 py-1 text-[11px] font-medium text-sky-200/85"
+                      className="rounded-full border border-white/12 bg-white/[0.04] px-3 py-1 text-[11px] font-medium text-white/70"
                     >
                       {tech}
                     </span>
@@ -405,12 +405,12 @@ export function CocoArchitectureShowcase() {
             <div className="mt-8 border-t border-white/14 pt-6">
               <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.72fr)]">
                 <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-sky-300/85">
+                  <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-accent/85">
                     Architecture Flow
                   </h4>
                   <div className="mt-4 grid gap-4 sm:grid-cols-2">
                     {dataFlow.map((item) => (
-                      <div key={item.label} className="border-l border-sky-200/24 pl-4">
+                      <div key={item.label} className="border-l border-white/15 pl-4">
                         <p className="text-sm font-semibold text-white">{item.label}</p>
                         <p className="mt-1 text-xs leading-6 text-white">{item.detail}</p>
                       </div>
@@ -419,7 +419,7 @@ export function CocoArchitectureShowcase() {
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-sky-300/85">
+                  <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-accent/85">
                     My Contribution
                   </h4>
                   <ul className="mt-4 space-y-3 text-sm leading-6 text-white">
@@ -446,7 +446,7 @@ function PhaseCopyMobile({ phase, progress }: { phase: Phase; progress: MotionVa
       style={{ opacity, y }}
       className="col-start-1 row-start-1 rounded-lg border border-white/12 bg-zinc-950/82 px-4 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.42)]"
     >
-      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-200/70">{phase.eyebrow}</p>
+      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent/80">{phase.eyebrow}</p>
       <h4 className="mt-1 text-lg font-semibold leading-tight text-white">{phase.title}</h4>
       <p className="mt-2 text-xs leading-5 text-white">{phase.detail}</p>
     </motion.div>

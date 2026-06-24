@@ -170,7 +170,8 @@ export const Navbar = () => {
                                 transform: 'translate(0,0)',
                                 width: 0,
                                 height: 0,
-                                background: 'rgba(255,255,255,0.1)',
+                                background: 'rgba(245, 181, 68, 0.12)',
+                                border: '1px solid rgba(245, 181, 68, 0.2)',
                             }}
                         />
                         {navItems.map((item) => (
@@ -183,11 +184,11 @@ export const Navbar = () => {
                                 onFocus={() => setHoveredItem(item.name)}
                                 onBlur={() => setHoveredItem(null)}
                                 className={cn(
-                                    "relative z-10 rounded-full font-medium tracking-[-0.01em] transition-all duration-300",
+                                    "relative z-10 rounded-full font-medium tracking-[-0.01em] transition-colors duration-200",
                                     isCompact ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm",
                                     item.name === activeItem
-                                        ? "text-white"
-                                        : "text-white/85 hover:text-white"
+                                        ? "text-amber-200"
+                                        : "text-white/70 hover:text-white"
                                 )}
                             >
                                 {item.name}
@@ -195,12 +196,22 @@ export const Navbar = () => {
                         ))}
                     </div>
 
-                    {/* mobile nav button */}
-                    <div className="md:hidden flex items-center ml-auto">
+                    {/* right cluster: desktop CTA + mobile menu button */}
+                    <div className="ml-auto flex items-center gap-3">
+                        <Link
+                            to="/contact"
+                            className={cn(
+                                "hidden md:inline-flex items-center gap-2 rounded-full font-semibold tracking-[-0.01em] text-[#0a0a0b] bg-accent transition-[transform,box-shadow,background-color] duration-200 ease-out hover:-translate-y-px hover:bg-[hsl(38_92%_66%)] hover:shadow-[0_8px_24px_-8px_rgba(245,181,68,0.5)]",
+                                isCompact ? "px-4 py-1.5 text-xs" : "px-5 py-2 text-sm"
+                            )}
+                        >
+                            Let&rsquo;s talk
+                        </Link>
+
                         <button
                             onClick={() => setIsMenuOpen((prev) => !prev)}
                             className={cn(
-                                "text-foreground z-50 rounded-lg hover:bg-primary/10 transition-all duration-300",
+                                "md:hidden text-foreground z-50 rounded-lg hover:bg-white/10 transition-colors duration-200",
                                 isCompact ? "p-2" : "p-3"
                             )}
                             style={{ minWidth: '44px', minHeight: '44px' }}
@@ -220,26 +231,31 @@ export const Navbar = () => {
                 )}
                 style={{ background: 'rgba(0,0,0,0.94)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
             >
-                <div className="relative m-auto w-[85%] max-w-sm rounded-lg border border-white/[0.12] p-8 flex flex-col items-stretch"
-                    style={{ background: 'rgba(15,23,42,0.96)' }}>
+                <div className="relative m-auto w-[85%] max-w-sm rounded-2xl border border-white/[0.1] p-6 flex flex-col items-stretch"
+                    style={{ background: 'rgba(12,12,14,0.98)' }}>
                     <button
                         aria-label="Close menu"
                         onClick={() => setIsMenuOpen(false)}
                         className="absolute -top-4 -right-4 h-10 w-10 rounded-full border border-white/10 flex items-center justify-center text-white/80 hover:text-white transition-colors"
-                        style={{ background: 'rgba(28,28,30,0.9)', minWidth: '40px', minHeight: '40px' }}
+                        style={{ background: 'rgba(20,20,22,0.95)', minWidth: '40px', minHeight: '40px' }}
                     >
                         <X size={18} />
                     </button>
-                    <div className="flex flex-col space-y-2">
+
+                    <p className="px-1 pb-3 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-white/40">
+                        Menu
+                    </p>
+
+                    <div className="flex flex-col space-y-1">
                         {navItems.map((item, key) => (
                             <Link
                                 key={key}
                                 to={item.href}
                                 className={cn(
-                                    "px-5 py-4 rounded-xl transition-all duration-200 text-center text-sm font-medium tracking-[-0.01em]",
+                                    "px-5 py-4 rounded-xl transition-colors duration-200 text-center text-base font-medium tracking-[-0.01em]",
                                     item.name === activeItem
-                                        ? "text-white bg-white/10"
-                                        : "text-white/85 hover:text-white hover:bg-white/5"
+                                        ? "text-amber-200 bg-amber-300/10"
+                                        : "text-white/80 hover:text-white hover:bg-white/5"
                                 )}
                                 style={{ minHeight: '44px' }}
                                 onClick={() => setIsMenuOpen(false)}
@@ -248,6 +264,15 @@ export const Navbar = () => {
                             </Link>
                         ))}
                     </div>
+
+                    <Link
+                        to="/contact"
+                        onClick={() => setIsMenuOpen(false)}
+                        className="cosmic-button mt-4 w-full"
+                        style={{ minHeight: '48px' }}
+                    >
+                        Let&rsquo;s talk
+                    </Link>
                 </div>
             </div>
         </>

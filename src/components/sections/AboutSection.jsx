@@ -14,10 +14,10 @@ const iconMap = {
 }
 
 const iconChipClasses = {
-    Code: 'border-sky-300/25 bg-sky-400/10 text-sky-300',
-    User: 'border-violet-300/25 bg-violet-400/10 text-violet-300',
-    Briefcase: 'border-emerald-300/25 bg-emerald-400/10 text-emerald-300',
-    Server: 'border-orange-300/25 bg-orange-400/10 text-orange-300',
+    Code: 'border-white/10 bg-white/[0.03] text-white/70',
+    User: 'border-white/10 bg-white/[0.03] text-white/70',
+    Briefcase: 'border-white/10 bg-white/[0.03] text-white/70',
+    Server: 'border-white/10 bg-white/[0.03] text-white/70',
 }
 
 export const AboutSection = () => {
@@ -173,10 +173,10 @@ export const AboutSection = () => {
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.5, delay: index * 0.1 }}
                                         whileHover={{ y: -4 }}
-                                        className="glass-card p-6 rounded-2xl group cursor-default transition-colors duration-300 hover:border-sky-300/25"
+                                        className="glass-card p-6 rounded-2xl group cursor-default transition-colors duration-300 hover:border-accent/30"
                                     >
                                         <div className="flex items-start gap-4">
-                                            <div className={`inline-flex size-11 shrink-0 items-center justify-center rounded-xl border transition-transform group-hover:scale-110 ${iconChipClasses[item.icon] ?? 'border-sky-300/25 bg-sky-400/10 text-sky-300'}`}>
+                                            <div className={`inline-flex size-11 shrink-0 items-center justify-center rounded-xl border transition-colors duration-200 group-hover:border-accent/40 group-hover:text-accent ${iconChipClasses[item.icon] ?? 'border-white/10 bg-white/[0.03] text-white/70'}`}>
                                                 <IconComponent className="h-5 w-5" />
                                             </div>
                                             <div className="flex-1">

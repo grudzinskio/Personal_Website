@@ -34,6 +34,7 @@ const experiences = [
         period: 'Expected 2028',
         description: 'Expected Master of Science in Machine Learning at MSOE, extending applied AI and machine learning coursework into advanced research and systems work.',
         logo: msoeLogo,
+        logoClass: 'h-12 md:h-14',
     },
     {
         role: 'B.S. Computer Science',
@@ -42,6 +43,7 @@ const experiences = [
         period: 'Aug 2023 - May 2027',
         description: 'Senior C.S. Student. Active member of MSOE AI Club and Society of Software Engineers.',
         logo: msoeLogo,
+        logoClass: 'h-12 md:h-14',
     },
     {
         role: 'Inventory Systems Management Intern',
@@ -77,7 +79,7 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
             }}
             className="relative"
         >
-            <div className="glass-experience rounded-2xl p-6 transition-colors duration-300 hover:border-sky-300/25 sm:p-7">
+            <div className="glass-experience card-hover rounded-2xl p-6 sm:p-7">
                 {/* Logo - if available */}
                 {logo && (
                     <div className="mb-5 flex items-center justify-start">
@@ -92,25 +94,25 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
                 )}
 
                 {/* Period */}
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-sky-300/80">
+                <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-accent/85">
                     {period}
                 </p>
 
                 {/* Role & Company */}
-                <h3 className="text-lg md:text-xl font-semibold text-white mb-1 leading-tight">{role}</h3>
-                <p className="text-white mb-4 text-sm font-medium">
+                <h3 className="text-lg md:text-xl font-semibold tracking-[-0.02em] text-white mb-1 leading-tight">{role}</h3>
+                <p className="text-white/70 mb-4 text-sm font-medium">
                     {company}
-                    {location && <span className="font-normal text-white"> · {location}</span>}
+                    {location && <span className="font-normal text-white/45"> · {location}</span>}
                 </p>
 
                 {/* Description */}
-                <p className="text-white text-sm leading-relaxed">{description}</p>
+                <p className="text-white/65 text-sm leading-relaxed">{description}</p>
                 {projectLink && (
-                    <p className="mt-4 text-sm text-white">
+                    <p className="mt-4 text-sm text-white/65">
                         Main developer:{" "}
                         <Link
                             to={projectLink}
-                            className="font-medium text-sky-300 transition-colors hover:text-sky-200"
+                            className="font-medium text-accent transition-colors hover:text-amber-200"
                         >
                             CoCo Project
                         </Link>
