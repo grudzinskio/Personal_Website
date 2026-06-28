@@ -31,9 +31,9 @@ const getStatusStyle = (status) => {
         label: status.replace("🥉", "").trim(),
     };
     if (status.toLowerCase().includes("professional")) return {
-        wrapper: "bg-cyan-500 border border-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.4)]",
-        icon: "text-cyan-950",
-        text: "text-cyan-950",
+        wrapper: "bg-white border border-white/80 shadow-[0_0_12px_rgba(255,255,255,0.25)]",
+        icon: "text-neutral-900",
+        text: "text-neutral-900",
         label: status,
     };
     return {

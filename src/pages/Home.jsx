@@ -11,7 +11,7 @@ import { ExperienceTimeline } from "../components/sections/Experience";
 import SlidingImages from "../components/sections/SlidingImages";
 import NavigationPanels from "../components/sections/NavigationPanels";
 import Magnetic from "../utils/animations/Magnetic";
-import { initSmoothScroll, scrollToElement } from "../utils/animations/smoothScroll";
+import { initSmoothScroll, scrollToPosition, getLenis } from "../utils/animations/smoothScroll";
 
 /**
  * Home - Complete original design with all sections restored
@@ -50,11 +50,14 @@ export const Home = () => {
         };
     }, []);
 
-    const scrollToResearch = () => {
-        scrollToElement('#preclinical-research', {
-            offset: -80,
-            duration: 1.8,
-        });
+    const scrollNudge = () => {
+        // Just a small nudge to invite scrolling — not a jump to a section.
+        const target = (window.scrollY || 0) + window.innerHeight * 0.6;
+        if (getLenis()) {
+            scrollToPosition(target, { duration: 0.9 });
+        } else {
+            window.scrollTo({ top: target, behavior: 'smooth' });
+        }
     };
 
     return (
@@ -75,7 +78,7 @@ export const Home = () => {
             >
             {/* Main content */}
             <main className="scroll-smooth">
-                {/* Section 1: Letter Collision - Your animated name */}
+                {/* Section 1: Letter Collision hero with CTAs */}
                 <section className="relative px-4">
                     <LetterCollision />
                 </section>
@@ -91,7 +94,7 @@ export const Home = () => {
                     <Magnetic>
                         <motion.button
                             type="button"
-                            aria-label="Scroll to research section"
+                            aria-label="Scroll down"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{
                                 opacity: 1,
@@ -109,8 +112,8 @@ export const Home = () => {
                             }}
                             whileHover={{ scale: 1.06, y: -4 }}
                             whileTap={{ scale: 0.96 }}
-                            className="group fixed bottom-6 right-4 z-50 flex min-h-12 cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-[rgba(2,6,23,0.82)] px-5 py-2.5 text-sm font-medium text-white backdrop-blur-xl transition-colors hover:border-white/20 sm:bottom-8 sm:right-8 sm:px-6 sm:py-3"
-                            onClick={scrollToResearch}
+                            className="group fixed bottom-6 right-4 z-50 flex min-h-12 cursor-pointer items-center gap-2 rounded-full border border-accent/50 bg-[rgba(245,181,68,0.12)] px-5 py-2.5 font-mono text-xs uppercase tracking-[0.18em] text-accent shadow-[0_0_24px_-6px_rgba(245,181,68,0.5)] backdrop-blur-xl transition-colors hover:border-accent hover:bg-[rgba(245,181,68,0.2)] sm:bottom-8 sm:right-8 sm:px-6 sm:py-3"
+                            onClick={scrollNudge}
                         >
                             <p>Scroll</p>
                             <ArrowDownRight strokeWidth={2} className="size-4" />

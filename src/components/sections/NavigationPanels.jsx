@@ -8,25 +8,25 @@ import { User, Briefcase, Mail, ArrowRight } from 'lucide-react';
 const NavigationPanels = () => {
   const panels = [
     {
+      index: '01',
       title: 'About',
       description: 'Background, education, and the systems I like to build.',
       icon: User,
       href: '/about',
-      iconClass: 'border-sky-300/25 bg-sky-400/10 text-sky-300',
     },
     {
+      index: '02',
       title: 'Projects',
       description: 'A focused archive of software and research work.',
       icon: Briefcase,
       href: '/projects',
-      iconClass: 'border-violet-300/25 bg-violet-400/10 text-violet-300',
     },
     {
+      index: '03',
       title: 'Contact',
       description: 'Start a conversation about internships, research, or software.',
       icon: Mail,
       href: '/contact',
-      iconClass: 'border-emerald-300/25 bg-emerald-400/10 text-emerald-300',
     },
   ];
 
@@ -56,24 +56,29 @@ const NavigationPanels = () => {
               transition={{ duration: 0.5, delay: index * 0.08 }}
             >
               <Link to={panel.href} className="group block h-full">
-                <div className="glass-card flex h-full min-h-[220px] flex-col justify-between rounded-2xl p-7 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-sky-300/25">
+                <div className="glass-card card-hover flex h-full min-h-[220px] flex-col justify-between rounded-2xl p-7">
                   <div>
-                    <div className={`inline-flex size-10 items-center justify-center rounded-xl border ${panel.iconClass}`}>
-                      <panel.icon className="size-5" strokeWidth={1.8} />
+                    <div className="flex items-center justify-between">
+                      <div className="inline-flex size-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-white/70 transition-colors duration-200 group-hover:border-accent/40 group-hover:text-accent">
+                        <panel.icon className="size-5" strokeWidth={1.8} />
+                      </div>
+                      <span className="font-mono text-xs tracking-[0.2em] text-white/30">
+                        {panel.index}
+                      </span>
                     </div>
 
-                    <h3 className="mt-6 text-xl font-semibold text-white">
+                    <h3 className="mt-6 text-xl font-semibold tracking-[-0.02em] text-white">
                       {panel.title}
                     </h3>
 
-                    <p className="mt-2 text-sm leading-6 text-white">
+                    <p className="mt-2 text-sm leading-6 text-white/60">
                       {panel.description}
                     </p>
                   </div>
 
-                  <div className="mt-8 flex items-center gap-2 text-sm font-medium text-sky-300/80 transition-colors group-hover:text-sky-200">
+                  <div className="mt-8 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-white/45 transition-colors duration-200 group-hover:text-accent">
                     <span>Open</span>
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
