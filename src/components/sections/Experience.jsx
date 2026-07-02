@@ -1,10 +1,11 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useInView, useScroll } from 'framer-motion';
+import { forwardRef, useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import clariosLogo from '../../assets/logos/CLARIOS_LOGO.png';
 import teschGlobalLogo from '../../assets/logos/TESCHGlobal_logo.png';
 import wisconsinStampingLogo from '../../assets/logos/wisconsinstamping.png';
 import msoeLogo from '../../assets/logos/MSOE_logo.png';
+import eagleScoutBanner from '../../assets/logos/eagle-scout-banner.png';
 import CocoArchitectureShowcase from './CocoArchitectureShowcase';
 
 const experiences = [
@@ -59,9 +60,18 @@ const experiences = [
         location: '',
         period: '2015 - 2022',
         description: 'Demonstrated leadership and community service through scouting projects.',
-        logo: null,
+        logo: eagleScoutBanner,
+        logoClass: 'h-16 md:h-20',
     },
 ];
+
+// Fewer, more spread-out dashes than Tailwind's border-dashed: a 6px dash
+// followed by an 18px gap, repeating down the connector.
+const timelineDash =
+    'repeating-linear-gradient(to bottom, rgba(22,35,63,0.5) 0 6px, transparent 6px 24px)';
+
+const accent = '#cb4b0b';
+const navy = '#16233f';
 
 const ExperienceItem = ({ role, company, location, period, description, index, logo, logoFrameClass = '', logoClass = 'h-8 md:h-10', projectLink }) => {
     const ref = useRef(null);
@@ -123,9 +133,109 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
     );
 };
 
+const TimelineRow = forwardRef(({ exp, index, total }, ref) => {
+    const [hovered, setHovered] = useState(false);
+    const isEven = index % 2 === 0;
+    const dotColor = isEven ? accent : navy;
+    const hoverHandlers = {
+        onMouseEnter: () => setHovered(true),
+        onMouseLeave: () => setHovered(false),
+    };
+
+    return (
+        <div ref={ref} className="relative">
+            {/* dashed connector drawn per-segment so it starts at the first dot
+                and ends at the last — the half above the dot is skipped on the
+                first item, the half below (which spans the gap into the next
+                card) on the last. Each segment draws itself in as it enters view. */}
+            {index !== 0 && (
+                <motion.div
+                    className="hidden md:block absolute left-1/2 top-0 bottom-1/2 w-0.5"
+                    style={{ x: '-50%', transformOrigin: 'top', backgroundImage: timelineDash }}
+                    initial={{ scaleY: 0 }}
+                    whileInView={{ scaleY: 1 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: index * 0.15 + 0.2 }}
+                />
+            )}
+            {index !== total - 1 && (
+                <motion.div
+                    className="hidden md:block absolute left-1/2 top-1/2 -bottom-8 w-0.5"
+                    style={{ x: '-50%', transformOrigin: 'top', backgroundImage: timelineDash }}
+                    initial={{ scaleY: 0 }}
+                    whileInView={{ scaleY: 1 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: index * 0.15 + 0.22 }}
+                />
+            )}
+
+            {/* Node: outer wrapper springs the dot in on reveal; inner span
+                handles hover (linked to the card) and the "Present" pulse.
+                z-20 keeps it above the accent progress line. */}
+            <motion.div
+                className="hidden md:block absolute left-1/2 top-1/2 z-20"
+                style={{ x: '-50%', y: '-50%' }}
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ type: 'spring', stiffness: 400, damping: 18, delay: index * 0.15 + 0.1 }}
+                {...hoverHandlers}
+            >
+                <div className="relative flex h-5 w-5 items-center justify-center">
+                    <motion.span
+                        className="block h-5 w-5 rounded-full ring-4 ring-[#e7e4dd]"
+                        style={{ backgroundColor: dotColor }}
+                        animate={{
+                            scale: hovered ? 1.35 : 1,
+                            boxShadow: hovered
+                                ? `0 0 0 6px ${isEven ? 'rgba(203,75,11,0.16)' : 'rgba(22,35,63,0.16)'}`
+                                : '0 0 0 0px rgba(0,0,0,0)',
+                        }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    />
+                </div>
+            </motion.div>
+
+            <div
+                className={`md:w-[calc(50%-2rem)] ${isEven ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}
+                {...hoverHandlers}
+            >
+                <ExperienceItem {...exp} index={index} />
+            </div>
+        </div>
+    );
+});
+
+TimelineRow.displayName = 'TimelineRow';
+
 export const ExperienceTimeline = () => {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+
+    // Scroll-linked accent line that fills from the first dot to the last as
+    // the section passes through the viewport. Geometry is measured so the
+    // fill spans dot-to-dot regardless of card heights.
+    const timelineRef = useRef(null);
+    const rowRefs = useRef([]);
+    const [lineGeom, setLineGeom] = useState({ top: 0, height: 0 });
+    const { scrollYProgress } = useScroll({
+        target: timelineRef,
+        offset: ['start center', 'end center'],
+    });
+
+    useLayoutEffect(() => {
+        const measure = () => {
+            const first = rowRefs.current[0];
+            const last = rowRefs.current[rowRefs.current.length - 1];
+            if (!first || !last) return;
+            const top = first.offsetTop + first.offsetHeight / 2;
+            const bottom = last.offsetTop + last.offsetHeight / 2;
+            setLineGeom({ top, height: bottom - top });
+        };
+        measure();
+        window.addEventListener('resize', measure);
+        return () => window.removeEventListener('resize', measure);
+    }, []);
 
     return (
         <div id="experience" className="page-section min-h-screen flex flex-col items-center justify-center">
@@ -143,26 +253,32 @@ export const ExperienceTimeline = () => {
                     </h2>
                 </motion.div>
 
-                <div className="relative mx-auto max-w-4xl">
-                    <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-white/10 hidden md:block" />
+                <div ref={timelineRef} className="relative mx-auto max-w-4xl">
+                    {/* accent progress fill: solid orange drawn over the dashed
+                        connector, scaled by scroll (z-10, above the dashes, below
+                        the dots at z-20) */}
+                    <motion.div
+                        className="hidden md:block absolute left-1/2 w-0.5 z-10 rounded-full"
+                        style={{
+                            top: lineGeom.top,
+                            height: lineGeom.height,
+                            x: '-50%',
+                            transformOrigin: 'top',
+                            scaleY: scrollYProgress,
+                            backgroundColor: accent,
+                            boxShadow: '0 0 8px rgba(203,75,11,0.5)',
+                        }}
+                    />
 
                     <div className="space-y-8">
                         {experiences.map((exp, index) => (
-                            <div
+                            <TimelineRow
                                 key={`${exp.company}-${exp.role}`}
-                                className="relative"
-                            >
-                                <div
-                                    className="hidden md:block absolute left-1/2 top-8 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-background border border-white/30"
-                                />
-
-                                <div
-                                    className={`md:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
-                                        }`}
-                                >
-                                    <ExperienceItem {...exp} index={index} />
-                                </div>
-                            </div>
+                                ref={(el) => (rowRefs.current[index] = el)}
+                                exp={exp}
+                                index={index}
+                                total={experiences.length}
+                            />
                         ))}
                     </div>
                 </div>

@@ -143,10 +143,10 @@
 
     --card: 240 5% 7%;
 
-    /* Single accent — refined amber, used sparingly for emphasis/CTAs */
-    --primary: 38 90% 61%;
+    /* Single accent — dark orange, used sparingly for emphasis/CTAs */
+    --primary: 20 90% 42%;
     --primary-foreground: 240 6% 6%;
-    --accent: 38 90% 61%;
+    --accent: 20 90% 42%;
     --accent-foreground: 240 6% 6%;
 
     --secondary: 240 5% 12%;
@@ -154,7 +154,7 @@
 
     --border: 240 5% 13%;
     --muted: 240 5% 11%;
-    --muted-foreground: 240 5% 64%;
+    --muted-foreground: 0 0% 85%;
 
     /* Accent colors */
     --accent-blue: #0070f3;
@@ -789,4 +789,79 @@ html.lenis {
     url("/background.webp") type("image/webp"),
     url("/background.jpg") type("image/jpeg")
   );
+}
+
+/* PROTOTYPE: light hero panel.
+   Flip the hero's white ink to near-black and deepen the amber so the name
+   still reads on a near-white background. Scoped to .hero-light so removing
+   the prototype is a one-line change in Home.jsx. */
+.hero-light .text-white {
+  color: #14120f;
+}
+
+.hero-light .text-amber-300,
+.hero-light .text-gradient-warm {
+  color: #cb4b0b;
+}
+
+/* Light sections: the page is light, so text sitting directly on it flips to
+   dark ink. The dark glass cards keep their own explicit white text, so only
+   on-page headings/copy change — cards read as dark cards on a light page. */
+.section-light {
+  color: #1b1813;
+}
+
+.section-light .section-title,
+.section-light .section-title-compact {
+  color: #17150f;
+}
+
+.section-light .section-copy {
+  color: rgba(18, 16, 13, 0.92);
+}
+
+/* Light glass cards on the light page: swap the dark fill for a clean frosted
+   white and flip the text inside to strong near-black (grey is hard to read). */
+.section-light :is(.glass-card, .glass-card-strong, .glass-readable, .glass-experience, .glass-card-subtle) {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border-color: rgba(20, 18, 15, 0.12);
+  box-shadow: 0 12px 32px rgba(20, 18, 15, 0.10);
+}
+
+.section-light :is(.glass-card, .glass-card-strong, .glass-readable, .glass-experience, .glass-card-subtle) .text-white {
+  color: #0f0d0b;
+}
+.section-light :is(.glass-card, .glass-card-strong, .glass-readable, .glass-experience, .glass-card-subtle) .text-white\/70 {
+  color: rgba(15, 13, 11, 0.94);
+}
+.section-light :is(.glass-card, .glass-card-strong, .glass-readable, .glass-experience, .glass-card-subtle) .text-white\/65 {
+  color: rgba(15, 13, 11, 0.92);
+}
+.section-light :is(.glass-card, .glass-card-strong, .glass-readable, .glass-experience, .glass-card-subtle) .text-white\/60 {
+  color: rgba(15, 13, 11, 0.9);
+}
+.section-light :is(.glass-card, .glass-card-strong, .glass-readable, .glass-experience, .glass-card-subtle) .text-white\/45 {
+  color: rgba(15, 13, 11, 0.82);
+}
+.section-light :is(.glass-card, .glass-card-strong, .glass-readable, .glass-experience, .glass-card-subtle) .text-white\/30 {
+  color: rgba(15, 13, 11, 0.7);
+}
+
+/* Global readability: on dark surfaces, lift muted white text close to solid
+   white instead of grey. Scoped light-card rules above (higher specificity)
+   still win, so light sections stay dark-on-light. */
+.text-white\/70,
+.text-white\/65,
+.text-white\/60 {
+  color: rgba(255, 255, 255, 0.93);
+}
+.text-white\/55,
+.text-white\/50,
+.text-white\/45 {
+  color: rgba(255, 255, 255, 0.84);
+}
+.text-white\/40,
+.text-white\/35,
+.text-white\/30 {
+  color: rgba(255, 255, 255, 0.74);
 }

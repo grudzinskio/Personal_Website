@@ -18,7 +18,7 @@ export function IntroductionSection() {
   };
 
   return (
-    <section className="page-section">
+    <section className="page-section !py-20 sm:!py-28">
       <div className="content-shell grid items-center gap-12 md:grid-cols-[1.25fr_0.75fr] lg:gap-24">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

@@ -119,8 +119,8 @@ export function PreclinicalExplorer() {
   }, []);
 
   return (
-    <section id="preclinical-research" className="relative overflow-visible px-4">
-      <div ref={stageRef} className="relative mb-12 flex min-h-screen items-center overflow-visible py-6 sm:mb-16 sm:py-8 md:mb-20 md:py-10">
+    <section id="preclinical-research" className="relative overflow-visible px-4 bg-[#08090b]">
+      <div ref={stageRef} className="relative mb-2 flex items-center overflow-visible py-2 sm:mb-3 sm:py-3 md:mb-4 md:py-4">
         <div className="content-shell relative">
             <div className="mx-auto max-w-4xl text-center">
               <motion.p
@@ -152,7 +152,7 @@ export function PreclinicalExplorer() {
               </motion.p>
             </div>
 
-            <div ref={columnsRef} className="mt-16 grid items-center gap-7 sm:mt-20 md:mt-24 lg:grid-cols-[245px_minmax(430px,520px)_245px] lg:justify-center lg:gap-20 xl:grid-cols-[265px_minmax(500px,590px)_265px] xl:gap-28">
+            <div ref={columnsRef} className="mt-8 grid items-center gap-6 sm:mt-10 md:mt-12 lg:grid-cols-[210px_minmax(360px,430px)_210px] lg:justify-center lg:gap-12 xl:grid-cols-[230px_minmax(410px,490px)_230px] xl:gap-16">
               <motion.div
                 initial={{ opacity: 0, x: -22 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -170,7 +170,7 @@ export function PreclinicalExplorer() {
               </motion.div>
 
               <div className="order-1 lg:order-2">
-                <div className="relative mx-auto w-full max-w-[225px] sm:max-w-[284px] lg:max-w-[351px] xl:max-w-[387px]">
+                <div className="relative mx-auto w-full max-w-[180px] sm:max-w-[230px] lg:max-w-[290px] xl:max-w-[320px]">
                   <div
                     className="research-ring absolute inset-[-8%] rounded-full border border-amber-100/10 shadow-[0_0_55px_rgba(245,181,68,0.12)]"
                     aria-hidden="true"
@@ -226,7 +226,7 @@ export function PreclinicalExplorer() {
           </div>
         </div>
 
-      <div className="pb-16 sm:pb-20 md:pb-24" />
+      <div className="pb-1 sm:pb-2 md:pb-3" />
     </section>
   );
 }
