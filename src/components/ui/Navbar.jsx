@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/utils/cn";
 import { getScrollY } from "@/utils/animations/smoothScroll";
 import { X, Menu } from "lucide-react";
-import ogLogo from "@/assets/Portfolio-logo.png";
+import ogLogo from "@/assets/OG_New_logo.png";
 
 const navItems = [
     { name: "Home", href: "/" },
@@ -18,6 +18,7 @@ export const Navbar = () => {
     const [homeHideProgress, setHomeHideProgress] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [hoveredItem, setHoveredItem] = useState(null);
+    const [logoHover, setLogoHover] = useState(false);
 
     const isHomePage = location.pathname === '/';
     const isCompact = isHomePage ? homeHideProgress >= 0.55 : isScrolled;
@@ -31,10 +32,20 @@ export const Navbar = () => {
 
     const targetItem = hoveredItem || activeItem;
 
+    // Split the items around the centred logo, like the reference pill.
+    const leftItems = navItems.slice(0, 2);
+    const rightItems = navItems.slice(2);
+
     // Position moving bubble
     useEffect(() => {
         const moveBubble = () => {
             if (!navGroupRef.current || !bubbleRef.current) return;
+            // While the logo is hovered its label expands over the bubble's spot,
+            // so hide the amber bubble to keep it from showing behind the text.
+            if (logoHover) {
+                bubbleRef.current.style.opacity = '0';
+                return;
+            }
             const link = linkRefs.current[targetItem];
             if (!link) return;
             const groupRect = navGroupRef.current.getBoundingClientRect();
@@ -52,7 +63,7 @@ export const Navbar = () => {
             cancelAnimationFrame(id);
             clearTimeout(transitionId);
         };
-    }, [targetItem, activeItem, isCompact]);
+    }, [targetItem, activeItem, isCompact, logoHover]);
 
     // Reposition on resize
     useEffect(() => {
@@ -121,105 +132,127 @@ export const Navbar = () => {
         <>
             <nav
                 className={cn(
-                    "fixed w-full z-40 border-b transition-[padding,background-color,backdrop-filter,border-color,box-shadow] duration-300 ease-out",
-                    isCompact
-                        ? "py-1 backdrop-blur-md border-white/[0.1] shadow-[0_10px_36px_rgba(0,0,0,0.24)]"
-                        : "py-3 backdrop-blur-sm border-white/[0.06]"
+                    "fixed inset-x-0 top-0 z-40 flex justify-center transition-[padding] duration-300 ease-out",
+                    isCompact ? "pt-2" : "pt-4"
                 )}
-                style={{
-                    background: isCompact
-                            ? "rgba(2, 6, 23, 0.85)"
-                            : "linear-gradient(to bottom, rgba(2,6,23,0.6) 0%, rgba(2,6,23,0) 100%)",
-                }}
             >
-                <div className='content-shell relative flex items-center px-4 md:px-8'>
+                {/* Desktop: one floating black pill — links split around a centred logo */}
+                <div
+                    ref={navGroupRef}
+                    onMouseLeave={() => setHoveredItem(null)}
+                    className="relative hidden md:flex items-center gap-1 rounded-full border border-white/[0.08] p-1.5 shadow-[0_16px_44px_rgba(0,0,0,0.5)] backdrop-blur-xl"
+                    style={{ background: "rgba(10, 10, 11, 0.92)" }}
+                    role="menubar"
+                    aria-label="Main navigation"
+                >
+                    {/* Moving highlight — solid amber pill under the active/hovered item */}
+                    <span
+                        ref={bubbleRef}
+                        aria-hidden="true"
+                        className="absolute top-0 left-0 z-0 rounded-full transition-all duration-300 ease-out pointer-events-none shadow-[0_4px_16px_-4px_rgba(245,181,68,0.55)]"
+                        style={{
+                            opacity: 0,
+                            transform: 'translate(0,0)',
+                            width: 0,
+                            height: 0,
+                            background: 'hsl(var(--accent))',
+                        }}
+                    />
+
+                    {leftItems.map((item) => (
+                        <Link
+                            key={item.name}
+                            ref={(el) => { if (el) linkRefs.current[item.name] = el; }}
+                            to={item.href}
+                            role="menuitem"
+                            onMouseEnter={() => setHoveredItem(item.name)}
+                            onFocus={() => setHoveredItem(item.name)}
+                            onBlur={() => setHoveredItem(null)}
+                            className={cn(
+                                "relative z-10 rounded-full tracking-[-0.01em] transition-colors duration-200 px-5 py-2 text-sm",
+                                item.name === targetItem
+                                    ? "text-white font-semibold"
+                                    : "text-white/65 font-medium hover:text-white"
+                            )}
+                        >
+                            {item.name}
+                        </Link>
+                    ))}
+
+                    {/* centred logo */}
                     <Link
                         to="/"
-                        className={cn(
-                            "flex items-center group transition-all duration-300",
-                            isCompact ? "p-1.5" : "p-2"
-                        )}
+                        className="group relative z-10 mx-2 flex items-center justify-center"
                         style={{ minWidth: '44px', minHeight: '44px' }}
+                        aria-label="Home"
+                        onMouseEnter={() => setLogoHover(true)}
+                        onMouseLeave={() => setLogoHover(false)}
                     >
                         <img
                             src={ogLogo}
                             alt="Portfolio"
-                            className={cn(
-                                "w-auto transition-all duration-300 group-hover:scale-110",
-                                isCompact ? "h-7 md:h-8" : "h-8 sm:h-10 md:h-12"
-                            )}
+                            className="h-8 w-auto transition-transform duration-300 group-hover:scale-110"
                             decoding="async"
                         />
+
+                        {/* hover reveal — after a ~1s dwell the label expands out
+                            beside the logo (grid 0fr→1fr animates to its width).
+                            The 1s delay lives only on group-hover so it opens slowly
+                            but collapses instantly when the pointer leaves. */}
+                        <span
+                            aria-hidden="true"
+                            className="grid grid-cols-[0fr] transition-[grid-template-columns] duration-300 ease-out delay-0 group-hover:grid-cols-[1fr] group-hover:delay-500"
+                        >
+                            <span className="min-w-0 overflow-hidden">
+                                <span className="block whitespace-nowrap pl-2 leading-tight opacity-0 transition-opacity duration-300 delay-0 group-hover:opacity-100 group-hover:delay-500">
+                                    <span className="block text-[8px] font-medium uppercase tracking-[0.12em] text-white/50">
+                                        Made by
+                                    </span>
+                                    <span className="block text-[11px] font-semibold text-white/90">
+                                        Oliver Grudzinski
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
                     </Link>
 
-                    {/* desktop nav - centered */}
-                    <div
-                        ref={navGroupRef}
-                        onMouseLeave={() => setHoveredItem(null)}
-                        className="hidden md:flex items-center space-x-1 absolute left-1/2 -translate-x-1/2 rounded-full border border-white/10 bg-black/40 p-1"
-                        role="menubar"
-                        aria-label="Main navigation"
-                    >
-                        {/* Moving highlight bubble — Apple-style pure white pill */}
-                        <span
-                            ref={bubbleRef}
-                            aria-hidden="true"
-                            className="absolute top-0 left-0 z-0 rounded-full transition-all duration-300 ease-out pointer-events-none"
-                            style={{
-                                opacity: 0,
-                                transform: 'translate(0,0)',
-                                width: 0,
-                                height: 0,
-                                background: 'rgba(245, 181, 68, 0.12)',
-                                border: '1px solid rgba(245, 181, 68, 0.2)',
-                            }}
-                        />
-                        {navItems.map((item) => (
-                            <Link
-                                key={item.name}
-                                ref={(el) => { if (el) linkRefs.current[item.name] = el; }}
-                                to={item.href}
-                                role="menuitem"
-                                onMouseEnter={() => setHoveredItem(item.name)}
-                                onFocus={() => setHoveredItem(item.name)}
-                                onBlur={() => setHoveredItem(null)}
-                                className={cn(
-                                    "relative z-10 rounded-full font-medium tracking-[-0.01em] transition-colors duration-200",
-                                    isCompact ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm",
-                                    item.name === activeItem
-                                        ? "text-amber-200"
-                                        : "text-white/70 hover:text-white"
-                                )}
-                            >
-                                {item.name}
-                            </Link>
-                        ))}
-                    </div>
-
-                    {/* right cluster: desktop CTA + mobile menu button */}
-                    <div className="ml-auto flex items-center gap-3">
+                    {rightItems.map((item) => (
                         <Link
-                            to="/contact"
+                            key={item.name}
+                            ref={(el) => { if (el) linkRefs.current[item.name] = el; }}
+                            to={item.href}
+                            role="menuitem"
+                            onMouseEnter={() => setHoveredItem(item.name)}
+                            onFocus={() => setHoveredItem(item.name)}
+                            onBlur={() => setHoveredItem(null)}
                             className={cn(
-                                "hidden md:inline-flex items-center gap-2 rounded-full font-semibold tracking-[-0.01em] text-[#0a0a0b] bg-accent transition-[transform,box-shadow,background-color] duration-200 ease-out hover:-translate-y-px hover:bg-[hsl(38_92%_66%)] hover:shadow-[0_8px_24px_-8px_rgba(245,181,68,0.5)]",
-                                isCompact ? "px-4 py-1.5 text-xs" : "px-5 py-2 text-sm"
+                                "relative z-10 rounded-full tracking-[-0.01em] transition-colors duration-200 px-5 py-2 text-sm",
+                                item.name === targetItem
+                                    ? "text-white font-semibold"
+                                    : "text-white/65 font-medium hover:text-white"
                             )}
                         >
-                            Let&rsquo;s talk
+                            {item.name}
                         </Link>
+                    ))}
+                </div>
 
-                        <button
-                            onClick={() => setIsMenuOpen((prev) => !prev)}
-                            className={cn(
-                                "md:hidden text-foreground z-50 rounded-lg hover:bg-white/10 transition-colors duration-200",
-                                isCompact ? "p-2" : "p-3"
-                            )}
-                            style={{ minWidth: '44px', minHeight: '44px' }}
-                            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                        >
-                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
-                    </div>
+                {/* Mobile: compact pill with logo + menu button */}
+                <div
+                    className="flex md:hidden items-center gap-6 rounded-full border border-white/[0.08] px-4 py-2 shadow-[0_16px_44px_rgba(0,0,0,0.5)] backdrop-blur-xl"
+                    style={{ background: "rgba(10, 10, 11, 0.92)" }}
+                >
+                    <Link to="/" aria-label="Home" className="flex items-center" style={{ minHeight: '44px' }}>
+                        <img src={ogLogo} alt="Portfolio" className="h-7 w-auto" decoding="async" />
+                    </Link>
+                    <button
+                        onClick={() => setIsMenuOpen((prev) => !prev)}
+                        className="text-foreground z-50 rounded-lg p-2 hover:bg-white/10 transition-colors duration-200"
+                        style={{ minWidth: '44px', minHeight: '44px' }}
+                        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                    >
+                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
                 </div>
             </nav>
 
