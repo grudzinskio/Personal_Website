@@ -804,6 +804,57 @@ html.lenis {
   color: #cb4b0b;
 }
 
+/* Hero "blob" backdrop (HeroDesign `blob` variant): soft shapes that slowly
+   morph + drift, plus drifting specks. Kept subtle so the light hero base
+   stays dominant. Motion is disabled under prefers-reduced-motion. */
+@keyframes hero-blob-morph {
+  0%,
+  100% { border-radius: 42% 58% 63% 37% / 45% 40% 60% 55%; }
+  50%  { border-radius: 60% 40% 42% 58% / 58% 55% 45% 42%; }
+}
+@keyframes hero-blob-float {
+  0%,
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(0, -2.5%, 0) scale(1.04); }
+}
+@keyframes hero-speck-float {
+  0%,
+  100% { transform: translate3d(0, 0, 0); }
+  50%  { transform: translate3d(0, -14px, 0); }
+}
+.hero-blob {
+  will-change: transform, border-radius;
+  border-radius: 42% 58% 63% 37% / 45% 40% 60% 55%;
+  animation: hero-blob-morph 18s ease-in-out infinite,
+             hero-blob-float 14s ease-in-out infinite;
+}
+.hero-blob--b { animation-duration: 22s, 17s; animation-delay: -6s, -3s; }
+.hero-blob--c { animation-duration: 15s, 11s; animation-delay: -3s, -7s; }
+.hero-speck {
+  will-change: transform;
+  animation: hero-speck-float 9s ease-in-out infinite;
+}
+.hero-speck--slow { animation-duration: 13s; animation-delay: -4s; }
+
+/* Floating holographic image shapes (HeroDesign `shapes` variant): slow
+   vertical drift + a gentle tilt. No border-radius so the PNG isn't clipped. */
+@keyframes hero-shape-float {
+  0%,
+  100% { transform: translate3d(0, 0, 0) rotate(var(--r, 0deg)); }
+  50%  { transform: translate3d(0, -3.5%, 0) rotate(calc(var(--r, 0deg) + 3deg)); }
+}
+.hero-shape {
+  will-change: transform;
+  animation: hero-shape-float 16s ease-in-out infinite;
+}
+.hero-shape--b { animation-duration: 21s; animation-delay: -5s; }
+.hero-shape--c { animation-duration: 13s; animation-delay: -8s; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-blob,
+  .hero-speck,
+  .hero-shape { animation: none; }
+}
+
 /* Light sections: the page is light, so text sitting directly on it flips to
    dark ink. The dark glass cards keep their own explicit white text, so only
    on-page headings/copy change — cards read as dark cards on a light page. */

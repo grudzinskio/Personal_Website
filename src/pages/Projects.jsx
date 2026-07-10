@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Background } from "../components/ui/Background";
 import { Navbar } from "../components/ui/Navbar";
 import { Footer } from "../components/ui/Footer";
+import { SectionBackground } from "../components/ui/SectionBackground";
 import { AnimatedSection } from "../components/ui/AnimatedSection";
 import { ArrowRight, ExternalLink, Github, Award, Code2, X } from "lucide-react";
 import projectsData from "../data/projects.json";
@@ -57,9 +57,9 @@ export const Projects = () => {
             className="min-h-screen text-foreground overflow-x-hidden"
             style={{ maxWidth: '100vw' }}
         >
-            <Background />
             <Navbar />
 
+            <SectionBackground tone="spotlight" className="min-h-screen">
             <main className="page-section pt-24 sm:pt-32">
                 <div className="content-shell">
                     {/* Header */}
@@ -203,6 +203,7 @@ export const Projects = () => {
             </main>
 
             <Footer />
+            </SectionBackground>
 
             {/* Project Modal */}
             <AnimatePresence>

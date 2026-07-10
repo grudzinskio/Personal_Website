@@ -22,8 +22,21 @@ export const SectionBackground = ({
     image,
     rounded = false,
     className,
+    // Feather the TOP edge of this section's background from transparent to
+    // opaque so it dissolves into whatever section sits above it instead of
+    // hard-cutting. Pass a CSS length for the fade distance (e.g. "16vh").
+    featherTop,
 }) => {
     const ref = useRef(null);
+
+    // Top-edge fade mask (used e.g. for the hero -> spotlight transition). Applied
+    // to the in-flow background layer so the section above shows through the fade.
+    const featherStyle = featherTop
+        ? {
+              WebkitMaskImage: `linear-gradient(to bottom, transparent 0, #000 ${featherTop})`,
+              maskImage: `linear-gradient(to bottom, transparent 0, #000 ${featherTop})`,
+          }
+        : null;
 
     // Spotlight follows the pointer within this section (parks centre otherwise).
     useEffect(() => {
@@ -77,6 +90,7 @@ export const SectionBackground = ({
                         backgroundColor: '#08090b',
                         backgroundImage:
                             'radial-gradient(440px 440px at var(--mx) var(--my), rgba(245,181,68,0.16), transparent 70%), radial-gradient(820px 820px at var(--mx) var(--my), rgba(245,181,68,0.06), transparent 75%)',
+                        ...featherStyle,
                     }}
                     aria-hidden="true"
                 />

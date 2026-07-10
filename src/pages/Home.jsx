@@ -9,7 +9,9 @@ import { IntroductionSection } from "../components/sections/IntroductionSection"
 import { PreclinicalExplorer } from "../components/sections/PreclinicalExplorer";
 import { ExperienceTimeline } from "../components/sections/Experience";
 import SlidingImages from "../components/sections/SlidingImages";
+import NavigationPanels from "../components/sections/NavigationPanels";
 import { SectionBackground } from "../components/ui/SectionBackground";
+import { HeroDesign } from "../components/ui/HeroDesign";
 import Magnetic from "../utils/animations/Magnetic";
 import { initSmoothScroll, scrollToPosition, getLenis } from "../utils/animations/smoothScroll";
 
@@ -78,9 +80,11 @@ export const Home = () => {
             >
             {/* Main content */}
             <main className="scroll-smooth">
-                {/* Section 1: Letter Collision hero — PROTOTYPE: light "screen"
-                    that hard-cuts to the dark page below (see reference). */}
+                {/* Section 1: Letter Collision hero — light "screen" with the
+                    floating holographic shapes backdrop, hard-cutting to the
+                    dark spotlight section below. */}
                 <SectionBackground tone="light" className="hero-light">
+                    <HeroDesign />
                     <section className="relative px-4">
                         <LetterCollision />
                     </section>
@@ -139,6 +143,14 @@ export const Home = () => {
                 {/* Section 5: Sliding Images Gallery (light) */}
                 <div className="section-light">
                     <SlidingImages />
+                </div>
+
+                {/* Section 6: Navigation Panels — "Keep looking around" cards,
+                    on the light page background (section-light restyles the glass
+                    cards + text for the light surface). Pulled up to close the
+                    doubled page-section padding gap under the sliding images. */}
+                <div className="section-light -mt-36">
+                    <NavigationPanels />
                 </div>
             </main>
 
