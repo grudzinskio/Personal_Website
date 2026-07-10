@@ -182,6 +182,10 @@
     scroll-behavior: auto;
     /* Lenis handles smooth scrolling */
     height: auto;
+    /* Fluid base size so the whole rem-based UI scales up on large monitors.
+       Anchored at 1600px so laptop and mobile (≤1600px) stay pinned at 16px;
+       above that it grows with the viewport, capped at 26px on very wide screens. */
+    font-size: clamp(16px, calc(16px + (100vw - 1600px) * 0.018), 26px);
   }
 
   body {
@@ -238,7 +242,7 @@
   }
 
   @media (width >=1800px) {
-    max-width: min(1680px, calc(100vw - 6rem));
+    max-width: min(2100px, calc(100vw - 8rem));
   }
 }
 
@@ -339,7 +343,7 @@
 
 @media (min-width: 1800px) {
   .content-shell {
-    width: min(calc(100vw - 6rem), 1680px);
+    width: min(calc(100vw - 8rem), 2100px);
   }
 }
 
@@ -373,7 +377,7 @@
 @utility section-title {
   margin-top: 1.25rem;
   color: rgb(255 255 255);
-  font-size: clamp(2.4rem, 5vw, 5.25rem);
+  font-size: clamp(2.4rem, 5vw, 6.5rem);
   line-height: 1;
   font-weight: 600;
   letter-spacing: -0.025em;
@@ -382,7 +386,7 @@
 
 @utility section-title-compact {
   color: rgb(255 255 255);
-  font-size: clamp(2rem, 3.6vw, 3.5rem);
+  font-size: clamp(2rem, 3.6vw, 4.5rem);
   line-height: 1.08;
   font-weight: 600;
   letter-spacing: -0.025em;
@@ -394,7 +398,7 @@
   margin-top: 1.25rem;
   max-width: 42rem;
   color: hsl(var(--muted-foreground));
-  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  font-size: clamp(1rem, 1.2vw, 1.4rem);
   line-height: 1.7;
   text-wrap: pretty;
 }

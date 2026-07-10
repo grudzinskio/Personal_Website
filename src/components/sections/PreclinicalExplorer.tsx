@@ -25,7 +25,7 @@ type InfoCardProps = {
 
 function InfoCard({ title, body, logo, logoAlt, note, tags }: InfoCardProps) {
   return (
-    <article className="glass-readable relative flex h-[500px] min-h-0 flex-col justify-between overflow-hidden rounded-2xl px-6 py-9">
+    <article className="glass-readable relative flex h-[31.25rem] min-h-0 flex-col justify-between overflow-hidden rounded-2xl px-6 py-9">
       <div className="relative">
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent/85">{title}</p>
         <p className="mt-5 text-sm leading-7 text-white">{body}</p>
@@ -49,7 +49,7 @@ function InfoCard({ title, body, logo, logoAlt, note, tags }: InfoCardProps) {
         <img
           src={logo}
           alt={logoAlt ?? ""}
-          className="relative mt-6 h-16 w-auto max-w-[180px] shrink-0 object-contain opacity-80"
+          className="relative mt-6 h-16 w-auto max-w-[11.25rem] shrink-0 object-contain opacity-80"
           loading="lazy"
           decoding="async"
         />
@@ -120,7 +120,7 @@ export function PreclinicalExplorer() {
 
   return (
     <section id="preclinical-research" className="relative overflow-visible px-4 bg-[#08090b]">
-      <div ref={stageRef} className="relative mb-2 flex items-center overflow-visible py-2 sm:mb-3 sm:py-3 md:mb-4 md:py-4">
+      <div ref={stageRef} className="relative flex min-h-screen items-center justify-center overflow-visible bg-[#08090b] py-16">
         <div className="content-shell relative">
             <div className="mx-auto max-w-4xl text-center">
               <motion.p
@@ -152,7 +152,7 @@ export function PreclinicalExplorer() {
               </motion.p>
             </div>
 
-            <div ref={columnsRef} className="mt-8 grid items-center gap-6 sm:mt-10 md:mt-12 lg:grid-cols-[210px_minmax(360px,430px)_210px] lg:justify-center lg:gap-12 xl:grid-cols-[230px_minmax(410px,490px)_230px] xl:gap-16">
+            <div ref={columnsRef} className="mt-8 grid items-center gap-6 sm:mt-10 md:mt-12 lg:grid-cols-[17.19rem_minmax(20rem,23.75rem)_17.19rem] lg:justify-center lg:gap-10 xl:grid-cols-[18.75rem_minmax(22.5rem,26.88rem)_18.75rem] xl:gap-14">
               <motion.div
                 initial={{ opacity: 0, x: -22 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -170,7 +170,7 @@ export function PreclinicalExplorer() {
               </motion.div>
 
               <div className="order-1 lg:order-2">
-                <div className="relative mx-auto w-full max-w-[180px] sm:max-w-[230px] lg:max-w-[290px] xl:max-w-[320px]">
+                <div className="relative mx-auto w-full max-w-[11.25rem] sm:max-w-[14.375rem] lg:max-w-[18.125rem] xl:max-w-[20rem]">
                   <div
                     className="research-ring absolute inset-[-8%] rounded-full border border-amber-100/10 shadow-[0_0_55px_rgba(245,181,68,0.12)]"
                     aria-hidden="true"
