@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { Background } from "../components/ui/Background";
 import { Navbar } from "../components/ui/Navbar";
 import { Footer } from "../components/ui/Footer";
+import { SectionBackground } from "../components/ui/SectionBackground";
 import { ContactSection } from "../components/sections/ContactSection";
 
 export const Contact = () => {
@@ -14,12 +14,13 @@ export const Contact = () => {
             className="min-h-screen text-foreground overflow-x-hidden"
             style={{ maxWidth: '100vw' }}
         >
-            <Background />
             <Navbar />
-            <main>
-                <ContactSection />
-            </main>
-            <Footer />
+            <SectionBackground tone="spotlight" className="min-h-screen">
+                <main>
+                    <ContactSection />
+                </main>
+                <Footer />
+            </SectionBackground>
         </motion.div>
     );
 };

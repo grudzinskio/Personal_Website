@@ -10,6 +10,8 @@ import { PreclinicalExplorer } from "../components/sections/PreclinicalExplorer"
 import { ExperienceTimeline } from "../components/sections/Experience";
 import SlidingImages from "../components/sections/SlidingImages";
 import NavigationPanels from "../components/sections/NavigationPanels";
+import { SectionBackground } from "../components/ui/SectionBackground";
+import { HeroDesign } from "../components/ui/HeroDesign";
 import Magnetic from "../utils/animations/Magnetic";
 import { initSmoothScroll, scrollToPosition, getLenis } from "../utils/animations/smoothScroll";
 
@@ -73,21 +75,32 @@ export const Home = () => {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
                 ref={scrollContainerRef}
-                className="min-h-screen text-foreground overflow-x-hidden"
+                className="min-h-screen overflow-x-hidden bg-[#e7e4dd]"
                 style={{ maxWidth: '100vw' }}
             >
             {/* Main content */}
             <main className="scroll-smooth">
-                {/* Section 1: Letter Collision hero with CTAs */}
-                <section className="relative px-4">
-                    <LetterCollision />
-                </section>
+                {/* Section 1: Letter Collision hero — light "screen" with the
+                    floating holographic shapes backdrop, hard-cutting to the
+                    dark spotlight section below. */}
+                <SectionBackground tone="light" className="hero-light">
+                    <HeroDesign />
+                    <section className="relative px-4">
+                        <LetterCollision />
+                    </section>
+                </SectionBackground>
 
-                {/* Section 2: New Introduction */}
-                <IntroductionSection />
+                {/* Section 2: About / Introduction — full-bleed dark section
+                    with the cursor spotlight background, hard-cutting out of the
+                    light hero and back to light after. */}
+                <SectionBackground tone="spotlight" className="relative z-10 -mt-[28vh] sm:-mt-[20vh]">
+                    <IntroductionSection />
+                </SectionBackground>
 
-                {/* Section 3: Experience Timeline */}
-                <ExperienceTimeline />
+                {/* Section 3: Experience Timeline (light) */}
+                <div className="section-light">
+                    <ExperienceTimeline />
+                </div>
 
                 {/* Scroll indicator button */}
                 {showScrollButton && (
@@ -112,7 +125,7 @@ export const Home = () => {
                             }}
                             whileHover={{ scale: 1.06, y: -4 }}
                             whileTap={{ scale: 0.96 }}
-                            className="group fixed bottom-6 right-4 z-50 flex min-h-12 cursor-pointer items-center gap-2 rounded-full border border-accent/50 bg-[rgba(245,181,68,0.12)] px-5 py-2.5 font-mono text-xs uppercase tracking-[0.18em] text-accent shadow-[0_0_24px_-6px_rgba(245,181,68,0.5)] backdrop-blur-xl transition-colors hover:border-accent hover:bg-[rgba(245,181,68,0.2)] sm:bottom-8 sm:right-8 sm:px-6 sm:py-3"
+                            className="group fixed bottom-6 right-4 z-50 flex min-h-12 cursor-pointer items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-mono text-xs uppercase tracking-[0.18em] text-white shadow-[0_12px_28px_-10px_rgba(203,75,11,0.65)] transition-[background-color,transform] duration-200 hover:-translate-y-0.5 hover:bg-[#b5420a] sm:bottom-8 sm:right-8 sm:px-6 sm:py-3"
                             onClick={scrollNudge}
                         >
                             <p>Scroll</p>
@@ -121,14 +134,24 @@ export const Home = () => {
                     </Magnetic>
                 )}
 
-                {/* Section 4: Preclinical Explorer */}
+                {/* Section 4: Preclinical Explorer — dark-native glowing-ring
+                    visualization. NOT wrapped in SectionBackground: it pins with
+                    GSAP ScrollTrigger and the wrapper broke the pin, so it carries
+                    its own dark background on the section element instead. */}
                 <PreclinicalExplorer />
 
-                {/* Section 5: Sliding Images Gallery (Horizontal scroll) */}
-                <SlidingImages />
+                {/* Section 5: Sliding Images Gallery (light) */}
+                <div className="section-light">
+                    <SlidingImages />
+                </div>
 
-                {/* Section 6: Navigation Panels - Cool navigation cards */}
-                <NavigationPanels />
+                {/* Section 6: Navigation Panels — "Keep looking around" cards,
+                    on the light page background (section-light restyles the glass
+                    cards + text for the light surface). Pulled up to close the
+                    doubled page-section padding gap under the sliding images. */}
+                <div className="section-light -mt-36">
+                    <NavigationPanels />
+                </div>
             </main>
 
             {/* Footer */}

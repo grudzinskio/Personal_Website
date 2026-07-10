@@ -83,7 +83,7 @@ export function LetterCollision() {
         </div>
       </div>
       {/* Extra random letters below with proper spacing */}
-      <div className="flex flex-wrap mb-24 sm:mb-32 gap-2 xs:gap-4 sm:gap-6 pr-2 sm:pr-4">
+      <div className="flex flex-wrap mb-0 gap-2 xs:gap-4 sm:gap-6 pr-2 sm:pr-4">
         <LetterDisplay word="building " colorClass="text-white" />
         <LetterDisplay word="innovative " colorClass="text-white" />
         <LetterDisplay word="solutions" colorClass="text-white" />

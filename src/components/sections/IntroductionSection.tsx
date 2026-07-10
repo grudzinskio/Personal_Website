@@ -18,7 +18,7 @@ export function IntroductionSection() {
   };
 
   return (
-    <section className="page-section">
+    <section className="page-section !py-20 sm:!py-28">
       <div className="content-shell grid items-center gap-12 md:grid-cols-[1.25fr_0.75fr] lg:gap-24">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -83,7 +83,7 @@ export function IntroductionSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.9, delay: 0.1, ease }}
-          className="mx-auto w-full max-w-[260px] sm:max-w-[300px] lg:max-w-[340px]"
+          className="mx-auto w-full max-w-[16.25rem] sm:max-w-[18.75rem] lg:max-w-[21.25rem]"
         >
           <div className="overflow-hidden rounded-2xl border border-white/10 shadow-[0_24px_70px_rgba(0,0,0,0.5)]">
             <img

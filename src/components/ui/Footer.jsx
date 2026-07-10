@@ -26,7 +26,7 @@ export const Footer = () => {
                     </h2>
                     <Link
                         to="/contact"
-                        className="inline-flex w-fit items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-white shadow-[0_12px_28px_-10px_rgba(245,179,66,0.6)] transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-[#e0a233]"
+                        className="inline-flex w-fit items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-white shadow-[0_12px_28px_-10px_rgba(203,75,11,0.6)] transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-[#b5420a]"
                     >
                         Hire me
                         <ArrowUpRight className="size-4" />

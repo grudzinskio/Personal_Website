@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Code2 } from "lucide-react";
-import { Background } from "../components/ui/Background";
 import { Navbar } from "../components/ui/Navbar";
 import { Footer } from "../components/ui/Footer";
+import { SectionBackground } from "../components/ui/SectionBackground";
 import CocoArchitectureShowcase from "../components/sections/CocoArchitectureShowcase";
 import { getLenis, scrollToPosition } from "../utils/animations/smoothScroll";
 
@@ -26,9 +26,9 @@ export const CocoProject = () => {
             className="min-h-screen text-foreground overflow-x-hidden"
             style={{ maxWidth: '100vw' }}
         >
-            <Background />
             <Navbar />
 
+            <SectionBackground tone="spotlight" className="min-h-screen">
             <main className="page-section pt-24 sm:pt-32">
                 <div className="content-shell">
                     <motion.div
@@ -55,6 +55,7 @@ export const CocoProject = () => {
             </main>
 
             <Footer />
+            </SectionBackground>
         </motion.div>
     );
 };

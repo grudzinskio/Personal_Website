@@ -68,10 +68,10 @@ const experiences = [
 // Fewer, more spread-out dashes than Tailwind's border-dashed: a 6px dash
 // followed by an 18px gap, repeating down the connector.
 const timelineDash =
-    'repeating-linear-gradient(to bottom, rgba(255,255,255,0.18) 0 6px, transparent 6px 24px)';
+    'repeating-linear-gradient(to bottom, rgba(22,35,63,0.5) 0 6px, transparent 6px 24px)';
 
-const accent = '#f5b342';
-const secondary = '#0070f3';
+const accent = '#cb4b0b';
+const navy = '#16233f';
 
 const ExperienceItem = ({ role, company, location, period, description, index, logo, logoFrameClass = '', logoClass = 'h-8 md:h-10', projectLink }) => {
     const ref = useRef(null);
@@ -136,7 +136,7 @@ const ExperienceItem = ({ role, company, location, period, description, index, l
 const TimelineRow = forwardRef(({ exp, index, total }, ref) => {
     const [hovered, setHovered] = useState(false);
     const isEven = index % 2 === 0;
-    const dotColor = isEven ? accent : secondary;
+    const dotColor = isEven ? accent : navy;
     const hoverHandlers = {
         onMouseEnter: () => setHovered(true),
         onMouseLeave: () => setHovered(false),
@@ -183,12 +183,12 @@ const TimelineRow = forwardRef(({ exp, index, total }, ref) => {
             >
                 <div className="relative flex h-5 w-5 items-center justify-center">
                     <motion.span
-                        className="block h-5 w-5 rounded-full ring-4 ring-background"
+                        className="block h-5 w-5 rounded-full ring-4 ring-[#e7e4dd]"
                         style={{ backgroundColor: dotColor }}
                         animate={{
                             scale: hovered ? 1.35 : 1,
                             boxShadow: hovered
-                                ? `0 0 0 6px ${isEven ? 'rgba(245,179,66,0.16)' : 'rgba(0,112,243,0.16)'}`
+                                ? `0 0 0 6px ${isEven ? 'rgba(203,75,11,0.16)' : 'rgba(22,35,63,0.16)'}`
                                 : '0 0 0 0px rgba(0,0,0,0)',
                         }}
                         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -266,7 +266,7 @@ export const ExperienceTimeline = () => {
                             transformOrigin: 'top',
                             scaleY: scrollYProgress,
                             backgroundColor: accent,
-                            boxShadow: '0 0 8px rgba(245,179,66,0.5)',
+                            boxShadow: '0 0 8px rgba(203,75,11,0.5)',
                         }}
                     />
 
